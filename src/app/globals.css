@@ -1,26 +1,34 @@
 @import "tailwindcss";
 
 :root {
+  /* Base */
   --background: #ffffff;
   --foreground: #171717;
+  --nav-bg-color:#F5F2EB;
+  --link-color:#0F1B26B2;
+
+  /* Brand */
+  --color-primary: #C97A41; /* Orange used for "Customizable Cabins", buttons */
+  --color-secondary: #6b7280; /* Neutral gray (About Us, Contact links) */
+  --color-accent: #1e3a8a; /* Blue shade (if needed for highlight) */
+
+  /* Text */
+  --text-muted: #9ca3af; /* Muted gray */
+  --text-dark: #0F1B26; /* Strong dark */
+  --text-light: #ffffff; /* White text */
+
+  /* Section Backgrounds */
+  --section-light: #ffffff; /* Default light background */
+  --section-accent: #f5f2eb; /* Beige (nav + light section bg) */
+  --section-dark: #0f172a; /* Deep navy (footer/dark sections) */
+  --font-eudoxus-sans: "Eudoxus Sans", sans-serif;
+  --font-geist-mono: "Fira Mono", monospace; /* example for mono font */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-eudoxus-sans), sans-serif;
 }

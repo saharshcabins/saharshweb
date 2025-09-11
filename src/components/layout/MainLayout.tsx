@@ -1,11 +1,17 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
+import NavBar from "./NavBar";
+import CabinSection from "./CabinSection";
+import CabinCarousel from "../ui/CabinCarousel";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div className='min-h-screen flex flex-col'>
-      <header className='p-4 bg-gray-900 text-white'>My App</header>
-      <main className='flex-1 p-6'>{children}</main>
-      <footer className='p-4 bg-gray-100 text-center text-sm'>© 2025 My App</footer>
+    <div className="min-h-screen flex flex-col py-10">
+      <div className="w-[90%] mx-auto">
+        <NavBar />
+        <CabinSection />
+      </div>
+
+      <CabinCarousel />
     </div>
   );
 }
