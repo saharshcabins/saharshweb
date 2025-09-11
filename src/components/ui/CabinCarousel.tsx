@@ -31,10 +31,10 @@ const cabins = [
 
 const CabinCarousel = () => {
   return (
-    <div className="flex flex-col items-center text-center">
+    <div className="flex flex-col items-center text-center gap-8">
       <MultiColorText
         fontSize="56px"
-        weight="bold"
+        weight="medium"
         items={[
           { text: "Engineered with", color: "dark" },
           {
@@ -43,14 +43,10 @@ const CabinCarousel = () => {
           },
         ]}
       />
-      <TextBuilder size="2xl" color="dark">
-        Saharsh Cabins are utilizing high-quality materials and innovative
-        construction <br /> techniques to ensure durability, efficiency, and
-        aesthetic appeal.
-      </TextBuilder>
+
 
       {/* Carousel */}
-      <div className="w-full  mt-12">
+      <div className="w-full">
         <Swiper
           modules={[Navigation, Autoplay]}
           slidesPerView={2.5}
@@ -60,44 +56,51 @@ const CabinCarousel = () => {
           loop={true}
         >
           {cabins.map((cabin, index) => (
-           <SwiperSlide key={index}>
-  <div className="relative rounded-[40px] overflow-hidden shadow-lg flex items-end w-full max-w-[800px] aspect-[800/520] mx-auto">
-    <img
-      src={cabin.image}
-      alt={cabin.name}
-      className="absolute inset-0 w-full h-full object-cover"
-    />
-    <div className="absolute inset-0 bg-black/40"></div>
+            <SwiperSlide key={index}>
+              <div className="relative rounded-[40px] overflow-hidden shadow-lg flex items-end w-full aspect-[800/500] mx-auto">
+                <img
+                  src={cabin.image}
+                  alt={cabin.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/40"></div>
 
-    <div className="relative z-10 p-6 text-left flex items-end justify-between w-full">
-      <div className="flex flex-col">
-        <TextBuilder
-          fontSize="56px"
-          weight="bold"
-          color="light"
-          className="leading-none"
-        >
-          {cabin.name}
-        </TextBuilder>
-        <TextBuilder
-          fontSize="20px"
-          color="light"
-          className="leading-none"
-        >
-          {cabin.description}
-        </TextBuilder>
-      </div>
+                <div className="relative z-10 p-6 text-left flex items-end justify-between w-full">
+                  <div className="flex flex-col">
+                    <TextBuilder
+                      fontSize="56px"
+                      weight="bold"
+                      color="light"
+                      className="leading-none"
+                    >
+                      {cabin.name}
+                    </TextBuilder>
+                    <TextBuilder
+                      fontSize="20px"
+                      color="light"
+                      className="leading-none"
+                    >
+                      {cabin.description}
+                    </TextBuilder>
+                  </div>npm 
 
-      <button className="rounded-[40px] border border-[var(--color-primary)] w-[80px] h-[54px] flex items-center justify-center">
-        <FaArrowRight className="text-[var(--text-light)]" size={22} />
-      </button>
-    </div>
-  </div>
-</SwiperSlide>
-
+                  <button className="rounded-[40px] border border-[var(--color-primary)] w-[80px] h-[54px] flex items-center justify-center">
+                    <FaArrowRight
+                      className="text-[var(--text-light)]"
+                      size={22}
+                    />
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
           ))}
         </Swiper>
       </div>
+            <TextBuilder size="2xl" color="dark">
+        Saharsh Cabins are utilizing high-quality materials and innovative
+        construction <br /> techniques to ensure durability, efficiency, and
+        aesthetic appeal.
+      </TextBuilder>
     </div>
   );
 };

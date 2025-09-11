@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import NavBar from "./NavBar";
 import CabinSection from "./CabinSection";
 import CabinCarousel from "../ui/CabinCarousel";
+import CabinSlideShow from "../ui/CabinSlideShow";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -12,6 +13,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
       </div>
 
       <CabinCarousel />
+      <CabinSlideShow />
     </div>
   );
 }
