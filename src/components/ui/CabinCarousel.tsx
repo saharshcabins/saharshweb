@@ -56,43 +56,64 @@ const CabinCarousel = () => {
           loop={true}
         >
           {cabins.map((cabin, index) => (
-            <SwiperSlide key={index}>
-              <div className="relative rounded-[40px] overflow-hidden shadow-lg flex items-end w-full aspect-[800/500] mx-auto">
-                <img
-                  src={cabin.image}
-                  alt={cabin.name}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/40"></div>
+          <Swiper
+  modules={[Navigation, Autoplay]}
+  spaceBetween={30}
+  centeredSlides={true}
+  loop={true}
+  autoplay={{ delay: 3000, disableOnInteraction: false }}
+  slidesPerView="auto"
+  grabCursor={true} // allows dragging
+  breakpoints={{
+    640: {
+      slidesPerView: 1.2, // slightly show side slides
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 1.5,
+      spaceBetween: 30,
+    },
+    1024: {
+      slidesPerView: 2,
+      spaceBetween: 40,
+    },
+  }}
+  className="swiper-cabin"
+>
+  {cabins.map((cabin, index) => (
+    <SwiperSlide key={index} className="w-[300px] md:w-[400px] lg:w-[500px]">
+      <div className="relative rounded-[40px] overflow-hidden shadow-lg flex items-end aspect-[800/500] mx-auto">
+        <img
+          src={cabin.image}
+          alt={cabin.name}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40"></div>
 
-                <div className="relative z-10 p-6 text-left flex items-end justify-between w-full">
-                  <div className="flex flex-col">
-                    <TextBuilder
-                      fontSize="56px"
-                      weight="bold"
-                      color="light"
-                      className="leading-none"
-                    >
-                      {cabin.name}
-                    </TextBuilder>
-                    <TextBuilder
-                      fontSize="20px"
-                      color="light"
-                      className="leading-none"
-                    >
-                      {cabin.description}
-                    </TextBuilder>
-                  </div>npm 
+        <div className="relative z-10 p-6 text-left flex items-end justify-between w-full">
+          <div className="flex flex-col">
+            <TextBuilder
+              fontSize="56px"
+              weight="bold"
+              color="light"
+              className="leading-[1.2]"
+            >
+              {cabin.name}
+            </TextBuilder>
+            <TextBuilder fontSize="20px" color="light" className="leading-[1.25]">
+              {cabin.description}
+            </TextBuilder>
+          </div>
 
-                  <button className="rounded-[40px] border border-[var(--color-primary)] w-[80px] h-[54px] flex items-center justify-center">
-                    <FaArrowRight
-                      className="text-[var(--text-light)]"
-                      size={22}
-                    />
-                  </button>
-                </div>
-              </div>
-            </SwiperSlide>
+          <button className="rounded-[40px] border border-[var(--color-primary)] w-[80px] h-[54px] flex items-center justify-center">
+            <FaArrowRight className="text-[var(--text-light)]" size={22} />
+          </button>
+        </div>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
+
           ))}
         </Swiper>
       </div>
