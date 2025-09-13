@@ -23,6 +23,8 @@
   --section-dark: #0f172a; /* Deep navy (footer/dark sections) */
   --font-eudoxus-sans: "Eudoxus Sans", sans-serif;
   --font-geist-mono: "Fira Mono", monospace; /* example for mono font */
+    font-family: var(--font-eudoxus), sans-serif;
+
 }
 
 

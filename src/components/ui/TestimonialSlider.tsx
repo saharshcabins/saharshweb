@@ -46,7 +46,6 @@ const TestimonialSlider = () => {
             />
           </div>
         ))}
-        
       </div>
 
       <style jsx>{`

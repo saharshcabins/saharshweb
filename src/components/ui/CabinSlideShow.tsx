@@ -98,7 +98,7 @@ const CabinSlideShow: React.FC = () => {
           onSlideChangeTransitionEnd={handleSlideChange}
         >
           {slides.map((slide, idx) => (
-            <SwiperSlide key={idx} className="!w-[390px]">
+            <SwiperSlide key={`main-${idx}`} className="!w-[390px]">
               <div className="relative rounded-[30px] overflow-hidden shadow-lg aspect-[390/460] w-[390px] h-[460px] mx-auto">
                 {slide.type === "image" ? (
                   <img

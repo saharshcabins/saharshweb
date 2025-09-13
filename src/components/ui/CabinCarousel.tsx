@@ -37,36 +37,22 @@ const CabinCarousel = () => {
         weight="medium"
         items={[
           { text: "Engineered with", color: "dark" },
-          {
-            text: " Precision",
-            color: "primary",
-          },
+          { text: " Precision", color: "primary" },
         ]}
       />
 
-
       {/* Carousel */}
       <div className="w-full">
-        <Swiper
-          modules={[Navigation, Autoplay]}
-          slidesPerView={2.5}
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          loop={true}
-        >
-          {cabins.map((cabin, index) => (
-          <Swiper
+       <Swiper
   modules={[Navigation, Autoplay]}
   spaceBetween={30}
   centeredSlides={true}
   loop={true}
   autoplay={{ delay: 3000, disableOnInteraction: false }}
-  slidesPerView="auto"
-  grabCursor={true} // allows dragging
+  grabCursor={true}
   breakpoints={{
     640: {
-      slidesPerView: 1.2, // slightly show side slides
+      slidesPerView: 1.2,
       spaceBetween: 20,
     },
     768: {
@@ -81,8 +67,8 @@ const CabinCarousel = () => {
   className="swiper-cabin"
 >
   {cabins.map((cabin, index) => (
-    <SwiperSlide key={index} className="w-[300px] md:w-[400px] lg:w-[500px]">
-      <div className="relative rounded-[40px] overflow-hidden shadow-lg flex items-end aspect-[800/500] mx-auto">
+    <SwiperSlide key={`cabin-${index}`}>
+      <div className="relative max-w-[500px] w-full rounded-[40px] overflow-hidden shadow-lg flex items-end aspect-[800/500] mx-auto">
         <img
           src={cabin.image}
           alt={cabin.name}
@@ -100,7 +86,11 @@ const CabinCarousel = () => {
             >
               {cabin.name}
             </TextBuilder>
-            <TextBuilder fontSize="20px" color="light" className="leading-[1.25]">
+            <TextBuilder
+              fontSize="20px"
+              color="light"
+              className="leading-[1.25]"
+            >
               {cabin.description}
             </TextBuilder>
           </div>
@@ -114,10 +104,9 @@ const CabinCarousel = () => {
   ))}
 </Swiper>
 
-          ))}
-        </Swiper>
       </div>
-            <TextBuilder fontSize="24px" color="dark">
+
+      <TextBuilder fontSize="24px" color="dark">
         Saharsh Cabins are utilizing high-quality materials and innovative
         construction <br /> techniques to ensure durability, efficiency, and
         aesthetic appeal.

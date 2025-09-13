@@ -5,6 +5,7 @@ import CabinCarousel from "../ui/CabinCarousel";
 import CabinSlideShow from "../ui/CabinSlideShow";
 import HeroSection from "./HeroSection";
 import TestimonialSection from "./TestimonialSection";
+import OurProcess from "./OurProcess";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -22,6 +23,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
       <CabinSlideShow />
 
       <TestimonialSection />
+      <OurProcess />
       </div>
 
     </div>

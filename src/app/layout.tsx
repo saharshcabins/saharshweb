@@ -1,16 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// Load Eudoxus Sans from /public/font/
+const eudoxus = localFont({
+  src: [
+    {
+      path: "./font/EudoxusSans-Regular-BF659b6cb1d4714.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./font/EudoxusSans-Medium-BF659b6cb1c14cb.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./font/EudoxusSans-Bold-BF659b6cb1408e5.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-eudoxus",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,16 +33,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="en" className={eudoxus.variable}>
+      <body className="antialiased font-sans">{children}</body>
     </html>
   );
 }
