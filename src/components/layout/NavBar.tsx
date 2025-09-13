@@ -10,23 +10,20 @@ const NavBar = () => {
   ];
 
   return (
-    <div className="bg-[var(--nav-bg-color)] p-[20px] rounded-[24px]">
-      <div className="flex flex-row gap-4 items-center">
+    <div className="bg-[var(--nav-bg-color)] p-4 md:p-6 rounded-[24px] w-full  mx-auto">
+      <div className="flex flex-wrap md:flex-nowrap items-center gap-4">
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-shrink-0">
           <Image
             src="/assets/logo/logo.svg"
-            height={50}
-            width={176}
+            height={40}
+            width={140}
             alt="saharsh-logo"
           />
-          {/* <div className="text-[23px] font-bold tracking-[-0.01em]">
-            Saharsh
-          </div> */}
         </div>
 
         {/* Navigation Links */}
-        <div className="flex flex-row justify-between ml-auto w-[35%]">
+        <div className="flex flex-row flex-wrap md:flex-nowrap ml-auto gap-6 md:gap-16">
           {NavLinks.map((link) => (
             <a key={link.text} href={link.href}>
               <TextBuilder fontSize="20px" weight="bold" color="link">

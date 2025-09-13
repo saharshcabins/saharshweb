@@ -23,7 +23,7 @@ const Button: FC<ButtonProps> = ({ text, onClick, className }) => {
         ${className || ""}
       `}
     >
-      <TextBuilder size="2xl" weight="bold" color="primary">
+      <TextBuilder fontSize="24px" weight="bold" color="primary">
         {text}
       </TextBuilder>
     </button>

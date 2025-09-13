@@ -64,7 +64,7 @@ const CabinSlideShow: React.FC = () => {
   };
 
   return (
-    <div className="bg-[var(--text-dark)] py-10">
+    <div className="bg-[var(--text-dark)] py-20">
       {/* Header */}
       <div className="flex justify-between px-10">
         <MultiColorText
@@ -76,7 +76,7 @@ const CabinSlideShow: React.FC = () => {
           ]}
         />
         <div className="w-1/2 leading-[1.25]">
-          <TextBuilder size="2xl" color="light">
+          <TextBuilder fontSize="24px" color="light">
             From sleek architecture to luxurious interiors & scenic landscapes
             come together to create living spaces that inspire and rejuvenate.
           </TextBuilder>

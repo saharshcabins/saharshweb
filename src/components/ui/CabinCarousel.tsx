@@ -117,7 +117,7 @@ const CabinCarousel = () => {
           ))}
         </Swiper>
       </div>
-            <TextBuilder size="2xl" color="dark">
+            <TextBuilder fontSize="24px" color="dark">
         Saharsh Cabins are utilizing high-quality materials and innovative
         construction <br /> techniques to ensure durability, efficiency, and
         aesthetic appeal.

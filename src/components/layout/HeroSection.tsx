@@ -121,7 +121,6 @@ const HeroSection = () => {
           />
         </div>
 
-
         <div
           className="relative w-full flex justify-center z-10"
           style={{
@@ -140,7 +139,7 @@ const HeroSection = () => {
           />
 
           {/* Typewriter Text Overlay */}
-          <div className="absolute inset-0 flex flex-col items-center justify-start pt-[15%] pointer-events-none">
+          <div className="absolute inset-0 flex flex-col items-center justify-start pt-[15%] ">
             <TextBuilder
               fontSize="24px"
               weight="medium"
@@ -173,14 +172,14 @@ const HeroSection = () => {
           </div>
 
           {/* Labels Overlay */}
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 ">
             {/* Homes Label */}
-            <div className="absolute top-[45%] right-[33%]">
+            <div className="absolute top-[45%] right-[33%] z-10">
               {" "}
               <Label text="Homes" />{" "}
             </div>{" "}
             {/* Offices Label */}{" "}
-            <div className="absolute top-[80%] left-[70%]">
+            <div className="absolute top-[80%] left-[70%] z-10">
               {" "}
               <Label text="Offices" />{" "}
             </div>{" "}
@@ -193,10 +192,11 @@ const HeroSection = () => {
         </div>
 
         {/* Front Cloud Layer */}
+        {/* Front Cloud Layer */}
         <div
-          className="absolute inset-0 z-30 flex justify-center items-start"
+          className="absolute inset-0 z-30 -top-20 left-20 flex justify-center items-start pointer-events-none"
           style={{
-            transform: `translateX(${cloudOffset}px)`,
+            transform: `translateX(${-cloudOffset}px)`, // move opposite to back cloud
             opacity: cloudOpacity,
             transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
           }}

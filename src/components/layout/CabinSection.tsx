@@ -7,7 +7,7 @@ const CabinSection = () => {
   return (
     <div className="text-center leading-[1.2] flex flex-col gap-8 items-center">
       <MultiColorText
-        size="4xl"
+        fontSize="24px"
         weight="medium"
         items={[
           { text: "Saharsh Cabins", color: "primary" },

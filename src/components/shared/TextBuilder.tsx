@@ -16,7 +16,7 @@ type TextBuilderProps = {
     | "accent"
     | "danger"
     | "link";
-  fontSize?: string; // e.g. "56px", "3rem"
+  fontSize?: string; // Desktop font size e.g. "56px"
   className?: string;
 };
 
@@ -28,17 +28,6 @@ const TextBuilder: FC<TextBuilderProps> = ({
   fontSize,
   className,
 }) => {
-  const sizeClasses = {
-    xs: "text-xs",
-    sm: "text-sm",
-    base: "text-base",
-    lg: "text-lg",
-    xl: "text-xl",
-    "2xl": "text-2xl",
-    "3xl": "text-3xl",
-    "4xl": "text-4xl",
-  };
-
   const weightClasses = {
     light: "font-light",
     normal: "font-normal",
@@ -61,15 +50,18 @@ const TextBuilder: FC<TextBuilderProps> = ({
     link: "text-[var(--link-color)]",
   };
 
+  // Automatic responsive scaling
+const computedStyle = fontSize
+  ? {
+      fontSize: `clamp(${parseInt(fontSize) * 0.6}px, 5vw, ${fontSize})`,
+    }
+  : undefined;
+
+
   return (
     <span
-      className={clsx(
-        sizeClasses[size],
-        weightClasses[weight],
-        colorClasses[color],
-        className
-      )}
-      style={fontSize ? { fontSize } : undefined}
+      className={clsx(weightClasses[weight], colorClasses[color], className)}
+      style={computedStyle}
     >
       {children}
     </span>
