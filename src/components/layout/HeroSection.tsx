@@ -51,6 +51,7 @@ const HeroSection = () => {
   }, []);
 
   // ---- Scroll effect ----
+  // ---- Scroll effect ----
   useEffect(() => {
     const handleScroll = () => setScroll(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -61,11 +62,16 @@ const HeroSection = () => {
   const translateY = scroll * 0.3;
   const rotate = scroll * 0.05;
   const scale = Math.max(1 - scroll * 0.001, 0.6);
-  const opacity = Math.max(1 - scroll * 0.002, 0);
+
+  // ❌ remove old container opacity formula
+  // const opacity = Math.max(1 - scroll * 0.002, 0);
 
   // ☁ Clouds drift + fade
   const cloudOffset = Math.min(scroll * 0.6, 1000);
   const cloudOpacity = Math.max(1 - scroll / 400, 0);
+
+  // ✅ use cloudOpacity for container too
+  const containerOpacity = cloudOpacity;
 
   // 🏠 Cabin reveal
   const cabinOpacity = Math.min(Math.max((scroll - 200) / 200, 0), 1);
@@ -92,8 +98,8 @@ const HeroSection = () => {
           className="w-1/2"
           style={{
             transform: `translateY(${translateY}px) rotate(${rotate}deg) scale(${scale})`,
-            opacity,
-            transition: "transform 0.1s linear, opacity 0.1s linear",
+            opacity: containerOpacity, // ✅ synced with clouds
+            transition: "transform 0.1s linear, opacity 0.3s ease-out",
           }}
         >
           <Image

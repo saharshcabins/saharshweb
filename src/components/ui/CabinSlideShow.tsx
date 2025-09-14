@@ -4,10 +4,12 @@ import { Navigation } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
+import Image from "next/image";
 
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { Arrow } from "@/utils/svgUtils";
 
 type Slide = {
   type: "image" | "video";
@@ -17,27 +19,27 @@ type Slide = {
 const slides: Slide[] = [
   {
     type: "image",
-    src: "https://imgs.search.brave.com/NX3jqBIAqsLItDExjDAv-rNya1wiMqcL50C7CvvvW20/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTE2/MzgzNTI2Ny9waG90/by9vbGQtY2FiaW4t/aW4taGF1bnRlZC1m/b3Jlc3QuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPUFHY3JQ/eEE5MkJabHM2V1Nm/ZndXY1l4aEw0aGNC/QnROUzZMS0FYblVG/dEU9",
+    src: "https://plus.unsplash.com/premium_photo-1686090449403-43c24a6a4f79?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     type: "video",
-    src: "https://www.w3schools.com/html/mov_bbb.mp4",
+    src: "https://cdn.pixabay.com/video/2024/05/09/211275_large.mp4",
   },
   {
     type: "image",
-    src: "https://imgs.search.brave.com/3MHsUJbs8F46TDVuD2I7woMfHmMatdgs5J9jeEgW_UA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA1Lzg5LzE5LzE3/LzM2MF9GXzU4OTE5/MTc3N19UaUdOWERP/VHpKMlJaQVB2S0Q0/elRBbURhN3NobmFC/Sy5qcGc",
+    src: "https://plus.unsplash.com/premium_photo-1686090450479-370d5ddf4de1?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    type: "video",
+    src: "https://cdn.pixabay.com/video/2025/06/13/285663_large.mp4",
   },
   {
     type: "image",
-    src: "https://imgs.search.brave.com/3MHsUJbs8F46TDVuD2I7woMfHmMatdgs5J9jeEgW_UA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA1Lzg5LzE5LzE3/LzM2MF9GXzU4OTE5/MTc3N19UaUdOWERP/VHpKMlJaQVB2S0Q0/elRBbURhN3NobmFC/Sy5qcGc",
+    src: "https://plus.unsplash.com/premium_photo-1686090449403-43c24a6a4f79?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     type: "image",
-    src: "https://imgs.search.brave.com/3MHsUJbs8F46TDVuD2I7woMfHmMatdgs5J9jeEgW_UA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA1Lzg5LzE5LzE3/LzM2MF9GXzU4OTE5/MTc3N19UaUdOWERP/VHpKMlJaQVB2S0Q0/elRBbURhN3NobmFC/Sy5qcGc",
-  },
-  {
-    type: "image",
-    src: "https://imgs.search.brave.com/3MHsUJbs8F46TDVuD2I7woMfHmMatdgs5J9jeEgW_UA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA1Lzg5LzE5LzE3/LzM2MF9GXzU4OTE5/MTc3N19UaUdOWERP/VHpKMlJaQVB2S0Q0/elRBbURhN3NobmFC/Sy5qcGc",
+    src: "https://plus.unsplash.com/premium_photo-1733864822196-b964f2f77f3c?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
@@ -48,14 +50,11 @@ const CabinSlideShow: React.FC = () => {
     videoRefs.current.forEach((video, idx) => {
       if (!video) return;
 
-      // Find the actual slide element that is active (centered)
       const activeSlide = swiper.slides[swiper.activeIndex];
       const isActive = activeSlide?.dataset?.swiperSlideIndex === String(idx);
 
       if (isActive) {
-        video.play().catch(() => {
-          // prevent autoplay blocking errors
-        });
+        video.play().catch(() => {});
       } else {
         video.pause();
         video.currentTime = 0;
@@ -64,7 +63,7 @@ const CabinSlideShow: React.FC = () => {
   };
 
   return (
-    <div className="bg-[var(--text-dark)] py-20">
+    <div className="bg-[var(--text-dark)] py-30 flex flex-col gap-10 min-h-screen">
       {/* Header */}
       <div className="flex justify-between px-10">
         <MultiColorText
@@ -84,7 +83,7 @@ const CabinSlideShow: React.FC = () => {
       </div>
 
       {/* Slider */}
-      <div className="relative mt-10 px-10">
+      <div className="relative mt-10 ">
         <Swiper
           modules={[Navigation]}
           navigation={{
@@ -92,19 +91,20 @@ const CabinSlideShow: React.FC = () => {
             nextEl: ".custom-next",
           }}
           slidesPerView="auto"
-          spaceBetween={50}
+          spaceBetween={40}
           loop={true}
           centeredSlides={true}
           onSlideChangeTransitionEnd={handleSlideChange}
         >
           {slides.map((slide, idx) => (
             <SwiperSlide key={`main-${idx}`} className="!w-[390px]">
-              <div className="relative rounded-[30px] overflow-hidden shadow-lg aspect-[390/460] w-[390px] h-[460px] mx-auto">
+              <div className="relative w-[390px] h-[460px] rounded-[30px] overflow-hidden shadow-lg mx-auto">
                 {slide.type === "image" ? (
-                  <img
+                  <Image
                     src={slide.src}
                     alt={`slide-${idx}`}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 ) : (
                   <video
@@ -127,11 +127,11 @@ const CabinSlideShow: React.FC = () => {
         </Swiper>
 
         {/* Custom Navigation */}
-        <button className="custom-prev absolute cursor-pointer left-20 bottom-0 -translate-y-1/2 bg-[var(--section-accent)] rounded-[40px] z-10  w-[80px] h-[54px] flex justify-center items-center">
-          <FaArrowLeft size={25} className="text-[var(--color-primary)]" />
+        <button className="custom-prev absolute cursor-pointer left-5 bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] rounded-[40px] z-10  w-[80px] h-[54px] flex justify-center items-center">
+          <Arrow />
         </button>
-        <button className="custom-next absolute cursor-pointer  right-20 w-[80px] h-[54px] bottom-0 -translate-y-1/2 bg-[var(--section-accent)] rounded-[40px]  z-10 flex justify-center items-center">
-          <FaArrowRight size={25} className="text-[var(--color-primary)]" />
+        <button className="custom-next absolute cursor-pointer  right-5 w-[80px] h-[54px] bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] rounded-[40px]  z-10 flex justify-center items-center">
+          <Arrow flipped />{" "}
         </button>
       </div>
     </div>

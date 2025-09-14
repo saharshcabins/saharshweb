@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React from "react";
 
 const logos = [
@@ -21,28 +22,17 @@ const TestimonialSlider = () => {
 
       {/* Slider track */}
       <div className="flex w-max animate-marquee gap-10">
-        {logos.map((logo, index) => (
+        {logos.concat(logos).map((logo, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-40 h-20 flex items-center justify-center"
+            className="flex-shrink-0 w-[300px] h-[300px] flex items-center justify-center"
           >
-            <img
+            <Image
               src={logo}
               alt={`Logo ${index}`}
-              className="object-contain w-full h-full w-[300px] h-[30px]"
-            />
-          </div>
-        ))}
-        {/* Repeat logos for seamless loop */}
-        {logos.map((logo, index) => (
-          <div
-            key={`dup-${index}`}
-            className="flex-shrink-0 w-40 h-20 flex items-center justify-center"
-          >
-            <img
-              src={logo}
-              alt={`Logo ${index}`}
-              className="object-contain w-full h-full w-[300px] h-[30px]"
+              width={120}
+              height={120}
+              className="object-contain"
             />
           </div>
         ))}
@@ -58,7 +48,6 @@ const TestimonialSlider = () => {
           }
         }
         .animate-marquee {
-          display: flex;
           animation: marquee 20s linear infinite;
         }
       `}</style>

@@ -1,10 +1,8 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import Image from "next/image";
+"use client";
 
+import React, { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 import { FaArrowRight } from "react-icons/fa";
@@ -14,25 +12,48 @@ const cabins = [
     name: "Hutsie",
     description: "20×40 ft | Bathroom | 1 Bed | Pantry",
     image:
-      "https://media.istockphoto.com/id/93463536/photo/log-cabin-in-the-forest.jpg?s=1024x1024&w=is&k=20&c=jA7o2eLU_IVEFot--f7YfIEHKAmCp_iwT8kaKfzz9eU=",
+      "https://images.unsplash.com/photo-1587061949409-02df41d5e562?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Hutsite",
     description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
     image:
-      "https://media.istockphoto.com/id/1148294777/photo/summer-holidays-in-finland.jpg?s=1024x1024&w=is&k=20&c=nifQ_8q6M3Y7e1d4G-86AT0RaBZkX9NzVQsUrXNzTmA=",
+      "https://images.unsplash.com/photo-1588557132645-ff567110cafd?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Cabana",
     description: "25×45 ft | Bathroom | 2 Beds | Living Space",
     image:
-      "https://media.istockphoto.com/id/698641346/photo/little-fishing-cottage-att-the-lake-shore-surrounded-by-birch-trees.jpg?s=1024x1024&w=is&k=20&c=O35qmauLn7bGCEYyT5E-Fv0aOcECKgZCbzhXjrSGGyg=",
+      "https://media.istockphoto.com/id/2170176939/photo/cozy-and-modern-living-room-in-the-tree-house.jpg?s=1024x1024&w=is&k=20&c=GhDKZbW3qlM9aSDy2D7O2_nsAMgZpRFHCp88PixXrNU=",
   },
 ];
 
 const CabinCarousel = () => {
+  const [index, setIndex] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const startAutoRotate = () => {
+    if (intervalRef.current) return; // prevent multiple intervals
+    intervalRef.current = setInterval(() => {
+      setIndex((prev) => (prev + 1) % cabins.length);
+    }, 3000);
+  };
+
+  const stopAutoRotate = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  // Start auto-rotate on mount
+  useEffect(() => {
+    startAutoRotate();
+    return () => stopAutoRotate(); // cleanup on unmount
+  }, []);
+
   return (
-    <div className="flex flex-col items-center text-center gap-8 min-h-screen">
+    <div className="flex flex-col items-center text-center gap-8 min-h-screen overflow-hidden">
       <MultiColorText
         fontSize="56px"
         weight="medium"
@@ -43,70 +64,77 @@ const CabinCarousel = () => {
       />
 
       {/* Carousel */}
-      <div className="w-full">
-        <Swiper
-          modules={[Navigation, Autoplay]}
-          spaceBetween={30}
-          centeredSlides={true}
-          loop={true}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          grabCursor={true}
-          breakpoints={{
-            640: {
-              slidesPerView: 1.2,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 1.5,
-              spaceBetween: 30,
-            },
-            1024: {
-              slidesPerView: 2,
-              spaceBetween: 40,
-            },
-          }}
-          className="swiper-cabin"
-        >
-          {cabins.map((cabin, index) => (
-            <SwiperSlide key={`cabin-${index}`}>
-              <div className="relative w-[60vw] h-[60vh] rounded-[40px] overflow-hidden shadow-lg flex items-end mx-auto">
-                <Image
-                  src={cabin.image}
-                  alt={cabin.name}
-                  fill
-                  className="object-cover"
-                />
+      <div
+        className="relative w-full flex justify-center items-center overflow-hidden h-[55vh]"
+        onMouseEnter={stopAutoRotate}
+        onMouseLeave={startAutoRotate}
+      >
+        {cabins.map((cabin, i) => {
+          // Find relative position (-1, 0, 1)
+          const offset = (i - index + cabins.length) % cabins.length;
 
-                <div className="relative z-10 p-6 text-left flex items-end justify-between w-full">
-                  <div className="flex flex-col">
-                    <TextBuilder
-                      fontSize="56px"
-                      weight="bold"
-                      color="light"
-                      className="leading-[1.2]"
-                    >
-                      {cabin.name}
-                    </TextBuilder>
-                    <TextBuilder
-                      fontSize="20px"
-                      color="light"
-                      className="leading-[1.25]"
-                    >
-                      {cabin.description}
-                    </TextBuilder>
-                  </div>
+          let x = "-110%";
+          let zIndex = 0;
+          let opacity = 1;
 
-                  <button className="rounded-[40px] border border-[var(--color-primary)] w-[80px] h-[54px] flex items-center justify-center">
-                    <FaArrowRight
-                      className="text-[var(--text-light)]"
-                      size={22}
-                    />
-                  </button>
+          if (offset === 0) {
+            x = "0%";
+            zIndex = 30;
+            opacity = 1;
+          } else if (offset === 1) {
+            x = "105%";
+            zIndex = 10;
+            opacity = 1;
+          } else if (offset === cabins.length - 1) {
+            x = "-105%";
+            zIndex = 10;
+            opacity = 1;
+          }
+
+          return (
+            <motion.div
+              key={i}
+              className="absolute rounded-[40px] overflow-hidden shadow-lg flex items-end"
+              style={{ width: "55vw", height: "100%" }}
+              animate={{ x, opacity, zIndex }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+            >
+              <Image
+                src={cabin.image}
+                alt={cabin.name}
+                fill
+                className="object-cover"
+              />
+
+              <div className="relative z-10 p-10 text-left flex items-end justify-between w-full bg-gradient-to-t from-black/50 to-transparent">
+                <div className="flex flex-col">
+                  <TextBuilder
+                    fontSize="56px"
+                    weight="bold"
+                    color="light"
+                    className="leading-[1.2]"
+                  >
+                    {cabin.name}
+                  </TextBuilder>
+                  <TextBuilder
+                    fontSize="20px"
+                    color="light"
+                    className="leading-[1.25]"
+                  >
+                    {cabin.description}
+                  </TextBuilder>
                 </div>
+
+                <button className="rounded-[40px] border border-[var(--color-primary)] w-[80px] h-[54px] flex items-center justify-center">
+                  <FaArrowRight
+                    className="text-[var(--text-light)]"
+                    size={22}
+                  />
+                </button>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            </motion.div>
+          );
+        })}
       </div>
 
       <TextBuilder fontSize="24px" color="dark">
