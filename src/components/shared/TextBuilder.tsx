@@ -51,12 +51,15 @@ const TextBuilder: FC<TextBuilderProps> = ({
   };
 
   // Automatic responsive scaling
-const computedStyle = fontSize
-  ? {
-      fontSize: `clamp(${parseInt(fontSize) * 0.6}px, 5vw, ${fontSize})`,
-    }
-  : undefined;
-
+  // inside TextBuilder
+  const computedStyle =
+    fontSize && fontSize.endsWith("px")
+      ? {
+          fontSize: `clamp(${parseInt(fontSize) * 0.6}px, 5vw, ${fontSize})`,
+        }
+      : fontSize
+      ? { fontSize } // directly apply if it's e.g. "3vw"
+      : undefined;
 
   return (
     <span

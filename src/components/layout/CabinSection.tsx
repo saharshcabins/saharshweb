@@ -29,9 +29,10 @@ const CabinSection = () => {
       {/* Image Container */}
       <div className="w-full max-w-[1040px] aspect-[1040/500] relative">
         <Image
+          height={400}
+          width={400}
           src="/assets/cabin/cabin_1.png"
           alt="cabin-section"
-          fill
           style={{ objectFit: "cover" }}
           sizes="(max-width: 1040px) 100vw, 1040px"
         />

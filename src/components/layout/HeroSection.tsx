@@ -58,7 +58,7 @@ const HeroSection = () => {
   }, []);
 
   // 🚢 Container animation
-  const translateY = scroll * 0.5;
+  const translateY = scroll * 0.3;
   const rotate = scroll * 0.05;
   const scale = Math.max(1 - scroll * 0.001, 0.6);
   const opacity = Math.max(1 - scroll * 0.002, 0);
@@ -73,18 +73,23 @@ const HeroSection = () => {
 
   return (
     <div
-      className="relative flex flex-col items-center w-full overflow-hidden"
+      className="relative flex flex-col  justify-start w-full overflow-hidden mx-auto"
       style={{
         background:
           "linear-gradient(to bottom, #FFFFFF 0%, #C1D3E6 24%, #87ADD3 47%, #5197D1 63%, #4379C6 100%)",
       }}
     >
       {/* Top Row with Text + Container */}
-      <div className="flex justify-between items-center w-[90%] relative z-30">
-        <HeroText />
+      {/* Top Row with Text + Container */}
+      <div className="flex justify-between items-start w-[90%] relative z-30 mx-auto">
+        {/* Hero Text - takes half width */}
+        <div className="w-1/2">
+          <HeroText />
+        </div>
 
-        {/* 🚢 Container */}
+        {/* 🚢 Container Image - takes half width */}
         <div
+          className="w-1/2"
           style={{
             transform: `translateY(${translateY}px) rotate(${rotate}deg) scale(${scale})`,
             opacity,
@@ -94,16 +99,32 @@ const HeroSection = () => {
           <Image
             src="/assets/hero/container.png"
             alt="container"
-            width={400}
-            height={0}
-            className="h-auto w-auto max-h-[740px]"
+            width={550}
+            height={450}
+            className="w-full h-auto"
           />
         </div>
       </div>
 
       {/* ☁ Clouds + Cabin */}
-      <div className="relative w-full mt-[-150px] flex justify-center">
+      <div className="relative w-full mt-[-80px] flex justify-center">
         {/* Back Cloud Layer */}
+        <div
+          className="absolute inset-0 z-30 -top-[15%] left-20 flex justify-center items-start pointer-events-none"
+          style={{
+            transform: `translateX(${-cloudOffset}px)`, // move opposite to back cloud
+            opacity: cloudOpacity,
+            transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
+          }}
+        >
+          <Image
+            src="/assets/hero/front_cloud.png"
+            alt="Front Cloud"
+            width={1440}
+            height={780}
+            style={{ width: "100%", height: "auto" }}
+          />
+        </div>
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -193,22 +214,6 @@ const HeroSection = () => {
 
         {/* Front Cloud Layer */}
         {/* Front Cloud Layer */}
-        <div
-          className="absolute inset-0 z-30 -top-20 left-20 flex justify-center items-start pointer-events-none"
-          style={{
-            transform: `translateX(${-cloudOffset}px)`, // move opposite to back cloud
-            opacity: cloudOpacity,
-            transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
-          }}
-        >
-          <Image
-            src="/assets/hero/front_cloud.png"
-            alt="Front Cloud"
-            width={1440}
-            height={780}
-            style={{ width: "100%", height: "auto" }}
-          />
-        </div>
       </div>
     </div>
   );
