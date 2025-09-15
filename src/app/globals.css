@@ -16,7 +16,7 @@
   --text-muted: #9ca3af; /* Muted gray */
   --text-dark: #0F1B26; /* Strong dark */
   --text-light: #ffffff; /* White text */
-
+ 
   /* Section Backgrounds */
   --section-light: #ffffff; /* Default light background */
   --section-accent: #f5f2eb; /* Beige (nav + light section bg) */
@@ -24,6 +24,7 @@
   --font-eudoxus-sans: "Eudoxus Sans", sans-serif;
   --font-geist-mono: "Fira Mono", monospace; /* example for mono font */
     font-family: var(--font-eudoxus), sans-serif;
+
 
 }
 

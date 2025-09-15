@@ -21,18 +21,27 @@ const TestimonialSlider = () => {
       </div>
 
       {/* Slider track */}
-      <div className="flex w-max animate-marquee gap-10">
+      <div className="flex w-max animate-marquee ">
         {logos.concat(logos).map((logo, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-[300px] h-[300px] flex items-center justify-center"
+            className="flex-shrink-0 w-[300px] h-[300px] flex items-center justify-center relative"
           >
+            {/* Background grid image */}
+            <Image
+              src="/assets/cabin/grid.png"
+              alt="Background Grid"
+              fill
+              className="object-cover absolute top-0 left-0 z-0"
+              unoptimized
+            />
+            {/* Logo */}
             <Image
               src={logo}
               alt={`Logo ${index}`}
               width={120}
               height={120}
-              className="object-contain"
+              className="object-contain relative z-10"
               unoptimized
             />
           </div>

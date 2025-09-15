@@ -1,92 +1,99 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
-import { motion, scale } from "framer-motion";
+import React, { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
-import { FaArrowRight } from "react-icons/fa";
-import { Arrow, ArrowNew } from "../../utils/svgUtils";
+import { ArrowNew } from "../../utils/svgUtils";
 
 const cabins = [
   {
     name: "Hutsie",
     description: "20×40 ft | Bathroom | 1 Bed | Pantry",
-    image:
-      "https://images.unsplash.com/photo-1587061949409-02df41d5e562?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  image:
+      "/assets/cabin/hutsie.jpg",
   },
   {
-    name: "Hutsite",
+    name: "Rustico",
     description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
     image:
-      "https://images.unsplash.com/photo-1588557132645-ff567110cafd?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "/assets/cabin/rustico.jpg",
   },
-  {
-    name: "Cabana",
-    description: "25×45 ft | Bathroom | 2 Beds | Living Space",
+    {
+    name: "Barnie",
+    description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
     image:
-      "https://media.istockphoto.com/id/2170176939/photo/cozy-and-modern-living-room-in-the-tree-house.jpg?s=1024x1024&w=is&k=20&c=GhDKZbW3qlM9aSDy2D7O2_nsAMgZpRFHCp88PixXrNU=",
+      "/assets/cabin/barnie.jpg",
   },
+     {
+    name: "Skylighter",
+    description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
+    image:
+      "/assets/cabin/skylighter.jpg",
+  },
+       {
+    name: "Triango",
+    description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
+    image:
+      "/assets/cabin/triango.jpg",
+  },
+ 
 ];
 
 const CabinCarousel = () => {
-  const [index, setIndex] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(
+    null
+  );
+  const [isLeft, setIsLeft] = useState(true);
 
-  const startAutoRotate = () => {
-    if (intervalRef.current) return; // prevent multiple intervals
-    intervalRef.current = setInterval(() => {
-      setIndex((prev) => (prev + 1) % cabins.length);
-    }, 3000);
-  };
+  const handleClick = () => {
+    if (!cursorPos) return;
 
-  const stopAutoRotate = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+    if (isLeft && activeIndex > 0) {
+      setActiveIndex((prev) => prev - 1);
+    } else if (!isLeft && activeIndex < cabins.length - 1) {
+      setActiveIndex((prev) => prev + 1);
     }
   };
-
-  // Start auto-rotate on mount
-  useEffect(() => {
-    startAutoRotate();
-    return () => stopAutoRotate(); // cleanup on unmount
-  }, []);
 
   return (
     <div className="flex flex-col items-center text-center gap-8 min-h-screen overflow-hidden">
       <MultiColorText
         fontSize="56px"
         items={[
-          { text: "Our", color: "dark", weight: "medium" },
+          { text: "Our ", color: "dark", weight: "medium" },
           { text: " Bestsellers", color: "primary", weight: "semibold" },
         ]}
       />
 
-      {/* Carousel */}
-      <div
-        className="relative w-full flex justify-center items-center overflow-hidden h-[65vh] "
-        onMouseEnter={stopAutoRotate}
-        onMouseLeave={startAutoRotate}
-      >
+      {/* Cards */}
+      <div className="relative w-full flex justify-center items-center h-[65vh] px-8">
         {cabins.map((cabin, i) => {
-          // Find relative position (-1, 0, 1)
-          const offset = (i - index + cabins.length) % cabins.length;
+          const offset = i - activeIndex;
 
-          let x = "-110%";
+          let x = "100%";
+          let scale = 1;
           let zIndex = 0;
-          let opacity = 1;
+          let opacity = 0;
 
           if (offset === 0) {
+            // center card
             x = "0%";
-            zIndex = 30;
+            scale = 1;
+            zIndex = 20;
             opacity = 1;
-          } else if (offset === 1) {
-            x = "105%";
+          } else if (offset === -1) {
+            // left card
+            x = "-105%";
+            scale = 1;
             zIndex = 10;
             opacity = 1;
-          } else if (offset === cabins.length - 1) {
-            x = "-105%";
+          } else if (offset === 1) {
+            // right card
+            x = "105%";
+            scale = 1;
             zIndex = 10;
             opacity = 1;
           }
@@ -94,11 +101,22 @@ const CabinCarousel = () => {
           return (
             <motion.div
               key={i}
-              className="absolute rounded-[40px] overflow-hidden shadow-lg flex items-end"
+              className="absolute rounded-[40px] overflow-hidden shadow-lg flex items-end cursor-none"
               style={{ width: "55vw", height: "100%" }}
-              animate={{ x, opacity, zIndex }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              whileHover={{ scale: 1.02 }}
+              animate={{ x, scale, opacity, zIndex }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              onMouseMove={(e) => {
+                if (offset !== 0) return; // only for center card
+                const rect = e.currentTarget.getBoundingClientRect();
+                const mid = rect.left + rect.width / 2;
+                setCursorPos({
+                  x: e.clientX - rect.left,
+                  y: e.clientY - rect.top,
+                });
+                setIsLeft(e.clientX < mid);
+              }}
+              onMouseLeave={() => setCursorPos(null)}
+              onClick={handleClick}
             >
               <Image
                 unoptimized
@@ -109,7 +127,7 @@ const CabinCarousel = () => {
               />
 
               {/* Gradient overlay */}
-              <div className="absolute bottom-0 left-0 right-0 h-[180px] bg-gradient-to-t from-black/50 to-transparent z-20" />
+              <div className="absolute bottom-0 left-0 right-0 h-[180px] bg-gradient-to-t from-[#0F1B26] to-transparent z-10" />
 
               {/* Content */}
               <div className="relative z-10 p-10 text-left flex items-end justify-between w-full">
@@ -130,11 +148,30 @@ const CabinCarousel = () => {
                     {cabin.description}
                   </TextBuilder>
                 </div>
-
-                <button className="rounded-[40px] border border-[var(--color-primary)] w-[80px] h-[54px] flex items-center justify-center">
-                  <ArrowNew className="text-[var(--text-light)]" size={22} />
-                </button>
               </div>
+
+              {/* Fake Cursor (Arrow Button) — only for center card */}
+              {offset === 0 && cursorPos && (
+                <div
+                  className="absolute pointer-events-none"
+                  style={{
+                    left: cursorPos.x,
+                    top: cursorPos.y,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  {/* Hide left arrow if at index 0, hide right arrow if at last index */}
+                  {!(isLeft && activeIndex === 0) &&
+                    !(!isLeft && activeIndex === cabins.length - 1) && (
+                      <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
+                        <ArrowNew
+                          className="text-[var(--text-light)] w-[24px] h-[24px]"
+                          flipped={!isLeft}
+                        />
+                      </div>
+                    )}
+                </div>
+              )}
             </motion.div>
           );
         })}
