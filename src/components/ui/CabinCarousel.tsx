@@ -6,6 +6,7 @@ import Image from "next/image";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 import { FaArrowRight } from "react-icons/fa";
+import { Arrow, ArrowNew } from "../../utils/svgUtils";
 
 const cabins = [
   {
@@ -56,16 +57,15 @@ const CabinCarousel = () => {
     <div className="flex flex-col items-center text-center gap-8 min-h-screen overflow-hidden">
       <MultiColorText
         fontSize="56px"
-        weight="medium"
         items={[
-          { text: "Engineered with", color: "dark" },
-          { text: " Precision", color: "primary" },
+          { text: "Our", color: "dark", weight: "medium" },
+          { text: " Bestsellers", color: "primary", weight: "semibold" },
         ]}
       />
 
       {/* Carousel */}
       <div
-        className="relative w-full flex justify-center items-center overflow-hidden h-[55vh] "
+        className="relative w-full flex justify-center items-center overflow-hidden h-[65vh] "
         onMouseEnter={stopAutoRotate}
         onMouseLeave={startAutoRotate}
       >
@@ -98,16 +98,21 @@ const CabinCarousel = () => {
               style={{ width: "55vw", height: "100%" }}
               animate={{ x, opacity, zIndex }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              whileHover={{scale:1.02}}
+              whileHover={{ scale: 1.02 }}
             >
-              <Image unoptimized
+              <Image
+                unoptimized
                 src={cabin.image}
                 alt={cabin.name}
                 fill
                 className="object-cover"
               />
 
-              <div className="relative z-10 p-10 text-left flex items-end justify-between w-full bg-gradient-to-t from-black/50 to-transparent">
+              {/* Gradient overlay */}
+              <div className="absolute bottom-0 left-0 right-0 h-[180px] bg-gradient-to-t from-black/50 to-transparent z-20" />
+
+              {/* Content */}
+              <div className="relative z-10 p-10 text-left flex items-end justify-between w-full">
                 <div className="flex flex-col">
                   <TextBuilder
                     fontSize="56px"
@@ -127,10 +132,7 @@ const CabinCarousel = () => {
                 </div>
 
                 <button className="rounded-[40px] border border-[var(--color-primary)] w-[80px] h-[54px] flex items-center justify-center">
-                  <FaArrowRight
-                    className="text-[var(--text-light)]"
-                    size={22}
-                  />
+                  <ArrowNew className="text-[var(--text-light)]" size={22} />
                 </button>
               </div>
             </motion.div>

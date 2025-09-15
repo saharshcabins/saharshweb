@@ -47,6 +47,31 @@ export const Cube = () => {
     </svg>
   );
 };
+export const ArrowNew = ({
+  flipped = false,
+  className,
+}: {
+  flipped?: boolean;
+  className?: string;
+}) => {
+  return (
+    <svg
+      viewBox="0 0 28 26"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`${flipped ? "transform scale-x-[-1]" : ""} ${
+        className || ""
+      }`}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M0.73645 11.9334L0.762199 11.9356V11.9313H0.868309C6.38999 11.4816 10.7393 6.64917 10.7393 0.752352L10.7363 0.5H12.7616L12.7646 0.752352C12.7646 5.43486 10.4581 9.55228 6.971 11.9313L27.2646 11.9356V14.0622L6.95452 14.0579C10.4519 16.4348 12.7646 20.5576 12.7646 25.2476L12.7616 25.5H10.7363L10.7393 25.2476C10.7393 19.3239 6.35084 14.4742 0.792076 14.0622L0.735416 14.0666V14.0579V11.9431V11.9345L0.73645 11.9334Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
 export const Arrow = ({ flipped = false }: { flipped?: boolean }) => {
   return (
     <svg
