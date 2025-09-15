@@ -5,8 +5,10 @@ import HeroText from "../ui/HeroText";
 import Image from "next/image";
 import TextBuilder from "../shared/TextBuilder";
 import Label from "../ui/HeroLabel";
+import { motion } from "framer-motion"; // Import motion
 
 const words = ["Homes", "Offices", "Retreats", "Studios", "Cabins"]; // 🔄 words to cycle
+const weatherImages = ["cabin_summer.png", "cabin_rain.png", "cabin_winter.png"]; // Weather images
 
 const HeroSection = () => {
   const [scroll, setScroll] = useState(0);
@@ -17,18 +19,20 @@ const HeroSection = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [blink, setBlink] = useState(true);
 
+  // ---- Weather states ----
+  const [currentWeatherIndex, setCurrentWeatherIndex] = useState(0); // State for current weather image
+  const [previousWeatherIndex, setPreviousWeatherIndex] = useState(0); // To track direction for slide animation
+
   // ---- Typewriter effect ----
   useEffect(() => {
     if (wordIndex >= words.length) return;
 
     if (subIndex === words[wordIndex].length + 1 && !isDeleting) {
-      // Pause at full word
       setTimeout(() => setIsDeleting(true), 1000);
       return;
     }
 
     if (subIndex === 0 && isDeleting) {
-      // Move to next word
       setIsDeleting(false);
       setWordIndex((prev) => (prev + 1) % words.length);
       return;
@@ -39,7 +43,7 @@ const HeroSection = () => {
         setSubIndex((prev) => prev + (isDeleting ? -1 : 1));
       },
       isDeleting ? 100 : 150
-    ); // Delete faster than typing
+    );
 
     return () => clearTimeout(timeout);
   }, [subIndex, wordIndex, isDeleting]);
@@ -51,41 +55,49 @@ const HeroSection = () => {
   }, []);
 
   // ---- Scroll effect ----
-  // ---- Scroll effect ----
   useEffect(() => {
     const handleScroll = () => setScroll(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // ---- Weather cycling effect ----
+  useEffect(() => {
+    const weatherInterval = setInterval(() => {
+      setPreviousWeatherIndex(currentWeatherIndex); // Store previous index
+      setCurrentWeatherIndex((prevIndex) => (prevIndex + 1) % weatherImages.length);
+    }, 5000); // Change weather every 5 seconds (adjust as needed)
+
+    return () => clearInterval(weatherInterval);
+  }, [currentWeatherIndex]); // Added currentWeatherIndex to dependencies to ensure previous index is correctly captured
+
   // 🚢 Container animation
   const translateY = scroll * 0.3;
   const rotate = scroll * 0.05;
   const scale = Math.max(1 - scroll * 0.001, 0.6);
 
-  // ❌ remove old container opacity formula
-  // const opacity = Math.max(1 - scroll * 0.002, 0);
+  // ✅ use cloudOpacity for container too
+  const containerOpacity = Math.max(1 - scroll / 400, 0);
 
   // ☁ Clouds drift + fade
   const cloudOffset = Math.min(scroll * 0.6, 1000);
   const cloudOpacity = Math.max(1 - scroll / 400, 0);
 
-  // ✅ use cloudOpacity for container too
-  const containerOpacity = cloudOpacity;
-
   // 🏠 Cabin reveal
   const cabinOpacity = Math.min(Math.max((scroll - 200) / 200, 0), 1);
   const cabinTranslateY = Math.max(50 - scroll * 0.1, 0);
 
+  // Determine slide direction for animation
+  const slideDirection = currentWeatherIndex > previousWeatherIndex || (currentWeatherIndex === 0 && previousWeatherIndex === weatherImages.length - 1) ? 1 : -1;
+
   return (
     <div
-      className="relative flex flex-col  justify-start w-full overflow-hidden mx-auto"
+      className="relative flex flex-col justify-start w-full overflow-hidden mx-auto"
       style={{
         background:
           "linear-gradient(to bottom, #FFFFFF 0%, #C1D3E6 24%, #87ADD3 47%, #5197D1 63%, #4379C6 100%)",
       }}
     >
-      {/* Top Row with Text + Container */}
       {/* Top Row with Text + Container */}
       <div className="flex justify-between items-start w-[90%] relative z-30 mx-auto">
         {/* Hero Text - takes half width */}
@@ -98,7 +110,7 @@ const HeroSection = () => {
           className="w-1/2"
           style={{
             transform: `translateY(${translateY}px) rotate(${rotate}deg) scale(${scale})`,
-            opacity: containerOpacity, // ✅ synced with clouds
+            opacity: containerOpacity,
             transition: "transform 0.1s linear, opacity 0.3s ease-out",
           }}
         >
@@ -119,7 +131,7 @@ const HeroSection = () => {
         <div
           className="absolute inset-0 z-30 -top-[15%] left-20 flex justify-center items-start pointer-events-none"
           style={{
-            transform: `translateX(${-cloudOffset}px)`, // move opposite to back cloud
+            transform: `translateX(${-cloudOffset}px)`,
             opacity: cloudOpacity,
             transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
           }}
@@ -141,7 +153,8 @@ const HeroSection = () => {
             transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
           }}
         >
-          <Image unoptimized
+          <Image
+            unoptimized
             src="/assets/hero/back_cloud.png"
             alt="Back Cloud"
             width={1440}
@@ -158,17 +171,47 @@ const HeroSection = () => {
             transition: "transform 0.4s ease-out, opacity 0.4s ease-out",
           }}
         >
-          {/* Cabin Image */}
-          <Image unoptimized
-            src="/assets/hero/cabin.png"
-            alt="cabin"
-            width={1440}
-            height={1000}
-            className="w-full h-auto"
-          />
+          {/* Cabin Images with Framer Motion */}
+<div className="relative w-full h-screen overflow-hidden">
+  {weatherImages.map((imageName, index) => (
+    <motion.div
+      key={imageName}
+      className="absolute inset-0"
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: index === currentWeatherIndex ? 1 : 0,
+        scale: index === currentWeatherIndex ? 1 : 1.05,
+        filter:
+          index === currentWeatherIndex
+            ? "brightness(1) blur(0px)"
+            : "brightness(0.8) blur(2px)",
+      }}
+      transition={{ duration: 2, ease: "easeInOut" }}
+      style={{
+        WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, black 20%)",
+        WebkitMaskRepeat: "no-repeat",
+        WebkitMaskSize: "100% 100%",
+        maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, black 20%)",
+        maskRepeat: "no-repeat",
+        maskSize: "100% 100%",
+      }}
+    >
+      <Image
+        unoptimized
+        src={`/assets/hero/${imageName}`}
+        alt={`cabin-${imageName}`}
+        fill
+        className="object-cover w-full h-full"
+      />
+    </motion.div>
+  ))}
+</div>
+
+
+
 
           {/* Typewriter Text Overlay */}
-          <div className="absolute inset-0 flex flex-col items-center justify-start pt-[15%] ">
+          <div className="absolute inset-0 flex flex-col items-center justify-start pt-[5%] ">
             <TextBuilder
               fontSize="24px"
               weight="medium"
@@ -204,24 +247,18 @@ const HeroSection = () => {
           <div className="absolute inset-0 ">
             {/* Homes Label */}
             <div className="absolute top-[45%] right-[33%] z-10">
-              {" "}
-              <Label text="Homes" />{" "}
-            </div>{" "}
-            {/* Offices Label */}{" "}
+              <Label text="Homes" />
+            </div>
+            {/* Offices Label */}
             <div className="absolute top-[80%] left-[70%] z-10">
-              {" "}
-              <Label text="Offices" />{" "}
-            </div>{" "}
-            {/* Cabins Label (swipe layout) */}{" "}
+              <Label text="Offices" />
+            </div>
+            {/* Cabins Label (swipe layout) */}
             <div className="absolute top-[85%] right-[85%]">
-              {" "}
-              <Label text="Cabins" swipe />{" "}
+              <Label text="Cabins" swipe />
             </div>
           </div>
         </div>
-
-        {/* Front Cloud Layer */}
-        {/* Front Cloud Layer */}
       </div>
     </div>
   );
