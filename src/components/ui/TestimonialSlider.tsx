@@ -33,6 +33,7 @@ const TestimonialSlider = () => {
               width={120}
               height={120}
               className="object-contain"
+              unoptimized
             />
           </div>
         ))}

@@ -101,6 +101,7 @@ const CabinSlideShow: React.FC = () => {
               <div className="relative w-[390px] h-[460px] rounded-[30px] overflow-hidden shadow-lg mx-auto">
                 {slide.type === "image" ? (
                   <Image
+                  unoptimized
                     src={slide.src}
                     alt={`slide-${idx}`}
                     fill

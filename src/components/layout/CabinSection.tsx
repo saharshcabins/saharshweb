@@ -34,6 +34,7 @@ const CabinSection = () => {
           alt="cabin-section"
           style={{ objectFit: "cover" }}
           sizes="(max-width: 1040px) 100vw, 1040px"
+          unoptimized
         />
       </div>
     </div>

@@ -36,7 +36,7 @@ const OurProcessCard: React.FC<OurProcessCardProps> = ({
           {description}
         </TextBuilder>
       </div>
-      <Image src={imageSrc} height={400} width={580} alt={title} />
+      <Image src={imageSrc} height={400} width={580} alt={title} unoptimized/>
     </div>
   );
 };

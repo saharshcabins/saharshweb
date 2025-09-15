@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, scale } from "framer-motion";
 import Image from "next/image";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
@@ -65,7 +65,7 @@ const CabinCarousel = () => {
 
       {/* Carousel */}
       <div
-        className="relative w-full flex justify-center items-center overflow-hidden h-[55vh]"
+        className="relative w-full flex justify-center items-center overflow-hidden h-[55vh] "
         onMouseEnter={stopAutoRotate}
         onMouseLeave={startAutoRotate}
       >
@@ -98,8 +98,9 @@ const CabinCarousel = () => {
               style={{ width: "55vw", height: "100%" }}
               animate={{ x, opacity, zIndex }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
+              whileHover={{scale:1.02}}
             >
-              <Image
+              <Image unoptimized
                 src={cabin.image}
                 alt={cabin.name}
                 fill

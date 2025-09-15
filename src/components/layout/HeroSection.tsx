@@ -108,6 +108,7 @@ const HeroSection = () => {
             width={550}
             height={450}
             className="w-full h-auto"
+            unoptimized
           />
         </div>
       </div>
@@ -129,6 +130,7 @@ const HeroSection = () => {
             width={1440}
             height={780}
             style={{ width: "100%", height: "auto" }}
+            unoptimized
           />
         </div>
         <div
@@ -139,7 +141,7 @@ const HeroSection = () => {
             transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
           }}
         >
-          <Image
+          <Image unoptimized
             src="/assets/hero/back_cloud.png"
             alt="Back Cloud"
             width={1440}
@@ -157,7 +159,7 @@ const HeroSection = () => {
           }}
         >
           {/* Cabin Image */}
-          <Image
+          <Image unoptimized
             src="/assets/hero/cabin.png"
             alt="cabin"
             width={1440}
