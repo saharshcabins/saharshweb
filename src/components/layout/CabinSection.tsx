@@ -23,7 +23,7 @@ const CabinSection = () => {
       />
       <div className="flex flex-row justify-center gap-8">
         <Button text="About Us" />
-        <Button text="Book a Demo" />
+        <Button text="Schedule a Visit" />
       </div>
 
       {/* Image Container */}
