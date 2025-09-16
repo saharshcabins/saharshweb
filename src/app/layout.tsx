@@ -6,17 +6,17 @@ import "./globals.css";
 const eudoxus = localFont({
   src: [
     {
-      path: "./font/EudoxusSans-Regular-BF659b6cb1d4714.ttf",
+      path: "./font/EudoxusSans-Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./font/EudoxusSans-Medium-BF659b6cb1c14cb.ttf",
+      path: "./font/EudoxusSans-Medium.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "./font/EudoxusSans-Bold-BF659b6cb1408e5.ttf",
+      path: "./font/EudoxusSans-Bold.ttf",
       weight: "700",
       style: "normal",
     },
