@@ -15,8 +15,9 @@ type TextBuilderProps = {
     | "background"
     | "accent"
     | "danger"
-    | "link";
-  fontSize?: string; // Desktop font size e.g. "56px"
+    | "link"
+    | "dark-light";
+  fontSize?: string; // e.g. "56px" or "3vw"
   className?: string;
 };
 
@@ -28,6 +29,18 @@ const TextBuilder: FC<TextBuilderProps> = ({
   fontSize,
   className,
 }) => {
+  // Tailwind size mapping
+  const sizeClasses = {
+    xs: "text-xs",
+    sm: "text-sm",
+    base: "text-base",
+    lg: "text-lg",
+    xl: "text-xl",
+    "2xl": "text-2xl",
+    "3xl": "text-3xl",
+    "4xl": "text-4xl",
+  };
+
   const weightClasses = {
     light: "font-light",
     normal: "font-normal",
@@ -48,22 +61,27 @@ const TextBuilder: FC<TextBuilderProps> = ({
     background: "text-[var(--color-background)]",
     danger: "text-red-600",
     link: "text-[var(--link-color)]",
+    "dark-light": "text-[var(--text-dark-light)]",
   };
 
-  // Automatic responsive scaling
-  // inside TextBuilder
+  // Auto responsive scaling if pixel font size is given
   const computedStyle =
     fontSize && fontSize.endsWith("px")
       ? {
           fontSize: `clamp(${parseInt(fontSize) * 0.6}px, 5vw, ${fontSize})`,
         }
       : fontSize
-      ? { fontSize } // directly apply if it's e.g. "3vw"
+      ? { fontSize }
       : undefined;
 
   return (
     <span
-      className={clsx(weightClasses[weight], colorClasses[color], className)}
+      className={clsx(
+        sizeClasses[size],
+        weightClasses[weight],
+        colorClasses[color],
+        className
+      )}
       style={computedStyle}
     >
       {children}
