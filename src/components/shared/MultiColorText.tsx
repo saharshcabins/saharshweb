@@ -14,21 +14,18 @@ type MultiColorTextItem = {
     | "accent"
     | "danger"
     | "link";
-  weight?: "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold"; // ✅ per-item weight
-  breakAfter?: boolean; // ✅ allow line break
+  weight?: "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold";
+  breakAfter?: boolean; // will insert a <wbr /> instead of <br />
 };
 
 type MultiColorTextProps = {
   items: MultiColorTextItem[];
   size?: "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
-  weight?: "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold"; // default fallback
+  weight?: "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold";
   fontSize?: string;
   className?: string;
 };
 
-/**
- * Renders multiple pieces of text in one line with different colors, spacing, and optional breaks.
- */
 const MultiColorText: FC<MultiColorTextProps> = ({
   items,
   size = "base",
@@ -37,18 +34,28 @@ const MultiColorText: FC<MultiColorTextProps> = ({
   className,
 }) => {
   return (
-    <span className={className}>
+    <span
+      className={`inline-block text-center leading-snug ${className || ""}`}
+    >
       {items.map((item, index) => (
         <React.Fragment key={index}>
           <TextBuilder
             size={size}
-            weight={item.weight || weight} // ✅ apply per-item weight if given
+            weight={item.weight || weight}
             color={item.color || "dark"}
             fontSize={fontSize}
+            className="leading-[1.2]"
           >
             {item.text}
           </TextBuilder>
-          {item.breakAfter && <br />} {/* ✅ optional line break */}
+          {item.breakAfter && (
+            <>
+              {/* Hard break on large screens */}
+              <br className="hidden lg:block" />
+              {/* Soft break fallback on small screens */}
+              <wbr className="block lg:hidden" />
+            </>
+          )}
         </React.Fragment>
       ))}
     </span>
