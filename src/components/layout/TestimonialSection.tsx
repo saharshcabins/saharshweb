@@ -6,7 +6,7 @@ import TestimonialSlider from "../ui/TestimonialSlider";
 const TestimonialSection = () => {
   return (
     <div className="flex flex-col  items-center justify-center text-center gap-10 min-h-screen">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6">
           <MultiColorText
         fontSize="56px"
         className="leading-[1.2]"

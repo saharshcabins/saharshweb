@@ -1,16 +1,36 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 const logos = [
   "/assets/company_logo/logo1.png",
   "/assets/company_logo/logo2.png",
   "/assets/company_logo/logo3.png",
-  "/assets/company_logo/logo4.png",
+  "/assets/company_logo/log04.png",
+  "/assets/company_logo/logo1.png",
+  "/assets/company_logo/logo2.png",
+  "/assets/company_logo/logo3.png",
+  "/assets/company_logo/log04.png",
 ];
 
 const TestimonialSlider = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [trackWidth, setTrackWidth] = useState(0);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      // Calculate the width of the first set of logos
+      const firstSet = Array.from(containerRef.current.children).slice(0, logos.length);
+      let width = 0;
+      firstSet.forEach((el) => {
+        // Use getBoundingClientRect().width for a more precise measurement
+        width += (el as HTMLElement).getBoundingClientRect().width;
+      });
+      setTrackWidth(width);
+    }
+  }, []);
+
   return (
     <div className="relative w-full overflow-hidden py-10">
       {/* Edge gradient overlay */}
@@ -21,7 +41,14 @@ const TestimonialSlider = () => {
       </div>
 
       {/* Slider track */}
-      <div className="flex w-max animate-marquee ">
+      <div
+        ref={containerRef}
+        className="flex w-max"
+        style={{
+          '--track-width': `${trackWidth}px`,
+          animation: `marquee ${logos.length * 2}s linear infinite`,
+        }}
+      >
         {logos.concat(logos).map((logo, index) => (
           <div
             key={index}
@@ -54,11 +81,8 @@ const TestimonialSlider = () => {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translateX(calc(-1 * var(--track-width)));
           }
-        }
-        .animate-marquee {
-          animation: marquee 20s linear infinite;
         }
       `}</style>
     </div>

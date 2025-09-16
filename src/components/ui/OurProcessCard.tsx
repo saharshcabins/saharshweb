@@ -17,14 +17,14 @@ const OurProcessCard: React.FC<OurProcessCardProps> = ({
 }) => {
   return (
 <div
-  className={`flex flex-col justify-between px-[40px] py-[30px] w-[600px] h-[350px] aspect-[100/45] ${
+  className={`flex flex-col justify-between px-[40px] py-[30px] gap-[157px] ${
     index === 0
       ? "border-y border-[rgba(0,0,0,0.3)] pl-[7%] " // top & bottom only
       : "border-y border-l border-[rgba(0,0,0,0.3)]" // top, bottom, left
   }`}
 >
 
-      <div className="flex flex-row items-center gap-[100px] mb-[20px]">
+      <div className="flex flex-row items-center gap-[117px] mb-[20px]">
         <div className="text-[var(--color-primary)] w-[50px] h-[55px]">
           {icon}
         </div>

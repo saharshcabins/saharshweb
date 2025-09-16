@@ -172,46 +172,22 @@ const HeroSection = () => {
           }}
         >
           {/* Cabin Images with Framer Motion */}
-<div className="relative w-full h-screen overflow-hidden">
-  {weatherImages.map((imageName, index) => (
-    <motion.div
-      key={imageName}
-      className="absolute inset-0"
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: index === currentWeatherIndex ? 1 : 0,
-        scale: index === currentWeatherIndex ? 1 : 1.05,
-        filter:
-          index === currentWeatherIndex
-            ? "brightness(1) blur(0px)"
-            : "brightness(0.8) blur(2px)",
-      }}
-      transition={{ duration: 2, ease: "easeInOut" }}
-      style={{
-        WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, black 20%)",
-        WebkitMaskRepeat: "no-repeat",
-        WebkitMaskSize: "100% 100%",
-        maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, black 20%)",
-        maskRepeat: "no-repeat",
-        maskSize: "100% 100%",
-      }}
-    >
-      <Image
+<div className="relative w-full  overflow-hidden">
+   <Image
         unoptimized
-        src={`/assets/hero/${imageName}`}
-        alt={`cabin-${imageName}`}
-        fill
+        src={`/assets/hero/cabin.png`}
+        alt={`cabin`}
+        width={1440}
+        height={980}
         className="object-cover w-full h-full"
       />
-    </motion.div>
-  ))}
 </div>
 
 
 
 
           {/* Typewriter Text Overlay */}
-          <div className="absolute inset-0 flex flex-col items-center justify-start pt-[5%] ">
+          <div className="absolute inset-0 flex flex-col items-center justify-start pt-[15%] ">
             <TextBuilder
               fontSize="24px"
               weight="medium"

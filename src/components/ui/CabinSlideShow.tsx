@@ -7,7 +7,6 @@ import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
-
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 import { ArrowNew } from "@/utils/svgUtils";
@@ -61,16 +60,20 @@ const slides: Slide[] = [
 const CabinSlideShow: React.FC = () => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
+  // Corrected video autoplay logic
   const handleSlideChange = (swiper: SwiperType) => {
     videoRefs.current.forEach((video, idx) => {
       if (!video) return;
-
-      const activeSlide = swiper.slides[swiper.activeIndex];
-      const isActive = activeSlide?.dataset?.swiperSlideIndex === String(idx);
+      // Get the correct index of the currently active slide in a loop
+      const activeSlideIndex = swiper.realIndex;
+      const isActive = idx === activeSlideIndex;
 
       if (isActive) {
+        // Play the video and make sure it starts from the beginning
+        video.currentTime = 0;
         video.play().catch(() => {});
       } else {
+        // Pause and reset all other videos
         video.pause();
         video.currentTime = 0;
       }
@@ -78,7 +81,7 @@ const CabinSlideShow: React.FC = () => {
   };
 
   return (
-    <div className="bg-[var(--text-dark)] py-30 flex flex-col gap-10 min-h-screen pl-[10%]">
+    <div className="bg-[var(--text-dark)] py-30 flex flex-col gap-10 min-h-screen px-[6%] pr-[0%]">
       {/* Header */}
       <div className="flex justify-between px-10">
         <MultiColorText
@@ -96,9 +99,8 @@ const CabinSlideShow: React.FC = () => {
           </TextBuilder>
         </div>
       </div>
-
       {/* Slider */}
-      <div className="relative mt-10 overflow-visible">
+      <div className="relative mt-10 overflow-visible mr-[-2%]">
         <Swiper
           modules={[Navigation]}
           navigation={{
@@ -108,8 +110,9 @@ const CabinSlideShow: React.FC = () => {
           slidesPerView="auto"
           spaceBetween={40}
           loop={true}
-          centeredSlides={true}
+          centeredSlides={false}
           onSlideChangeTransitionEnd={handleSlideChange}
+          initialSlide={0}
         >
           {slides.map((slide, idx) => (
             <SwiperSlide key={`main-${idx}`} className="!w-[390px] group">
@@ -125,20 +128,15 @@ const CabinSlideShow: React.FC = () => {
                   />
                 ) : (
                   <video
-                    ref={(el) => {
-                      videoRefs.current[idx] = el;
-                    }}
+                    autoPlay
                     src={slide.src}
                     muted
                     playsInline
+                    loop // Ensures continuous looping
                     className="w-full h-full object-cover"
-                    onMouseEnter={(e) => e.currentTarget.play()}
-                    onMouseLeave={(e) => {
-                      if (idx !== 0) e.currentTarget.pause();
-                    }}
+                    // Removed onMouseEnter/onMouseLeave to prevent hover conflicts
                   />
                 )}
-
                 {/* Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 h-[100px] bg-gradient-to-t from-[#0F1B26] to-transparent opacity-70 " />
                 <div className="absolute bottom-0 p-4 px-6 transition-opacity duration-300 group-hover:opacity-0">
@@ -146,11 +144,10 @@ const CabinSlideShow: React.FC = () => {
                     {slide.title}
                   </TextBuilder>
                 </div>
-
                 <div
                   className="absolute bottom-0 left-[15%] w-[60%] bg-[var(--text-light)] text-[var(--text-dark)] 
              py-6 px-4 rounded-[10px] transform translate-y-[200%] 
-             group-hover:-translate-y-[20%] transition-transform duration-500 ease-out
+             group-hover:-translate-y-[20%] transition-transform duration-700 ease-out
              flex flex-col gap-1"
                 >
                   <TextBuilder
@@ -172,9 +169,8 @@ const CabinSlideShow: React.FC = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-
         {/* Custom Navigation */}
-        <button className="custom-prev absolute cursor-pointer left-[-20px] bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] z-10 w-[80px] h-[54px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]">
+        <button className="custom-prev absolute cursor-pointer -left-[30px] bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] z-10 w-[80px] h-[54px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]">
           <ArrowNew className="w-[26px] h-[26px]" />
         </button>
         <button className="custom-next absolute cursor-pointer right-0 bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] z-10 w-[80px] h-[54px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]">

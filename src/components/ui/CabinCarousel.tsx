@@ -16,25 +16,32 @@ const cabins = [
 ];
 
 const CabinCarousel = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [isLeft, setIsLeft] = useState(true);
 
+  // Define a consistent slide width
+  const slideWidth = 60; // 60vw for width + gap
+
+  // Function to move the carousel
+  const moveCarousel = (direction: 'left' | 'right') => {
+    if (direction === 'left') {
+      setActiveIndex((prev) => (prev - 1 + cabins.length) % cabins.length);
+    } else {
+      setActiveIndex((prev) => (prev + 1) % cabins.length);
+    }
+  };
+
   const handleClick = (i: number) => {
     if (i === activeIndex) {
-      // Center card → move left/right
-      if (isLeft && activeIndex > 0) {
-        setActiveIndex((prev) => prev - 1);
-      } else if (!isLeft && activeIndex < cabins.length - 1) {
-        setActiveIndex((prev) => prev + 1);
+      if (isLeft) {
+        moveCarousel('left');
+      } else {
+        moveCarousel('right');
       }
-    } else if (i === activeIndex - 1 && !isLeft) {
-      // Left card → move right
-      setActiveIndex((prev) => prev + 1);
-    } else if (i === activeIndex + 1 && isLeft) {
-      // Right card → move left
-      setActiveIndex((prev) => prev - 1);
+    } else {
+      setActiveIndex(i);
     }
   };
 
@@ -51,25 +58,17 @@ const CabinCarousel = () => {
       {/* Cards */}
       <div className="relative w-full flex justify-center items-center h-[65vh] px-8">
         {cabins.map((cabin, i) => {
-          const offset = i - activeIndex;
-
-          let x = "100%";
-          let zIndex = 0;
-          let opacity = 0;
-
-          if (offset === 0) {
-            x = "0%";
-            zIndex = 20;
-            opacity = 1;
-          } else if (offset === -1) {
-            x = "-105%";
-            zIndex = 10;
-            opacity = 1;
-          } else if (offset === 1) {
-            x = "105%";
-            zIndex = 10;
-            opacity = 1;
+          // New: Corrected distance and looping logic
+          let distance = i - activeIndex;
+          if (distance > cabins.length / 2) {
+            distance -= cabins.length;
+          } else if (distance < -cabins.length / 2) {
+            distance += cabins.length;
           }
+
+          const x = `${distance * slideWidth}vw`;
+          const zIndex = 20 - Math.abs(distance);
+          const opacity = Math.abs(distance) <= 1 ? 1 : 0;
 
           return (
             <motion.div
@@ -113,28 +112,25 @@ const CabinCarousel = () => {
                 <>
                   {/* Center card arrows */}
                   {i === activeIndex && (
-                    !(isLeft && activeIndex === 0) && // no left arrow if first
-                    !(!isLeft && activeIndex === cabins.length - 1) && ( // no right arrow if last
-                      <div
-                        className="absolute pointer-events-none z-20"
-                        style={{
-                          left: cursorPos.x,
-                          top: cursorPos.y,
-                          transform: "translate(-50%, -50%)",
-                        }}
-                      >
-                        <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
-                          <ArrowNew
-                            className="text-[var(--text-light)] w-[24px] h-[24px]"
-                            flipped={!isLeft}
-                          />
-                        </div>
+                    <div
+                      className="absolute pointer-events-none z-20"
+                      style={{
+                        left: cursorPos.x,
+                        top: cursorPos.y,
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
+                        <ArrowNew
+                          className="text-[var(--text-light)] w-[24px] h-[24px]"
+                          flipped={!isLeft}
+                        />
                       </div>
-                    )
+                    </div>
                   )}
 
                   {/* Left card → only right arrow */}
-                  {i === activeIndex - 1 && !isLeft && (
+                  {(i === (activeIndex - 1 + cabins.length) % cabins.length) && (i !== activeIndex) && !isLeft && (
                     <div
                       className="absolute pointer-events-none z-20"
                       style={{
@@ -150,7 +146,7 @@ const CabinCarousel = () => {
                   )}
 
                   {/* Right card → only left arrow */}
-                  {i === activeIndex + 1 && isLeft && (
+                  {(i === (activeIndex + 1) % cabins.length) && (i !== activeIndex) && isLeft && (
                     <div
                       className="absolute pointer-events-none z-20"
                       style={{
