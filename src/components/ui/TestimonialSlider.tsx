@@ -41,14 +41,16 @@ const TestimonialSlider = () => {
       </div>
 
       {/* Slider track */}
-      <div
-        ref={containerRef}
-        className="flex w-max"
-        style={{
-          '--track-width': `${trackWidth}px`,
-          animation: `marquee ${logos.length * 2}s linear infinite`,
-        }}
-      >
+   <div
+  ref={containerRef}
+  className="flex w-max"
+  style={
+    {
+      "--track-width": `${trackWidth}px`,
+      animation: `marquee ${logos.length * 2}s linear infinite`,
+    } as React.CSSProperties & { [key: string]: string }
+  }
+>
         {logos.concat(logos).map((logo, index) => (
           <div
             key={index}

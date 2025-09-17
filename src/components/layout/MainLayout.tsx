@@ -6,6 +6,7 @@ import CabinSlideShow from "../ui/CabinSlideShow";
 import HeroSection from "./HeroSection";
 import TestimonialSection from "./TestimonialSection";
 import OurProcess from "./OurProcess";
+import Milestone from "./Milestone";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -24,6 +25,8 @@ export default function MainLayout({ children }: { children: ReactNode }) {
 
         <TestimonialSection />
         <OurProcess />
+        <Milestone />
+
       </div>
     </div>
   );

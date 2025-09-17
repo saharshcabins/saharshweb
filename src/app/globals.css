@@ -17,7 +17,7 @@
   --text-dark: #0F1B26; /* Strong dark */
   --text-light: #ffffff; /* White text */
   --text-dark-light:#0f1b2699;
- 
+ --text-lighter:#ffffffb3;
   /* Section Backgrounds */
   --section-light: #ffffff; /* Default light background */
   --section-accent: #f5f2eb; /* Beige (nav + light section bg) */

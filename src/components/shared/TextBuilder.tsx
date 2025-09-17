@@ -16,7 +16,8 @@ type TextBuilderProps = {
     | "accent"
     | "danger"
     | "link"
-    | "dark-light";
+    | "dark-light"
+    | "lighter";
   fontSize?: string; // e.g. "56px" or "3vw"
   className?: string;
 };
@@ -62,6 +63,7 @@ const TextBuilder: FC<TextBuilderProps> = ({
     danger: "text-red-600",
     link: "text-[var(--link-color)]",
     "dark-light": "text-[var(--text-dark-light)]",
+    lighter:"text-[var(--text-lighter)]"
   };
 
   // Auto responsive scaling if pixel font size is given
