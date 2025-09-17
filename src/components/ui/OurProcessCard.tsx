@@ -1,137 +1,110 @@
+"use client";
 import React from "react";
+import { motion } from "framer-motion";
 import TextBuilder from "../shared/TextBuilder";
+import Image from "next/image";
 
 interface OurProcessCardProps {
   title: string;
   description: string;
   imageSrc: string;
   icon: React.ReactNode;
-  index: number; // add index to handle border logic
+  index: number;
+  totalCards: number;
+  progress: number; // 0 (expanded) → 1 (collapsed)
 }
 
 const OurProcessCard: React.FC<OurProcessCardProps> = ({
   title,
   description,
   icon,
+  imageSrc,
   index,
+  totalCards,
+  progress,
 }) => {
-  return (
-<div
-  className={`flex flex-col justify-between px-[40px] py-[30px] gap-[157px] ${
-    index === 0
-      ? "border-y border-[rgba(0,0,0,0.3)] pl-[7%] " // top & bottom only
-      : "border-y border-l border-[rgba(0,0,0,0.3)]" // top, bottom, left
-  }`}
->
+  const isLastCard = index === totalCards - 1;
+  const isFirstCard = index === 0;
 
-      <div className="flex flex-row items-center gap-[117px] mb-[20px]">
-        <div className="text-[var(--color-primary)] w-[50px] h-[55px]">
+  // Override progress for last card → always expanded
+  const effectiveProgress = isLastCard ? 0 : progress;
+
+  const collapsedWidth = 20;
+  const collapsedPaddingLeft = 40;
+  const collapsedFontSize = 24;
+  const collapsedTitleGap = 20;
+
+  const interpolatedWidth = 100 - effectiveProgress * (100 - collapsedWidth);
+  const interpolatedPaddingLeft = isFirstCard
+    ? 40 + effectiveProgress * (112 - 40)
+    : 40;
+
+  const interpolatedTitleGap = Math.max(
+    117 - effectiveProgress * (117 - collapsedTitleGap),
+    collapsedTitleGap
+  );
+
+  const titleFontSize = 36 - effectiveProgress * (36 - collapsedFontSize);
+
+  return (
+    <motion.div
+      initial={false}
+      animate={{ width: `${interpolatedWidth}%`, opacity: 1 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className={`
+        relative flex flex-col justify-between px-[40px] py-[30px] h-[423px]
+        border-t border-b border-l border-[rgba(0,0,0,0.3)]
+        ${isFirstCard ? "border-r-0" : ""}
+        ${isLastCard ? "border-r border-[rgba(0,0,0,0.3)]" : ""}
+        ${effectiveProgress > 0.5 ? "w-[200px]" : ""}
+        ${(effectiveProgress > 0.5 && isFirstCard) ? "" : "pl-[5%]"}
+      `}
+    >
+      {/* Title Row */}
+      <motion.div
+        animate={{
+          flexDirection: effectiveProgress > 0.5 ? "column" : "row",
+          gap: effectiveProgress > 0.5 ? 20 : 117,
+          alignItems: effectiveProgress > 0.5 ? "flex-start" : "center",
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className={`flex mb-[20px] ${
+          effectiveProgress > 0.5 ? "gap-[20px]" : "gap-[117px]"
+        }`}
+      >
+        <div className="text-[var(--color-primary)] w-[50px] h-[55px] flex-shrink-0">
           {icon}
         </div>
-<TextBuilder
-  fontSize="36px"
-  weight="bold"
-  color="dark"
-  className="leading-[1.2] whitespace-nowrap"
->
-  {title.includes("&") ? (
-    <>
-      {title.split("&")[0]} &amp;<br />
-      {title.split("&")[1].trim()}
-    </>
-  ) : (
-    title
-  )}
-</TextBuilder>
+        <TextBuilder
+          fontSize={`${titleFontSize}px`}
+          weight={effectiveProgress > 0.5 ? "medium" : "bold"}
+          color="dark"
+          className="leading-[1.2] whitespace-nowrap"
+        >
+          {title.includes("&") ? (
+            <>
+              {title.split("&")[0]} &amp;
+              <br />
+              {title.split("&")[1].trim()}
+            </>
+          ) : (
+            title
+          )}
+        </TextBuilder>
+      </motion.div>
 
-
-
-
-      </div>
-      <TextBuilder
-        fontSize="20px"
-        color="dark-light"
-        className="leading-[1.5] w-full"
+      {/* Description */}
+      <motion.div
+        animate={{ opacity: isLastCard ? 1 : 1 - effectiveProgress }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="overflow-hidden"
       >
-        {description}
-      </TextBuilder>
-    </div>
+        <TextBuilder fontSize="20px" color="dark-light" className="leading-[1.5] w-full">
+          {description}
+        </TextBuilder>
+      </motion.div>
+    </motion.div>
   );
 };
 
 export default OurProcessCard;
-
-
-// import React from "react";
-// import TextBuilder from "../shared/TextBuilder";
-
-// interface OurProcessCardProps {
-//   title: string;
-//   description: string;
-//   imageSrc: string;
-//   icon: React.ReactNode;
-//   index: number;
-//   isCollapsed: boolean;
-// }
-
-// const OurProcessCard: React.FC<OurProcessCardProps> = ({
-//   title,
-//   description,
-//   icon,
-//   index,
-//   isCollapsed,
-// }) => {
-//   return (
-//     <div
-//       className={`flex flex-col justify-between px-[40px] py-[30px] gap-[157px]
-//       ${isCollapsed ? "py-4 px-2" : "py-[30px] px-[40px]"}
-//       ${
-//         index === 0
-//           ? "border-y border-[rgba(0,0,0,0.3)] pl-[7%]"
-//           : "border-y border-l border-[rgba(0,0,0,0.3)]"
-//       }
-//       transition-all duration-700 ease-in-out
-//     `}
-//     >
-//       <div
-//         className={`flex items-center gap-[117px] mb-[20px]
-//         ${isCollapsed ? "flex-col gap-0 mb-0" : "flex-row"}
-//         transition-all duration-700 ease-in-out`}
-//       >
-//         <div
-//           className={`text-[var(--color-primary)] w-[50px] h-[55px] flex-shrink-0
-//             ${isCollapsed ? "w-[30px] h-[30px]" : "w-[50px] h-[55px]"}`}
-//         >
-//           {icon}
-//         </div>
-//         <TextBuilder
-//           fontSize={isCollapsed ? "16px" : "36px"}
-//           weight="bold"
-//           color="dark"
-//           className={`leading-[1.2] whitespace-nowrap
-//             ${isCollapsed ? "hidden" : "block"}`}
-//         >
-//           {title.includes("&") ? (
-//             <>
-//               {title.split("&")[0]} &amp;<br />
-//               {title.split("&")[1].trim()}
-//             </>
-//           ) : (
-//             title
-//           )}
-//         </TextBuilder>
-//       </div>
-//       <TextBuilder
-//         fontSize="20px"
-//         color="dark-light"
-//         className={`leading-[1.5] w-full
-//           ${isCollapsed ? "hidden" : "block"}
-//           transition-all duration-700 ease-in-out`}
-//       >
-//         {description}
-//       </TextBuilder>
-//     </div>
-//   );
-// };
-
-// export default OurProcessCard;
