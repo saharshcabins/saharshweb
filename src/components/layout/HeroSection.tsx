@@ -114,7 +114,7 @@ const HeroSection = () => {
             transition: "transform 0.1s linear, opacity 0.3s ease-out",
           }}
         >
-          <Image
+          <Image unoptimized
             src="/assets/hero/container.png"
             alt="container"
             width={550}
@@ -136,7 +136,7 @@ const HeroSection = () => {
             transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
           }}
         >
-          <Image
+          <Image unoptimized
             src="/assets/hero/front_cloud.png"
             alt="Front Cloud"
             width={1440}
@@ -153,7 +153,7 @@ const HeroSection = () => {
             transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
           }}
         >
-          <Image
+          <Image unoptimized
             
             src="/assets/hero/back_cloud.png"
             alt="Back Cloud"
@@ -174,7 +174,7 @@ const HeroSection = () => {
           {/* Cabin Images with Framer Motion */}
 <div className="relative w-full  overflow-hidden">
    <Image
-        
+         unoptimized
         src={`/assets/hero/cabin.png`}
         alt={`cabin`}
         width={1440}

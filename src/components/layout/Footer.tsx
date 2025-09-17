@@ -8,7 +8,7 @@ const Footer = () => {
     <div className="h-[460px] p-[100px] bg-[var(--text-dark)] flex flex-col justify-between">
       <div className="w-full grid grid-cols-[45%_55%] gap-[28px]">
         <div className="flex flex-col justify-between h-full">
-          <Image
+          <Image unoptimized
             src="/assets/logo/logo_light.svg"
             height={51}
             width={176}
