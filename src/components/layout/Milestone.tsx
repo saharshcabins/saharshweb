@@ -7,6 +7,7 @@ import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 import MilestoneCard from "../ui/MilestoneCard";
 import { ArrowNew } from "@/utils/svgUtils";
+import Label from "../ui/HeroLabel";
 
 const milestoneData = [
   {
@@ -56,7 +57,7 @@ const imageData = [
 
 const Milestone = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-    const [activeImageIndex, setImageActiveIndex] = useState(0);
+  const [activeImageIndex, setImageActiveIndex] = useState(0);
 
   const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(
     null
@@ -92,16 +93,14 @@ const Milestone = () => {
     return () => window.removeEventListener("wheel", handleWheel);
   }, [activeIndex]);
 
-  // handle click (tap navigation)
-// handle click (tap navigation)
-const handleClick = () => {
-  if (isLeft) {
-    setImageActiveIndex((prev) => (prev - 1 + imageData.length) % imageData.length);
-  } else {
-    setImageActiveIndex((prev) => (prev + 1) % imageData.length);
-  }
-};
-
+  // handle click (tap navigation) - linear (not looping)
+  const handleClick = () => {
+    if (isLeft && activeImageIndex > 0) {
+      setImageActiveIndex((prev) => prev - 1);
+    } else if (!isLeft && activeImageIndex < imageData.length - 1) {
+      setImageActiveIndex((prev) => prev + 1);
+    }
+  };
 
   return (
     <div
@@ -144,83 +143,89 @@ const handleClick = () => {
           </div>
 
           {/* Images Section */}
-          {/* Images Section */}
+                    <div className="absolute right-[6%] top-[1%]">
+            <TextBuilder fontSize="24px" weight="bold" color="light50">
+              2013
+            </TextBuilder>
+          </div>
+          <div className="absolute right-[12%] top-[5%]">
+            <Label text="Mumbai"/>
+          </div>
           <div className="absolute right-0 top-[20%] h-[300px] w-[53%] overflow-hidden">
             <div className="relative w-full h-full flex items-center">
-            {imageData.map((item, i) => {
-  const total = imageData.length;
+              {imageData.map((item, i) => {
+                const distance = i - activeImageIndex;
+                const x = distance * 460;
 
-  // distance relative to activeImageIndex (circular)
-  let distance = i - activeImageIndex;
-  if (distance > total / 2) distance -= total;
-  if (distance < -total / 2) distance += total;
+                return (
+                  <motion.div
+                    key={i}
+                    className="absolute flex flex-col gap-6 cursor-pointer"
+                    animate={{
+                      x,
+                      opacity: distance === 0 ? 1 : 0.7,
+                      zIndex: distance === 0 ? 20 : 10,
+                    }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                    onMouseMove={(e) => {
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      const mid = rect.left + rect.width / 2;
+                      setHoveredCard(i);
+                      setCursorPos({
+                        x: e.clientX - rect.left,
+                        y: e.clientY - rect.top,
+                      });
+                      setIsLeft(e.clientX < mid);
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredCard(null);
+                      setCursorPos(null);
+                    }}
+                    onClick={handleClick}
+                  >
+                    {/* Image Card */}
+                    <div className="relative w-[420px] h-[240px] rounded-[24px] overflow-hidden">
+                      <Image
+                        unoptimized
+                        src={item.url}
+                        alt={`milestone-${i}`}
+                        fill
+                        className="object-cover rounded-[24px]"
+                      />
+                    </div>
 
-  const x = distance * 460; // card width + gap
+                    {/* Label Text */}
+                    <TextBuilder fontSize="20px" color="lighter">
+                      {item.label}
+                    </TextBuilder>
 
-  return (
-    <motion.div
-      key={i}
-      className="absolute flex flex-col gap-6 cursor-pointer"
-      animate={{
-        x,
-        opacity: distance === 0 ? 1 : 0.7, 
-        zIndex: distance === 0 ? 20 : 10,
-      }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
-      onMouseMove={(e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const mid = rect.left + rect.width / 2;
-        setHoveredCard(i);
-        setCursorPos({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top,
-        });
-        setIsLeft(e.clientX < mid);
-      }}
-      onMouseLeave={() => {
-        setHoveredCard(null);
-        setCursorPos(null);
-      }}
-      onClick={handleClick}
-    >
-      {/* Image Card */}
-      <div className="relative w-[420px] h-[240px] rounded-[24px] overflow-hidden">
-        <Image
-          unoptimized
-          src={item.url}
-          alt={`milestone-${i}`}
-          fill
-          className="object-cover rounded-[24px]"
-        />
-      </div>
-
-      {/* Label Text */}
-      <TextBuilder fontSize="20px" color="lighter">
-        {item.label}
-      </TextBuilder>
-
-      {/* Floating Arrow on Hover */}
-      {hoveredCard === i && cursorPos && (
-        <div
-          className="absolute pointer-events-none z-20"
-          style={{
-            left: cursorPos.x,
-            top: cursorPos.y,
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
-            <ArrowNew
-              className="text-[var(--text-light)] w-[24px] h-[24px]"
-              flipped={!isLeft}
-            />
-          </div>
-        </div>
-      )}
-    </motion.div>
-  );
-})}
-
+                    {/* Floating Arrow on Hover */}
+                    {hoveredCard === i &&
+                      cursorPos &&
+                      imageData.length > 1 &&
+                      !(
+                        (i === 0 && isLeft) ||
+                        (i === imageData.length - 1 && !isLeft)
+                      ) && (
+                        <div
+                          className="absolute pointer-events-none z-20"
+                          style={{
+                            left: cursorPos.x,
+                            top: cursorPos.y,
+                            transform: "translate(-50%, -50%)",
+                          }}
+                        >
+                          <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
+                            <ArrowNew
+                              className="text-[var(--text-light)] w-[24px] h-[24px]"
+                              flipped={!isLeft}
+                            />
+                          </div>
+                        </div>
+                      )}
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>

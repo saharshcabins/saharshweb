@@ -4,32 +4,34 @@
   /* Base */
   --background: #ffffff;
   --foreground: #171717;
-  --nav-bg-color:#F5F2EB;
-  --link-color:#0F1B26B2;
+  --nav-bg-color: #f5f2eb;
+  --link-color: #0f1b26b2;
 
   /* Brand */
-  --color-primary: #C97A41; /* Orange used for "Customizable Cabins", buttons */
+  --color-primary: #c97a41; /* Orange used for "Customizable Cabins", buttons */
   --color-secondary: #6b7280; /* Neutral gray (About Us, Contact links) */
   --color-accent: #1e3a8a; /* Blue shade (if needed for highlight) */
 
   /* Text */
   --text-muted: #9ca3af; /* Muted gray */
-  --text-dark: #0F1B26; /* Strong dark */
+  --text-dark: #0f1b26; /* Strong dark */
+  --text-dark-25: #0f1b2640; /* Strong dark */
+  --text-dark-50: #0f1b2680; /* Strong dark */
+
   --text-light: #ffffff; /* White text */
-  --text-dark-light:#0f1b2699;
- --text-lighter:#ffffffb3;
+  --text-dark-light: #0f1b2699;
+  --text-lighter: #ffffffb3;
+  --text-light-25: #ffffff40;
+  --text-light-50: #ffffff80;
+  --text-light-60: #ffffff99;
+
   /* Section Backgrounds */
   --section-light: #ffffff; /* Default light background */
   --section-accent: #f5f2eb; /* Beige (nav + light section bg) */
   --section-dark: #0f172a; /* Deep navy (footer/dark sections) */
-    font-family: var(--font-eudoxus), sans-serif;
-
-
-
-
+  font-family: var(--font-eudoxus), sans-serif;
 }
 
-
-
-
-
+body {
+  overflow-x: hidden;
+}

@@ -7,10 +7,12 @@ import HeroSection from "./HeroSection";
 import TestimonialSection from "./TestimonialSection";
 import OurProcess from "./OurProcess";
 import Milestone from "./Milestone";
+import Footer from "./Footer";
+import GetInTouch from "./GetInTouch";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col py-10 gap-10 ">
+  <div className="min-h-screen flex flex-col py-10 pb-0 gap-10 ">
       <div className="w-[90%] mx-auto">
         <NavBar />
       </div>
@@ -26,6 +28,8 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <TestimonialSection />
         <OurProcess />
         <Milestone />
+        <GetInTouch />
+        <Footer />
 
       </div>
     </div>
