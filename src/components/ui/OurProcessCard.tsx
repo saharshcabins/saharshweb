@@ -7,7 +7,6 @@ import Image from "next/image";
 interface OurProcessCardProps {
   title: string;
   description: string;
-  imageSrc: string;
   icon: React.ReactNode;
   index: number;
   totalCards: number;
@@ -18,7 +17,6 @@ const OurProcessCard: React.FC<OurProcessCardProps> = ({
   title,
   description,
   icon,
-  imageSrc,
   index,
   totalCards,
   progress,
@@ -93,7 +91,6 @@ const OurProcessCard: React.FC<OurProcessCardProps> = ({
         </TextBuilder>
       </motion.div>
 
-      {/* Description */}
       <motion.div
         animate={{ opacity: isLastCard ? 1 : 1 - effectiveProgress }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
