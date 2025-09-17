@@ -186,7 +186,7 @@ const Milestone = () => {
                     {/* Image Card */}
                     <div className="relative w-[420px] h-[240px] rounded-[24px] overflow-hidden">
                       <Image
-                        unoptimized
+                        
                         src={item.url}
                         alt={`milestone-${i}`}
                         fill

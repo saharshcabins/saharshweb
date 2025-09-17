@@ -120,7 +120,7 @@ const HeroSection = () => {
             width={550}
             height={450}
             className="w-full h-auto"
-            unoptimized
+            
           />
         </div>
       </div>
@@ -142,7 +142,7 @@ const HeroSection = () => {
             width={1440}
             height={780}
             style={{ width: "100%", height: "auto" }}
-            unoptimized
+            
           />
         </div>
         <div
@@ -154,7 +154,7 @@ const HeroSection = () => {
           }}
         >
           <Image
-            unoptimized
+            
             src="/assets/hero/back_cloud.png"
             alt="Back Cloud"
             width={1440}
@@ -174,7 +174,7 @@ const HeroSection = () => {
           {/* Cabin Images with Framer Motion */}
 <div className="relative w-full  overflow-hidden">
    <Image
-        unoptimized
+        
         src={`/assets/hero/cabin.png`}
         alt={`cabin`}
         width={1440}

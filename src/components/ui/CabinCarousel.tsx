@@ -90,7 +90,7 @@ const CabinCarousel = () => {
               }}
               onClick={() => handleClick(i)}
             >
-              <Image unoptimized src={cabin.image} alt={cabin.name} fill className="object-cover" />
+              <Image  src={cabin.image} alt={cabin.name} fill className="object-cover" />
 
               {/* Gradient overlay */}
               <div className="absolute bottom-0 left-0 right-0 h-[180px] bg-gradient-to-t from-[#0F1B26] to-transparent z-10" />

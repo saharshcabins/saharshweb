@@ -62,7 +62,7 @@ const TestimonialSlider = () => {
               alt="Background Grid"
               fill
               className="object-cover absolute top-0 left-0 z-0"
-              unoptimized
+              
             />
             {/* Logo */}
             <Image
@@ -71,7 +71,7 @@ const TestimonialSlider = () => {
               width={120}
               height={120}
               className="object-contain relative z-10"
-              unoptimized
+              
             />
           </div>
         ))}
