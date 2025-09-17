@@ -61,11 +61,13 @@ const Button: FC<ButtonProps> = ({ text, onClick, className, disabled }) => {
           }
         `}
       >
-        <ArrowNew
-          className="w-6 h-6"
-          color={disabled ? "var(--text-dark-25)" : "var(--color-primary)"} // Change arrow color when disabled
-          flipped
-        />
+        <div
+          className={`w-6 h-6 ${
+            disabled ? "text-[var(--text-light)]" : "text-[var(--text-light)]"
+          }`}
+        >
+          <ArrowNew flipped />
+        </div>
       </span>
     </button>
   );

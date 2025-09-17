@@ -149,14 +149,15 @@ const GetInTouch = () => {
         </div>
 
         <div className="mt-12 flex flex-row md:flex-row items-start md:items-start gap-6">
-          <TextBuilder
-            fontSize="18px"
-            color="dark50"
-            className="whitespace-nowrap pt-1"
-          >
-            Select projects
-            <br /> you're interested in:
-          </TextBuilder>
+         <TextBuilder
+  fontSize="18px"
+  color="dark50"
+  className="whitespace-nowrap pt-1"
+>
+  Select projects
+  <br /> you&apos;re interested in:
+</TextBuilder>
+
           <div className="flex flex-wrap gap-3">
             {projectLabels.map((label, index) => (
               <ProjectLabel
