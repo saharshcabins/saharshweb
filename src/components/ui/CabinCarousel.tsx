@@ -8,11 +8,11 @@ import TextBuilder from "../shared/TextBuilder";
 import { ArrowNew } from "../../utils/svgUtils";
 
 const cabins = [
-  { name: "Hutsie", description: "20×40 ft | Bathroom | 1 Bed | Pantry", image: "/assets/cabin/hutsie.jpg" },
-  { name: "Rustico", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/rustico.jpg" },
-  { name: "Barnie", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/barnie.jpg" },
-  { name: "Skylighter", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/skylighter.jpg" },
-  { name: "Triango", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/triango.jpg" },
+  { name: "Hutsie", description: "20×40 ft | Bathroom | 1 Bed | Pantry", image: "/assets/cabin/hutsie.webp" },
+  { name: "Rustico", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/rustico.webp" },
+  { name: "Barnie", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/barnie.webp" },
+  { name: "Skylighter", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/skylighter.webp" },
+  { name: "Triango", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/triango.webp" },
 ];
 
 const CabinCarousel = () => {

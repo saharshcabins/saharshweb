@@ -44,7 +44,7 @@ const CabinSection = () => {
         <Image
         unoptimized
           fill
-          src="/assets/cabin/cabin_1.png"
+          src="/assets/cabin/cabin_1.webp"
           alt="cabin-section"
           style={{ objectFit: "cover" }}
           sizes="(max-width: 1040px) 100vw, 1040px"

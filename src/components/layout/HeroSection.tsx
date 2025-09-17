@@ -8,7 +8,7 @@ import Label from "../ui/HeroLabel";
 import { motion } from "framer-motion"; // Import motion
 
 const words = ["Homes", "Offices", "Retreats", "Studios", "Cabins"]; // 🔄 words to cycle
-const weatherImages = ["cabin_summer.png", "cabin_rain.png", "cabin_winter.png"]; // Weather images
+const weatherImages = ["cabin_summer.webp", "cabin_rain.webp", "cabin_winter.webp"]; // Weather images
 
 const HeroSection = () => {
   const [scroll, setScroll] = useState(0);
@@ -115,7 +115,7 @@ const HeroSection = () => {
           }}
         >
           <Image unoptimized
-            src="/assets/hero/container.png"
+            src="/assets/hero/container.webp"
             alt="container"
             width={550}
             height={450}
@@ -137,7 +137,7 @@ const HeroSection = () => {
           }}
         >
           <Image unoptimized
-            src="/assets/hero/front_cloud.png"
+            src="/assets/hero/front_cloud.webp"
             alt="Front Cloud"
             width={1440}
             height={780}
@@ -155,7 +155,7 @@ const HeroSection = () => {
         >
           <Image unoptimized
             
-            src="/assets/hero/back_cloud.png"
+            src="/assets/hero/back_cloud.webp"
             alt="Back Cloud"
             width={1440}
             height={780}
@@ -175,7 +175,7 @@ const HeroSection = () => {
 <div className="relative w-full  overflow-hidden">
    <Image
          unoptimized
-        src={`/assets/hero/cabin.png`}
+        src={`/assets/hero/cabin.webp`}
         alt={`cabin`}
         width={1440}
         height={980}

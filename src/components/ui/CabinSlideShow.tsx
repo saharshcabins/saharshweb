@@ -170,12 +170,20 @@ const CabinSlideShow: React.FC = () => {
           ))}
         </Swiper>
         {/* Custom Navigation */}
-        <button className="custom-prev absolute cursor-pointer -left-[30px] bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] z-10 w-[80px] h-[54px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]">
-          <ArrowNew className="w-[26px] h-[26px]" />
-        </button>
-        <button className="custom-next absolute cursor-pointer right-0 bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] z-10 w-[80px] h-[54px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]">
-          <ArrowNew className="w-[26px] h-[26px]" flipped />
-        </button>
+   <button
+  aria-label="Previous Slide"
+  className="custom-prev absolute cursor-pointer -left-[30px] bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] z-10 w-[80px] h-[54px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]"
+>
+  <ArrowNew className="w-[26px] h-[26px]" />
+</button>
+
+<button
+  aria-label="Next Slide"
+  className="custom-next absolute cursor-pointer right-0 bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] z-10 w-[80px] h-[54px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]"
+>
+  <ArrowNew className="w-[26px] h-[26px]" flipped />
+</button>
+
       </div>
     </div>
   );

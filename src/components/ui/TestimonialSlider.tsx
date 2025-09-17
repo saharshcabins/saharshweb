@@ -4,14 +4,14 @@ import Image from "next/image";
 import React, { useRef, useEffect, useState } from "react";
 
 const logos = [
-  "/assets/company_logo/logo1.png",
-  "/assets/company_logo/logo2.png",
-  "/assets/company_logo/logo3.png",
-  "/assets/company_logo/log04.png",
-  "/assets/company_logo/logo1.png",
-  "/assets/company_logo/logo2.png",
-  "/assets/company_logo/logo3.png",
-  "/assets/company_logo/log04.png",
+  "/assets/company_logo/logo1.webp",
+  "/assets/company_logo/logo2.webp",
+  "/assets/company_logo/logo3.webp",
+  "/assets/company_logo/log04.webp",
+  "/assets/company_logo/logo1.webp",
+  "/assets/company_logo/logo2.webp",
+  "/assets/company_logo/logo3.webp",
+  "/assets/company_logo/log04.webp",
 ];
 
 const TestimonialSlider = () => {
@@ -58,7 +58,7 @@ const TestimonialSlider = () => {
           >
             {/* Background grid image */}
             <Image unoptimized
-              src="/assets/cabin/grid.png"
+              src="/assets/cabin/grid.webp"
               alt="Background Grid"
               fill
               className="object-cover absolute top-0 left-0 z-0"

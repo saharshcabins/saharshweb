@@ -235,7 +235,7 @@ const Milestone = () => {
       <div
         className="absolute right-0 top-0 w-[60%] h-full bg-cover bg-center"
         style={{
-          backgroundImage: "url('/assets/milestone/map.png')",
+          backgroundImage: "url('/assets/milestone/map.webp')",
         }}
       />
     </div>
