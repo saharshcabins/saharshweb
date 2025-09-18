@@ -26,7 +26,9 @@
   --text-light-60: #ffffff99;
 
   /* Section Backgrounds */
-  --section-light: #ffffff; /* Default light background */
+    --section-accent-50: #f5f2eb80; /* Beige (nav + light section bg) */
+
+--section-light: #ffffff; /* Default light background */
   --section-accent: #f5f2eb; /* Beige (nav + light section bg) */
   --section-dark: #0f172a; /* Deep navy (footer/dark sections) */
   font-family: var(--font-eudoxus), sans-serif;
@@ -34,4 +36,21 @@
 
 body {
   overflow-x: hidden;
+}
+
+/* Example CSS for the hover effects */
+.milestone-card-hover {
+  transform: translateY(-10%); /* This will move the card up by 10% */
+  /* You may need to adjust the value based on your layout */
+}
+
+.milestone-card-title-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.milestone-card-button-stack {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

@@ -15,49 +15,59 @@ const milestoneData = [
     title: "Company Inception",
     description:
       "Laying the foundation for Saharsh Cabins with the first manufacturing plant in Mumbai.",
+    image: [
+      {
+        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
+        label: "Mumbai Plant Inception",
+      },
+    ],
   },
   {
     year: "2015",
     title: "Expanded Product Line",
     description:
       "Introduced a new range of modular cabins, including custom office and studio designs.",
+    image: [
+      {
+        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
+        label: "Product Line Expansion",
+      },
+    ],
   },
   {
     year: "2018",
     title: "Eco-Friendly Certification",
     description:
       "Received certification for our sustainable manufacturing processes and use of recycled materials.",
+    image: [
+      {
+        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
+        label: "Eco-Friendly Milestone",
+      },
+      {
+        url: "https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?auto=format&fit=crop&w=420&q=80",
+        label: "Solar Panel Cabin",
+      },
+    ],
   },
   {
     year: "2020",
     title: "International Partnerships",
     description:
       "Began a new chapter by exporting our cabins to clients in Europe and North America.",
-  },
-];
-
-const imageData = [
-  {
-    url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
-    label: "Mumbai Plant Inception",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
-    label: "Product Line Expansion",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
-    label: "Eco-Friendly Milestone",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
-    label: "International Growth",
+    image: [
+      {
+        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
+        label: "International Growth",
+      },
+    ],
   },
 ];
 
 const Milestone = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeImageIndex, setImageActiveIndex] = useState(0);
+  const [movedCards, setMovedCards] = useState<number[]>([]);
 
   const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(
     null
@@ -68,7 +78,8 @@ const Milestone = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const scrollLock = useRef(false);
 
-  // lock scroll into card-by-card navigation
+  // scroll-driven card navigation
+  // handle wheel scroll
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (!sectionRef.current || scrollLock.current) return;
@@ -77,28 +88,64 @@ const Milestone = () => {
       const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
       if (!isVisible) return;
 
+      // ✅ always block website scroll inside this section
+      e.preventDefault();
+
       scrollLock.current = true;
-      setTimeout(() => (scrollLock.current = false), 600);
+      setTimeout(() => (scrollLock.current = false), 700);
 
       if (e.deltaY > 0 && activeIndex < milestoneData.length - 1) {
-        setActiveIndex((prev) => prev + 1);
-        e.preventDefault();
+        // forward
+        setActiveIndex((prev) => {
+          const next = prev + 1;
+          setMovedCards((prevMoved) => [...new Set([...prevMoved, next])]);
+          return next;
+        });
       } else if (e.deltaY < 0 && activeIndex > 0) {
-        setActiveIndex((prev) => prev - 1);
-        e.preventDefault();
+        // backward
+        setActiveIndex((prev) => {
+          const next = prev - 1;
+          setMovedCards((prevMoved) => prevMoved.filter((i) => i <= next));
+          return next;
+        });
       }
+      // 🚫 else: do nothing (ignore scroll at edges, but still block website scroll)
     };
 
+    // passive:false so preventDefault works
     window.addEventListener("wheel", handleWheel, { passive: false });
     return () => window.removeEventListener("wheel", handleWheel);
   }, [activeIndex]);
 
+  // sync movedCards when activeIndex changes (simulate arrow click)
+  useEffect(() => {
+    if (!movedCards.includes(activeIndex)) {
+      setMovedCards((prev) => [...prev, activeIndex]);
+    }
+  }, [activeIndex]);
+  const handleHoverClick = (index: number) => {
+    // Only update the active index if the hovered card is before the current active one
+    if (index < activeIndex) {
+      setActiveIndex(index);
+    }
+  };
   // handle click (tap navigation) - linear (not looping)
   const handleClick = () => {
     if (isLeft && activeImageIndex > 0) {
       setImageActiveIndex((prev) => prev - 1);
-    } else if (!isLeft && activeImageIndex < imageData.length - 1) {
+    } else if (!isLeft && activeImageIndex < activeImageData.length - 1) {
       setImageActiveIndex((prev) => prev + 1);
+    }
+  };
+  const activeImageData = milestoneData[activeIndex].image;
+  const handleArrowClick = (index: number) => {
+    const targetIndex = index + 1;
+    if (targetIndex < milestoneData.length) {
+      setMovedCards((prev) =>
+        prev.includes(targetIndex)
+          ? prev.filter((i) => i !== targetIndex)
+          : [...prev, targetIndex]
+      );
     }
   };
 
@@ -131,29 +178,51 @@ const Milestone = () => {
           {/* Cards Section */}
           <div className="flex flex-col gap-10 w-[40%]">
             {milestoneData.map((milestone, index) => (
-              <MilestoneCard
+              <div
                 key={index}
-                isStacked={index < activeIndex}
-                year={milestone.year}
-                title={milestone.title}
-                description={milestone.description}
-                isActive={index === activeIndex}
-              />
+                className={`
+  transition-all duration-500
+  ${
+    movedCards.includes(index) && index !== 0
+      ? index === milestoneData.length - 1
+        ? "-mt-[80%]" // ✅ last card offset
+        : "-mt-[75%]" // ✅ all other cards offset
+      : ""
+  }
+`}
+                style={{
+                  zIndex: index === activeIndex ? 20 : 10, // active card always above
+                }}
+              >
+                <MilestoneCard
+                  index={index}
+                  year={milestone.year}
+                  title={milestone.title}
+                  description={milestone.description}
+                  isActive={index === activeIndex}
+                  isStacked={index < activeIndex}
+                  activeIndex={activeIndex}
+                  onArrowClick={() => handleArrowClick(index)}
+                  onHoverClick={handleHoverClick}
+                />
+              </div>
             ))}
           </div>
 
           {/* Images Section */}
-                    <div className="absolute right-[6%] top-[1%]">
+          <div className="absolute right-[6%] top-[1%]">
             <TextBuilder fontSize="24px" weight="bold" color="light50">
-              2013
+              {milestoneData[activeIndex].year}
             </TextBuilder>
           </div>
           <div className="absolute right-[12%] top-[5%]">
-            <Label text="Mumbai"/>
+            <Label
+              text={activeImageData[activeImageIndex].label.split(" ")[0]}
+            />{" "}
           </div>
           <div className="absolute right-0 top-[20%] h-[300px] w-[53%] overflow-hidden">
             <div className="relative w-full h-full flex items-center">
-              {imageData.map((item, i) => {
+              {activeImageData.map((item, i) => {
                 const distance = i - activeImageIndex;
                 const x = distance * 460;
 
@@ -202,10 +271,10 @@ const Milestone = () => {
                     {/* Floating Arrow on Hover */}
                     {hoveredCard === i &&
                       cursorPos &&
-                      imageData.length > 1 &&
+                      activeImageData.length > 1 &&
                       !(
                         (i === 0 && isLeft) ||
-                        (i === imageData.length - 1 && !isLeft)
+                        (i === activeImageData.length - 1 && !isLeft)
                       ) && (
                         <div
                           className="absolute pointer-events-none z-20"

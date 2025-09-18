@@ -55,7 +55,7 @@ const OurProcessCard: React.FC<OurProcessCardProps> = ({
         ${isFirstCard ? "border-r-0" : ""}
         ${isLastCard ? "border-r border-[rgba(0,0,0,0.3)]" : ""}
         ${effectiveProgress > 0.5 ? "w-[200px]" : ""}
-        ${(effectiveProgress > 0.5 && isFirstCard) ? "" : "pl-[5%]"}
+        ${(effectiveProgress > 0.5 && isFirstCard) ? "pl-[5%]" : ""}
       `}
     >
       {/* Title Row */}

@@ -22,6 +22,7 @@ type TextBuilderProps = {
     |"light25"
     |"light60"
     |"dark50"
+    |"section50"
   fontSize?: string; // e.g. "56px" or "3vw"
   className?: string;
 };
@@ -71,7 +72,8 @@ const TextBuilder: FC<TextBuilderProps> = ({
     light50:"text-[var(--text-light-50)]",
     light25:"text-[var(--text-light-25)]",
         light60:"text-[var(--text-light-60)]",
-        dark50:"text-[var(--text-dark-50)]"
+        dark50:"text-[var(--text-dark-50)]",
+        section50:"text-[var(--section-accent-50)]"
 
   };
 
