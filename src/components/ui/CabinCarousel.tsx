@@ -8,16 +8,38 @@ import TextBuilder from "../shared/TextBuilder";
 import { ArrowNew } from "../../utils/svgUtils";
 
 const cabins = [
-  { name: "Hutsie", description: "20×40 ft | Bathroom | 1 Bed | Pantry", image: "/assets/cabin/hutsie.webp" },
-  { name: "Rustico", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/rustico.webp" },
-  { name: "Barnie", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/barnie.webp" },
-  { name: "Skylighter", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/skylighter.webp" },
-  { name: "Triango", description: "20×40 ft | Bathroom | 2 Beds | Kitchen", image: "/assets/cabin/triango.webp" },
+  {
+    name: "Hutsie",
+    description: "20×40 ft | Bathroom | 1 Bed | Pantry",
+    image: "/assets/cabin/hutsie.webp",
+  },
+  {
+    name: "Rustico",
+    description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
+    image: "/assets/cabin/rustico.webp",
+  },
+  {
+    name: "Barnie",
+    description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
+    image: "/assets/cabin/barnie.webp",
+  },
+  {
+    name: "Skylighter",
+    description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
+    image: "/assets/cabin/skylighter.webp",
+  },
+  {
+    name: "Triango",
+    description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
+    image: "/assets/cabin/triango.webp",
+  },
 ];
 
 const CabinCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(null);
+  const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(
+    null
+  );
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [isLeft, setIsLeft] = useState(true);
 
@@ -25,8 +47,8 @@ const CabinCarousel = () => {
   const slideWidth = 60; // 60vw for width + gap
 
   // Function to move the carousel
-  const moveCarousel = (direction: 'left' | 'right') => {
-    if (direction === 'left') {
+  const moveCarousel = (direction: "left" | "right") => {
+    if (direction === "left") {
       setActiveIndex((prev) => (prev - 1 + cabins.length) % cabins.length);
     } else {
       setActiveIndex((prev) => (prev + 1) % cabins.length);
@@ -36,9 +58,9 @@ const CabinCarousel = () => {
   const handleClick = (i: number) => {
     if (i === activeIndex) {
       if (isLeft) {
-        moveCarousel('left');
+        moveCarousel("left");
       } else {
-        moveCarousel('right');
+        moveCarousel("right");
       }
     } else {
       setActiveIndex(i);
@@ -48,7 +70,7 @@ const CabinCarousel = () => {
   return (
     <div className="flex flex-col items-center text-center gap-8 min-h-screen overflow-hidden cursor-none">
       <MultiColorText
-        fontSize="56px"
+        fontSize="22px"
         items={[
           { text: "Our ", color: "dark", weight: "medium" },
           { text: " Bestsellers", color: "primary", weight: "semibold" },
@@ -81,7 +103,10 @@ const CabinCarousel = () => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 const mid = rect.left + rect.width / 2;
                 setHoveredCard(i);
-                setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+                setCursorPos({
+                  x: e.clientX - rect.left,
+                  y: e.clientY - rect.top,
+                });
                 setIsLeft(e.clientX < mid);
               }}
               onMouseLeave={() => {
@@ -90,7 +115,13 @@ const CabinCarousel = () => {
               }}
               onClick={() => handleClick(i)}
             >
-              <Image  unoptimized src={cabin.image} alt={cabin.name} fill className="object-cover" />
+              <Image
+                unoptimized
+                src={cabin.image}
+                alt={cabin.name}
+                fill
+                className="object-cover"
+              />
 
               {/* Gradient overlay */}
               <div className="absolute bottom-0 left-0 right-0 h-[180px] bg-gradient-to-t from-[#0F1B26] to-transparent z-10" />
@@ -98,10 +129,19 @@ const CabinCarousel = () => {
               {/* Content */}
               <div className="relative z-10 p-10 text-left flex items-end justify-between w-full">
                 <div className="flex flex-col">
-                  <TextBuilder fontSize="56px" weight="bold" color="light" className="leading-[1.2]">
+                  <TextBuilder
+                    fontSize="56px"
+                    weight="bold"
+                    color="light"
+                    className="leading-[1.2]"
+                  >
                     {cabin.name}
                   </TextBuilder>
-                  <TextBuilder fontSize="20px" color="light" className="leading-[1.25]">
+                  <TextBuilder
+                    fontSize="20px"
+                    color="light"
+                    className="leading-[1.25]"
+                  >
                     {cabin.description}
                   </TextBuilder>
                 </div>
@@ -111,6 +151,7 @@ const CabinCarousel = () => {
               {hoveredCard === i && cursorPos && (
                 <>
                   {/* Center card arrows */}
+                  // Center card arrows
                   {i === activeIndex && (
                     <div
                       className="absolute pointer-events-none z-20"
@@ -123,43 +164,45 @@ const CabinCarousel = () => {
                       <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
                         <ArrowNew
                           className="text-[var(--text-light)] w-[24px] h-[24px]"
-                          flipped={!isLeft}
+                          flipped={!isLeft} // Corrected logic: if isLeft is true, flipped is false (left arrow)
                         />
                       </div>
                     </div>
                   )}
-
                   {/* Left card → only right arrow */}
-                  {(i === (activeIndex - 1 + cabins.length) % cabins.length) && (i !== activeIndex) && !isLeft && (
-                    <div
-                      className="absolute pointer-events-none z-20"
-                      style={{
-                        left: cursorPos.x,
-                        top: cursorPos.y,
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    >
-                      <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
-                        <ArrowNew className="text-[var(--text-light)] w-[24px] h-[24px]" flipped />
+                  {i === (activeIndex - 1 + cabins.length) % cabins.length &&
+                    i !== activeIndex &&
+                    !isLeft && (
+                      <div
+                        className="absolute pointer-events-none z-20"
+                        style={{
+                          left: cursorPos.x,
+                          top: cursorPos.y,
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      >
+                        <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
+                          <ArrowNew className="text-[var(--text-light)] w-[24px] h-[24px]" />
+                        </div>
                       </div>
-                    </div>
-                  )}
-
+                    )}
                   {/* Right card → only left arrow */}
-                  {(i === (activeIndex + 1) % cabins.length) && (i !== activeIndex) && isLeft && (
-                    <div
-                      className="absolute pointer-events-none z-20"
-                      style={{
-                        left: cursorPos.x,
-                        top: cursorPos.y,
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    >
-                      <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
-                        <ArrowNew className="text-[var(--text-light)] w-[24px] h-[24px]" flipped={false} />
+                  {i === (activeIndex + 1) % cabins.length &&
+                    i !== activeIndex &&
+                    isLeft && (
+                      <div
+                        className="absolute pointer-events-none z-20"
+                        style={{
+                          left: cursorPos.x,
+                          top: cursorPos.y,
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      >
+                        <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
+                          <ArrowNew className="text-[var(--text-light)] w-[24px] h-[24px]" />
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </>
               )}
             </motion.div>
@@ -167,9 +210,10 @@ const CabinCarousel = () => {
         })}
       </div>
 
-      <TextBuilder fontSize="24px" color="dark">
-        Saharsh Cabins are utilizing high-quality materials and innovative construction <br /> techniques to ensure
-        durability, efficiency, and aesthetic appeal.
+      <TextBuilder fontSize="12px" color="dark">
+        Saharsh Cabins are utilizing high-quality materials and innovative
+        construction <br /> techniques to ensure durability, efficiency, and
+        aesthetic appeal.
       </TextBuilder>
     </div>
   );
