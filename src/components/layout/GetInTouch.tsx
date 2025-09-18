@@ -39,67 +39,66 @@ const GetInTouch = () => {
     );
   };
 
- const handleSubmit = async () => {
-  setIsSubmitting(true);
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
 
-  const params = new URLSearchParams();
+    const params = new URLSearchParams();
 
-  for (const key in formData) {
-    if (Object.prototype.hasOwnProperty.call(formData, key)) {
-      params.append(key, formData[key]);
-    }
-  }
-
-  params.append("Projects", selectedLabels.join(", "));
-
-  try {
-    const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbxWuThRqT9j4hy2D8lPAeO7zMuTbrfwZCcfAt6DIx8wOe07Yy5pfwyCT4TmBFAO4nta/exec",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: params.toString(),
+    for (const key in formData) {
+      if (Object.prototype.hasOwnProperty.call(formData, key)) {
+        params.append(key, formData[key]);
       }
-    );
-
-    if (response.ok) {
-      toast.success("Message sent successfully!", { position: "top-right" });
-
-      setFormData({
-        Name: "",
-        "Email Id": "",
-        "Contact Number": "",
-        "Message (Optional)": "",
-      });
-      setSelectedLabels([]);
-    } else {
-      toast.error(`Failed to send: ${response.status}`, { position: "top-right" });
     }
-  } catch (error) {
-    toast.error("Failed to send message. Please try again.", {
-      position: "top-right",
-    });
-    console.error("Error submitting form:", error);
-  } finally {
-    setIsSubmitting(false);
-  }
-};
 
-  // ... (rest of the component JSX is the same)
+    params.append("Projects", selectedLabels.join(", "));
+
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbxWuThRqT9j4hy2D8lPAeO7zMuTbrfwZCcfAt6DIx8wOe07Yy5pfwyCT4TmBFAO4nta/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: params.toString(),
+        }
+      );
+
+      if (response.ok) {
+        toast.success("Message sent successfully!", { position: "top-right" });
+
+        setFormData({
+          Name: "",
+          "Email Id": "",
+          "Contact Number": "",
+          "Message (Optional)": "",
+        });
+        setSelectedLabels([]);
+      } else {
+        toast.error(`Failed to send: ${response.status}`, { position: "top-right" });
+      }
+    } catch (error) {
+      toast.error("Failed to send message. Please try again.", {
+        position: "top-right",
+      });
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div
-      className="w-full min-h-screen p-[10%] pr-[4%]"
+      className="w-full px-6 py-12 md:p-[10%] md:pr-[4%]"
       style={{
         background:
           "linear-gradient(180deg, var(--text-light) 0%, var(--section-accent) 50%, var(--text-light) 100%)",
       }}
     >
       <Toaster />
-      <div className="flex flex-row justify-between items-start">
+      <div className="flex flex-col md:flex-row justify-between items-start gap-6">
         <MultiColorText
-          fontSize="56px"
+          fontSize="26px md:56px"
           className="text-start"
           items={[
             {
@@ -112,9 +111,9 @@ const GetInTouch = () => {
           ]}
         />
         <TextBuilder
-          fontSize="20px"
+          fontSize="12px md:20px"
           color="dark-light"
-          className="w-[35%] pt-[15px]"
+          className="w-full md:w-[35%] pt-[5px] md:pt-[15px]"
         >
           Understanding your requirements, budget, and project scope led the
           initial discussion of design possibilities and technical
@@ -122,43 +121,45 @@ const GetInTouch = () => {
         </TextBuilder>
       </div>
 
-      <div className="mt-16">
+      <div className="mt-12 md:mt-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-           <InputBox
-      placeholder="Name"
-      value={formData.Name}
-      onChange={(e) => handleInputChange("Name", e.target.value)} // Change here
-    />
-    <InputBox
-      placeholder="Email Id"
-      type="email"
-      value={formData["Email Id"]}
-      onChange={(e) => handleInputChange("Email Id", e.target.value)} // Change here
-    />
-    <InputBox
-      placeholder="Contact Number"
-      type="tel"
-      value={formData["Contact Number"]}
-      onChange={(e) => handleInputChange("Contact Number", e.target.value)} // Change here
-    />
-    <InputBox
-      placeholder="Message (Optional)"
-      value={formData["Message (Optional)"]}
-      onChange={(e) => handleInputChange("Message (Optional)", e.target.value)} // Change here
-    />
+          <InputBox
+            placeholder="Name"
+            value={formData.Name}
+            onChange={(e) => handleInputChange("Name", e.target.value)}
+          />
+          <InputBox
+            placeholder="Email Id"
+            type="email"
+            value={formData["Email Id"]}
+            onChange={(e) => handleInputChange("Email Id", e.target.value)}
+          />
+          <InputBox
+            placeholder="Contact Number"
+            type="tel"
+            value={formData["Contact Number"]}
+            onChange={(e) => handleInputChange("Contact Number", e.target.value)}
+          />
+          <InputBox
+            placeholder="Message (Optional)"
+            value={formData["Message (Optional)"]}
+            onChange={(e) =>
+              handleInputChange("Message (Optional)", e.target.value)
+            }
+          />
         </div>
 
-        <div className="mt-12 flex flex-row md:flex-row items-start md:items-start gap-6">
-         <TextBuilder
-  fontSize="18px"
-  color="dark50"
-  className="whitespace-nowrap pt-1"
->
-  Select projects
-  <br /> you&apos;re interested in:
-</TextBuilder>
+        <div className="mt-10 md:mt-12 flex flex-col md:flex-row items-start gap-6">
+          <TextBuilder
+            fontSize="12px md:18px"
+            color="dark50"
+            className="whitespace-nowrap pt-1"
+          >
+            Select projects
+            <br /> you&apos;re interested in:
+          </TextBuilder>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 w-full">
             {projectLabels.map((label, index) => (
               <ProjectLabel
                 key={index}
@@ -168,7 +169,8 @@ const GetInTouch = () => {
               />
             ))}
           </div>
-          <div className="">
+
+          <div className="w-full md:w-auto">
             <Button
               text={isSubmitting ? "Sending..." : "Send"}
               className="w-full md:w-auto"

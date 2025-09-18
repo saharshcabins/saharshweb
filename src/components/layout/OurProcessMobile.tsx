@@ -64,9 +64,9 @@ const OurProcessMobile = () => {
         {processItems.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col px-[20px] text-end py-[24px] gap-[42px] border-b border-[var(--text-dark-50)]"
+            className="flex flex-col px-[20px]  py-[24px] gap-[42px] border-b border-[var(--text-dark-50)]"
           >
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between text-end">
               <div className="w-[34px] h-[38px] text-[var(--color-primary)]">
                 {item.icon}
               </div>
