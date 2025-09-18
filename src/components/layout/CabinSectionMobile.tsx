@@ -1,6 +1,4 @@
 import React from "react";
-import MultiColorText from "../shared/MultiColorText";
-import Button from "../shared/Button";
 import Image from "next/image";
 import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 import ButtonMobile from "../shared/ButtonMobile";

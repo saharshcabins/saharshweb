@@ -77,10 +77,8 @@ const CabinCarousel = () => {
         ]}
       />
 
-      {/* Cards */}
       <div className="relative w-full flex justify-center items-center h-[65vh] px-8">
         {cabins.map((cabin, i) => {
-          // New: Corrected distance and looping logic
           let distance = i - activeIndex;
           if (distance > cabins.length / 2) {
             distance -= cabins.length;
@@ -123,10 +121,8 @@ const CabinCarousel = () => {
                 className="object-cover"
               />
 
-              {/* Gradient overlay */}
               <div className="absolute bottom-0 left-0 right-0 h-[180px] bg-gradient-to-t from-[#0F1B26] to-transparent z-10" />
 
-              {/* Content */}
               <div className="relative z-10 p-10 text-left flex items-end justify-between w-full">
                 <div className="flex flex-col">
                   <TextBuilder
@@ -147,11 +143,8 @@ const CabinCarousel = () => {
                 </div>
               </div>
 
-              {/* Floating Arrow that follows cursor */}
               {hoveredCard === i && cursorPos && (
                 <>
-                  {/* Center card arrows */}
-                  // Center card arrows
                   {i === activeIndex && (
                     <div
                       className="absolute pointer-events-none z-20"
@@ -164,12 +157,11 @@ const CabinCarousel = () => {
                       <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
                         <ArrowNew
                           className="text-[var(--text-light)] w-[24px] h-[24px]"
-                          flipped={!isLeft} // Corrected logic: if isLeft is true, flipped is false (left arrow)
+                          flipped={!isLeft} 
                         />
                       </div>
                     </div>
                   )}
-                  {/* Left card → only right arrow */}
                   {i === (activeIndex - 1 + cabins.length) % cabins.length &&
                     i !== activeIndex &&
                     !isLeft && (
@@ -186,7 +178,6 @@ const CabinCarousel = () => {
                         </div>
                       </div>
                     )}
-                  {/* Right card → only left arrow */}
                   {i === (activeIndex + 1) % cabins.length &&
                     i !== activeIndex &&
                     isLeft && (

@@ -5,7 +5,6 @@ import HeroText from "../ui/HeroText";
 import Image from "next/image";
 import TextBuilder from "../shared/TextBuilder";
 import Label from "../ui/HeroLabel";
-import { motion } from "framer-motion"; // Import motion
 
 const words = ["Homes", "Offices", "Retreats", "Studios", "Cabins"]; // 🔄 words to cycle
 const weatherImages = ["cabin_summer.webp", "cabin_rain.webp", "cabin_winter.webp"]; // Weather images

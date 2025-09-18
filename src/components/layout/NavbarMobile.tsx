@@ -107,7 +107,7 @@ const NavBarMobile = () => {
                 variants={linkVariants}
                 onClick={toggleMenu}
               >
-                <TextBuilder fontSize="20px" weight="bold" color="link">
+                <TextBuilder fontSize="14px" weight="bold" color="link">
                   {link.text}
                 </TextBuilder>
               </motion.a>
