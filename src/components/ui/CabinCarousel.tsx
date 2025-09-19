@@ -70,7 +70,7 @@ const CabinCarousel = () => {
   return (
     <div className="flex flex-col items-center text-center gap-8 min-h-screen overflow-hidden cursor-none">
       <MultiColorText
-        fontSize="22px"
+        fontSize="56px"
         items={[
           { text: "Our ", color: "dark", weight: "medium" },
           { text: " Bestsellers", color: "primary", weight: "semibold" },
@@ -201,7 +201,7 @@ const CabinCarousel = () => {
         })}
       </div>
 
-      <TextBuilder fontSize="12px" color="dark">
+      <TextBuilder fontSize="24px" color="dark">
         Saharsh Cabins are utilizing high-quality materials and innovative
         construction <br /> techniques to ensure durability, efficiency, and
         aesthetic appeal.

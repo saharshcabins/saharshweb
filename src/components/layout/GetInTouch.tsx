@@ -7,6 +7,7 @@ import InputBox from "../shared/Input";
 import ProjectLabel from "../shared/ProjectLabel";
 import Button from "../shared/Button";
 import toast, { Toaster } from "react-hot-toast";
+import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 
 const projectLabels = [
   "2 BHK",
@@ -75,7 +76,9 @@ const GetInTouch = () => {
         });
         setSelectedLabels([]);
       } else {
-        toast.error(`Failed to send: ${response.status}`, { position: "top-right" });
+        toast.error(`Failed to send: ${response.status}`, {
+          position: "top-right",
+        });
       }
     } catch (error) {
       toast.error("Failed to send message. Please try again.", {
@@ -97,9 +100,9 @@ const GetInTouch = () => {
     >
       <Toaster />
       <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-        <MultiColorText
-          fontSize="26px md:56px"
-          className="text-start"
+        <MultiColorTextMobile
+          fontSize="24px"
+  className="text-start sm:block md:block lg:hidden"
           items={[
             {
               text: "Love to hear from you,",
@@ -110,8 +113,23 @@ const GetInTouch = () => {
             { text: "get in touch!", color: "primary", weight: "bold" },
           ]}
         />
+
+        <MultiColorText
+          fontSize="56px"
+          className="text-start max-lg:hidden lg:block" // visible >= lg
+          items={[
+            {
+              text: "Love to hear from you,",
+              color: "dark",
+              weight: "medium",
+              breakAfter: true,
+            },
+            { text: "get in touch!", color: "primary", weight: "bold" },
+          ]}
+        />
+
         <TextBuilder
-          fontSize="12px md:20px"
+          fontSize="16px md:20px"
           color="dark-light"
           className="w-full md:w-[35%] pt-[5px] md:pt-[15px]"
         >
@@ -138,7 +156,9 @@ const GetInTouch = () => {
             placeholder="Contact Number"
             type="tel"
             value={formData["Contact Number"]}
-            onChange={(e) => handleInputChange("Contact Number", e.target.value)}
+            onChange={(e) =>
+              handleInputChange("Contact Number", e.target.value)
+            }
           />
           <InputBox
             placeholder="Message (Optional)"
@@ -151,7 +171,7 @@ const GetInTouch = () => {
 
         <div className="mt-10 md:mt-12 flex flex-col md:flex-row items-start gap-6">
           <TextBuilder
-            fontSize="12px md:18px"
+            fontSize="16px md:18px"
             color="dark50"
             className="whitespace-nowrap pt-1"
           >

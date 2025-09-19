@@ -70,7 +70,7 @@ const OurProcessMobile = () => {
               <div className="w-[34px] h-[38px] text-[var(--color-primary)]">
                 {item.icon}
               </div>
-              <TextBuilderMobile fontSize="16px" weight="bold" color="dark">
+              <TextBuilderMobile fontSize="18px" weight="bold" color="dark">
                 {item.title.includes("&") ? (
                   <>
                     {item.title.split("&")[0].trim()} &<br />

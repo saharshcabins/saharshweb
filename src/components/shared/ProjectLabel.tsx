@@ -23,7 +23,7 @@ const ProjectLabel: FC<ProjectLabelProps> = ({ text, isActive, onClick }) => {
       )}
     >
       <TextBuilder
-        fontSize="12px md:20px" // smaller text on mobile
+        fontSize="16px md:20px" // smaller text on mobile
         className={clsx({
           "text-white": isActive,
           "text-[var(--text-dark-light)]": !isActive,
