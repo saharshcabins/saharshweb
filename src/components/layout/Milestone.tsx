@@ -76,63 +76,94 @@ const Milestone = () => {
   const [isLeft, setIsLeft] = useState(true);
 
   const sectionRef = useRef<HTMLDivElement>(null);
+  const scrollDelta = useRef(0);
   const scrollLock = useRef(false);
 
-  // scroll-driven card navigation
-  // handle wheel scroll
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      if (!sectionRef.current || scrollLock.current) return;
+  // ✅ Handle scroll for card navigation
+  // 👇 Reset milestone animation whenever section re-enters viewport
+useEffect(() => {
+  if (!sectionRef.current) return;
 
-      const rect = sectionRef.current.getBoundingClientRect();
-      const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
-      if (!isVisible) return;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // ✅ reset state when entering
+          setActiveIndex(0);
+          setMovedCards([0]);
+          setImageActiveIndex(0);
+        }
+      });
+    },
+    { threshold: 0.6 } // trigger when 60% of section is visible
+  );
 
-      // ✅ always block website scroll inside this section
-      e.preventDefault();
+  observer.observe(sectionRef.current);
 
+  return () => observer.disconnect();
+}, []);
+
+useEffect(() => {
+  const handleWheel = (e: WheelEvent) => {
+    if (!sectionRef.current) return;
+
+    const rect = sectionRef.current.getBoundingClientRect();
+    const isVisible = rect.top <= 0 && rect.bottom >= window.innerHeight;
+    if (!isVisible) return;
+
+    // edge cases: allow site scroll at boundaries
+    if ((activeIndex === 0 && e.deltaY < 0) || (activeIndex === milestoneData.length - 1 && e.deltaY > 0)) {
+      return; // ✅ don’t block website scroll
+    }
+
+    // ✅ block website scroll only between first & last card
+    e.preventDefault();
+
+    if (scrollLock.current) return;
+
+    scrollDelta.current += e.deltaY;
+    const threshold = 200; // require 200px scroll to trigger
+
+    if (scrollDelta.current > threshold && activeIndex < milestoneData.length - 1) {
       scrollLock.current = true;
+      scrollDelta.current = 0;
+      setActiveIndex((prev) => {
+        const next = prev + 1;
+        setMovedCards((prevMoved) => [...new Set([...prevMoved, next])]);
+        return next;
+      });
       setTimeout(() => (scrollLock.current = false), 700);
+    } else if (scrollDelta.current < -threshold && activeIndex > 0) {
+      scrollLock.current = true;
+      scrollDelta.current = 0;
+      setActiveIndex((prev) => {
+        const next = prev - 1;
+        setMovedCards((prevMoved) => prevMoved.filter((i) => i <= next));
+        return next;
+      });
+      setTimeout(() => (scrollLock.current = false), 700);
+    }
+  };
 
-      if (e.deltaY > 0 && activeIndex < milestoneData.length - 1) {
-        // forward
-        setActiveIndex((prev) => {
-          const next = prev + 1;
-          setMovedCards((prevMoved) => [...new Set([...prevMoved, next])]);
-          return next;
-        });
-      } else if (e.deltaY < 0 && activeIndex > 0) {
-        // backward
-        setActiveIndex((prev) => {
-          const next = prev - 1;
-          setMovedCards((prevMoved) => prevMoved.filter((i) => i <= next));
-          return next;
-        });
-      }
-      // 🚫 else: do nothing (ignore scroll at edges, but still block website scroll)
-    };
+  window.addEventListener("wheel", handleWheel, { passive: false });
+  return () => window.removeEventListener("wheel", handleWheel);
+}, [activeIndex]);
 
-    // passive:false so preventDefault works
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    return () => window.removeEventListener("wheel", handleWheel);
-  }, [activeIndex]);
 
-  // sync movedCards when activeIndex changes (simulate arrow click)
+  // ✅ Sync movedCards when activeIndex changes (for arrow click etc.)
   useEffect(() => {
     if (!movedCards.includes(activeIndex)) {
       setMovedCards((prev) => [...prev, activeIndex]);
     }
   }, [activeIndex]);
- const handleHoverClick = (index: number) => {
-  if (index <= activeIndex) {
-    setActiveIndex(index);
 
-    // 👇 Rebuild movedCards so all cards up to this index are stacked
-    setMovedCards(Array.from({ length: index + 1 }, (_, i) => i));
-  }
-};
+  const handleHoverClick = (index: number) => {
+    if (index <= activeIndex) {
+      setActiveIndex(index);
+      setMovedCards(Array.from({ length: index + 1 }, (_, i) => i));
+    }
+  };
 
-  // handle click (tap navigation) - linear (not looping)
   const handleClick = () => {
     if (isLeft && activeImageIndex > 0) {
       setImageActiveIndex((prev) => prev - 1);
@@ -141,14 +172,14 @@ const Milestone = () => {
     }
   };
   const activeImageData = milestoneData[activeIndex].image;
- const handleArrowClick = (index: number) => {
-  const targetIndex = index + 1;
-  if (targetIndex < milestoneData.length) {
-    setActiveIndex(targetIndex); // 👈 move to the next card
-    setMovedCards((prev) => [...new Set([...prev, targetIndex])]); // keep animation stack
-  }
-};
 
+  const handleArrowClick = (index: number) => {
+    const targetIndex = index + 1;
+    if (targetIndex < milestoneData.length) {
+      setActiveIndex(targetIndex);
+      setMovedCards((prev) => [...new Set([...prev, targetIndex])]);
+    }
+  };
 
   return (
     <div
@@ -186,13 +217,13 @@ const Milestone = () => {
   ${
     movedCards.includes(index) && index !== 0
       ? index === milestoneData.length - 1
-        ? "-mt-[80%]" // ✅ last card offset
-        : "-mt-[75%]" // ✅ all other cards offset
+        ? "-mt-[80%]"
+        : "-mt-[75%]"
       : ""
   }
 `}
                 style={{
-                  zIndex: index === activeIndex ? 20 : 10, // active card always above
+                  zIndex: index === activeIndex ? 20 : 10,
                 }}
               >
                 <MilestoneCard
@@ -217,9 +248,7 @@ const Milestone = () => {
             </TextBuilder>
           </div>
           <div className="absolute right-[12%] top-[5%]">
-            <Label
-              text={activeImageData[activeImageIndex].label.split(" ")[0]}
-            />{" "}
+            <Label text={activeImageData[activeImageIndex].label.split(" ")[0]} />
           </div>
           <div className="absolute right-0 top-[20%] h-[300px] w-[53%] overflow-hidden">
             <div className="relative w-full h-full flex items-center">
