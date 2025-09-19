@@ -55,19 +55,21 @@ const OurProcessCard: React.FC<OurProcessCardProps> = ({
         ${isFirstCard ? "border-r-0" : ""}
         ${isLastCard ? "border-r border-[rgba(0,0,0,0.3)]" : ""}
         ${effectiveProgress > 0.5 ? "w-[200px]" : ""}
-        ${(effectiveProgress > 0.5 && isFirstCard) ? "pl-[5%]" : ""}
+        ${effectiveProgress > 0.5 && isFirstCard ? "pl-[5%]" : ""}
       `}
     >
       {/* Title Row */}
+      {/* Title Row */}
       <motion.div
-        animate={{
-          flexDirection: effectiveProgress > 0.5 ? "column" : "row",
-          gap: effectiveProgress > 0.5 ? 20 : 117,
-          alignItems: effectiveProgress > 0.5 ? "flex-start" : "center",
-        }}
+        key={effectiveProgress > 0.5 ? "column" : "row"} // reflow smoothly
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className={`flex mb-[20px] ${
-          effectiveProgress > 0.5 ? "gap-[20px]" : "gap-[117px]"
+          effectiveProgress > 0.5
+            ? "flex-col items-start gap-[20px]"
+            : "flex-row items-center gap-[117px]"
         }`}
       >
         <div className="text-[var(--color-primary)] w-[50px] h-[55px] flex-shrink-0">
@@ -96,7 +98,11 @@ const OurProcessCard: React.FC<OurProcessCardProps> = ({
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="overflow-hidden"
       >
-        <TextBuilder fontSize="20px" color="dark-light" className="leading-[1.5] w-full">
+        <TextBuilder
+          fontSize="20px"
+          color="dark-light"
+          className="leading-[1.5] w-full"
+        >
           {description}
         </TextBuilder>
       </motion.div>

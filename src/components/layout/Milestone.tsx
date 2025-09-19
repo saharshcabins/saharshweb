@@ -123,12 +123,15 @@ const Milestone = () => {
       setMovedCards((prev) => [...prev, activeIndex]);
     }
   }, [activeIndex]);
-  const handleHoverClick = (index: number) => {
-    // Only update the active index if the hovered card is before the current active one
-    if (index < activeIndex) {
-      setActiveIndex(index);
-    }
-  };
+ const handleHoverClick = (index: number) => {
+  if (index <= activeIndex) {
+    setActiveIndex(index);
+
+    // 👇 Rebuild movedCards so all cards up to this index are stacked
+    setMovedCards(Array.from({ length: index + 1 }, (_, i) => i));
+  }
+};
+
   // handle click (tap navigation) - linear (not looping)
   const handleClick = () => {
     if (isLeft && activeImageIndex > 0) {
@@ -138,16 +141,14 @@ const Milestone = () => {
     }
   };
   const activeImageData = milestoneData[activeIndex].image;
-  const handleArrowClick = (index: number) => {
-    const targetIndex = index + 1;
-    if (targetIndex < milestoneData.length) {
-      setMovedCards((prev) =>
-        prev.includes(targetIndex)
-          ? prev.filter((i) => i !== targetIndex)
-          : [...prev, targetIndex]
-      );
-    }
-  };
+ const handleArrowClick = (index: number) => {
+  const targetIndex = index + 1;
+  if (targetIndex < milestoneData.length) {
+    setActiveIndex(targetIndex); // 👈 move to the next card
+    setMovedCards((prev) => [...new Set([...prev, targetIndex])]); // keep animation stack
+  }
+};
+
 
   return (
     <div

@@ -38,44 +38,46 @@ const OurProcess = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
- useEffect(() => {
-  const handleScroll = () => {
-    if (!sectionRef.current) return;
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
 
-    const cardContainer = sectionRef.current.querySelector(".card-container") as HTMLElement;
-    if (!cardContainer) return;
+      const cardContainer = sectionRef.current.querySelector(
+        ".card-container"
+      ) as HTMLElement;
+      if (!cardContainer) return;
 
-    const sectionTop = sectionRef.current.offsetTop;
-    const sectionHeight = sectionRef.current.offsetHeight;
-    const viewportHeight = window.innerHeight;
-    const scrollPosition = window.scrollY;
+      const sectionTop = sectionRef.current.offsetTop;
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const scrollPosition = window.scrollY;
 
-    // card container metrics
-    const cardTop = cardContainer.offsetTop + sectionTop;
-    const cardHeight = cardContainer.offsetHeight;
-    const cardCenter = cardTop + cardHeight / 2;
+      // card container metrics
+      const cardTop = cardContainer.offsetTop + sectionTop;
+      const cardHeight = cardContainer.offsetHeight;
+      const cardCenter = cardTop + cardHeight / 2;
 
-    // viewport center
-    const viewportCenter = scrollPosition + viewportHeight / 2;
+      // viewport center
+      const viewportCenter = scrollPosition + viewportHeight / 2;
 
-    // Start when card container center aligns with viewport center
-    const animationStartScroll = cardCenter +30 - viewportHeight / 2;
-    // End when the section bottom aligns with viewport bottom
-    const animationEndScroll = sectionTop + sectionHeight - viewportHeight / 2;
+      // Start when card container center aligns with viewport center
+      const animationStartScroll = cardCenter + 30 - viewportHeight / 2;
+      // End when the section bottom aligns with viewport bottom
+      const animationEndScroll =
+        sectionTop + sectionHeight - viewportHeight / 2;
 
-    const totalAnimationScroll = animationEndScroll - animationStartScroll;
-    const relativeScroll = scrollPosition - animationStartScroll;
+      const totalAnimationScroll = animationEndScroll - animationStartScroll;
+      const relativeScroll = scrollPosition - animationStartScroll;
 
-    let progress = relativeScroll / totalAnimationScroll;
-    progress = Math.min(1, Math.max(0, progress));
+      let progress = relativeScroll / totalAnimationScroll;
+      progress = Math.min(1, Math.max(0, progress));
 
-    setScrollProgress(progress);
-  };
+      setScrollProgress(progress);
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
-
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div ref={sectionRef} className="relative w-full pb-[10%]">
@@ -116,9 +118,17 @@ const OurProcess = () => {
               const cardStartProgress = index / totalCardsToAnimate;
               const cardEndProgress = (index + 1) / totalCardsToAnimate;
 
+              // speed multiplier → higher value = faster animation
+              const speed = 5; // try 1.5, 2, 3 to see what feels right
+
               const cardProgress = Math.min(
                 1,
-                Math.max(0, (scrollProgress - cardStartProgress) * totalCardsToAnimate)
+                Math.max(
+                  0,
+                  (scrollProgress - cardStartProgress) *
+                    totalCardsToAnimate *
+                    speed
+                )
               );
 
               return (
