@@ -1,11 +1,11 @@
-// components/OurProcess.tsx
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 import Image from "next/image";
 import { Cube, HomeIcon, NoteIcon, Repair } from "@/utils/svgUtils";
 import OurProcessCard from "../ui/OurProcessCard";
+import { useScroll, useTransform, MotionValue } from "framer-motion";
 
 const processItems = [
   {
@@ -36,52 +36,24 @@ const processItems = [
 
 const OurProcess = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
 
-      const cardContainer = sectionRef.current.querySelector(
-        ".card-container"
-      ) as HTMLElement;
-      if (!cardContainer) return;
+  const totalCards = processItems.length;
 
-      const sectionTop = sectionRef.current.offsetTop;
-      const sectionHeight = sectionRef.current.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      const scrollPosition = window.scrollY;
-
-      // card container metrics
-      const cardTop = cardContainer.offsetTop + sectionTop;
-      const cardHeight = cardContainer.offsetHeight;
-      const cardCenter = cardTop + cardHeight / 2;
-
-      // viewport center
-      const viewportCenter = scrollPosition + viewportHeight / 2;
-
-      // Start when card container center aligns with viewport center
-      const animationStartScroll = cardCenter + 30 - viewportHeight / 2;
-      // End when the section bottom aligns with viewport bottom
-      const animationEndScroll =
-        sectionTop + sectionHeight - viewportHeight / 2;
-
-      const totalAnimationScroll = animationEndScroll - animationStartScroll;
-      const relativeScroll = scrollPosition - animationStartScroll;
-
-      let progress = relativeScroll / totalAnimationScroll;
-      progress = Math.min(1, Math.max(0, progress));
-
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const progresses = processItems.map((_, index) => {
+    // Start the animation a little later for the first card
+    const start = index === 0 ? 0.3 / totalCards : index / totalCards;
+    const end = (index + 0.5) / totalCards;
+    return useTransform(scrollYProgress, [start, end], [0, 1]);
+  });
 
   return (
     <div ref={sectionRef} className="relative w-full pb-[10%]">
-      <div style={{ height: `${processItems.length * 100}vh` }}>
+      <div style={{ height: `${totalCards * 100}vh` }}>
         <div className="sticky top-0 h-screen flex flex-col items-center bg-white">
           {/* Header */}
           <div className="flex flex-row justify-between items-center p-[5%] pb-[2%] gap-8 w-[90%]">
@@ -113,36 +85,17 @@ const OurProcess = () => {
 
           {/* Cards */}
           <div className="flex flex-row mt-[60px] w-full card-container">
-            {processItems.map((item, index) => {
-              const totalCardsToAnimate = processItems.length;
-              const cardStartProgress = index / totalCardsToAnimate;
-              const cardEndProgress = (index + 1) / totalCardsToAnimate;
-
-              // speed multiplier → higher value = faster animation
-              const speed = 5; // try 1.5, 2, 3 to see what feels right
-
-              const cardProgress = Math.min(
-                1,
-                Math.max(
-                  0,
-                  (scrollProgress - cardStartProgress) *
-                    totalCardsToAnimate *
-                    speed
-                )
-              );
-
-              return (
-                <OurProcessCard
-                  key={`process-${index}`}
-                  totalCards={processItems.length}
-                  index={index}
-                  icon={item.icon}
-                  title={item.title}
-                  description={item.description}
-                  progress={cardProgress}
-                />
-              );
-            })}
+            {processItems.map((item, index) => (
+              <OurProcessCard
+                key={`process-${index}`}
+                icon={item.icon}
+                title={item.title}
+                description={item.description}
+                progress={progresses[index]}
+                index={index}
+                totalCards={totalCards}
+              />
+            ))}
           </div>
         </div>
       </div>

@@ -1,21 +1,23 @@
+// components/NavBar.tsx
+
 import React from "react";
 import TextBuilder from "../shared/TextBuilder";
 import Image from "next/image";
-import { motion } from "framer-motion"; // import motion
+import { motion } from "framer-motion";
 
 const NavBar = () => {
   const NavLinks = [
-    { text: "Work", href: "#" },
-    { text: "About Us", href: "#" },
-    { text: "Contact Us", href: "#" },
+    { text: "Work", href: "#work" },
+    { text: "About Us", href: "#about-us" }, // If you have an About Us section, add an ID for it
+    { text: "Contact Us", href: "#contact-us" },
   ];
 
   return (
     <motion.div
       className="bg-[var(--nav-bg-color)] p-4 md:p-6 rounded-[24px] w-full mx-auto"
-      initial={{ opacity: 0, y: -100 }} // starts slightly above and invisible
-      animate={{ opacity: 1, y: 0 }}   // fades in and moves to normal position
-      transition={{ duration: 1 }}      // fade in over 1 second
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
     >
       <div className="flex flex-wrap md:flex-nowrap items-center gap-4">
         {/* Logo */}

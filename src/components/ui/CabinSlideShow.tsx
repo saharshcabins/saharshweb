@@ -82,7 +82,7 @@ const CabinSlideShow: React.FC = () => {
   };
 
   return (
-    <div className="bg-[var(--text-dark)] py-30 flex flex-col gap-10 min-h-screen px-[6%] pr-[0%]">
+    <div id="work" className="bg-[var(--text-dark)] py-30 flex flex-col gap-10 min-h-screen px-[6%] pr-[0%]">
       {/* Header */}
       <div className="flex justify-between px-10">
         <MultiColorText

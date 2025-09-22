@@ -92,6 +92,7 @@ const GetInTouch = () => {
 
   return (
     <div
+    id="contact-us"
       className="w-full px-6 py-12 md:p-[10%] md:pr-[4%]"
       style={{
         background:

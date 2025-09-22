@@ -52,7 +52,7 @@ const CabinSlideShowMobile: React.FC = () => {
   };
 
   return (
-    <div className="bg-[var(--text-dark)] py-10 w-full flex flex-col gap-10 px-4">
+    <div id="work" className="bg-[var(--text-dark)] py-10 w-full flex flex-col gap-10 px-4">
       {/* Header */}
       <div className="flex flex-col gap-4 items-start">
         <MultiColorTextMobile

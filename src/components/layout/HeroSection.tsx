@@ -17,7 +17,7 @@ const HeroSection = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const cabinRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null); // ✅ ref for typewriter text
+  const textRef = useRef<HTMLDivElement>(null);
 
   // --- Typewriter effect ---
   useEffect(() => {
@@ -50,37 +50,15 @@ const HeroSection = () => {
     return () => clearInterval(blinkInterval);
   }, []);
 
-  // --- Scroll detection ---
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 10) setScrolled(true);
-    else setScrolled(false);
-  });
-
-  // --- Jump to text when scrolled ---
-  useEffect(() => {
-    if (scrolled && textRef.current) {
-      const top =
-        textRef.current.getBoundingClientRect().top + window.scrollY + 150;
-      window.scrollTo({
-        top,
-        behavior: "smooth", // 👈 smooth scroll
-      });
-    }
-  }, [scrolled]);
   // --- Scroll detection based on cabinRef ---
   useEffect(() => {
     const handleScroll = () => {
       if (!cabinRef.current) return;
       const rect = cabinRef.current.getBoundingClientRect();
 
-      // rect.top relative to viewport
       if (rect.top <= window.innerHeight * 0.5) {
-        // ✅ when cabin section comes into view
         setScrolled(true);
       } else {
-        // ✅ when scrolled back up above it
         setScrolled(false);
       }
     };
@@ -88,6 +66,23 @@ const HeroSection = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // --- Conditionally Jump to text when scrolled ---
+  useEffect(() => {
+    // Check if the URL has a hash. If it does, a navigation link was likely clicked.
+    if (window.location.hash) {
+      return; // Do nothing and let the browser's default scroll behavior take over.
+    }
+
+    // Only perform the "jump" logic if it's a regular scroll
+    if (scrolled && textRef.current) {
+      const top = textRef.current.getBoundingClientRect().top + window.scrollY + 150;
+      window.scrollTo({
+        top,
+        behavior: "smooth",
+      });
+    }
+  }, [scrolled]);
 
   return (
     <div
@@ -98,7 +93,7 @@ const HeroSection = () => {
       }}
     >
       {/* Top Row with Text + Container */}
-      <div className="flex justify-between items-start w-[90%] relative z-30 mx-auto">
+      <div className="flex justify-between items-start w-[90%] relative z-10 mx-auto">
         {/* Hero Text */}
         <motion.div
           className="w-1/2"

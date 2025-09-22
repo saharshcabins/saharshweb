@@ -1,113 +1,193 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+
+import React, { forwardRef } from "react";
+import { motion, useTransform, MotionValue } from "framer-motion";
 import TextBuilder from "../shared/TextBuilder";
-import Image from "next/image";
+import { HomeIcon } from "@/utils/svgUtils"; // Assuming this is the correct import
 
 interface OurProcessCardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
+  progress: MotionValue<number>;
   index: number;
   totalCards: number;
-  progress: number; // 0 (expanded) → 1 (collapsed)
 }
 
-const OurProcessCard: React.FC<OurProcessCardProps> = ({
-  title,
-  description,
-  icon,
-  index,
-  totalCards,
-  progress,
-}) => {
-  const isLastCard = index === totalCards - 1;
-  const isFirstCard = index === 0;
+const OurProcessCard = forwardRef<HTMLDivElement, OurProcessCardProps>(
+  ({ title, description, icon, progress, index, totalCards }, ref) => {
+    const isLastCard = index === totalCards - 1;
 
-  // Override progress for last card → always expanded
-  const effectiveProgress = isLastCard ? 0 : progress;
-
-  const collapsedWidth = 20;
-  const collapsedPaddingLeft = 40;
-  const collapsedFontSize = 24;
-  const collapsedTitleGap = 20;
-
-  const interpolatedWidth = 100 - effectiveProgress * (100 - collapsedWidth);
-  const interpolatedPaddingLeft = isFirstCard
-    ? 40 + effectiveProgress * (112 - 40)
-    : 40;
-
-  const interpolatedTitleGap = Math.max(
-    117 - effectiveProgress * (117 - collapsedTitleGap),
-    collapsedTitleGap
-  );
-
-  const titleFontSize = 36 - effectiveProgress * (36 - collapsedFontSize);
-
-  return (
-    <motion.div
-      initial={false}
-      animate={{ width: `${interpolatedWidth}%`, opacity: 1 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className={`
-        relative flex flex-col justify-between px-[40px] py-[30px] h-[423px]
-        border-t border-b border-l border-[rgba(0,0,0,0.3)]
-        ${isFirstCard ? "border-r-0" : ""}
-        ${isLastCard ? "border-r border-[rgba(0,0,0,0.3)]" : ""}
-        ${effectiveProgress > 0.5 ? "w-[200px]" : ""}
-        ${effectiveProgress > 0.5 && isFirstCard ? "pl-[5%]" : ""}
-      `}
-    >
-      {/* Title Row */}
-      {/* Title Row */}
-      <motion.div
-        key={effectiveProgress > 0.5 ? "column" : "row"} // reflow smoothly
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className={`flex mb-[20px] ${
-          effectiveProgress > 0.5
-            ? "flex-col items-start gap-[20px]"
-            : "flex-row items-center gap-[117px]"
-        }`}
-      >
-        <div className="text-[var(--color-primary)] w-[50px] h-[55px] flex-shrink-0">
-          {icon}
+    // Width logic: if it's the last card, set to 100%
+    const cardWidth = useTransform(
+      progress,
+      [0.3, 0.5],
+      isLastCard ? ["100%", "100%"] : ["500px", "200px"]
+    );
+    if (isLastCard) {
+      // Return a completely different, non-animated div for the last card
+      return (
+        <div
+          ref={ref}
+          className="flex flex-col justify-between py-[30px] h-[423px]
+            border-t border-b border-l border-r border-[rgba(0,0,0,0.3)]
+            w-full transition-colors duration-300"
+        >
+          {/* Icon and Title */}
+          <div className="flex flex-col items-center justify-center p-5 text-center">
+            <div className="flex items-center justify-between gap-[117px] w-full">
+              <div className="text-[var(--color-primary)] mb-4 w-[50px] h-[55px]">
+                {icon}
+              </div>
+              <TextBuilder
+                fontSize="36px"
+                weight="bold"
+                color="dark"
+                className="leading-[1.2] whitespace-nowrap"
+              >
+                {title.includes("&") ? (
+                  <>
+                    {title.split("&")[0]} &amp;
+                    <br />
+                    {title.split("&")[1].trim()}
+                  </>
+                ) : (
+                  title
+                )}
+              </TextBuilder>
+            </div>
+          </div>
+          {/* Description */}
+          <div className="overflow-hidden p-5">
+            <TextBuilder
+              fontSize="18px"
+              color="dark-light"
+              className="leading-[1.5] text-center"
+            >
+              {description}
+            </TextBuilder>
+          </div>
         </div>
-        <TextBuilder
-          fontSize={`${titleFontSize}px`}
-          weight={effectiveProgress > 0.5 ? "medium" : "bold"}
-          color="dark"
-          className="leading-[1.2] whitespace-nowrap"
-        >
-          {title.includes("&") ? (
-            <>
-              {title.split("&")[0]} &amp;
-              <br />
-              {title.split("&")[1].trim()}
-            </>
-          ) : (
-            title
-          )}
-        </TextBuilder>
-      </motion.div>
+      );
+    }
+    // Correct way to create a stepped value
+    const steppedProgress = useTransform(progress, [0.5, 0.51], [0, 1]);
 
+    // Use the stepped value to control opacity and display
+    const rowOpacity = useTransform(steppedProgress, [0, 1], [1, 0]);
+    const rowDisplay = useTransform(steppedProgress, [0, 1], ["flex", "none"]);
+    const columnOpacity = useTransform(steppedProgress, [0, 1], [0, 1]);
+    const columnDisplay = useTransform(
+      steppedProgress,
+      [0, 1],
+      ["none", "flex"]
+    );
+    const cardProgress = isLastCard
+      ? useTransform(progress, [0, 1], [0, 0])
+      : progress;
+
+    const iconWidth = useTransform(progress, [0, 1], [50, 30]);
+    const iconHeight = useTransform(progress, [0, 1], [55, 33]);
+    const textAlign = useTransform(cardProgress, [0.5, 1], ["end", "center"]);
+
+    return (
       <motion.div
-        animate={{ opacity: isLastCard ? 1 : 1 - effectiveProgress }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="overflow-hidden"
+        ref={ref}
+        layout
+        className={`relative flex flex-col justify-between py-[30px] h-[423px]
+          border-t border-b border-l border-[rgba(0,0,0,0.3)]
+          transition-colors duration-300
+        `}
+        style={{
+          width: cardWidth,
+        }}
       >
-        <TextBuilder
-          fontSize="20px"
-          color="dark-light"
-          className="leading-[1.5] w-full"
+        {/* Container for icon and title */}
+        <motion.div
+          layout
+          className="flex flex-col items-center justify-center p-5 "
+          style={{
+            textAlign: textAlign,
+          }}
         >
-          {description}
-        </TextBuilder>
+          {/* Icon */}
+          <div className="flex gap-[117px]">
+            <motion.div
+              className="text-[var(--color-primary)] mb-4"
+              style={{
+                width: iconWidth,
+                height: iconHeight,
+              }}
+            >
+              {icon}
+            </motion.div>
+
+            {/* Title - Row Layout (initial state) */}
+            <motion.div
+              className="flex  "
+              style={{
+                opacity: rowOpacity,
+                display: rowDisplay,
+              }}
+            >
+              <TextBuilder
+                fontSize="36px"
+                weight="bold"
+                color="dark"
+                className="leading-[1.2] whitespace-nowrap"
+              >
+                {title.includes("&") ? (
+                  <>
+                    {title.split("&")[0]} &amp;
+                    <br />
+                    {title.split("&")[1].trim()}
+                  </>
+                ) : (
+                  title
+                )}
+              </TextBuilder>
+            </motion.div>
+          </div>
+
+          {/* Title - Column Layout (shrunk state) */}
+          <motion.div
+            className="flex flex-col items-center gap-5"
+            style={{
+              opacity: columnOpacity,
+              display: columnDisplay,
+            }}
+          >
+            <TextBuilder
+              fontSize="20px"
+              weight="medium"
+              color="dark"
+              className="leading-[1.2]"
+            >
+              {title}
+            </TextBuilder>
+          </motion.div>
+        </motion.div>
+
+        {/* Description */}
+        <motion.div
+          className="overflow-hidden p-5"
+          style={{
+            opacity: useTransform(progress, [0, 0.5], [1, 0]),
+          }}
+        >
+          <TextBuilder
+            fontSize="18px"
+            color="dark-light"
+            className="leading-[1.5] text-center"
+          >
+            {description}
+          </TextBuilder>
+        </motion.div>
       </motion.div>
-    </motion.div>
-  );
-};
+    );
+  }
+);
+
+OurProcessCard.displayName = "OurProcessCard";
 
 export default OurProcessCard;
