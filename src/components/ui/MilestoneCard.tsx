@@ -80,7 +80,7 @@ const MilestoneCard: React.FC<MilestoneCardProps> = ({
             onClick={onArrowClick}
             aria-label="Expand next milestone"
             className={`
-              px-[16px] py-[25px] rounded-[40px] flex items-center justify-center border transition-all duration-300
+              px-[16px] py-[25px] cursor-pointer rounded-[40px] flex items-center justify-center border transition-all duration-300
               ${
                 isActive
                   ? "border-[var(--color-primary)]"
