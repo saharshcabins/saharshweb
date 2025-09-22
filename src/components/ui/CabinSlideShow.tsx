@@ -153,7 +153,7 @@ const CabinSlideShow: React.FC = () => {
 
                 {/* Title (fades out on hover of the whole card) */}
                 <motion.div
-                  className="absolute bottom-0 left-[10%] p-4 px-6 text-left z-20"
+                  className="absolute bottom-0 left-[12%] p-4 px-6 text-left z-20"
                   variants={{
                     rest: { opacity: 1, scale: 1 },
                     hover: { opacity: 0, scale: 0.9 },

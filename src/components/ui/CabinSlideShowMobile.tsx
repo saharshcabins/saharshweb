@@ -127,18 +127,18 @@ const CabinSlideShowMobile: React.FC = () => {
       </div>
 
       {/* Navigation */}
-      <div className="flex flex-row justify-center items-center gap-24 mt-4 mx-auto">
+      <div className="flex flex-row justify-center items-center gap-24 mt-4 mx-auto ">
         <button
           onClick={prevSlide}
           aria-label="Previous Slide"
-          className="bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] w-[80px] h-[40px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]"
+          className="cursor-pointer bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] w-[80px] h-[40px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]"
         >
           <ArrowNew className="w-[20px] h-[21px]" />
         </button>
         <button
           onClick={nextSlide}
           aria-label="Next Slide"
-          className="bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] w-[80px] h-[40px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]"
+          className="cursor-pointer bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] w-[80px] h-[40px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]"
         >
           <ArrowNew className="w-[20px] h-[21px]" flipped />
         </button>
