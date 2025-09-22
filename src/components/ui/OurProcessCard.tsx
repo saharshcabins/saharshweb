@@ -19,16 +19,31 @@ const OurProcessCard = forwardRef<HTMLDivElement, OurProcessCardProps>(
     const isLastCard = index === totalCards - 1;
 
     // Width logic: if it's the last card, set to 100%
-    const cardWidth = useTransform(
-      progress,
-      [0.3, 0.5],
-      isLastCard ? ["100%", "100%"] : ["500px", "200px"]
-    );
+ // All hooks at the top
+const cardWidth = useTransform(progress, [0.3, 0.5], isLastCard ? [100, 100] : [500, 200]);
+
+const steppedProgress = useTransform(progress, [0.5, 0.51], [0, 1]);
+const rowOpacity = useTransform(steppedProgress, [0, 1], [1, 0]);
+const rowDisplay = useTransform(steppedProgress, [0, 1], ["flex", "none"]);
+const columnOpacity = useTransform(steppedProgress, [0, 1], [0, 1]);
+const columnDisplay = useTransform(steppedProgress, [0, 1], ["none", "flex"]);
+// Always create a transform, even if it won't do anything
+const cardProgressTransform = useTransform(progress, [0, 1], [0, 0]);
+
+// Use the right value for cardProgress
+const cardProgress = isLastCard ? cardProgressTransform : progress;
+
+const iconWidth = useTransform(progress, [0, 1], [50, 30]);
+const iconHeight = useTransform(progress, [0, 1], [55, 33]);
+const textAlign = useTransform(cardProgress, [0.5, 1], ["end", "center"]);
+const descOpacity = useTransform(progress, [0, 0.5], [1, 0]); // moved from JSX
+
     if (isLastCard) {
       // Return a completely different, non-animated div for the last card
       return (
         <div
           ref={ref}
+          style={{width: `${cardWidth}px`,}}
           className="flex flex-col justify-between py-[30px] h-[423px]
             border-t border-b border-l border-r border-[rgba(0,0,0,0.3)]
             w-full transition-colors duration-300"
@@ -70,25 +85,7 @@ const OurProcessCard = forwardRef<HTMLDivElement, OurProcessCardProps>(
         </div>
       );
     }
-    // Correct way to create a stepped value
-    const steppedProgress = useTransform(progress, [0.5, 0.51], [0, 1]);
-
-    // Use the stepped value to control opacity and display
-    const rowOpacity = useTransform(steppedProgress, [0, 1], [1, 0]);
-    const rowDisplay = useTransform(steppedProgress, [0, 1], ["flex", "none"]);
-    const columnOpacity = useTransform(steppedProgress, [0, 1], [0, 1]);
-    const columnDisplay = useTransform(
-      steppedProgress,
-      [0, 1],
-      ["none", "flex"]
-    );
-    const cardProgress = isLastCard
-      ? useTransform(progress, [0, 1], [0, 0])
-      : progress;
-
-    const iconWidth = useTransform(progress, [0, 1], [50, 30]);
-    const iconHeight = useTransform(progress, [0, 1], [55, 33]);
-    const textAlign = useTransform(cardProgress, [0.5, 1], ["end", "center"]);
+   
 
     return (
       <motion.div
@@ -172,7 +169,7 @@ const OurProcessCard = forwardRef<HTMLDivElement, OurProcessCardProps>(
         <motion.div
           className="overflow-hidden p-5"
           style={{
-            opacity: useTransform(progress, [0, 0.5], [1, 0]),
+            opacity: descOpacity,
           }}
         >
           <TextBuilder

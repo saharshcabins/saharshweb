@@ -5,7 +5,7 @@ import TextBuilder from "../shared/TextBuilder";
 import Image from "next/image";
 import { Cube, HomeIcon, NoteIcon, Repair } from "@/utils/svgUtils";
 import OurProcessCard from "../ui/OurProcessCard";
-import { useScroll, useTransform, MotionValue } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 
 const processItems = [
   {
@@ -43,13 +43,30 @@ const OurProcess = () => {
   });
 
   const totalCards = processItems.length;
+  const speedFactors = [1, 2, 1, 1]; // example: index 1 is faster
 
-  const progresses = processItems.map((_, index) => {
-    // Start the animation a little later for the first card
-    const start = index === 0 ? 0.3 / totalCards : index / totalCards;
-    const end = (index + 0.5) / totalCards;
-    return useTransform(scrollYProgress, [start, end], [0, 1]);
-  });
+  const progress0 = useTransform(
+    scrollYProgress,
+    [0.3 / totalCards, 0.3 / totalCards + 0.5 / totalCards / speedFactors[0]],
+    [0, 1]
+  );
+  const progress1 = useTransform(
+    scrollYProgress,
+    [1 / totalCards, 1 / totalCards + 0.5 / totalCards / speedFactors[1]],
+    [0, 1]
+  );
+  const progress2 = useTransform(
+    scrollYProgress,
+    [2 / totalCards, 2 / totalCards + 0.5 / totalCards / speedFactors[2]],
+    [0, 1]
+  );
+  const progress3 = useTransform(
+    scrollYProgress,
+    [3 / totalCards, 3 / totalCards + 0.5 / totalCards / speedFactors[3]],
+    [0, 1]
+  );
+
+  const progresses = [progress0, progress1, progress2, progress3];
 
   return (
     <div ref={sectionRef} className="relative w-full pb-[10%]">
