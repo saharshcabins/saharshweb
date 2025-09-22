@@ -10,6 +10,7 @@ import Image from "next/image";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 import { ArrowNew } from "@/utils/svgUtils";
+import { motion } from "framer-motion";
 
 type Slide = {
   type: "image" | "video";
@@ -110,17 +111,27 @@ const CabinSlideShow: React.FC = () => {
           slidesPerView="auto"
           spaceBetween={40}
           loop={true}
-          centeredSlides={false}
+          centeredSlides={true} // smooth centering of slides
+          speed={1200} // duration of slide animation in ms
           onSlideChangeTransitionEnd={handleSlideChange}
           initialSlide={0}
         >
           {slides.map((slide, idx) => (
-            <SwiperSlide key={`main-${idx}`} className="!w-[390px] group">
-              <div className="relative w-[390px] h-[460px] rounded-[30px] overflow-hidden shadow-lg mx-auto">
+            <SwiperSlide key={`main-${idx}`} className="!w-[390px]">
+              {/* Parent card: hover triggers child animations */}
+              <motion.div
+                className="relative w-[390px] h-[460px] rounded-[30px] overflow-hidden shadow-lg mx-auto cursor-pointer"
+                initial="rest"
+                whileHover="hover"
+                variants={{
+                  rest: {},
+                  hover: {},
+                }}
+              >
                 {/* Media */}
                 {slide.type === "image" ? (
                   <Image
-                     unoptimized
+                    unoptimized
                     src={slide.src}
                     alt={`slide-${idx}`}
                     fill
@@ -132,30 +143,38 @@ const CabinSlideShow: React.FC = () => {
                     src={slide.src}
                     muted
                     playsInline
-                    loop // Ensures continuous looping
+                    loop
                     className="w-full h-full object-cover"
-                    // Removed onMouseEnter/onMouseLeave to prevent hover conflicts
                   />
                 )}
-                {/* Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 h-[100px] bg-gradient-to-t from-[#0F1B26] to-transparent opacity-70 " />
-                <div className="absolute bottom-0 p-4 px-6 transition-opacity duration-300 group-hover:opacity-0">
+
+                {/* Overlay gradient */}
+                <div className="absolute bottom-0 left-0 right-0 h-[100px] bg-gradient-to-t from-[#0F1B26] to-transparent opacity-70" />
+
+                {/* Title (fades out on hover of the whole card) */}
+                <motion.div
+                  className="absolute bottom-0 left-[10%] p-4 px-6 text-left z-20"
+                  variants={{
+                    rest: { opacity: 1, scale: 1 },
+                    hover: { opacity: 0, scale: 0.9 },
+                  }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
                   <TextBuilder fontSize="24px" weight="bold" color="light">
                     {slide.title}
                   </TextBuilder>
-                </div>
-                <div
-                  className="absolute bottom-0 left-[15%] w-[60%] bg-[var(--text-light)] text-[var(--text-dark)] 
-             py-6 px-4 rounded-[10px] transform translate-y-[200%] 
-             group-hover:-translate-y-[20%] transition-transform duration-700 ease-out
-             flex flex-col gap-1"
+                </motion.div>
+
+                {/* Description container (appears on hover of the whole card) */}
+                <motion.div
+                  className="absolute bottom-0 left-[15%] w-[60%] bg-[var(--text-light)] text-[var(--text-dark)] py-6 px-4 rounded-[10px] flex flex-col gap-1 z-30"
+                  variants={{
+                    rest: { opacity: 0, y: 50 },
+                    hover: { opacity: 1, y: -10 },
+                  }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                 >
-                  <TextBuilder
-                    fontSize="24px"
-                    weight="bold"
-                    color="primary"
-                    className="w-[90%]"
-                  >
+                  <TextBuilder fontSize="24px" weight="bold" color="primary">
                     {slide.title}
                   </TextBuilder>
                   <TextBuilder
@@ -164,26 +183,25 @@ const CabinSlideShow: React.FC = () => {
                   >
                     {slide.description}
                   </TextBuilder>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
         {/* Custom Navigation */}
-   <button
-  aria-label="Previous Slide"
-  className="custom-prev absolute cursor-pointer -left-[30px] bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] z-10 w-[80px] h-[54px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]"
->
-  <ArrowNew className="w-[26px] h-[26px]" />
-</button>
+        <button
+          aria-label="Previous Slide"
+          className="custom-prev absolute cursor-pointer -left-[30px] bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] z-10 w-[80px] h-[54px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]"
+        >
+          <ArrowNew className="w-[26px] h-[26px]" />
+        </button>
 
-<button
-  aria-label="Next Slide"
-  className="custom-next absolute cursor-pointer right-0 bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] z-10 w-[80px] h-[54px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]"
->
-  <ArrowNew className="w-[26px] h-[26px]" flipped />
-</button>
-
+        <button
+          aria-label="Next Slide"
+          className="custom-next absolute cursor-pointer right-10 bottom-[40%] -translate-y-1/2 bg-[var(--section-accent)] hover:bg-[var(--color-primary)] rounded-[40px] z-10 w-[80px] h-[54px] flex justify-center items-center text-[var(--color-primary)] hover:text-[var(--text-light)]"
+        >
+          <ArrowNew className="w-[26px] h-[26px]" flipped />
+        </button>
       </div>
     </div>
   );

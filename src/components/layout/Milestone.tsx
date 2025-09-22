@@ -217,8 +217,8 @@ useEffect(() => {
   ${
     movedCards.includes(index) && index !== 0
       ? index === milestoneData.length - 1
-        ? "-mt-[80%]"
-        : "-mt-[75%]"
+        ? "-mt-[75%]"
+        : "-mt-[70%]"
       : ""
   }
 `}
