@@ -4,11 +4,18 @@ import TextBuilder from "../shared/TextBuilder";
 import { Copyright } from "@/utils/svgUtils";
 
 const Footer = () => {
+  const links = [
+    { label: "Our Work", href: "#work" },
+    { label: "Contact Us", href: "#contact-us" },
+    { label: "About Us", href: "/about" }, // example for About Us page
+  ];
+
   return (
     <div className="h-[460px] p-[100px] bg-[var(--text-dark)] flex flex-col justify-between">
       <div className="w-full grid grid-cols-[45%_55%] gap-[28px]">
         <div className="flex flex-col justify-between h-full">
-          <Image unoptimized
+          <Image
+            unoptimized
             src="/assets/logo/logo_light.svg"
             height={51}
             width={176}
@@ -30,10 +37,12 @@ const Footer = () => {
           >
             Quick links
           </TextBuilder>
-          {["Our Work", "Contact Us", "About Us"].map((link, index) => (
-            <TextBuilder key={index} fontSize="16px" color="light">
-              {link}
-            </TextBuilder>
+          {links.map((link, index) => (
+            <a key={index} href={link.href} className="hover:underline cursor-pointer">
+              <TextBuilder fontSize="16px" color="light">
+                {link.label}
+              </TextBuilder>
+            </a>
           ))}
         </div>
       </div>

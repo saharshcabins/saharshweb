@@ -17,48 +17,52 @@ const milestoneData = [
       "Laying the foundation for Saharsh Cabins with the first manufacturing plant in Mumbai.",
     image: [
       {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
-        label: "Mumbai Plant Inception",
+        url: "/assets/milestone/banglore.png",
+        label:
+          "Laying the foundation for Saharsh Cabins with the first manufacturing plant in Mumbai",
+        location: "Mumbai",
       },
     ],
   },
   {
-    year: "2015",
+    year: "2014",
     title: "Expanded Product Line",
     description:
       "Introduced a new range of modular cabins, including custom office and studio designs.",
     image: [
       {
         url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
-        label: "Product Line Expansion",
+        label:
+          "First Major Project - Housing colony of 100+ prefab cabins set up in Shimla",
+        location: "Shimla",
       },
     ],
   },
+
   {
-    year: "2018",
-    title: "Eco-Friendly Certification",
-    description:
-      "Received certification for our sustainable manufacturing processes and use of recycled materials.",
-    image: [
-      {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
-        label: "Eco-Friendly Milestone",
-      },
-      {
-        url: "https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?auto=format&fit=crop&w=420&q=80",
-        label: "Solar Panel Cabin",
-      },
-    ],
-  },
-  {
-    year: "2020",
+    year: "2024",
     title: "International Partnerships",
     description:
       "Began a new chapter by exporting our cabins to clients in Europe and North America.",
     image: [
       {
         url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
-        label: "International Growth",
+        label:
+          "Launched ‘Qbinn Tusker’ premium cottages & resorts in Bangalore.",
+        location: "Bangalore",
+      },
+    ],
+  },
+  {
+    year: "2025",
+    title: "International Partnerships",
+    description:
+      "Began a new chapter by exporting our cabins to clients in Europe and North America.",
+    image: [
+      {
+        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
+        label: "International Market Entry - Our first export venture to USA",
+        location: "USA",
       },
     ],
   },
@@ -80,7 +84,14 @@ const Milestone = () => {
 
   const scrollDelta = useRef(0);
   const scrollLock = useRef(false);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
 
+  useEffect(() => {
+    const updateWidth = () => setWindowWidth(window.innerWidth);
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
   // ✅ Handle scroll for card navigation
   // 👇 Reset milestone animation whenever section re-enters viewport
   useEffect(() => {
@@ -222,7 +233,13 @@ const Milestone = () => {
                   <div
                     key={index}
                     className={`transition-all duration-500 ${
-                      isAffected ? "-mt-[75%]" : ""
+                      isAffected
+                        ? `${
+                            windowWidth >= 1020 && windowWidth <= 1265
+                              ? "-mt-[90%]" // 👈 extra negative margin for this range
+                              : " lg:-mt-[75%] xl:-mt-[75%] 2xl:-mt-[45%]"
+                          }`
+                        : ""
                     }`}
                     style={{ zIndex: index === activeIndex ? 20 : 10 }}
                   >
@@ -243,17 +260,15 @@ const Milestone = () => {
             </div>
 
             {/* Images Section */}
-            <div className="absolute right-[6%] top-[1%]">
+            <div className="absolute right-[6%] top-[-3%]">
               <TextBuilder fontSize="24px" weight="bold" color="light50">
                 {milestoneData[activeIndex].year}
               </TextBuilder>
             </div>
-            <div className="absolute right-[12%] top-[5%]">
-              <Label
-                text={activeImageData[activeImageIndex].label.split(" ")[0]}
-              />
+            <div className="absolute right-[12%] top-[2%]">
+              <Label text={activeImageData[activeImageIndex].location} />
             </div>
-            <div className="absolute right-0 top-[20%] h-[300px] w-[53%] overflow-hidden">
+            <div className="absolute right-0 top-[10%] h-[310px] w-[53%] overflow-hidden">
               <div className="relative w-full h-full flex items-center">
                 {activeImageData.map((item, i) => {
                   const distance = i - activeImageIndex;
@@ -262,7 +277,7 @@ const Milestone = () => {
                   return (
                     <motion.div
                       key={i}
-                      className="absolute flex flex-col gap-6 cursor-pointer"
+                      className="absolute flex flex-col gap-4 cursor-pointer"
                       animate={{
                         x,
                         opacity: distance === 0 ? 1 : 0.7,
@@ -285,7 +300,8 @@ const Milestone = () => {
                       }}
                       onClick={handleClick}
                     >
-                      <div className="relative w-[420px] h-[240px] rounded-[24px] overflow-hidden">
+                      {/* Image */}
+                      <div className="relative w-[420px] h-[240px] rounded-[24px] ">
                         <Image
                           unoptimized
                           src={item.url}
@@ -294,10 +310,19 @@ const Milestone = () => {
                           className="object-cover rounded-[24px]"
                         />
                       </div>
-                      <TextBuilder fontSize="20px" color="lighter">
-                        {item.label}
-                      </TextBuilder>
 
+                      {/* Label - constrained to image width */}
+                      <div className="w-[420px]">
+                        <TextBuilder
+                          fontSize="20px"
+                          color="lighter"
+                          className="break-words text-center"
+                        >
+                          {item.label}
+                        </TextBuilder>
+                      </div>
+
+                      {/* Hover Arrow */}
                       {hoveredCard === i &&
                         cursorPos &&
                         activeImageData.length > 1 &&

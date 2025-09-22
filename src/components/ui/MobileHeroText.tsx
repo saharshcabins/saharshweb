@@ -7,7 +7,7 @@ const MobileHeroText = () => {
     <div className="flex flex-col pt-6 md:pt-10 pb-10">
       <TextBuilderMobile
         // instead of fixed "36px", make it viewport-based
-        fontSize="34px"
+        fontSize="32px"
         className="leading-[1.2]"
         weight="medium"
         color="dark"
@@ -20,7 +20,7 @@ const MobileHeroText = () => {
       <TextBuilderMobile
         className="leading-[1.1]"
         // bigger headline that scales with viewport
-        fontSize="42px"
+        fontSize="38px"
         weight="bold"
         color="primary"
       >

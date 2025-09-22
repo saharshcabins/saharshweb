@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import TextBuilder from "./TextBuilder";
 
 type MultiColorTextItem = {
@@ -33,6 +33,15 @@ const MultiColorText: FC<MultiColorTextProps> = ({
   fontSize,
   className,
 }) => {
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+
+  useEffect(() => {
+    const updateWidth = () => setWindowWidth(window.innerWidth);
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
   return (
     <span
       className={`inline-block text-center leading-snug ${className || ""}`}
@@ -48,12 +57,16 @@ const MultiColorText: FC<MultiColorTextProps> = ({
           >
             {item.text}
           </TextBuilder>
+
           {item.breakAfter && (
             <>
-              {/* Hard break on large screens */}
-              <br className="hidden lg:block" />
-              {/* Soft break fallback on small screens */}
-              <wbr className="block lg:hidden" />
+              {/* Render <br /> only outside 1020–1265px range */}
+              {windowWidth >= 1266 || windowWidth < 1020 ? (
+                <br />
+              ) : null}
+
+              {/* Fallback <wbr /> for small screens */}
+              {windowWidth < 1020 && <wbr />}
             </>
           )}
         </React.Fragment>

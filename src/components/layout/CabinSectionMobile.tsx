@@ -33,7 +33,7 @@ const CabinSectionMobile = () => {
             weight: "bold",
           },
           {
-            text: "that redefine living and working spaces.",
+            text: " that redefine living and working spaces.",
             color: "dark",
             weight: "bold",
           },

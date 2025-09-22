@@ -16,9 +16,9 @@ const TestimonialSectionMobile = () => {
           ]}
         />
         <TextBuilder fontSize="12px" color="dark" className="leading-[1.25]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          placerat lobortis purus, et malesuada quam congue at. In hac habitasse
-          platea dictumst.
+          Trusted by industry leaders, Saharsh Cabins delivers innovative,
+          reliable, and customized solutions that earn the confidence of clients
+          across sectors.
         </TextBuilder>
       </div>
 
