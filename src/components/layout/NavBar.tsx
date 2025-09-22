@@ -1,6 +1,7 @@
 import React from "react";
 import TextBuilder from "../shared/TextBuilder";
 import Image from "next/image";
+import { motion } from "framer-motion"; // import motion
 
 const NavBar = () => {
   const NavLinks = [
@@ -10,11 +11,17 @@ const NavBar = () => {
   ];
 
   return (
-    <div className="bg-[var(--nav-bg-color)] p-4 md:p-6 rounded-[24px] w-full mx-auto">
+    <motion.div
+      className="bg-[var(--nav-bg-color)] p-4 md:p-6 rounded-[24px] w-full mx-auto"
+      initial={{ opacity: 0, y: -100 }} // starts slightly above and invisible
+      animate={{ opacity: 1, y: 0 }}   // fades in and moves to normal position
+      transition={{ duration: 1 }}      // fade in over 1 second
+    >
       <div className="flex flex-wrap md:flex-nowrap items-center gap-4">
         {/* Logo */}
         <div className="flex items-center gap-2 flex-shrink-0">
-          <Image  unoptimized
+          <Image
+            unoptimized
             src="/assets/logo/logo.svg"
             height={50}
             width={140}
@@ -27,8 +34,7 @@ const NavBar = () => {
           {NavLinks.map((link) => (
             <a key={link.text} href={link.href}>
               <TextBuilder
-                // use clamp so it scales smoothly but doesn’t get too small/too big
-                fontSize=" 1.5vw"
+                fontSize="1.5vw"
                 weight="bold"
                 color="link"
               >
@@ -38,7 +44,7 @@ const NavBar = () => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

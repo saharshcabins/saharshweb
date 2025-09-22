@@ -1,28 +1,25 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import HeroText from "../ui/HeroText";
 import Image from "next/image";
 import TextBuilder from "../shared/TextBuilder";
 import Label from "../ui/HeroLabel";
 
-const words = ["Homes", "Offices", "Retreats", "Studios", "Cabins"]; // 🔄 words to cycle
-const weatherImages = ["cabin_summer.webp", "cabin_rain.webp", "cabin_winter.webp"]; // Weather images
+const words = ["Homes", "Offices", "Retreats", "Studios", "Cabins"];
 
 const HeroSection = () => {
-  const [scroll, setScroll] = useState(0);
-
-  // ---- Typewriter states ----
   const [wordIndex, setWordIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [blink, setBlink] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
 
-  // ---- Weather states ----
-  const [currentWeatherIndex, setCurrentWeatherIndex] = useState(0); // State for current weather image
-  const [previousWeatherIndex, setPreviousWeatherIndex] = useState(0); // To track direction for slide animation
+  const cabinRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null); // ✅ ref for typewriter text
 
-  // ---- Typewriter effect ----
+  // --- Typewriter effect ---
   useEffect(() => {
     if (wordIndex >= words.length) return;
 
@@ -47,47 +44,50 @@ const HeroSection = () => {
     return () => clearTimeout(timeout);
   }, [subIndex, wordIndex, isDeleting]);
 
-  // ---- Cursor blink ----
+  // --- Cursor blink ---
   useEffect(() => {
     const blinkInterval = setInterval(() => setBlink((prev) => !prev), 500);
     return () => clearInterval(blinkInterval);
   }, []);
 
-  // ---- Scroll effect ----
+  // --- Scroll detection ---
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 10) setScrolled(true);
+    else setScrolled(false);
+  });
+
+  // --- Jump to text when scrolled ---
   useEffect(() => {
-    const handleScroll = () => setScroll(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
+    if (scrolled && textRef.current) {
+      const top =
+        textRef.current.getBoundingClientRect().top + window.scrollY + 150;
+      window.scrollTo({
+        top,
+        behavior: "smooth", // 👈 smooth scroll
+      });
+    }
+  }, [scrolled]);
+  // --- Scroll detection based on cabinRef ---
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!cabinRef.current) return;
+      const rect = cabinRef.current.getBoundingClientRect();
+
+      // rect.top relative to viewport
+      if (rect.top <= window.innerHeight * 0.5) {
+        // ✅ when cabin section comes into view
+        setScrolled(true);
+      } else {
+        // ✅ when scrolled back up above it
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // ---- Weather cycling effect ----
-  useEffect(() => {
-    const weatherInterval = setInterval(() => {
-      setPreviousWeatherIndex(currentWeatherIndex); // Store previous index
-      setCurrentWeatherIndex((prevIndex) => (prevIndex + 1) % weatherImages.length);
-    }, 5000); // Change weather every 5 seconds (adjust as needed)
-
-    return () => clearInterval(weatherInterval);
-  }, [currentWeatherIndex]); // Added currentWeatherIndex to dependencies to ensure previous index is correctly captured
-
-  // 🚢 Container animation
-  const translateY = scroll * 0.3;
-  const rotate = scroll * 0.05;
-  const scale = Math.max(1 - scroll * 0.001, 0.6);
-
-  // ✅ use cloudOpacity for container too
-  const containerOpacity = Math.max(1 - scroll / 400, 0);
-
-  // ☁ Clouds drift + fade
-  const cloudOffset = Math.min(scroll * 0.6, 1000);
-  const cloudOpacity = Math.max(1 - scroll / 400, 0);
-
-  // 🏠 Cabin reveal
-  const cabinOpacity = Math.min(Math.max((scroll - 200) / 200, 0), 1);
-  const cabinTranslateY = Math.max(50 - scroll * 0.1, 0);
-
-  // Determine slide direction for animation
-  const slideDirection = currentWeatherIndex > previousWeatherIndex || (currentWeatherIndex === 0 && previousWeatherIndex === weatherImages.length - 1) ? 1 : -1;
 
   return (
     <div
@@ -99,116 +99,116 @@ const HeroSection = () => {
     >
       {/* Top Row with Text + Container */}
       <div className="flex justify-between items-start w-[90%] relative z-30 mx-auto">
-        {/* Hero Text - takes half width */}
-        <div className="w-1/2">
-          <HeroText />
-        </div>
-
-        {/* 🚢 Container Image - takes half width */}
-        <div
+        {/* Hero Text */}
+        <motion.div
           className="w-1/2"
-          style={{
-            transform: `translateY(${translateY}px) rotate(${rotate}deg) scale(${scale})`,
-            opacity: containerOpacity,
-            transition: "transform 0.1s linear, opacity 0.3s ease-out",
+          initial={{ opacity: 0, y: 0 }}
+          animate={
+            scrolled ? { opacity: 0, y: 150, scale: 1 } : { opacity: 1, y: 0 }
+          }
+          transition={{ duration: scrolled ? 0.5 : 1, ease: "easeOut" }}
+        >
+          <HeroText />
+        </motion.div>
+
+        {/* Container Image */}
+        <motion.div
+          className="w-1/2"
+          initial={{ opacity: 0, y: 0 }}
+          animate={
+            scrolled
+              ? { opacity: 0, y: 150, scale: 1 }
+              : { opacity: 1, y: 0, scale: 1 }
+          }
+          transition={{
+            duration: scrolled ? 0.5 : 1,
+            ease: "easeOut",
+            delay: 0.2,
           }}
         >
-          <Image unoptimized
-            src="/assets/hero/container.webp"
+          <Image
+            unoptimized
+            src="/assets/hero/container.png"
             alt="container"
             width={550}
             height={450}
             className="w-full h-auto"
-            
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* ☁ Clouds + Cabin */}
       <div className="relative w-full mt-[-80px] flex justify-center">
-        {/* Back Cloud Layer */}
-        <div
+        {/* Front Cloud */}
+        <motion.div
           className="absolute inset-0 z-30 -top-[15%] left-20 flex justify-center items-start pointer-events-none"
-          style={{
-            transform: `translateX(${-cloudOffset}px)`,
-            opacity: cloudOpacity,
-            transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
-          }}
+          animate={{ x: scrolled ? -200 : 0, opacity: scrolled ? 0 : 1 }}
+          transition={{ ease: "easeOut", duration: 0.6 }}
         >
-          <Image unoptimized
+          <Image
+            unoptimized
             src="/assets/hero/front_cloud.webp"
             alt="Front Cloud"
             width={1440}
             height={780}
-            style={{ width: "100%", height: "auto" }}
-            
+            style={{
+              width: "100%",
+              height: "auto",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent, black 10%)",
+              WebkitMaskRepeat: "no-repeat",
+              WebkitMaskSize: "100% 100%",
+              maskImage: "linear-gradient(to right, transparent, black 10%)",
+              maskRepeat: "no-repeat",
+              maskSize: "100% 100%",
+            }}
           />
-        </div>
-        <div
+        </motion.div>
+
+        {/* Back Cloud */}
+        <motion.div
           className="absolute inset-0 z-0"
-          style={{
-            transform: `translateX(-${cloudOffset}px)`,
-            opacity: cloudOpacity,
-            transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
-          }}
+          animate={{ x: scrolled ? -150 : 0, opacity: scrolled ? 0 : 1 }}
+          transition={{ ease: "easeOut", duration: 0.6 }}
         >
-          <Image unoptimized
-            
+          <Image
+            unoptimized
             src="/assets/hero/back_cloud.webp"
             alt="Back Cloud"
             width={1440}
             height={780}
             style={{ width: "100%", height: "auto" }}
           />
-        </div>
+        </motion.div>
 
+        {/* Cabin */}
         <div
+          ref={cabinRef}
           className="relative w-full flex justify-center z-10"
-          style={{
-            opacity: cabinOpacity,
-            transform: `translateY(${cabinTranslateY}px)`,
-            transition: "transform 0.4s ease-out, opacity 0.4s ease-out",
-          }}
         >
-          {/* Cabin Images with Framer Motion */}
-<div className="relative w-full  overflow-hidden">
-   <Image
-         unoptimized
-        src={`/assets/hero/cabin.webp`}
-        alt={`cabin`}
-        width={1440}
-        height={980}
-        className="object-cover w-full h-full"
-      />
-</div>
+          <div className="relative w-full overflow-hidden">
+            <Image
+              unoptimized
+              src={`/assets/hero/cabin.webp`}
+              alt={`cabin`}
+              width={1440}
+              height={980}
+              className="object-cover w-full h-full"
+            />
+          </div>
 
-
-
-
-          {/* Typewriter Text Overlay */}
-          <div className="absolute inset-0 flex flex-col items-center justify-start pt-[15%] ">
-            <TextBuilder
-              fontSize="24px"
-              weight="medium"
-              color="light"
-              className="leading-[1.2]"
-            >
+          {/* Typewriter Text Overlay with ref */}
+          <div
+            ref={textRef}
+            className="absolute inset-0 flex flex-col items-center justify-start pt-[15%]"
+          >
+            <TextBuilder fontSize="24px" weight="medium" color="light">
               We create innovative, sustainable, and customizable
             </TextBuilder>
-            <TextBuilder
-              fontSize="42px"
-              weight="medium"
-              color="light"
-              className="leading-[1.15]"
-            >
+            <TextBuilder fontSize="42px" weight="medium" color="light">
               Cabins that can be your
             </TextBuilder>
-            <TextBuilder
-              fontSize="42px"
-              weight="bold"
-              color="light"
-              className="leading-[1.5]"
-            >
+            <TextBuilder fontSize="42px" weight="bold" color="light">
               {words[wordIndex].substring(0, subIndex)}
               <span
                 className={`inline-block w-[2px] h-[1em] bg-white/70 ml-[2px] transition-opacity duration-100 ease-in-out ${
@@ -218,17 +218,14 @@ const HeroSection = () => {
             </TextBuilder>
           </div>
 
-          {/* Labels Overlay */}
-          <div className="absolute inset-0 ">
-            {/* Homes Label */}
+          {/* Labels */}
+          <div className="absolute inset-0">
             <div className="absolute top-[45%] right-[33%] z-10">
               <Label text="Homes" />
             </div>
-            {/* Offices Label */}
             <div className="absolute top-[80%] left-[70%] z-10">
               <Label text="Offices" />
             </div>
-            {/* Cabins Label (swipe layout) */}
             <div className="absolute top-[85%] right-[85%]">
               <Label text="Cabins" swipe />
             </div>

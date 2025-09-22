@@ -7,6 +7,7 @@ import TestimonialSectionMobile from './TestimonialSectionMobile'
 import FooterMobile from './FooterMobile'
 import OurProcessMobile from './OurProcessMobile'
 import GetInTouch from './GetInTouch'
+import ResponsiveHeroSection from './MobileHeroSection'
 
 export default function MainLayoutSmall({ children }: { children: ReactNode }) {
   return (
@@ -17,6 +18,7 @@ export default function MainLayoutSmall({ children }: { children: ReactNode }) {
       
       {/* Main Content Container with consistent padding */}
       <div className='flex flex-col items-center gap-20 w-full  mx-auto '>
+        <ResponsiveHeroSection />
         <CabinSectionMobile />
         <CabinCarouselMobile />
         <CabinSlideShowMobile />
