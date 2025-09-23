@@ -7,12 +7,12 @@ import MilestoneCardMobile from "../ui/MilestoneMobileCard";
 import Label from "../ui/HeroLabel";
 import Image from "next/image";
 import { ArrowNew } from "@/utils/svgUtils";
+import type { Swiper as SwiperType } from "swiper";
 
 // Swiper
 // Correct Swiper imports for v10+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -93,10 +93,9 @@ const milestoneData: Milestone[] = [
 const MilestoneMobile: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const handleSlideChange = (swiper: any) => {
-    setActiveIndex(swiper.realIndex);
-  };
-
+const handleSlideChange = (swiper: SwiperType) => {
+  setActiveIndex(swiper.realIndex);
+};
   const activeMilestone = milestoneData[activeIndex];
 
   return (
