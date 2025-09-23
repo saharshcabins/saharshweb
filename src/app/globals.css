@@ -26,6 +26,7 @@ html {
   --text-light-25: #ffffff40;
   --text-light-50: #ffffff80;
   --text-light-60: #ffffff99;
+   --text-light-70: #ffffffb3;
 
   /* Section Backgrounds */
     --section-accent-50: #f5f2eb80; /* Beige (nav + light section bg) */
@@ -55,4 +56,12 @@ body {
   position: absolute;
   top: 0;
   right: 0;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

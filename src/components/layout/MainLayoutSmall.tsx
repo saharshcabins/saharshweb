@@ -8,6 +8,7 @@ import FooterMobile from './FooterMobile'
 import OurProcessMobile from './OurProcessMobile'
 import GetInTouch from './GetInTouch'
 import ResponsiveHeroSection from './MobileHeroSection'
+import MilestoneMobile from './MilestoneMobile'
 
 export default function MainLayoutSmall({ children }: { children: ReactNode }) {
   return (
@@ -24,6 +25,7 @@ export default function MainLayoutSmall({ children }: { children: ReactNode }) {
         <CabinSlideShowMobile />
         <TestimonialSectionMobile />
         <OurProcessMobile />
+        <MilestoneMobile />
         <GetInTouch />
         <FooterMobile />
       </div>
