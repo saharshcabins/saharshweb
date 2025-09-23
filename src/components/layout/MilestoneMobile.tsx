@@ -1,12 +1,23 @@
 "use client";
-import React, { useState, useRef } from "react";
+
+import React, { useState } from "react";
 import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 import TextBuilderMobile from "../shared/TextBuilderMobile";
 import MilestoneCardMobile from "../ui/MilestoneMobileCard";
 import Label from "../ui/HeroLabel";
 import Image from "next/image";
 import { ArrowNew } from "@/utils/svgUtils";
-import { useSwipeable, SwipeableHandlers } from "react-swipeable";
+
+// Swiper
+// Correct Swiper imports for v10+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+
+
 
 interface MilestoneImage {
   url: string;
@@ -81,78 +92,10 @@ const milestoneData: Milestone[] = [
 
 const MilestoneMobile: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const cardsRef = useRef<HTMLDivElement>(null);
 
-  const smoothScrollTo = (
-    element: HTMLElement,
-    target: number,
-    duration: number
-  ) => {
-    const start = element.scrollLeft;
-    const change = target - start;
-    const startTime = performance.now();
-
-    const animateScroll = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1); // 0 → 1
-      const ease =
-        progress < 0.5
-          ? 2 * progress * progress
-          : -1 + (4 - 2 * progress) * progress; // easeInOut
-
-      element.scrollLeft = start + change * ease;
-
-      if (progress < 1) requestAnimationFrame(animateScroll);
-    };
-
-    requestAnimationFrame(animateScroll);
+  const handleSlideChange = (swiper: any) => {
+    setActiveIndex(swiper.realIndex);
   };
-
-  const handleNext = () => {
-    const nextIndex = (activeIndex + 1) % milestoneData.length;
-    setActiveIndex(nextIndex);
-
-    if (cardsRef.current) {
-      const container = cardsRef.current;
-      const card = container.children[nextIndex] as HTMLDivElement;
-
-      if (card) {
-        let newScroll =
-          card.offsetLeft - (container.clientWidth - card.offsetWidth) / 2;
-
-        // Optional extra offset for last card
-        if (nextIndex === milestoneData.length - 1) newScroll += 40;
-
-        smoothScrollTo(container, newScroll, 600); // 600ms animation
-      }
-    }
-  };
-
-  const handlePrev = () => {
-    const prevIndex =
-      activeIndex === 0 ? milestoneData.length - 1 : activeIndex - 1;
-    setActiveIndex(prevIndex);
-
-    if (cardsRef.current) {
-      const container = cardsRef.current;
-      const card = container.children[prevIndex] as HTMLDivElement;
-
-      if (card) {
-        let newScroll =
-          card.offsetLeft - (container.clientWidth - card.offsetWidth) / 2;
-
-        if (prevIndex === 0) newScroll -= 20; // optional start offset
-
-        smoothScrollTo(container, newScroll, 600); // 600ms animation
-      }
-    }
-  };
-
-  const handlers: SwipeableHandlers = useSwipeable({
-    onSwipedLeft: handleNext,
-    onSwipedRight: handlePrev,
-    trackMouse: true,
-  });
 
   const activeMilestone = milestoneData[activeIndex];
 
@@ -167,12 +110,7 @@ const MilestoneMobile: React.FC = () => {
           className="text-start"
           fontSize="22px"
           items={[
-            {
-              text: "Visionary",
-              color: "light",
-              weight: "medium",
-              breakAfter: true,
-            },
+            { text: "Visionary", color: "light", weight: "medium", breakAfter: true },
             { text: "Milestones", color: "primary", weight: "semibold" },
           ]}
         />
@@ -181,33 +119,43 @@ const MilestoneMobile: React.FC = () => {
         </TextBuilderMobile>
       </div>
 
-      {/* Milestone Cards */}
-      <div
-        {...handlers}
-        ref={cardsRef}
-        className="flex flex-row gap-4 overflow-x-auto no-scrollbar py-4"
-        style={{
-          paddingRight: "80px", // extra space for last card
+      {/* Swiper */}
+      <Swiper
+        modules={[Navigation]}
+        navigation={{
+          prevEl: ".custom-prev",
+          nextEl: ".custom-next",
         }}
+        slidesPerView="auto"
+        spaceBetween={10}
+        loop={true}
+        centeredSlides={false} // align active card to left
+        speed={1200}
+        onSlideChangeTransitionEnd={handleSlideChange}
+        initialSlide={0}
       >
         {milestoneData.map((milestone, index) => (
-          <MilestoneCardMobile
-            key={index}
-            year={milestone.year}
-            title={milestone.title}
-            description={milestone.description}
-            isActive={index === activeIndex}
-          />
+          <SwiperSlide key={index} className="!w-[280px]">
+            <MilestoneCardMobile
+              year={milestone.year}
+              title={milestone.title}
+              description={milestone.description}
+              isActive={index === activeIndex}
+            />
+          </SwiperSlide>
         ))}
+      </Swiper>
+
+      {/* Custom Navigation */}
+      <div
+        className="custom-next absolute bottom-0 right-[10%] transform -translate-y-1/2 border border-[var(--color-primary)] p-1 w-[62px] h-[42px] flex items-center justify-center rounded-[40px] cursor-pointer z-10"
+      >
+        <ArrowNew className="w-[21px] h-[22px] text-[var(--text-light)]" flipped />
       </div>
 
       {/* Active Milestone Labels */}
-      <div className="relative h-[60px]">
-        <TextBuilderMobile
-          className="absolute top-[30%] right-[14%]"
-          fontSize="10px"
-          color="light50"
-        >
+      <div className="relative h-[60px] mt-4">
+        <TextBuilderMobile className="absolute top-[30%] right-[14%]" fontSize="10px" color="light50">
           {activeMilestone.year}
         </TextBuilderMobile>
         <div className="absolute top-[30%] right-[20%] py-2">
@@ -216,35 +164,32 @@ const MilestoneMobile: React.FC = () => {
       </div>
 
       {/* Active Milestone Image & Description */}
-      <div className="flex flex-col gap-4 mt-4">
-        <Image
-          unoptimized
-          src={activeMilestone.image[0].url}
-          alt="milestone"
-          height={136}
-          width={236}
-          className="object-cover rounded-[12px]"
-        />
-        <div
-          className="w-[65%]"
-          style={{ lineHeight: 1 }} // <-- apply directly
-        >
-          <TextBuilderMobile fontSize="10px" color="light70">
-            {activeMilestone.image[0].label}
-          </TextBuilderMobile>
-        </div>
+<div className="flex flex-col gap-4 mt-4">
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={activeMilestone.year} // key changes on slide change
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="flex flex-col gap-4"
+    >
+      <Image
+        unoptimized
+        src={activeMilestone.image[0].url}
+        alt="milestone"
+        height={136}
+        width={252}
+        className="object-cover rounded-[12px]"
+      />
+      <div className="w-[65%]" style={{ lineHeight: 1 }}>
+        <TextBuilderMobile fontSize="10px" color="light70">
+          {activeMilestone.image[0].label}
+        </TextBuilderMobile>
       </div>
-
-      {/* Arrow Button */}
-      <div
-        onClick={handleNext}
-        className="absolute bottom-0 right-[10%] transform -translate-y-1/2 border border-[var(--color-primary)] p-1 w-[62px] h-[42px] flex items-center justify-center rounded-[40px] cursor-pointer"
-      >
-        <ArrowNew
-          className="w-[21px] h-[22px] text-[var(--text-light)]"
-          flipped
-        />
-      </div>
+    </motion.div>
+  </AnimatePresence>
+</div>
     </div>
   );
 };
