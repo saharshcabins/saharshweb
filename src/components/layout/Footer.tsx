@@ -7,56 +7,87 @@ const Footer = () => {
   const links = [
     { label: "Our Work", href: "#work" },
     { label: "Contact Us", href: "#contact-us" },
-    { label: "About Us", href: "/about" }, // example for About Us page
+    { label: "About Us", href: "/about" },
   ];
 
   return (
-    <div className="h-[460px] p-[100px] bg-[var(--text-dark)] flex flex-col justify-between">
-      <div className="w-full grid grid-cols-[45%_55%] gap-[28px]">
-        <div className="flex flex-col justify-between h-full">
-          <Image
-            unoptimized
-            src="/assets/logo/logo_light.svg"
-            height={51}
-            width={176}
-            alt="footer-logo"
-          />
-          <TextBuilder fontSize="16px" color="light60" className="w-[90%]">
-            Saharsh Cabins began with a simple yet powerful vision: to create
-            innovative, sustainable, and customizable portable cabins that
-            redefine living and working spaces.
-          </TextBuilder>
+    <div className="relative bg-[var(--text-dark)] overflow-hidden">
+      {/* Main container */}
+      <div className="flex flex-col justify-between 
+                      h-[522px] py-[63px] px-[30px] 
+                      lg:h-[460px] lg:p-[100px]">
+        {/* Top Section */}
+        <div className="flex flex-col gap-[32px] lg:grid lg:grid-cols-[45%_55%] lg:gap-[28px] lg:h-full">
+          {/* Logo + description */}
+          <div className="flex flex-col max-lg:justify-between gap-[25px] lg:gap-[36px]">
+            <Image
+              unoptimized
+              src="/assets/logo/logo_light.svg"
+              height={51}
+              width={176}
+              alt="footer-logo"
+            />
+            <TextBuilder
+              fontSize="12px"
+              color="light60"
+              className="w-[90%] lg:fontSize-[16px]"
+            >
+              Saharsh Cabins began with a simple yet powerful vision: to create
+              innovative, sustainable, and customizable portable cabins that
+              redefine living and working spaces.
+            </TextBuilder>
+          </div>
+
+          {/* Quick Links */}
+          <div className="flex flex-col gap-[12px]">
+            <TextBuilder
+              fontSize="16px"
+              weight="bold"
+              color="primary"
+              className="pb-[8px] lg:text-[20px]"
+            >
+              Quick links
+            </TextBuilder>
+            {links.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                className="hover:underline cursor-pointer"
+              >
+                <TextBuilder
+                  fontSize="12px"
+                  color="light"
+                  className="lg:text-[16px]"
+                >
+                  {link.label}
+                </TextBuilder>
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="flex flex-col gap-[12px] h-full">
-          <TextBuilder
-            fontSize="20px"
-            weight="bold"
-            color="primary"
-            className="pb-[8px]"
-          >
-            Quick links
+        {/* Bottom Section */}
+        <div className="flex flex-row items-end gap-1 z-10 mt-[20px] lg:mt-0">
+          <TextBuilder fontSize="12px" color="light" className="lg:text-[14px]">
+            Copyright
           </TextBuilder>
-          {links.map((link, index) => (
-            <a key={index} href={link.href} className="hover:underline cursor-pointer">
-              <TextBuilder fontSize="16px" color="light">
-                {link.label}
-              </TextBuilder>
-            </a>
-          ))}
+          <Copyright />
+          <TextBuilder fontSize="12px" color="light" className="lg:text-[14px]">
+            2025 All Rights Reserved
+          </TextBuilder>
         </div>
       </div>
 
-      <div className="flex flex-row items-end gap-1">
-        <TextBuilder fontSize="14px" color="light">
-          Copyright
-        </TextBuilder>
-        <Copyright />
-
-        <TextBuilder fontSize="14px" color="light">
-          2025 All Rights Reserved
-        </TextBuilder>
-      </div>
+      {/* Decorative background image (for both mobile & desktop) */}
+      <Image
+        unoptimized
+        src="/assets/footer/logo_bg.png"
+        alt="footer-decor"
+        width={346}
+        height={322}
+        className="absolute bottom-0 right-[-60] w-[346px] h-[322px] lg:bottom-[-100] lg:right-[-120]  opacity-10 object-contain 
+                   lg:w-[660px] lg:h-[630px]"
+      />
     </div>
   );
 };

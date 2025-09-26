@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Footer from "@/components/layout/Footer";
+import NavBar from "@/components/layout/NavBar";
 
 // Load Eudoxus Sans from /public/font/
 const eudoxus = localFont({
@@ -35,7 +37,16 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={eudoxus.variable}>
-      <body>{children}</body>
+      <body>
+        <div className="">
+          <NavBar />
+        </div>
+        {children}
+        <Footer />
+
+
+      </body>
+      
     </html>
   );
 }

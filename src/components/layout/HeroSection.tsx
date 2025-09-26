@@ -50,22 +50,28 @@ const HeroSection = () => {
     return () => clearInterval(blinkInterval);
   }, []);
 
-  // --- Scroll detection based on cabinRef ---
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!cabinRef.current) return;
-      const rect = cabinRef.current.getBoundingClientRect();
+  // --- Scroll detection with direction ---
+useEffect(() => {
+  let lastY = window.scrollY;
 
-      if (rect.top <= window.innerHeight * 0.5) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
+  const handleScroll = () => {
+    if (!cabinRef.current) return;
+    const rect = cabinRef.current.getBoundingClientRect();
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (window.scrollY > lastY && rect.top <= window.innerHeight * 0.5) {
+      // Scrolling down past cabin
+      setScrolled(true);
+    } else if (window.scrollY < lastY && window.scrollY < window.innerHeight * 0.5) {
+      // Scrolling back up toward hero
+      setScrolled(false);
+    }
+
+    lastY = window.scrollY;
+  };
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   // --- Conditionally Jump to text when scrolled ---
   useEffect(() => {

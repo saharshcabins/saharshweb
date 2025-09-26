@@ -9,13 +9,12 @@ import OurProcessMobile from './OurProcessMobile'
 import GetInTouch from './GetInTouch'
 import ResponsiveHeroSection from './MobileHeroSection'
 import MilestoneMobile from './MilestoneMobile'
+import Footer from './Footer'
 
 export default function MainLayoutSmall({ children }: { children: ReactNode }) {
   return (
     <div className='flex flex-col items-center w-full min-h-screen bg-[var(--color-background)]'>
-      <div className='w-full p-4'>
-        <NavBarMobile />
-      </div>
+    
       
       {/* Main Content Container with consistent padding */}
       <div className='flex flex-col items-center gap-20 w-full  mx-auto '>
@@ -27,7 +26,6 @@ export default function MainLayoutSmall({ children }: { children: ReactNode }) {
         <OurProcessMobile />
         <MilestoneMobile />
         <GetInTouch />
-        <FooterMobile />
       </div>
     </div>
   )

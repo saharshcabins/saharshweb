@@ -6,14 +6,15 @@ type ButtonProps = {
   text: string;
   onClick?: () => void;
   className?: string;
-  disabled?: boolean; // Add the disabled prop here
+  disabled?: boolean;
+  isGrayout?: boolean; // NEW prop
 };
 
-const Button: FC<ButtonProps> = ({ text, onClick, className, disabled }) => {
+const Button: FC<ButtonProps> = ({ text, onClick, className, disabled, isGrayout }) => {
   return (
     <button
       onClick={onClick}
-      disabled={disabled} // Apply the disabled prop
+      disabled={disabled || isGrayout} // Disable interaction if grayout
       className={`
         group
         cursor-pointer
@@ -27,9 +28,11 @@ const Button: FC<ButtonProps> = ({ text, onClick, className, disabled }) => {
         transition-all
         duration-300
         ${
-          disabled
-            ? "border-[var(--text-dark-25)] cursor-not-allowed" // Disabled styles
-            : "border-[var(--color-primary)] hover:bg-[var(--color-primary)]" // Normal styles
+          isGrayout
+            ? "border-white/25 cursor-default" // Grayout styles
+            : disabled
+            ? "border-[var(--text-dark-25)] cursor-not-allowed"
+            : "border-[var(--color-primary)] hover:bg-[var(--color-primary)]"
         }
         ${className || ""}
       `}
@@ -37,8 +40,16 @@ const Button: FC<ButtonProps> = ({ text, onClick, className, disabled }) => {
       <TextBuilder
         fontSize="24px"
         weight="bold"
-        color={disabled ? "dark50" : "primary"} // Change text color when disabled
-        className="transition-colors duration-300 group-hover:text-white"
+        color={
+          isGrayout
+            ? "light25"
+            : disabled
+            ? "dark50"
+            : "primary"
+        }
+        className={`leading-[1.2] transition-colors duration-300 ${
+          !isGrayout && !disabled ? "group-hover:text-white" : ""
+        }`}
       >
         {text}
       </TextBuilder>
@@ -55,17 +66,13 @@ const Button: FC<ButtonProps> = ({ text, onClick, className, disabled }) => {
           items-center
           ml-0
           ${
-            !disabled
+            !disabled && !isGrayout
               ? "group-hover:w-6 group-hover:opacity-100 group-hover:ml-3"
               : ""
           }
         `}
       >
-        <div
-          className={`w-6 h-6 ${
-            disabled ? "text-[var(--text-light)]" : "text-[var(--text-light)]"
-          }`}
-        >
+        <div className="w-6 h-6 text-[var(--text-light)]">
           <ArrowNew flipped />
         </div>
       </span>

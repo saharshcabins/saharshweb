@@ -19,10 +19,8 @@ export const dynamicRendering = "force-dynamic";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col py-10 pb-0 gap-10">
-      <div className="w-[90%] mx-auto">
-        <NavBar />
-      </div>
+    <div className="min-h-screen flex flex-col py-10 pt-26 pb-0 gap-10">
+     
 
       <HeroSection />
 
@@ -39,7 +37,6 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <OurProcess />
         <Milestone />
         <GetInTouch />
-        <Footer />
       </div>
     </div>
   );
