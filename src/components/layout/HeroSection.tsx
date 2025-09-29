@@ -139,7 +139,7 @@ useEffect(() => {
       </div>
 
       {/* ☁ Clouds + Cabin */}
-      <div className="relative w-full mt-[-80px] flex justify-center">
+      <div className="relative w-full mt-[-60px] flex justify-center">
         {/* Front Cloud */}
         <motion.div
           className="absolute inset-0 z-30 -top-[15%] left-20 flex justify-center items-start pointer-events-none"

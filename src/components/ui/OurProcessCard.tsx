@@ -1,9 +1,13 @@
 "use client";
 
 import React, { forwardRef } from "react";
-import { motion, useTransform, MotionValue } from "framer-motion";
+import {
+  motion,
+  useTransform,
+  MotionValue,
+  useMotionValueEvent,
+} from "framer-motion";
 import TextBuilder from "../shared/TextBuilder";
-import { HomeIcon } from "@/utils/svgUtils"; // Assuming this is the correct import
 
 interface OurProcessCardProps {
   title: string;
@@ -17,163 +21,91 @@ interface OurProcessCardProps {
 const OurProcessCard = forwardRef<HTMLDivElement, OurProcessCardProps>(
   ({ title, description, icon, progress, index, totalCards }, ref) => {
     const isLastCard = index === totalCards - 1;
+    const isFirstCard = index === 0;
 
-    // Width logic: if it's the last card, set to 100%
- // All hooks at the top
-const cardWidth = useTransform(progress, [0.3, 0.5], isLastCard ? [100, 100] : [500, 200]);
+    // Scroll segment per card
+const shrinkStart = index / totalCards;        // start earlier
+const shrinkEnd = (index + 0.5) / totalCards; // end sooner -> faster shrink
 
-const steppedProgress = useTransform(progress, [0.5, 0.51], [0, 1]);
-const rowOpacity = useTransform(steppedProgress, [0, 1], [1, 0]);
-const rowDisplay = useTransform(steppedProgress, [0, 1], ["flex", "none"]);
-const columnOpacity = useTransform(steppedProgress, [0, 1], [0, 1]);
-const columnDisplay = useTransform(steppedProgress, [0, 1], ["none", "flex"]);
-// Always create a transform, even if it won't do anything
-const cardProgressTransform = useTransform(progress, [0, 1], [0, 0]);
+const cardWidth = useTransform(
+  progress,
+  [shrinkStart, shrinkEnd],
+  isFirstCard ? [540, 200] : isLastCard ? [500, 500] : [500, 200]
+);
+    const titlePadding = useTransform(cardWidth, [300, 250], [0, 40]); // 40px ≈ py-10
 
-// Use the right value for cardProgress
-const cardProgress = isLastCard ? cardProgressTransform : progress;
+    const titleFontSizePx = useTransform(
+      cardWidth,
+      [300, 250],
+      ["36px", "24px"]
+    );
+    const paddingLeft = useTransform(cardWidth, [200, 540], [0, 40]);
 
-const iconWidth = useTransform(progress, [0, 1], [50, 30]);
-const iconHeight = useTransform(progress, [0, 1], [55, 33]);
-const textAlign = useTransform(cardProgress, [0.5, 1], ["end", "center"]);
-const descOpacity = useTransform(progress, [0, 0.5], [1, 0]); // moved from JSX
+    // Animate description opacity (hide when ≤ 300px)
+    const descriptionOpacity = useTransform(cardWidth, [300, 250], [1, 0]);
+    const descriptionDisplay = useTransform(
+      cardWidth,
+      [400, 350],
+      ["block", "none"]
+    );
 
-    if (isLastCard) {
-      // Return a completely different, non-animated div for the last card
-      return (
-        <div
-          ref={ref}
-          style={{width: `${cardWidth}px`,}}
-          className="flex flex-col justify-between py-[30px] h-[423px]
-            border-t border-b border-l border-r border-[rgba(0,0,0,0.3)]
-            w-full transition-colors duration-300"
-        >
-          {/* Icon and Title */}
-          <div className="flex flex-col items-center justify-center p-5 text-center">
-            <div className="flex items-center justify-between gap-[117px] w-full">
-              <div className="text-[var(--color-primary)] mb-4 w-[50px] h-[55px]">
-                {icon}
-              </div>
-              <TextBuilder
-                fontSize="36px"
-                weight="bold"
-                color="dark"
-                className="leading-[1.2] whitespace-nowrap"
-              >
-                {title.includes("&") ? (
-                  <>
-                    {title.split("&")[0]} &amp;
-                    <br />
-                    {title.split("&")[1].trim()}
-                  </>
-                ) : (
-                  title
-                )}
-              </TextBuilder>
-            </div>
-          </div>
-          {/* Description */}
-          <div className="overflow-hidden p-5">
-            <TextBuilder
-              fontSize="18px"
-              color="dark-light"
-              className="leading-[1.5] text-center"
-            >
-              {description}
-            </TextBuilder>
-          </div>
-        </div>
-      );
-    }
-   
+    // Animate gap & font size
+    const gap = useTransform(cardWidth, [300, 250], [0, 12]);
+    const titleFontSize = useTransform(cardWidth, [300, 250], [36, 24]);
+
+    // Local state to switch flex direction
+    const [isNarrow, setIsNarrow] = React.useState(false);
+    useMotionValueEvent(cardWidth, "change", (v) => {
+      setIsNarrow(v <= 300);
+    });
 
     return (
       <motion.div
         ref={ref}
-        layout
-        className={`relative flex flex-col justify-between py-[30px] h-[423px]
-          border-t border-b border-l border-[rgba(0,0,0,0.3)]
-          transition-colors duration-300
-        `}
-        style={{
-          width: cardWidth,
-        }}
+        className="flex flex-col justify-between py-6 border gap-[187px] border-[rgba(0,0,0,0.3)] bg-white shadow-md flex-shrink-0 transition-all duration-300"
+        style={{ width: cardWidth, paddingLeft }}
       >
-        {/* Container for icon and title */}
+        {/* Icon + Title */}
         <motion.div
-          layout
-          className="flex flex-col items-center justify-center p-5 "
-          style={{
-            textAlign: textAlign,
-          }}
+          className={`flex items-center w-full p-5 text-center transition-all duration-300 ${
+            isNarrow ? "flex-col" : "flex-row justify-between"
+          }`}
+          style={{ gap }}
         >
-          {/* Icon */}
-          <div className="flex gap-[117px]">
-            <motion.div
-              className="text-[var(--color-primary)] mb-4"
-              style={{
-                width: iconWidth,
-                height: iconHeight,
-              }}
-            >
-              {icon}
-            </motion.div>
-
-            {/* Title - Row Layout (initial state) */}
-            <motion.div
-              className="flex  "
-              style={{
-                opacity: rowOpacity,
-                display: rowDisplay,
-              }}
-            >
-              <TextBuilder
-                fontSize="36px"
-                weight="bold"
-                color="dark"
-                className="leading-[1.2] whitespace-nowrap"
-              >
-                {title.includes("&") ? (
-                  <>
-                    {title.split("&")[0]} &amp;
-                    <br />
-                    {title.split("&")[1].trim()}
-                  </>
-                ) : (
-                  title
-                )}
-              </TextBuilder>
-            </motion.div>
+          <div className="w-[50px] h-[55px] text-[var(--color-primary)]">
+            {icon}
           </div>
 
-          {/* Title - Column Layout (shrunk state) */}
-          <motion.div
-            className="flex flex-col items-center gap-5"
+          <motion.span
             style={{
-              opacity: columnOpacity,
-              display: columnDisplay,
+              fontSize: titleFontSizePx,
+              paddingTop: titlePadding,
+              paddingBottom: titlePadding,
             }}
+            className="font-bold text-dark leading-tight text-center"
           >
-            <TextBuilder
-              fontSize="20px"
-              weight="medium"
-              color="dark"
-              className="leading-[1.2]"
-            >
-              {title}
-            </TextBuilder>
-          </motion.div>
+            {title.includes("&") ? (
+              <>
+                {title.split("&")[0]} &amp;
+                <br />
+                {title.split("&")[1].trim()}
+              </>
+            ) : (
+              title
+            )}
+          </motion.span>
         </motion.div>
 
         {/* Description */}
         <motion.div
-          className="overflow-hidden p-5"
+          className="p-5"
           style={{
-            opacity: descOpacity,
+            opacity: descriptionOpacity,
+            display: descriptionDisplay,
           }}
         >
           <TextBuilder
-            fontSize="18px"
+            fontSize="20px"
             color="dark-light"
             className="leading-[1.5] text-center"
           >
