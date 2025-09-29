@@ -96,7 +96,7 @@ const CabinCarousel = () => {
               className="absolute rounded-[40px] overflow-hidden shadow-lg flex items-end"
               style={{ width: "55vw", height: "100%" }}
               animate={{ x, opacity, zIndex }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
+              transition={{ duration: 1.5, ease: [0.17, 0.67, 0.23, 1.1] }}
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 const mid = rect.left + rect.width / 2;
@@ -157,7 +157,7 @@ const CabinCarousel = () => {
                       <div className="rounded-[40px] border border-[var(--color-primary)] w-[60px] h-[60px] flex items-center justify-center bg-[rgba(15,27,38,0.6)]">
                         <ArrowNew
                           className="text-[var(--text-light)] w-[24px] h-[24px]"
-                          flipped={!isLeft} 
+                          flipped={!isLeft}
                         />
                       </div>
                     </div>
