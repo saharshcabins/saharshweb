@@ -43,7 +43,7 @@ const OurProcess = () => {
   });
 
   const totalCards = processItems.length;
-  const speedFactors = [1, 2, 1, 1]; // example: index 1 is faster
+  const speedFactors = [1, 2, 2, 2]; // example: index 1 is faster
 
   const progress0 = useTransform(
     scrollYProgress,
@@ -70,10 +70,10 @@ const OurProcess = () => {
 
   return (
     <div ref={sectionRef} className="relative w-full pb-[10%]">
-      <div style={{ height: `${totalCards * 100}vh` }}>
+<div style={{ height: `${(totalCards - 1) * 70}vh` }}>
         <div className="sticky top-0 h-screen flex flex-col items-center bg-white">
           {/* Header */}
-          <div className="flex flex-row justify-between items-center p-[5%] pb-[2%] gap-8 w-[90%]">
+          <div className="flex flex-row justify-between items-center p-[5%] pb-[2%] gap-8 w-[100%]">
             <div className="flex flex-col items-start justify-between gap-8">
               <MultiColorText
                 fontSize="56px"

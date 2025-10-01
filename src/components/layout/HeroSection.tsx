@@ -7,7 +7,7 @@ import Image from "next/image";
 import TextBuilder from "../shared/TextBuilder";
 import Label from "../ui/HeroLabel";
 
-const words = ["Homes", "Offices", "Retreats", "Studios", "Cabins"];
+const words = ["Cottages", "Offices", "Retreats", "Studios", "Cabins"];
 
 const HeroSection = () => {
   const [wordIndex, setWordIndex] = useState(0);
@@ -222,7 +222,7 @@ useEffect(() => {
           {/* Labels */}
           <div className="absolute inset-0">
             <div className="absolute top-[45%] right-[33%] z-10">
-              <Label text="Homes" />
+              <Label text="Cottages" />
             </div>
             <div className="absolute top-[80%] left-[70%] z-10">
               <Label text="Offices" />

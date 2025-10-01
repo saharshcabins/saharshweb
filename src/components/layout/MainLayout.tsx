@@ -29,7 +29,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <div className="w-[90%] mx-auto pt-30">
           <CabinSection />
         </div>
-<ScrollHorizontal />
+{/* <ScrollHorizontal /> */}
         {/* Client-side only components */}
         <CabinCarousel />
         <CabinSlideShow />
