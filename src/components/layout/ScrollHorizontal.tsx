@@ -43,12 +43,12 @@ const ScrollHorizontal = () => {
   });
 
   // Scale progress to make shrink faster
-  const scaledProgress = useTransform(scrollYProgress, [0, 1], [0, 1.1]);
+  const scaledProgress = useTransform(scrollYProgress, [0, 1], [0, 1.5]);
 
   return (
     <section
       ref={targetRef}
-      style={{ height: `${processItems.length-1 * 20}vh` }}
+      style={{ height: `${processItems.length-1 * 100}vh` }}
       className="relative"
     >
       {/* Section heading */}

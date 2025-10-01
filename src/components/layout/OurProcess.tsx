@@ -71,7 +71,7 @@ const OurProcess = () => {
   return (
     <div ref={sectionRef} className="relative w-full pb-[10%]">
 <div style={{ height: `${(totalCards - 1) * 70}vh` }}>
-        <div className="sticky top-0 h-screen flex flex-col items-center bg-white">
+        <div className="sticky top-0  flex flex-col items-center bg-white">
           {/* Header */}
           <div className="flex flex-row justify-between items-center p-[5%] pb-[2%] gap-8 w-[100%]">
             <div className="flex flex-col items-start justify-between gap-8">

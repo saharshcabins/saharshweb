@@ -27,7 +27,7 @@ const OurProcessCard = forwardRef<HTMLDivElement, OurProcessCardProps>(
     const shrinkStart = index / totalCards;
     const shrinkEnd = (index + 0.5) / totalCards;
 
-    const cardWidth = useTransform(
+    const cardWidth =  useTransform(
       progress,
       [shrinkStart, shrinkEnd],
       isFirstCard ? [540, 100] : isLastCard ? [500, 500] : [500, 100]
@@ -44,7 +44,7 @@ const OurProcessCard = forwardRef<HTMLDivElement, OurProcessCardProps>(
       <motion.div
         ref={ref}
         className="flex flex-col gap-[117px] justify-between py-6 border border-[rgba(0,0,0,0.3)] bg-white shadow-md flex-shrink-0 transition-all duration-300"
-        style={{ width: cardWidth }}
+        style={{ width:  cardWidth }}
       >
         {/* Icon + Title */}
         <div className="flex flex-row items-start p-5 justify-between">
