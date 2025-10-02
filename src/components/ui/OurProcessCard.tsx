@@ -5,7 +5,7 @@ import {
   motion,
   useTransform,
   MotionValue,
-  useMotionValueEvent,
+  useSpring,
 } from "framer-motion";
 import TextBuilder from "../shared/TextBuilder";
 
@@ -27,24 +27,32 @@ const OurProcessCard = forwardRef<HTMLDivElement, OurProcessCardProps>(
     const shrinkStart = index / totalCards;
     const shrinkEnd = (index + 0.5) / totalCards;
 
-    const cardWidth =  useTransform(
+    // Transform width based on scroll
+    const rawCardWidth = useTransform(
       progress,
       [shrinkStart, shrinkEnd],
-      isFirstCard ? [540, 100] : isLastCard ? [500, 500] : [500, 100]
+      isFirstCard ? [540, 100] : isLastCard ? [500, 500] : [500, 100],
     );
+
+    // Wrap in spring for smooth animation
+    const cardWidth = useSpring(rawCardWidth, {
+      stiffness: 120,
+      damping: 20,
+      mass: 0.5,
+
+    });
 
     const titlePadding = useTransform(cardWidth, [300, 250], [0, 40]);
     const titleFontSizePx = useTransform(cardWidth, [300, 250], ["36px", "24px"]);
 
-    // Animate title/description opacity smoothly
     const contentOpacity = useTransform(cardWidth, [220, 300], [0, 1]);
     const contentMaxHeight = useTransform(cardWidth, [220, 300], [0, 200]);
 
     return (
       <motion.div
         ref={ref}
-        className="flex flex-col gap-[117px] justify-between py-6 border border-[rgba(0,0,0,0.3)] bg-white shadow-md flex-shrink-0 transition-all duration-300"
-        style={{ width:  cardWidth }}
+        className="flex flex-col gap-[117px] justify-between py-6 border border-[rgba(0,0,0,0.3)] bg-white shadow-md flex-shrink-0"
+        style={{ width: cardWidth }}
       >
         {/* Icon + Title */}
         <div className="flex flex-row items-start p-5 justify-between">
