@@ -14,12 +14,9 @@ import MultiColorText from "../shared/MultiColorText";
 //   },
 // },
 
-interface ProductGridProps {
-  // You can add props here later if you want to pass actual image data
-  // For now, we'll just render placeholders.
-}
 
-const ProductGrid: React.FC<ProductGridProps> = () => {
+
+const ProductGrid = () => {
   const breakAfter = true; // or false
 
   return (
