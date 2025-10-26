@@ -1,0 +1,16 @@
+{
+  "pages": {
+    "/hutsie/page": [
+      "static/chunks/ff1a16fafef87110.js",
+      "static/chunks/7dd66bdf8a7e5707.js",
+      "static/chunks/89f73e2ac28e0921.css",
+      "static/chunks/a4d8ed6aaf74f7a5.js",
+      "static/chunks/1ed88ff727c46567.js",
+      "static/chunks/1ed73d546b350d90.js",
+      "static/chunks/7b56e4e88151cf63.js",
+      "static/chunks/002cf7376a5dde04.js",
+      "static/chunks/980a40ab20ad0eec.js",
+      "static/chunks/turbopack-36f08b10cfd4cb4f.js"
+    ]
+  }
+}
