@@ -57,7 +57,7 @@ const NavBar = () => {
       className={`fixed top-8 left-1/2 -translate-x-1/2 z-50
     transition-transform duration-300
     ${showNav ? "translate-y-0" : "-translate-y-[150%]"}
-    bg-[var(--nav-bg-color)] p-4 lg:p-6 rounded-[10px]
+    bg-[var(--nav-bg-color)] p-4 lg:p-6 rounded-[24px]
     w-[90%] lg:w-[90%]`}
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}

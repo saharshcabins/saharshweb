@@ -18,11 +18,12 @@ type TextBuilderProps = {
     | "link"
     | "dark-light"
     | "lighter"
-    |"light50"
-    |"light25"
-    |"light60"
-    |"dark50"
-    |"section50"
+    | "light50"
+    | "light25"
+    | "light60"
+    | "dark50"
+    | "section50"
+    | "section";
   fontSize?: string; // e.g. "56px" or "3vw"
   className?: string;
 };
@@ -68,13 +69,13 @@ const TextBuilder: FC<TextBuilderProps> = ({
     danger: "text-red-600",
     link: "text-[var(--link-color)]",
     "dark-light": "text-[var(--text-dark-light)]",
-    lighter:"text-[var(--text-lighter)]",
-    light50:"text-[var(--text-light-50)]",
-    light25:"text-[var(--text-light-25)]",
-        light60:"text-[var(--text-light-60)]",
-        dark50:"text-[var(--text-dark-50)]",
-        section50:"text-[var(--section-accent-50)]"
-
+    lighter: "text-[var(--text-lighter)]",
+    light50: "text-[var(--text-light-50)]",
+    light25: "text-[var(--text-light-25)]",
+    light60: "text-[var(--text-light-60)]",
+    dark50: "text-[var(--text-dark-50)]",
+    section50: "text-[var(--section-accent-50)]",
+    section: "text-[var(--section-accent)]",
   };
 
   // Auto responsive scaling if pixel font size is given
