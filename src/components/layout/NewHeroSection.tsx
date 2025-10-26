@@ -114,12 +114,16 @@ const NewHeroSection = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                style={{
-                  backgroundImage: `url(${slide.bgImage})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              ></motion.div>
+              >
+                <Image
+                  src={slide.bgImage}
+                  alt={`${slide.productName} background`}
+                  fill
+                  priority={idx === 0} // only first one with priority
+                  className="object-cover"
+                  quality={100}
+                />
+              </motion.div>
             )
         )}
       </AnimatePresence>
