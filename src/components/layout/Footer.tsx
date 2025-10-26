@@ -81,7 +81,7 @@ const Footer = () => {
       {/* Decorative background image (for both mobile & desktop) */}
       <Image
         
-        src="/assets/footer/logo_bg.png"
+        src="/assets/footer/logo_bg.webp"
         alt="footer-decor"
         width={346}
         height={322}

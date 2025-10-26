@@ -17,7 +17,7 @@ const milestoneData = [
       "Laying the foundation for Saharsh Cabins with the first manufacturing plant in Mumbai.",
     image: [
       {
-        url: "/assets/milestone/banglore.png",
+        url: "/assets/milestone/banglore.webp",
         label:
           "Laying the foundation for Saharsh Cabins with the first manufacturing plant in Mumbai",
         location: "Mumbai",

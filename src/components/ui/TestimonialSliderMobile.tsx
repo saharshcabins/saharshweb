@@ -57,7 +57,7 @@ const TestimonialSliderMobile = () => {
             {/* Background grid image */}
             <Image
               
-              src="/assets/cabin/grid_mobile.png"
+              src="/assets/cabin/grid_mobile.webp"
               alt="Background Grid"
               fill
               className="object-cover absolute top-0 left-0 z-0"

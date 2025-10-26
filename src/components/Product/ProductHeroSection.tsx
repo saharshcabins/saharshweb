@@ -6,7 +6,7 @@ const ProductHeroSection = () => {
   return (
     <div
       className="w-full h-[872px] bg-cover bg-center flex items-center "
-      style={{ backgroundImage: "url('/assets/product/hutsieHero.png')" }}
+      style={{ backgroundImage: "url('/assets/product/hutsieHero.webp')" }}
     >
       <div className="flex px-[100px] ">
       <div className="flex flex-col w-[45%] gap-[75px] pt-40">

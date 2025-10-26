@@ -45,7 +45,7 @@ const HeroSection = () => {
         >
           <Image
             
-            src="/assets/hero/container.png"
+            src="/assets/hero/container.webp"
             alt="container"
             width={550}
             height={450}

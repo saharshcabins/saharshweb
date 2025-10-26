@@ -40,7 +40,7 @@ const milestoneData: Milestone[] = [
       "Laying the foundation for Saharsh Cabins with the first manufacturing plant in Mumbai.",
     image: [
       {
-        url: "/assets/milestone/banglore.png",
+        url: "/assets/milestone/banglore.webp",
         label:
           "Laying the foundation for Saharsh Cabins with the first manufacturing plant in Mumbai",
         location: "Mumbai",
@@ -101,7 +101,7 @@ const handleSlideChange = (swiper: SwiperType) => {
   return (
     <div
       className="relative h-[720px] w-full p-8 pl-8 pr-0 bg-[var(--text-dark)] bg-cover bg-center"
-      style={{ backgroundImage: "url('/assets/milestone/mobile_map.png')" }}
+      style={{ backgroundImage: "url('/assets/milestone/mobile_map.webp')" }}
     >
       {/* Heading */}
       <div className="flex flex-col gap-2 mb-6">

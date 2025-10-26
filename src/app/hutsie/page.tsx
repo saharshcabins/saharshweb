@@ -13,7 +13,7 @@ const page = () => {
       <div
         className="w-full h-[688px] bg-cover bg-center "
         style={{
-          backgroundImage: "url('/assets/product/display_product.png')",
+          backgroundImage: "url('/assets/product/display_product.webp')",
         }}
       ></div>
       <ProductGrid />
@@ -21,7 +21,7 @@ const page = () => {
       <div
         className="w-full h-[688px] bg-cover bg-center "
         style={{
-          backgroundImage: "url('/assets/product/display_product_2.png')",
+          backgroundImage: "url('/assets/product/display_product_2.webp')",
         }}
       ></div>
       <ViewProduct />

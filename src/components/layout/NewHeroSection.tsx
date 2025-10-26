@@ -32,8 +32,8 @@ const NewHeroSection = () => {
       productName: "Rustico",
       productLabel: ["2BHK", "800 SQFT", "1 BEDROOM + PANTRY"],
       productPath: [
-        "/assets/newhero/product_1.png",
-        "/assets/newhero/product_2.png",
+        "/assets/newhero/product_1.webp",
+        "/assets/newhero/product_2.webp",
       ],
       specialLabel: "Interior",
       bgImage: "/assets/newhero/hero_bg_1.webp",
@@ -43,8 +43,8 @@ const NewHeroSection = () => {
       productName: "Lodge",
       productLabel: ["3BHK", "1200 SQFT", "2 BEDROOM + PANTRY"],
       productPath: [
-        "/assets/newhero/product_3.png",
-        "/assets/newhero/product_4.png",
+        "/assets/newhero/product_1.webp",
+        "/assets/newhero/product_2.webp",
       ],
       specialLabel: "Exterior",
       bgImage: "/assets/newhero/hero_bg_1.webp",
@@ -54,8 +54,8 @@ const NewHeroSection = () => {
       productName: "Cabana",
       productLabel: ["1BHK", "600 SQFT", "1 BEDROOM + PANTRY"],
       productPath: [
-        "/assets/newhero/product_5.png",
-        "/assets/newhero/product_6.png",
+        "/assets/newhero/product_1.webp",
+        "/assets/newhero/product_2.webp",
       ],
       specialLabel: "Interior",
       bgImage: "/assets/newhero/hero_bg_1.webp",
@@ -68,7 +68,7 @@ const NewHeroSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 40000);
+    }, 30000);
     return () => clearInterval(interval);
   }, [currentSlide]);
 
@@ -222,7 +222,7 @@ const NewHeroSection = () => {
             </AnimatePresence>
             {/* Arrow */}
             <div
-              className="text-[var(--section-accent)] cursor-pointer px-[26px] py-[14px] rounded-[40px] border border-[var(--section-accent)] w-fit"
+              className="text-[var(--section-accent)] hover:bg-[var(--color-primary)] transition duration-300 cursor-pointer px-[26px] py-[14px] rounded-[40px] border border-[var(--section-accent)] w-fit"
               onClick={nextSlide}
             >
               <ArrowNew className="w-[25px] h-[25px]" flipped />
@@ -235,7 +235,7 @@ const NewHeroSection = () => {
 
             {/* Arrow */}
             <div
-              className="text-[var(--section-accent)] cursor-pointer px-[26px] py-[14px] rounded-[40px] border border-[var(--section-accent)] w-fit"
+              className="text-[var(--section-accent)] hover:bg-[var(--color-primary)] transition duration-300 cursor-pointer px-[26px] py-[14px] rounded-[40px] border border-[var(--section-accent)] w-fit"
               onClick={prevSlide}
             >
               <ArrowNew className="w-[25px] h-[25px]" />
@@ -280,16 +280,16 @@ const NewHeroSection = () => {
           </AnimatePresence>
 
           {/* Progress Bar */}
-          <div className=" w-full h-[8px] z-20">
+          <div className="relative w-full h-[8px] z-20 overflow-hidden rounded-full">
             <motion.div
               key={currentSlide}
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
-              transition={{ duration: 40, ease: "linear" }}
+              transition={{ duration: 30, ease: "linear" }}
+              className="absolute top-0 left-0 h-full"
               style={{
                 background:
-                  "linear-gradient(90deg, #C97A41 47.96%, #FFFFFF 100%)",
-                height: "100%",
+                  "linear-gradient(90deg, #C97A41 50%, rgba(255,255,255,0.8) 100%)",
               }}
             />
           </div>

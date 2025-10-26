@@ -1,46 +1,30 @@
 import { ReactNode } from "react";
 import dynamic from "next/dynamic";
-
-import NavBar from "./NavBar";
-import HeroSection from "./HeroSection";
-import TestimonialSection from "./TestimonialSection";
-import OurProcess from "./OurProcess";
-import Milestone from "./Milestone";
-import GetInTouch from "./GetInTouch";
-import Footer from "./Footer";
-import CabinSection from "./CabinSection";
-import ScrollHorizontal from "./ScrollHorizontal";
-import CardsSection from "../ui/CardsSection";
-import NewMilestones from "./NewMilestone";
 import NewHeroSection from "./NewHeroSection";
-
-// Dynamically import components that should only run on the client
+const CabinSection = dynamic(() => import("./CabinSection"), { ssr: false });
 const CabinCarousel = dynamic(() => import("../ui/CabinCarousel"), { ssr: false });
 const CabinSlideShow = dynamic(() => import("../ui/CabinSlideShow"), { ssr: false });
-const GsapMilestone   = dynamic(() => import("./GsapMilestone"),       { ssr: false });
+const TestimonialSection = dynamic(() => import("./TestimonialSection"), { ssr: false });
+const OurProcess = dynamic(() => import("./OurProcess"), { ssr: false });
+const NewMilestones = dynamic(() => import("./NewMilestone"), { ssr: false });
+const GetInTouch = dynamic(() => import("./GetInTouch"), { ssr: false });
 
-// Use a different name to avoid conflict with `dynamic` import
-export const dynamicRendering = "force-dynamic"; 
+export const dynamicRendering = "force-dynamic";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col  gap-10">
-
+    <div className="min-h-screen flex flex-col gap-10">
       <NewHeroSection />
 
       <div className="flex flex-col gap-20">
         <div className="w-[90%] mx-auto pt-30">
           <CabinSection />
         </div>
-        {/* Client-side only components */}
         <CabinCarousel />
-        {/* <GsapMilestone /> */}
-        {/* <CardsSection /> */}
         <CabinSlideShow />
         <TestimonialSection />
         <OurProcess />
         <NewMilestones />
-        {/* <Milestone /> */}
         <GetInTouch />
       </div>
     </div>

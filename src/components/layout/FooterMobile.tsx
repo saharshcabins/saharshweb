@@ -52,7 +52,7 @@ const FooterMobile = () => {
       {/* Absolute bottom-right image */}
  <Image
   
-  src="/assets/footer/logo_bg.png"
+  src="/assets/footer/logo_bg.webp"
   alt="footer-decor"
   width={346}
   height={322}
