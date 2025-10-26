@@ -36,7 +36,7 @@ const NewHeroSection = () => {
         "/assets/newhero/product_2.png",
       ],
       specialLabel: "Interior",
-      bgImage: "/assets/newhero/hero_bg_1.png",
+      bgImage: "/assets/newhero/hero_bg_1.webp",
     },
     {
       id: 2,
@@ -47,7 +47,7 @@ const NewHeroSection = () => {
         "/assets/newhero/product_4.png",
       ],
       specialLabel: "Exterior",
-      bgImage: "/assets/newhero/hero_bg_1.png",
+      bgImage: "/assets/newhero/hero_bg_1.webp",
     },
     {
       id: 3,
@@ -58,7 +58,7 @@ const NewHeroSection = () => {
         "/assets/newhero/product_6.png",
       ],
       specialLabel: "Interior",
-      bgImage: "/assets/newhero/hero_bg_1.png",
+      bgImage: "/assets/newhero/hero_bg_1.webp",
     },
   ];
 
