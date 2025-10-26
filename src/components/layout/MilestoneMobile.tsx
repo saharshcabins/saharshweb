@@ -174,7 +174,7 @@ const handleSlideChange = (swiper: SwiperType) => {
       className="flex flex-col gap-4"
     >
       <Image
-        unoptimized
+        
         src={activeMilestone.image[0].url}
         alt="milestone"
         height={136}

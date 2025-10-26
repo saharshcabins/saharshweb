@@ -44,7 +44,7 @@ const HeroSection = () => {
           }}
         >
           <Image
-            unoptimized
+            
             src="/assets/hero/container.png"
             alt="container"
             width={550}

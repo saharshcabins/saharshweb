@@ -59,8 +59,6 @@ export default function CardsSection() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
-      smooth: true,
-      smoothTouch: false,
     });
 
     function raf(time: number) {
@@ -80,7 +78,7 @@ export default function CardsSection() {
     <div ref={container}>
       {projects.map((item, idx) => {
         const targetScale = 1 - (projects.length - idx) * 0.05;
-        const range = [idx * 0.25, 1];
+const range = [idx * 0.25, 1] as [number, number];
 
         return (
           <Card

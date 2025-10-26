@@ -67,7 +67,7 @@ const NavBar = () => {
         {/* Logo */}
         <div className="flex items-center gap-2 flex-shrink-0">
           <Image
-            unoptimized
+            
             src="/assets/logo/logo.svg"
             height={50}
             width={140}

@@ -50,7 +50,7 @@ const OurProcessMobile = () => {
           </TextBuilderMobile>
         </div>
         <Image
-          unoptimized
+          
           src="/assets/logo/logo_icon.svg"
           alt="logo-saharsh"
           width={49}

@@ -9,7 +9,7 @@ const FooterMobile = () => {
       <div className="flex flex-col gap-[32px]">
         <div className="flex flex-col justify-between gap-[25px]">
           <Image
-            unoptimized
+            
             src="/assets/logo/logo_light.svg"
             height={51}
             width={176}
@@ -51,7 +51,7 @@ const FooterMobile = () => {
 
       {/* Absolute bottom-right image */}
  <Image
-  unoptimized
+  
   src="/assets/footer/logo_bg.png"
   alt="footer-decor"
   width={346}

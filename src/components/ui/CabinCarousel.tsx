@@ -114,7 +114,7 @@ const CabinCarousel = () => {
               onClick={() => handleClick(i)}
             >
               <Image
-                unoptimized
+                
                 src={cabin.image}
                 alt={cabin.name}
                 fill

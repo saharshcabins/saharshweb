@@ -50,7 +50,7 @@ const CabinSectionMobile = () => {
       {/* Image Container */}
       <div className="w-full aspect-[1040/500] relative ">
         <Image
-          unoptimized
+          
           fill
           src="/assets/cabin/cabin_1.webp"
           alt="cabin-section"

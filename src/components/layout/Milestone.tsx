@@ -303,7 +303,7 @@ const Milestone = () => {
                       {/* Image */}
                       <div className="relative w-[420px] h-[240px] rounded-[24px] ">
                         <Image
-                          unoptimized
+                          
                           src={item.url}
                           alt={`milestone-${i}`}
                           fill

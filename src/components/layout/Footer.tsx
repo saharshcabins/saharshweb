@@ -21,7 +21,7 @@ const Footer = () => {
           {/* Logo + description */}
           <div className="flex flex-col max-lg:justify-between gap-[25px] lg:gap-[36px]">
             <Image
-              unoptimized
+              
               src="/assets/logo/logo_light.svg"
               height={51}
               width={176}
@@ -80,7 +80,7 @@ const Footer = () => {
 
       {/* Decorative background image (for both mobile & desktop) */}
       <Image
-        unoptimized
+        
         src="/assets/footer/logo_bg.png"
         alt="footer-decor"
         width={346}

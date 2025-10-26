@@ -1,9 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { useTransform, motion, useScroll } from 'framer-motion'
+import { useTransform, motion, useScroll, MotionValue } from 'framer-motion'
 import { useRef } from 'react'
-import './Card.css' // ✅ Import the plain CSS file
+import './Card.css'
 
 interface CardProps {
   i: number
@@ -12,8 +12,8 @@ interface CardProps {
   src: string
   url: string
   color: string
-  progress: any
-  range: any
+  progress: MotionValue<number> // ✅ typed instead of 'any'
+  range: [number, number]       // ✅ typed as tuple
   targetScale: number
 }
 
@@ -73,7 +73,7 @@ const Card = ({
 
           <div className="imageContainer">
             <motion.div className="inner" style={{ scale: imageScale }}>
-              <Image unoptimized fill src={`/images/${src}`} alt={title} />
+              <Image  fill src={`/images/${src}`} alt={title} />
             </motion.div>
           </div>
         </div>

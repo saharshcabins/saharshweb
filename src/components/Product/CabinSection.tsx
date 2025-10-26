@@ -30,7 +30,7 @@ export default function CabinSection() {
         </div>
       </div>
       <Image
-        unoptimized
+        
         src={"assets/cabin/cabin_1.webp"}
         alt="product"
         width={1097}

@@ -84,7 +84,7 @@ const CabinSlideShowMobile: React.FC = () => {
             >
               {slide.type === "image" ? (
                 <Image
-                  unoptimized
+                  
                   src={slide.src}
                   alt={`slide-${idx}`}
                   fill

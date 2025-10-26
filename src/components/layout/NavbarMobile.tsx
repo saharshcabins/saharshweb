@@ -49,7 +49,7 @@ const NavBarMobile = () => {
         {/* Logo */}
         <div className="flex items-center gap-2 flex-shrink-0">
           <Image
-            unoptimized
+            
             src="/assets/logo/logo.svg"
             height={40}
             width={120}

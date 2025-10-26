@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll } from "framer-motion";
+import { AnimatePresence, motion, MotionValue, useScroll } from "framer-motion";
 import Image from "next/image";
 import Lenis from "@studio-freight/lenis";
 import { ArrowDown } from "@/utils/svgUtils";
@@ -73,8 +73,8 @@ type CardProps = {
   title: string;
   description: string;
   image: { url: string; label: string; location: string }[];
-  progress: any;
-  range: [number, number];
+  progress: MotionValue<number>; // ✅ Instead of 'any'
+  range: [number, number];       // ✅ Instead of 'any'
   targetScale: number;
   onActive: (index: number) => void;
 };
@@ -260,7 +260,7 @@ export default function NewMilestones() {
                     >
                       <div className="relative w-[416px] h-[240px] rounded-[24px]  overflow-hidden">
                         <Image
-                          unoptimized
+                          
                           src={img.url}
                           alt={img.label}
                           fill

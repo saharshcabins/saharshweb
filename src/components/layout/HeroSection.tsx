@@ -128,7 +128,7 @@ useEffect(() => {
           }}
         >
           <Image
-            unoptimized
+            
             src="/assets/hero/container.png"
             alt="container"
             width={550}
@@ -147,7 +147,7 @@ useEffect(() => {
           transition={{ ease: "easeOut", duration: 0.6 }}
         >
           <Image
-            unoptimized
+            
             src="/assets/hero/front_cloud.webp"
             alt="Front Cloud"
             width={1440}
@@ -173,7 +173,7 @@ useEffect(() => {
           transition={{ ease: "easeOut", duration: 0.6 }}
         >
           <Image
-            unoptimized
+            
             src="/assets/hero/back_cloud.webp"
             alt="Back Cloud"
             width={1440}
@@ -189,7 +189,7 @@ useEffect(() => {
         >
           <div className="relative w-full overflow-hidden">
             <Image
-              unoptimized
+              
               src={`/assets/hero/cabin.webp`}
               alt={`cabin`}
               width={1440}

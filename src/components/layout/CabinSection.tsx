@@ -42,7 +42,7 @@ const CabinSection = () => {
       {/* Image Container */}
       <div className="w-full max-w-[1040px] aspect-[1040/500] relative">
         <Image
-        unoptimized
+        
           fill
           src="/assets/cabin/cabin_1.webp"
           alt="cabin-section"

@@ -57,7 +57,7 @@ const TestimonialSlider = () => {
             className="flex-shrink-0 w-[300px] h-[300px] flex items-center justify-center relative"
           >
             {/* Background grid image */}
-            <Image unoptimized
+            <Image 
               src="/assets/cabin/grid.webp"
               alt="Background Grid"
               fill
@@ -65,7 +65,7 @@ const TestimonialSlider = () => {
               
             />
             {/* Logo */}
-            <Image unoptimized
+            <Image 
               src={logo}
               alt={`Logo ${index}`}
               width={120}

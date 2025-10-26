@@ -56,7 +56,7 @@ const TestimonialSliderMobile = () => {
           >
             {/* Background grid image */}
             <Image
-              unoptimized
+              
               src="/assets/cabin/grid_mobile.png"
               alt="Background Grid"
               fill
@@ -64,7 +64,7 @@ const TestimonialSliderMobile = () => {
             />
             {/* Logo */}
             <Image
-              unoptimized
+              
               src={logo}
               alt={`Logo ${index}`}
               width={60}

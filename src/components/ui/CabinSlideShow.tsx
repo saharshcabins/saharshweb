@@ -132,7 +132,7 @@ const CabinSlideShow: React.FC = () => {
                 {/* Media */}
                 {slide.type === "image" ? (
                   <Image
-                    unoptimized
+                    
                     src={slide.src}
                     alt={`slide-${idx}`}
                     fill
