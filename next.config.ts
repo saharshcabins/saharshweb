@@ -1,15 +1,21 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   eslint: {
-    ignoreDuringBuilds: true, // ✅ disables ESLint errors during build
+    ignoreDuringBuilds: true,
   },
   typescript: {
-    ignoreBuildErrors: true, // ✅ prevents type errors from breaking the build
+    ignoreBuildErrors: true,
   },
-
   trailingSlash: true,
+  images: {
+    domains: [
+      "media.istockphoto.com",
+      "imgs.search.brave.com",
+      "plus.unsplash.com",
+      "images.unsplash.com",
+    ],
+  },
 };
 
 export default nextConfig;
