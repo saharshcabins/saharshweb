@@ -6,6 +6,7 @@ import { ArrowNew } from "@/utils/svgUtils";
 import Label from "../ui/HeroLabel";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Head from "next/head";
 
 const NewHeroSection = () => {
   const [product, setProducts] = useState(false);
@@ -83,7 +84,14 @@ const NewHeroSection = () => {
   const current = slides[currentSlide];
 
   return (
-    <div className="w-full h-screen bg-cover bg-center relative flex flex-col justify-between">
+    <>
+    <Head>
+  <link rel="preload" as="image" href="/assets/newhero/hero_bg_1.webp" />
+</Head>
+    <div
+      className="w-full h-screen bg-cover bg-center relative flex flex-col justify-between"
+  
+    >
       <AnimatePresence mode="wait">
         {product && (
           <motion.div
@@ -300,6 +308,7 @@ const NewHeroSection = () => {
         </motion.div>
       </AnimatePresence>
     </div>
+    </>
   );
 };
 
