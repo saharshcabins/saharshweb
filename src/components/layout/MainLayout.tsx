@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import dynamic from "next/dynamic";
 import NewHeroSection from "./NewHeroSection";
+import OurProcessNew from "./OurProcessNew";
 const CabinSection = dynamic(() => import("./CabinSection"), { ssr: false });
 const CabinCarousel = dynamic(() => import("../ui/CabinCarousel"), { ssr: false });
 const CabinSlideShow = dynamic(() => import("../ui/CabinSlideShow"), { ssr: false });
@@ -23,7 +24,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <CabinCarousel />
         <CabinSlideShow />
         <TestimonialSection />
-        <OurProcess />
+        <OurProcessNew />
         <NewMilestones />
         <GetInTouch />
       </div>

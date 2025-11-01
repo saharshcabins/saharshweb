@@ -19,7 +19,7 @@ html {
   --text-dark: #0f1b26; /* Strong dark */
   --text-dark-25: #0f1b2640; /* Strong dark */
   --text-dark-50: #0f1b2680; /* Strong dark */
-
+--light-border:#d1d1d1;
   --text-light: #ffffff; /* White text */
   --text-dark-light: #0f1b2699;
   --text-lighter: #ffffffb3;
