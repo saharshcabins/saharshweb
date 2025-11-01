@@ -40,13 +40,13 @@ const CabinSection = () => {
       </div>
 
       {/* Image Container */}
-      <div className="w-full max-w-[1040px] aspect-[1040/500] relative">
+      <div className="w-full mt-[51px] max-w-[1040px] aspect-[1040/500] relative">
         <Image
         
           fill
-          src="/assets/cabin/cabin_1.webp"
+          src="/assets/cabin/cabin_1.png"
           alt="cabin-section"
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "contain" }}
           sizes="(max-width: 1040px) 100vw, 1040px"
           
         />
