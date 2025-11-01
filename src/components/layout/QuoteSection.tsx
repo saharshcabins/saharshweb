@@ -11,10 +11,10 @@ const QuoteSection = () => {
   const isInView = useInView(ref, { amount: 0.6, once: true });
 
   return (
-    <div ref={ref} className="w-full py-[4%] overflow-hidden">
+    <div ref={ref} className="w-full  overflow-hidden -my-20">
       {/* Background + main content */}
       <motion.div
-        className="px-[7%] bg-cover bg-center bg-no-repeat flex flex-row items-center justify-between relative"
+        className="px-[7%] bg-cover py-[7%] bg-center bg-no-repeat flex flex-row items-center justify-between relative"
         style={{ backgroundImage: "url('/assets/quote/quote_bg.png')" }}
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
