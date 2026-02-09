@@ -10,6 +10,8 @@ import GetInTouch from './GetInTouch'
 import ResponsiveHeroSection from './MobileHeroSection'
 import MilestoneMobile from './MilestoneMobile'
 import Footer from './Footer'
+import SaharshAdvantage from './SaharshAdvantage'
+import FAQSection from './FAQSection'
 
 export default function MainLayoutSmall({ children }: { children: ReactNode }) {
   return (
@@ -21,10 +23,12 @@ export default function MainLayoutSmall({ children }: { children: ReactNode }) {
         <ResponsiveHeroSection />
         <CabinSectionMobile />
         <CabinCarouselMobile />
+        <SaharshAdvantage />
         <CabinSlideShowMobile />
         <TestimonialSectionMobile />
         <OurProcessMobile />
         <MilestoneMobile />
+        <FAQSection />
         <GetInTouch />
       </div>
     </div>

@@ -199,7 +199,21 @@ const GetInTouch = () => {
               disabled={isSubmitting}
             />
           </div>
+
         </div>
+          <div className="border-t mt-4 border-gray-200 pt-6 text-center space-y-2">
+            <TextBuilder weight="medium" color="dark" className="block">
+              Or reach us directly:
+            </TextBuilder>
+            <div className="space-y-1">
+              <TextBuilder weight="normal" color="muted" className="block">
+                Call: +91-701-9495-021
+              </TextBuilder>
+              <TextBuilder weight="normal" color="muted" className="block">
+                Email: sales@saharsh.co
+              </TextBuilder>
+            </div>
+          </div>
       </div>
     </div>
   );

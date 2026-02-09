@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import dynamic from "next/dynamic";
 import NewHeroSection from "./NewHeroSection";
+import SaharshAdvantage from "./SaharshAdvantage";
+import FAQSection from "./FAQSection";
 
 
 
@@ -36,12 +38,13 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <CabinSlideShow />
 
         {/* Dynamic sections with spinners */}
+        <SaharshAdvantage />
         <QuoteSection />
         <NewMilestones />
         <CabinCarousel />
         <TestimonialSection />
         <OurProcessNew />
-
+<FAQSection />
         <GetInTouch />
       </div>
     </div>
