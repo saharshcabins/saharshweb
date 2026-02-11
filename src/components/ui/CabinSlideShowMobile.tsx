@@ -15,12 +15,36 @@ type Slide = {
 };
 
 const slides: Slide[] = [
-  { type: "image", src: "https://plus.unsplash.com/premium_photo-1686090449403-43c24a6a4f79?q=80&w=387&auto=format&fit=crop", title: "Luxury Cabin", description: "Experience modern comfort surrounded by nature." },
-  { type: "video", src: "https://cdn.pixabay.com/video/2024/05/09/211275_large.mp4", title: "Mountain Escape", description: "Wake up to serene mountain views every morning." },
-  { type: "image", src: "https://plus.unsplash.com/premium_photo-1686090450479-370d5ddf4de1?q=80&w=387&auto=format&fit=crop", title: "Cozy Interiors", description: "Warm tones and cozy designs for perfect evenings." },
-  { type: "video", src: "https://cdn.pixabay.com/video/2025/06/13/285663_large.mp4", title: "Waterfront Living", description: "Luxury redefined by the calming sound of water." },
-  { type: "image", src: "https://plus.unsplash.com/premium_photo-1733864822196-b964f2f77f3c?q=80&w=387&auto=format&fit=crop", title: "Family Friendly", description: "Spacious cabins designed for family getaways." },
-  { type: "image", src: "https://plus.unsplash.com/premium_photo-1733864822196-b964f2f77f3c?q=80&w=387&auto=format&fit=crop", title: "Modern Style", description: "Architectural excellence meets natural beauty." },
+  {
+    type: "image",
+    src: "/assets/built/center.png", // Update with actual filename
+    title: "Marketing Sales Offices",
+    description: "Showcase excellence anywhere.Mobile sales suites. Built to impress, designed to move.",
+  },
+  {
+    type: "image",
+    src: "/assets/built/cottages.png", // Update with actual filename
+    title: "Modular Cottages",
+    description: "The art of instant living.Architectural beauty, delivered to your doorstep.",
+  },
+  {
+    type: "image",
+    src: "/assets/built/villa.png", // Update with actual filename
+    title: "Modular Farmhouses",
+    description: "Land to living. Seamlessly.Precision-engineered homes for your private retreat.",
+  },
+  {
+    type: "image",
+    src: "/assets/built/cafe.png", // Update with actual filename
+    title: "Modular Cafe",
+    description: "Serve sooner. Scale faster.Turnkey cafe spaces for rapid expansion.",
+  },
+  {
+    type: "image",
+    src: "/assets/built/site_office.png", // Update with actual filename
+    title: "Site Office",
+    description: "Built for the grind.Rugged portable site offices for rapid deployment.",
+  },
 ];
 
 const CARD_WIDTH = 284 + 16; // card width + gap (px)
@@ -52,7 +76,10 @@ const CabinSlideShowMobile: React.FC = () => {
   };
 
   return (
-    <div id="work" className="bg-[var(--text-dark)] py-10 w-full flex flex-col gap-10 px-4">
+    <div
+      id="work"
+      className="bg-[var(--text-dark)] py-10 w-full flex flex-col gap-10 px-4"
+    >
       {/* Header */}
       <div className="flex flex-col gap-4 items-start">
         <MultiColorTextMobile
@@ -63,8 +90,8 @@ const CabinSlideShowMobile: React.FC = () => {
           ]}
         />
         <TextBuilderMobile fontSize="12px" color="light">
-          From sleek architecture to luxurious interiors & scenic landscapes
-          come together to create living spaces that inspire and rejuvenate.
+          A cabin is more than a structure, it’s where ambition takes shape,
+          whether as a luxury retreat or a personal sanctuary.
         </TextBuilderMobile>
       </div>
 
@@ -84,7 +111,6 @@ const CabinSlideShowMobile: React.FC = () => {
             >
               {slide.type === "image" ? (
                 <Image
-                  
                   src={slide.src}
                   alt={`slide-${idx}`}
                   fill

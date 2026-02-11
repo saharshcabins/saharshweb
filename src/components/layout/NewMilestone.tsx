@@ -23,6 +23,7 @@ const milestoneData = [
         location: "Mumbai",
       },
     ],
+    mapImage: "/assets/milestone/map.webp", // Add your map image path
   },
   {
     year: "2014",
@@ -37,6 +38,7 @@ const milestoneData = [
         location: "Shimla",
       },
     ],
+    mapImage: "/assets/milestone/map-shimla.webp", // Add your map image path
   },
   {
     year: "2024",
@@ -47,10 +49,11 @@ const milestoneData = [
       {
         url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
         label:
-          "Launched ‘Qbinn Tusker’ premium cottages & resorts in Bangalore.",
+          "Launched 'Qbinn Tusker' premium cottages & resorts in Bangalore.",
         location: "Bangalore",
       },
     ],
+    mapImage: "/assets/milestone/map-bangalore.png", // Add your map image path
   },
   {
     year: "2025",
@@ -64,6 +67,7 @@ const milestoneData = [
         location: "USA",
       },
     ],
+    mapImage: "/assets/milestone/map-usa.webp", // Add your map image path
   },
 ];
 
@@ -73,11 +77,12 @@ type CardProps = {
   title: string;
   description: string;
   image: { url: string; label: string; location: string }[];
-  progress: MotionValue<number>; // ✅ Instead of 'any'
-  range: [number, number];       // ✅ Instead of 'any'
+  progress: MotionValue<number>;
+  range: [number, number];
   targetScale: number;
   onActive: (index: number) => void;
 };
+
 const Card: React.FC<CardProps & { isActive: boolean }> = ({
   i,
   year,
@@ -106,8 +111,6 @@ const Card: React.FC<CardProps & { isActive: boolean }> = ({
     return () => unsubscribe();
   }, [scrollYProgress, i, onActive]);
 
-  // Scroll down by one viewport height
-  // Scroll down by the container height (card height)
   const handleArrowClick = () => {
     if (!container.current) return;
 
@@ -147,18 +150,21 @@ const Card: React.FC<CardProps & { isActive: boolean }> = ({
           >
             {year}
           </TextBuilder>
-      <div
-  onClick={handleArrowClick}
-  aria-label="Scroll to next milestone"
-  className={`px-[16px] py-[25px] rounded-[40px] flex items-center justify-center border transition-all duration-300 cursor-pointer
-    ${isActive ? "border-[var(--color-primary)] text-[var(--color-primary)]" : "border-[var(--text-light-25)] text-[var(--section-dark)]"}
-    hover:border-[var(--color-primary)] hover:text-[var(--text-light)]`}
->
-  <div className="w-[25px] h-[25px] pointer-events-none">
-    <ArrowDown />
-  </div>
-</div>
-
+          <div
+            onClick={handleArrowClick}
+            aria-label="Scroll to next milestone"
+            className={`px-[16px] py-[25px] rounded-[40px] flex items-center justify-center border transition-all duration-300 cursor-pointer
+              ${
+                isActive
+                  ? "border-[var(--color-primary)] text-[var(--color-primary)]"
+                  : "border-[var(--text-light-25)] text-[var(--section-dark)]"
+              }
+              hover:border-[var(--color-primary)] hover:text-[var(--text-light)]`}
+          >
+            <div className="w-[25px] h-[25px] pointer-events-none">
+              <ArrowDown />
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col gap-[29px]">
@@ -174,7 +180,6 @@ const Card: React.FC<CardProps & { isActive: boolean }> = ({
   );
 };
 
-// 🔹 Parent
 export default function NewMilestones() {
   const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -226,23 +231,19 @@ export default function NewMilestones() {
 
         {/* RIGHT SIDE — ACTIVE IMAGES */}
         <div className="w-[60%] flex flex-col gap-[30px] items-center justify-start relative">
-          <div className="sticky top-[25%] w-full ">
-            {" "}
+          <div className="sticky top-[25%] w-full">
             <div className="absolute right-1/5 top-[-3%]">
-              {" "}
               <TextBuilder fontSize="24px" weight="bold" color="light50">
-                {" "}
                 {activeMilestone.year}
-              </TextBuilder>{" "}
-            </div>{" "}
+              </TextBuilder>
+            </div>
             <div className="absolute right-1/4 mt-6">
-              {" "}
               <Label text={activeMilestone.image[0].location} />
-            </div>{" "}
+            </div>
             <div className="mt-[10%] mb-[20%] flex flex-col items-center">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
-                  key={activeIndex} // this tells React/Framer Motion to treat each milestone as new
+                  key={activeIndex}
                   className="flex flex-row gap-[28px] mt-[20px] justify-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -251,16 +252,15 @@ export default function NewMilestones() {
                 >
                   {activeMilestone.image.map((img, idx) => (
                     <motion.div
-                      key={`${activeIndex}-${img.url}`} // unique per image
+                      key={`${activeIndex}-${img.url}`}
                       className="flex flex-col gap-4 items-center text-center"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ duration: 0.2, ease: "easeInOut" }}
                     >
-                      <div className="relative w-[416px] h-[240px] rounded-[24px]  overflow-hidden">
+                      <div className="relative w-[416px] h-[240px] rounded-[24px] overflow-hidden">
                         <Image
-                          
                           src={img.url}
                           alt={img.label}
                           fill
@@ -280,19 +280,21 @@ export default function NewMilestones() {
               </AnimatePresence>
             </div>
           </div>
-          {/* Year */}
-
-          {/* Location Label */}
-
-          {/* Active Images */}
         </div>
       </div>
 
-      {/* Map background */}
-      <div
-        className="absolute right-0 top-0 w-[60%] h-full bg-cover bg-center opacity-40"
-        style={{ backgroundImage: "url('/assets/milestone/map.webp')" }}
-      />
+      {/* Dynamic Map Background with AnimatePresence */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeIndex}
+          className="absolute right-0 top-0 w-[60%] h-full bg-cover bg-center opacity-40 pointer-events-none"
+          style={{ backgroundImage: `url('${activeMilestone.mapImage}')` }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.4 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        />
+      </AnimatePresence>
     </main>
   );
 }

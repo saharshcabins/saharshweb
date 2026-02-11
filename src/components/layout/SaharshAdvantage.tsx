@@ -71,7 +71,7 @@ const SaharshAdvantage = () => {
 
       {/* Table - Desktop */}
       <div className="hidden md:block w-full max-w-[1200px]">
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="bg-white rounded-[24px]  border border-[var(--color-primary)] py-1 overflow-hidden">
           {/* Header */}
           <div className="grid grid-cols-3 bg-primary text-white">
             <div className="py-4 px-6">
