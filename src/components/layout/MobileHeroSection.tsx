@@ -160,11 +160,11 @@ const HeroSection = () => {
               delay: letters.length * 0.05 + 0.2 + 0.5,
               duration: 0.6,
             }}
-            className="px-6"
+            className="px-6 "
           >
             <TextBuilder fontSize="16px" weight="medium" color="section">
               Modern Design. Uncompromising Interiors.
-              <br /> An Extraordinary Living Experience.
+               An Extraordinary Living Experience.
             </TextBuilder>
           </motion.div>
         </motion.div>

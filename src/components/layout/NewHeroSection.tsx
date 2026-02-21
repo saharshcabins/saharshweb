@@ -138,7 +138,7 @@ const NewHeroSection = () => {
 
         {/* Heading */}
         <motion.div
-          className="mt-[400px] flex flex-col items-center gap-3 text-center z-20"
+          className="my-auto flex flex-col items-center gap-3 text-center z-20"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
