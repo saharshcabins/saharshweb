@@ -32,13 +32,13 @@ const milestoneData = [
       "Introduced a new range of modular cabins, including custom office and studio designs.",
     image: [
       {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
+        url: "/assets/newhero/product_1.webp",
         label:
           "First Major Project - Housing colony of 100+ prefab cabins set up in Shimla",
         location: "Shimla",
       },
     ],
-    mapImage: "/assets/milestone/map-shimla.webp", // Add your map image path
+    mapImage: "/assets/milestone/shimla-map.png", // Add your map image path
   },
   {
     year: "2024",
@@ -47,13 +47,13 @@ const milestoneData = [
       "Began a new chapter by exporting our cabins to clients in Europe and North America.",
     image: [
       {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
+        url: "/assets/newhero/product_2.webp",
         label:
           "Launched 'Qbinn Tusker' premium cottages & resorts in Bangalore.",
         location: "Bangalore",
       },
     ],
-    mapImage: "/assets/milestone/map-bangalore.png", // Add your map image path
+    mapImage: "/assets/milestone/map-banglore.png", // Add your map image path
   },
   {
     year: "2025",
@@ -62,12 +62,12 @@ const milestoneData = [
       "Started exporting to clients in Europe and North America, marking our first major international milestone.",
     image: [
       {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=420&q=80",
+        url: "/assets/built/cottages.png",
         label: "International Market Entry - Our first export venture to USA",
         location: "USA",
       },
     ],
-    mapImage: "/assets/milestone/map-usa.webp", // Add your map image path
+    mapImage: "/assets/milestone/global-map.png", // Add your map image path
   },
 ];
 
@@ -290,7 +290,7 @@ export default function NewMilestones() {
           className="absolute right-0 top-0 w-[60%] h-full bg-cover bg-center opacity-40 pointer-events-none"
           style={{ backgroundImage: `url('${activeMilestone.mapImage}')` }}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4 }}
+          animate={{ opacity: 0.3 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         />

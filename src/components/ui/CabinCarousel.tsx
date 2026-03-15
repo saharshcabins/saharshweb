@@ -10,27 +10,27 @@ import { ArrowNew } from "../../utils/svgUtils";
 const cabins = [
   {
     name: "Hutsie",
-    description: "20×40 ft | Bathroom | 1 Bed | Pantry",
+    description: " 20’x8’ | Bathroom | 2 Beds | Kitchenet",
     image: "/assets/cabin/hutsie.webp",
   },
   {
     name: "Rustico",
-    description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
+    description: " 24’x12’ | Bathroom | 2 – 3 Beds | Kitchenet",
     image: "/assets/cabin/rustico.webp",
   },
   {
     name: "Barnie",
-    description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
+    description: " 24’x10’ | Bathroom | 3 - 4 Beds | Kitchenet",
     image: "/assets/cabin/barnie.webp",
   },
   {
     name: "Skylighter",
-    description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
+    description: " 20’x10’ | Bathroom | 2 – 3 Beds | Kitchenet",
     image: "/assets/cabin/skylighter.webp",
   },
   {
     name: "Triango",
-    description: "20×40 ft | Bathroom | 2 Beds | Kitchen",
+    description: " 20’x12’ | Bathroom | 2 – 3 Beds | Kitchenet",
     image: "/assets/cabin/triango.webp",
   },
 ];

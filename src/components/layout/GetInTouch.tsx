@@ -1,6 +1,6 @@
 // components/GetInTouch.tsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 import InputBox from "../shared/Input";
@@ -10,71 +10,146 @@ import toast, { Toaster } from "react-hot-toast";
 import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 
 const projectLabels = [
-  "2 BHK",
-  "1 BHK",
-  "Customized",
-  "Cafe",
-  "Skylighter",
-  "Rustico",
+  "Farmhouse Cottage",
+  "Farmhouse Villa",
+  "Resort",
+  "Cafe / Site office",
+  "Other",
 ];
+
+const budgetOptions = [
+  "8 lakh - 15 lakh",
+  "16 lakh - 30 lakh",
+  "30 lakh - 50 lakh",
+  "50 lakh - 1 crore",
+  "1 crore - 3 crore",
+  "3 crore +",
+];
+
+type FormErrors = {
+  Name?: string;
+  Phone?: string;
+  "Project Location"?: string;
+  Budget?: string;
+  "Project Details"?: string;
+};
 
 const GetInTouch = () => {
   const [formData, setFormData] = useState<Record<string, string>>({
     Name: "",
-    "Email Id": "",
-    "Contact Number": "",
-    "Message (Optional)": "",
+    Phone: "",
+    "Project Location": "",
+    Email: "",
+    "Project Details": "",
   });
   const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
+  const [budget, setBudget] = useState<string>("");
+  const [budgetOpen, setBudgetOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const budgetRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = (key: string, value: string) => {
-    setFormData({ ...formData, [key]: value });
+    setFormData((prev) => ({ ...prev, [key]: value }));
+    if (errors[key as keyof FormErrors]) {
+      setErrors((prev) => ({ ...prev, [key]: undefined }));
+    }
+  };
+
+  const handleBudgetSelect = (option: string) => {
+    setBudget(option);
+    setBudgetOpen(false);
+    if (errors.Budget) {
+      setErrors((prev) => ({ ...prev, Budget: undefined }));
+    }
   };
 
   const handleLabelClick = (label: string) => {
     setSelectedLabels((prevLabels) =>
       prevLabels.includes(label)
         ? prevLabels.filter((l) => l !== label)
-        : [...prevLabels, label]
+        : [...prevLabels, label],
     );
   };
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (budgetRef.current && !budgetRef.current.contains(e.target as Node)) {
+        setBudgetOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const validate = (): FormErrors => {
+    const newErrors: FormErrors = {};
+
+    if (!formData.Name.trim()) {
+      newErrors.Name = "Name is required.";
+    }
+
+    if (!formData.Phone.trim()) {
+      newErrors.Phone = "Phone number is required.";
+    } else if (!/^\+?[\d\s\-()]{7,15}$/.test(formData.Phone.trim())) {
+      newErrors.Phone = "Enter a valid phone number.";
+    }
+
+    if (!formData["Project Location"].trim()) {
+      newErrors["Project Location"] = "Project location is required.";
+    }
+
+    if (!budget) {
+      newErrors.Budget = "Please select a budget range.";
+    }
+
+    if (!formData["Project Details"].trim()) {
+      newErrors["Project Details"] = "Project details are required.";
+    }
+
+    return newErrors;
+  };
+
   const handleSubmit = async () => {
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     setIsSubmitting(true);
 
     const params = new URLSearchParams();
-
     for (const key in formData) {
       if (Object.prototype.hasOwnProperty.call(formData, key)) {
         params.append(key, formData[key]);
       }
     }
-
-    params.append("Projects", selectedLabels.join(", "));
+    params.append("Interested In", selectedLabels.join(", "));
+    params.append("Budget", budget);
 
     try {
       const response = await fetch(
         "https://script.google.com/macros/s/AKfycbxWuThRqT9j4hy2D8lPAeO7zMuTbrfwZCcfAt6DIx8wOe07Yy5pfwyCT4TmBFAO4nta/exec",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: params.toString(),
-        }
+        },
       );
 
       if (response.ok) {
         toast.success("Message sent successfully!", { position: "top-right" });
-
         setFormData({
           Name: "",
-          "Email Id": "",
-          "Contact Number": "",
-          "Message (Optional)": "",
+          Phone: "",
+          "Project Location": "",
+          Email: "",
+          "Project Details": "",
         });
         setSelectedLabels([]);
+        setBudget("");
+        setErrors({});
       } else {
         toast.error(`Failed to send: ${response.status}`, {
           position: "top-right",
@@ -90,9 +165,14 @@ const GetInTouch = () => {
     }
   };
 
+  const ErrorMsg = ({ msg }: { msg?: string }) =>
+    msg ? (
+      <p className="mt-1 text-[12px] md:text-[13px] text-red-500 pl-2">{msg}</p>
+    ) : null;
+
   return (
     <div
-    id="contact-us"
+      id="contact-us"
       className="w-full px-6 py-12 md:p-[10%] md:pr-[4%]"
       style={{
         background:
@@ -103,7 +183,7 @@ const GetInTouch = () => {
       <div className="flex flex-col md:flex-row justify-between items-start gap-6">
         <MultiColorTextMobile
           fontSize="24px"
-  className="text-start sm:block md:block lg:hidden"
+          className="text-start sm:block md:block lg:hidden"
           items={[
             {
               text: "Love to hear from you,",
@@ -114,10 +194,9 @@ const GetInTouch = () => {
             { text: "get in touch!", color: "primary", weight: "bold" },
           ]}
         />
-
         <MultiColorText
           fontSize="56px"
-          className="text-start max-lg:hidden lg:block" // visible >= lg
+          className="text-start max-lg:hidden lg:block"
           items={[
             {
               text: "Love to hear from you,",
@@ -128,7 +207,6 @@ const GetInTouch = () => {
             { text: "get in touch!", color: "primary", weight: "bold" },
           ]}
         />
-
         <TextBuilder
           fontSize="16px md:20px"
           color="dark-light"
@@ -141,45 +219,149 @@ const GetInTouch = () => {
       </div>
 
       <div className="mt-12 md:mt-16">
+        {/* Row 1: Name + Phone */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InputBox
-            placeholder="Name"
-            value={formData.Name}
-            onChange={(e) => handleInputChange("Name", e.target.value)}
-          />
-          <InputBox
-            placeholder="Email Id"
-            type="email"
-            value={formData["Email Id"]}
-            onChange={(e) => handleInputChange("Email Id", e.target.value)}
-          />
-          <InputBox
-            placeholder="Contact Number"
-            type="tel"
-            value={formData["Contact Number"]}
-            onChange={(e) =>
-              handleInputChange("Contact Number", e.target.value)
-            }
-          />
-          <InputBox
-            placeholder="Message (Optional)"
-            value={formData["Message (Optional)"]}
-            onChange={(e) =>
-              handleInputChange("Message (Optional)", e.target.value)
-            }
-          />
+          <div>
+            <InputBox
+              placeholder="Name *"
+              value={formData.Name}
+              onChange={(e) => handleInputChange("Name", e.target.value)}
+              className={errors.Name ? "border-red-400" : ""}
+            />
+            <ErrorMsg msg={errors.Name} />
+          </div>
+          <div>
+            <InputBox
+              placeholder="Phone *"
+              type="tel"
+              value={formData.Phone}
+              onChange={(e) => handleInputChange("Phone", e.target.value)}
+              className={errors.Phone ? "border-red-400" : ""}
+            />
+            <ErrorMsg msg={errors.Phone} />
+          </div>
         </div>
 
+        {/* Row 2: Project Location + Email */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div>
+            <InputBox
+              placeholder="Project Location *"
+              value={formData["Project Location"]}
+              onChange={(e) =>
+                handleInputChange("Project Location", e.target.value)
+              }
+              className={errors["Project Location"] ? "border-red-400" : ""}
+            />
+            <ErrorMsg msg={errors["Project Location"]} />
+          </div>
+          <div>
+            <InputBox
+              placeholder="Email"
+              type="email"
+              value={formData.Email}
+              onChange={(e) => handleInputChange("Email", e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="flex max-sm:flex-col md:gap-6">
+          {" "}
+          <div className="mt-6 relative w-full" ref={budgetRef}>
+            <div
+              onClick={() => setBudgetOpen((prev) => !prev)}
+              className="
+              w-full cursor-pointer
+              h-[52px] md:h-[65px]
+              border bg-white
+              rounded-[12px] md:rounded-[16px]
+              px-[16px] md:px-[36px]
+              flex items-center justify-between
+              transition-all duration-300
+              select-none
+            "
+              style={{
+                borderColor: errors.Budget
+                  ? "rgb(248 113 113)"
+                  : budgetOpen
+                    ? "var(--color-primary)"
+                    : "var(--text-dark-25)",
+              }}
+            >
+              <span
+                className="text-[14px] md:text-[18px]"
+                style={{
+                  color: "var(--text-dark-50)",
+                  opacity: budget ? 1 : 0.5,
+                }}
+              >
+                {budget || "Budget *"}
+              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`w-4 h-4 transition-transform duration-200 flex-shrink-0 ${budgetOpen ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="var(--text-dark-25)"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+
+            {budgetOpen && (
+              <ul className="absolute z-50 w-full mt-1 bg-white rounded-[12px] md:rounded-[16px] overflow-hidden shadow-lg border border-[var(--text-dark-25)]">
+                {budgetOptions.map((option, i) => (
+                  <li
+                    key={i}
+                    className="
+                    px-[16px] md:px-[36px] py-3
+                    text-[14px] md:text-[18px]
+                    text-[var(--text-dark-50)]
+                    cursor-pointer
+                    hover:bg-[var(--section-accent)]
+                    transition-colors duration-150
+                  "
+                    style={{
+                      borderBottom:
+                        i < budgetOptions.length - 1
+                          ? "1px solid var(--text-dark-25)"
+                          : "none",
+                    }}
+                    onClick={() => handleBudgetSelect(option)}
+                  >
+                    {option}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <ErrorMsg msg={errors.Budget} />
+          </div>
+          {/* Project Details */}
+          <div className="mt-6 w-full">
+            <InputBox
+              placeholder="Project Details *"
+              value={formData["Project Details"]}
+              onChange={(e) =>
+                handleInputChange("Project Details", e.target.value)
+              }
+              className={errors["Project Details"] ? "border-red-400" : ""}
+            />
+            <ErrorMsg msg={errors["Project Details"]} />
+          </div>
+        </div>
+        {/* Interested In */}
         <div className="mt-10 md:mt-12 flex flex-col md:flex-row items-start gap-6">
           <TextBuilder
             fontSize="16px md:18px"
             color="dark50"
             className="whitespace-nowrap pt-1"
           >
-            Select projects
-            <br /> you&apos;re interested in:
+            Interested in *
           </TextBuilder>
-
           <div className="flex flex-wrap gap-3 w-full">
             {projectLabels.map((label, index) => (
               <ProjectLabel
@@ -190,30 +372,34 @@ const GetInTouch = () => {
               />
             ))}
           </div>
-
-          <div className="w-full md:w-auto">
-            <Button
-              text={isSubmitting ? "Sending..." : "Send"}
-              className="w-full md:w-auto"
-              onClick={handleSubmit}
-              disabled={isSubmitting}
-            />
-          </div>
-
         </div>
-          <div className="border-t mt-4 border-gray-200 pt-6 text-center space-y-2">
-            <TextBuilder weight="medium" color="dark" className="block">
-              Or reach us directly:
+
+        {/* Budget Dropdown */}
+
+        {/* Submit */}
+        <div className="mt-8 flex justify-end">
+          <Button
+            text={isSubmitting ? "Sending..." : "Submit"}
+            className="w-full md:w-auto"
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+          />
+        </div>
+
+        {/* Direct contact */}
+        <div className="border-t mt-4 border-gray-200 pt-6 text-center space-y-2">
+          <TextBuilder weight="medium" color="dark" className="block">
+            Or reach us directly:
+          </TextBuilder>
+          <div className="space-y-1">
+            <TextBuilder weight="normal" color="muted" className="block">
+              Call: +91-701-9495-021
             </TextBuilder>
-            <div className="space-y-1">
-              <TextBuilder weight="normal" color="muted" className="block">
-                Call: +91-701-9495-021
-              </TextBuilder>
-              <TextBuilder weight="normal" color="muted" className="block">
-                Email: sales@saharsh.co
-              </TextBuilder>
-            </div>
+            <TextBuilder weight="normal" color="muted" className="block">
+              Email: sales@saharsh.co
+            </TextBuilder>
           </div>
+        </div>
       </div>
     </div>
   );

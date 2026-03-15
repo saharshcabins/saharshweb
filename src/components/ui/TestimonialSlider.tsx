@@ -1,35 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 
 const logos = [
   "/assets/company_logo/logo1.webp",
   "/assets/company_logo/logo2.webp",
   "/assets/company_logo/logo3.webp",
   "/assets/company_logo/log04.webp",
-  "/assets/company_logo/logo1.webp",
-  "/assets/company_logo/logo2.webp",
-  "/assets/company_logo/logo3.webp",
-  "/assets/company_logo/log04.webp",
+  "/assets/company_logo/logo5.png",
+  "/assets/company_logo/logo6.png",
+  "/assets/company_logo/logo7.webp",
+  "/assets/company_logo/logo8.webp",
 ];
 
-const TestimonialSlider = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [trackWidth, setTrackWidth] = useState(0);
+const ITEM_WIDTH = 300; // matches w-[300px]
 
-  useEffect(() => {
-    if (containerRef.current) {
-      // Calculate the width of the first set of logos
-      const firstSet = Array.from(containerRef.current.children).slice(0, logos.length);
-      let width = 0;
-      firstSet.forEach((el) => {
-        // Use getBoundingClientRect().width for a more precise measurement
-        width += (el as HTMLElement).getBoundingClientRect().width;
-      });
-      setTrackWidth(width);
-    }
-  }, []);
+const TestimonialSlider = () => {
+  const trackWidth = logos.length * ITEM_WIDTH;
 
   return (
     <div className="relative w-full overflow-hidden py-10">
@@ -40,45 +28,40 @@ const TestimonialSlider = () => {
         <div className="w-32 h-full bg-gradient-to-l from-white/100 to-white/0" />
       </div>
 
-      {/* Slider track */}
-   <div
-  ref={containerRef}
-  className="flex w-max"
-  style={
-    {
-      "--track-width": `${trackWidth}px`,
-      animation: `marquee ${logos.length * 2}s linear infinite`,
-    } as React.CSSProperties & { [key: string]: string }
-  }
->
-        {logos.concat(logos).map((logo, index) => (
+      {/* Slider track — two copies for seamless loop */}
+      <div
+        className="flex w-max"
+        style={
+          {
+            "--track-width": `${trackWidth}px`,
+            animation: `marquee-desktop ${logos.length * 2}s linear infinite`,
+          } as React.CSSProperties & { [key: string]: string }
+        }
+      >
+        {[...logos, ...logos].map((logo, index) => (
           <div
             key={index}
             className="flex-shrink-0 w-[300px] h-[300px] flex items-center justify-center relative"
           >
-            {/* Background grid image */}
-            <Image 
+            <Image
               src="/assets/cabin/grid.webp"
               alt="Background Grid"
               fill
               className="object-cover absolute top-0 left-0 z-0"
-              
             />
-            {/* Logo */}
-            <Image 
+            <Image
               src={logo}
-              alt={`Logo ${index}`}
+              alt={`Logo ${index % logos.length}`}
               width={120}
               height={120}
               className="object-contain relative z-10"
-              
             />
           </div>
         ))}
       </div>
 
       <style jsx>{`
-        @keyframes marquee {
+        @keyframes marquee-desktop {
           0% {
             transform: translateX(0);
           }

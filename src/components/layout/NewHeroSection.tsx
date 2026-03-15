@@ -1,8 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { AnimatePresence, delay, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import TextBuilder from "../shared/TextBuilder";
-import { ArrowNew } from "@/utils/svgUtils";
 import Label from "../ui/HeroLabel";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -12,19 +11,20 @@ const NewHeroSection = () => {
   const [product, setProducts] = useState(false);
   const heading = "We Build Cabins";
   const letters = heading.split("");
+
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
-        delay: 0.5, // start animation after 0.5s
-        staggerChildren: 0.05, // animate letters one by one
+        delay: 0.5,
+        staggerChildren: 0.05,
       },
     },
   };
 
   const letterVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.6 } }, // no delay here
+    visible: { opacity: 1, transition: { duration: 0.6 } },
   };
 
   const slides = [
@@ -37,7 +37,7 @@ const NewHeroSection = () => {
         "/assets/newhero/product_2.webp",
       ],
       specialLabel: "Interior",
-      bgImage: "/assets/built/cottages.png", // Update with actual filename",
+      bgImage: "/assets/built/cottages.png",
     },
     {
       id: 2,
@@ -65,7 +65,6 @@ const NewHeroSection = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto advance every 5s
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
@@ -86,9 +85,20 @@ const NewHeroSection = () => {
   return (
     <>
       <Head>
-        <link rel="preload" as="image" href="/assets/newhero/hero_bg_1.webp" />
+        <link rel="preload" as="image" href="/assets/built/cottages.png" />
       </Head>
-      <div className="w-full h-screen bg-cover bg-center relative flex flex-col justify-between">
+
+      {/*
+        Key fix:
+        - Mobile: aspect-[4/3] so the container height is always proportional
+          to width — no more arbitrary h-screen cropping on small screens.
+        - Desktop (md+): h-screen restores the full-viewport feel.
+        - All images share object-cover + object-center so every slide
+          crops from the same anchor point.
+      */}
+      <div className="w-full aspect-[4/3] md:aspect-auto md:h-screen bg-cover bg-center relative flex flex-col justify-between overflow-hidden">
+
+        {/* Dark overlay when product panel open */}
         <AnimatePresence mode="wait">
           {product && (
             <motion.div
@@ -101,12 +111,14 @@ const NewHeroSection = () => {
           )}
         </AnimatePresence>
 
+        {/* Initial fade-in overlay */}
         <motion.div
           className="min-h-full bg-[#000000]/20 w-full absolute z-10"
           initial={{ opacity: 1 }}
           animate={{ opacity: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-        ></motion.div>
+        />
+
         {/* Background slides */}
         <AnimatePresence mode="wait">
           {slides.map(
@@ -125,20 +137,26 @@ const NewHeroSection = () => {
                     alt={`${slide.productName} background`}
                     fill
                     priority={idx === 0}
-                    className="object-cover"
+                    /*
+                      object-cover + object-center ensures every image
+                      scales to fill the container from the same center
+                      anchor — no per-slide shifting.
+                    */
+                    className="object-cover object-center"
                     quality={100}
+                    sizes="100vw"
                   />
 
-                  {/* Gradient Overlay */}
+                  {/* Consistent gradient on all slides */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
                 </motion.div>
-              ),
+              )
           )}
         </AnimatePresence>
 
         {/* Heading */}
         <motion.div
-          className="my-auto flex flex-col items-center gap-3 text-center z-20"
+          className="my-auto flex flex-col items-center gap-3 text-center z-20 px-4"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
@@ -165,7 +183,7 @@ const NewHeroSection = () => {
                     {letter}
                   </TextBuilder>
                 </motion.span>
-              ),
+              )
             )}
           </motion.div>
 
@@ -184,7 +202,6 @@ const NewHeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Product & Labels */}
       </div>
     </>
   );

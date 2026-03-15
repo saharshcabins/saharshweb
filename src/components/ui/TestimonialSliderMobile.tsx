@@ -8,26 +8,17 @@ const logos = [
   "/assets/company_logo/logo2.webp",
   "/assets/company_logo/logo3.webp",
   "/assets/company_logo/log04.webp",
-  "/assets/company_logo/logo1.webp",
-  "/assets/company_logo/logo2.webp",
-  "/assets/company_logo/logo3.webp",
-  "/assets/company_logo/log04.webp",
+  "/assets/company_logo/logo5.png",
+  "/assets/company_logo/logo6.png",
+  "/assets/company_logo/logo7.webp",
+  "/assets/company_logo/logo8.webp",
 ];
 
-const TestimonialSliderMobile = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [trackWidth, setTrackWidth] = useState(0);
+// Single set — we duplicate in JSX for the seamless loop
+const ITEM_WIDTH = 122; // matches w-[122px]
 
-  useEffect(() => {
-    if (containerRef.current) {
-      const firstSet = Array.from(containerRef.current.children).slice(0, logos.length);
-      let width = 0;
-      firstSet.forEach((el) => {
-        width += (el as HTMLElement).getBoundingClientRect().width;
-      });
-      setTrackWidth(width);
-    }
-  }, []);
+const TestimonialSliderMobile = () => {
+  const trackWidth = logos.length * ITEM_WIDTH;
 
   return (
     <div className="relative w-full overflow-hidden py-10">
@@ -38,35 +29,30 @@ const TestimonialSliderMobile = () => {
         <div className="w-20 h-full bg-gradient-to-l from-white to-transparent" />
       </div>
 
-      {/* Slider track */}
+      {/* Slider track — two copies for seamless loop */}
       <div
-        ref={containerRef}
         className="flex w-max"
         style={
           {
             "--track-width": `${trackWidth}px`,
-            animation: `marquee ${logos.length * 4}s linear infinite`,
+            animation: `marquee-mobile ${logos.length * 2}s linear infinite`,
           } as React.CSSProperties & { [key: string]: string }
         }
       >
-        {logos.concat(logos).map((logo, index) => (
+        {[...logos, ...logos].map((logo, index) => (
           <div
             key={index}
             className="flex-shrink-0 w-[122px] h-[112px] flex items-center justify-center relative"
           >
-            {/* Background grid image */}
             <Image
-              
               src="/assets/cabin/grid_mobile.webp"
               alt="Background Grid"
               fill
               className="object-cover absolute top-0 left-0 z-0"
             />
-            {/* Logo */}
             <Image
-              
               src={logo}
-              alt={`Logo ${index}`}
+              alt={`Logo ${index % logos.length}`}
               width={60}
               height={36}
               className="object-contain relative z-10"
@@ -76,7 +62,7 @@ const TestimonialSliderMobile = () => {
       </div>
 
       <style jsx>{`
-        @keyframes marquee {
+        @keyframes marquee-mobile {
           0% {
             transform: translateX(0);
           }
