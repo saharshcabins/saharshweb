@@ -7,29 +7,27 @@ const FAQSection = () => {
 
   const faqData = [
     {
-      question: "Are prefab cabins as durable as brick-and-mortar buildings?",
+      question:
+        "What is the difference between modular construction and traditional RCC construction?",
       answer:
-        "Absolutely. Our cabins are engineered using high-quality structural steel and materials designed for longevity and resilience. They are built to withstand harsh weather conditions and meet rigorous quality standards, offering a lifespan of 25 to 50 years or more, comparable to traditional structures.",
+        "Modular construction is built off-site in a controlled factory setting, making it significantly faster, more eco-friendly, and portable compared to traditional, labor-intensive RCC buildings.",
     },
     {
-      question: "Can the cabins be customized?",
+      question:
+        "What materials are used in manufacturing the cabins and homes?",
       answer:
-        "Yes. Customization is at the core of what we do. From the floor plan and dimensions to the choice of windows, doors, flooring, and interior finishes, we work with you to create a space that perfectly matches your functional needs and aesthetic preferences.",
+        "Drawing on our 15 years of expertise, we use high-grade galvanized steel frames paired with weather-resistant insulated sandwich panels and fiber cement boards for maximum durability.",
     },
     {
-      question: "How does the cost compare to traditional construction?",
+      question:
+        "What are the construction and manufacturing timelines before shipping?",
       answer:
-        "Modular construction is significantly more cost-effective. You save money through reduced labor costs, minimal material waste, and a dramatically shorter construction timeline, which for commercial projects means a faster return on investment. Our pricing is transparent and fixed upfront, protecting you from the budget overruns common in conventional projects.",
+        "Turn-key project delivery typically takes just 10 - 12 weeks, and with our four facilities across India, we ensure rapid domestic delivery and efficient shipping for international exports.",
     },
     {
-      question: "What is the lifespan of a Saharsh Cabin?",
+      question: "Are these structures customizable?",
       answer:
-        "Our cabins are built to last. With proper maintenance, you can expect a service life of 25-50 years. We use durable, corrosion-resistant materials to ensure your investment stands the test of time.",
-    },
-    {
-      question: "Do I need special permissions to install a cabin?",
-      answer:
-        "Permission requirements vary by location and land type, particularly for agricultural land. While you are ultimately responsible for securing local approvals, our experienced team will guide you through the process and provide the necessary structural documents to help streamline your application and avoid common pitfalls.",
+        "Yes, these structures are customiszable! You can fully customize floor plans, exterior cladding, interior finishes, and layouts to perfectly match the specific needs of your home, resort, or commercial space.",
     },
   ];
 
@@ -58,13 +56,13 @@ const FAQSection = () => {
             {/* Question Button */}
             <button
               onClick={() => toggleFAQ(index)}
-              className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
+              className="w-full flex items-center justify-between p-4 sm:p-6 text-left hover:bg-gray-50 transition-colors"
             >
               <TextBuilder
                 size="lg"
                 weight="semibold"
                 color="dark"
-                className="pr-4"
+                className="pr-4 text-[14px] sm:text-[18px] md:text-[20px]"
               >
                 {faq.question}
               </TextBuilder>
@@ -75,7 +73,11 @@ const FAQSection = () => {
                   openIndex === index ? "rotate-45" : ""
                 }`}
               >
-                <TextBuilder size="2xl" weight="light" color="primary">
+                <TextBuilder
+                  weight="light"
+                  color="primary"
+                  className="text-[18px] sm:text-[22px]"
+                >
                   +
                 </TextBuilder>
               </div>
@@ -88,7 +90,11 @@ const FAQSection = () => {
               }`}
             >
               <div className="px-6 pb-6 pt-2 border-t border-gray-100">
-                <TextBuilder weight="normal" color="muted" className="leading-relaxed">
+                <TextBuilder
+                  weight="normal"
+                  color="muted"
+                  className="leading-relaxed text-[13px] sm:text-[15px] md:text-[16px]"
+                >
                   {faq.answer}
                 </TextBuilder>
               </div>

@@ -7,7 +7,7 @@ const CabinSection = () => {
   return (
     <div className="text-center leading-[1.2] flex flex-col gap-8 items-center">
      <MultiColorText
-  fontSize="36px"
+  fontSize="32px"
   items={[
     { text: "Your Vision", color: "primary", weight: "bold" },
     {
