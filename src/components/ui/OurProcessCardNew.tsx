@@ -3,10 +3,9 @@ import TextBuilder from "../shared/TextBuilder";
 
 interface OurProcessCardNewProps {
   number: string;
-  title: React.ReactNode; // can be string or JSX (like <br /> usage)
-  icon: React.ElementType; // for passing icon components
+  title: React.ReactNode;
+  icon: React.ElementType;
   description: string;
-  isActive: boolean;
 }
 
 const OurProcessCardNew: React.FC<OurProcessCardNewProps> = ({
@@ -14,31 +13,34 @@ const OurProcessCardNew: React.FC<OurProcessCardNewProps> = ({
   title,
   icon: Icon,
   description,
-  isActive,
 }) => {
   return (
     <div
-      className={`flex flex-col gap-10 py-10 px-[60px] w-[547px] shrink-0 rounded-3xl transition-all duration-300 border 
-        ${isActive ? "border-[var(--color-primary)] opacity-100" : "border-[var(--light-border)] opacity-50"}`}
+      className="group flex flex-col gap-8 py-10 px-12 rounded-3xl transition-all duration-300 border border-[var(--light-border)] hover:border-[var(--color-primary)] w-full"
     >
-      <div className="flex flex-col gap-4">
+      {/* Number + Title */}
+      <div className="flex flex-col gap-3">
         <TextBuilder fontSize="56px" weight="extrabold" color="primary">
           {number}
         </TextBuilder>
-        <TextBuilder fontSize="36px" weight="bold" color="light">
+        <TextBuilder fontSize="32px" weight="bold" color="light">
           {title}
         </TextBuilder>
       </div>
 
-      <div className="flex flex-row gap-10 items-center">
-        <div className="w-[100px] h-[102px] text-[var(--color-primary)]">
+      {/* Divider */}
+      <div className="w-full h-px bg-[var(--light-border)] group-hover:bg-[var(--color-primary)] transition-colors duration-300" />
+
+      {/* Icon + Description */}
+      <div className="flex flex-row gap-8 items-center">
+        <div className="w-[80px] h-[80px] shrink-0 text-[var(--color-primary)]">
           <Icon />
         </div>
         <TextBuilder
-          fontSize="18px"
+          fontSize="16px"
           weight="bold"
           color="lighter"
-          className="leading-[1.25]"
+          className="leading-[1.4]"
         >
           {description}
         </TextBuilder>

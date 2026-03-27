@@ -118,7 +118,7 @@ const QuoteSection = () => {
           }}
         >
           <Image
-            src={"/assets/quote/hanging_container.png"}
+            src={"/assets/quote/handing_container.png"}
             height={700}
             width={660}
             alt="hanging_container"

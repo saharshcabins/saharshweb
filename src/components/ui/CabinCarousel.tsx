@@ -10,27 +10,27 @@ import { ArrowNew } from "../../utils/svgUtils";
 const cabins = [
   {
     name: "Hutsie",
-    description: " 20’x8’ | Bathroom | 2 Beds | Kitchenet",
+    description: " 20’x8’ | Bathroom | 2 Pax | Kitchenet",
     image: "/assets/cabin/hutsie.webp",
   },
   {
     name: "Rustico",
-    description: " 24’x12’ | Bathroom | 2 – 3 Beds | Kitchenet",
+    description: " 24’x12’ | Bathroom | 2 – 3 Pax | Kitchenet",
     image: "/assets/cabin/rustico.webp",
   },
   {
     name: "Barnie",
-    description: " 24’x10’ | Bathroom | 3 - 4 Beds | Kitchenet",
+    description: " 24’x10’ | Bathroom | 3 - 4 Pax | Kitchenet",
     image: "/assets/cabin/barnie.webp",
   },
   {
     name: "Skylighter",
-    description: " 20’x10’ | Bathroom | 2 – 3 Beds | Kitchenet",
+    description: " 20’x10’ | Bathroom | 2 – 3 Pax | Kitchenet",
     image: "/assets/cabin/skylighter.webp",
   },
   {
     name: "Triango",
-    description: " 20’x12’ | Bathroom | 2 – 3 Beds | Kitchenet",
+    description: " 20’x12’ | Bathroom | 2 – 3 Pax | Kitchenet",
     image: "/assets/cabin/triango.webp",
   },
 ];
@@ -202,9 +202,8 @@ const CabinCarousel = () => {
       </div>
 
       <TextBuilder fontSize="24px" color="dark">
-        Saharsh Cabins are utilizing high-quality materials and innovative
-        construction <br /> techniques to ensure durability, efficiency, and
-        aesthetic appeal.
+         Saharsh Cabins, luxury cottages, and luxury villas are crafted using high-quality materials<br />and innovative construction techniques to ensure durability, efficiency, and aesthetic appeal.
+
       </TextBuilder>
     </div>
   );

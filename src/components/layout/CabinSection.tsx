@@ -8,30 +8,30 @@ const CabinSection = () => {
     <div className="text-center leading-[1.2] flex flex-col gap-8 items-center">
      <MultiColorText
   fontSize="32px"
-  items={[
-    { text: "Your Vision", color: "primary", weight: "bold" },
-    {
-      text: " delivered in weeks, not years,built with speed and certainty",
-      color: "link",
-      breakAfter: true,
-    },
-    {
-      text: " premium, custom-designed modular",
-      color: "link",
-      weight: "medium",
-    },
-    {
-      text: " cabins ",
-      color: "dark",
-      weight: "semibold",
-      breakAfter: true,
-    },
-    {
-      text: "for resorts, farmhouses, and modern site offices.",
-      color: "dark",
-      weight: "semibold",
-    },
-  ]}
+items={[
+  { text: "Your Vision", color: "primary", weight: "bold" },
+  {
+    text: " delivered in weeks, not years, built with speed and certainty",
+    color: "link",
+    breakAfter: true,
+  },
+  {
+    text: " premium, custom-designed modular",
+    color: "link",
+    weight: "medium",
+  },
+  {
+    text: " cabins, luxury cottages, and luxury villas ",
+    color: "dark",
+    weight: "semibold",
+    breakAfter: true,
+  },
+  {
+    text: "for resorts, farmhouses, and modern site offices.",
+    color: "dark",
+    weight: "semibold",
+  },
+]}
 />
 
       <div className="flex flex-row justify-center gap-12">

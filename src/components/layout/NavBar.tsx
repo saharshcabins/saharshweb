@@ -54,10 +54,10 @@ const NavBar = () => {
 
   return (
     <motion.div
-      className={`fixed top-8 left-1/2 -translate-x-1/2 z-50
+      className={`fixed top-8 md:top-3 left-1/2 -translate-x-1/2 z-50
     transition-transform duration-300
     ${showNav ? "translate-y-0" : "-translate-y-[150%]"}
-    bg-[var(--nav-bg-color)] p-4 lg:p-6 rounded-[24px]
+    bg-[var(--nav-bg-color)] p-4 lg:p-4 lg:px-6 rounded-[24px]
     w-[90%] lg:w-[90%]`}
       initial={{ opacity: 0,  }}
       animate={{ opacity: 1, }}

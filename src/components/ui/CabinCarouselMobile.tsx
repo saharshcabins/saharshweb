@@ -7,31 +7,30 @@ import TextBuilderMobile from "../shared/TextBuilderMobile";
 import { ArrowNew } from "../../utils/svgUtils";
 import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 
-
 const cabins = [
   {
     name: "Hutsie",
-    description: " 20’x8’ | Bathroom | 2 Beds | Kitchenet",
+    description: " 20’x8’ | Bathroom | 2 Pax | Kitchenet",
     image: "/assets/cabin/hutsie.webp",
   },
   {
     name: "Rustico",
-    description: " 24’x12’ | Bathroom | 2 – 3 Beds | Kitchenet",
+    description: " 24’x12’ | Bathroom | 2 – 3 Pax | Kitchenet",
     image: "/assets/cabin/rustico.webp",
   },
   {
     name: "Barnie",
-    description: " 24’x10’ | Bathroom | 3 - 4 Beds | Kitchenet",
+    description: " 24’x10’ | Bathroom | 3 - 4 Pax | Kitchenet",
     image: "/assets/cabin/barnie.webp",
   },
   {
     name: "Skylighter",
-    description: " 20’x10’ | Bathroom | 2 – 3 Beds | Kitchenet",
+    description: " 20’x10’ | Bathroom | 2 – 3 Pax | Kitchenet",
     image: "/assets/cabin/skylighter.webp",
   },
   {
     name: "Triango",
-    description: " 20’x12’ | Bathroom | 2 – 3 Beds | Kitchenet",
+    description: " 20’x12’ | Bathroom | 2 – 3 Pax | Kitchenet",
     image: "/assets/cabin/triango.webp",
   },
 ];
@@ -42,8 +41,8 @@ const CabinCarouselMobile = () => {
   const slideWidth = 265 + 20; // card width (265px) + gap (20px)
 
   // Function to move the carousel
-  const moveCarousel = (direction: 'left' | 'right') => {
-    if (direction === 'left') {
+  const moveCarousel = (direction: "left" | "right") => {
+    if (direction === "left") {
       setActiveIndex((prev) => (prev - 1 + cabins.length) % cabins.length);
     } else {
       setActiveIndex((prev) => (prev + 1) % cabins.length);
@@ -82,17 +81,31 @@ const CabinCarouselMobile = () => {
               animate={{ x, opacity, zIndex }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
             >
-              <Image  src={cabin.image} alt={cabin.name} fill className="object-cover" />
+              <Image
+                src={cabin.image}
+                alt={cabin.name}
+                fill
+                className="object-cover"
+              />
 
               {/* Gradient overlay */}
               <div className="absolute bottom-0 left-0 right-0 h-[100px] bg-gradient-to-t from-[#0F1B26] to-transparent z-10" />
 
               {/* Content */}
               <div className="relative z-10 p-5 text-left flex flex-col items-start w-full">
-                <TextBuilderMobile fontSize="18px" weight="bold" color="light" className="leading-[1.2]">
+                <TextBuilderMobile
+                  fontSize="18px"
+                  weight="bold"
+                  color="light"
+                  className="leading-[1.2]"
+                >
                   {cabin.name}
                 </TextBuilderMobile>
-                <TextBuilderMobile fontSize="10px" color="light" className="leading-[1.25]">
+                <TextBuilderMobile
+                  fontSize="10px"
+                  color="light"
+                  className="leading-[1.25]"
+                >
                   {cabin.description}
                 </TextBuilderMobile>
               </div>
@@ -101,16 +114,19 @@ const CabinCarouselMobile = () => {
               {i === activeIndex && (
                 <div className="absolute inset-0 flex items-center justify-between z-20 px-1">
                   <button
-                    onClick={() => moveCarousel('left')}
+                    onClick={() => moveCarousel("left")}
                     className="p-2 bg-[rgba(15,27,38,0.5)] rounded-full border border-[var(--color-primary)]"
                   >
-                    <ArrowNew  className="text-[var(--text-light)] w-5 h-5" />
+                    <ArrowNew className="text-[var(--text-light)] w-5 h-5" />
                   </button>
                   <button
-                    onClick={() => moveCarousel('right')}
+                    onClick={() => moveCarousel("right")}
                     className="p-2 bg-[rgba(15,27,38,0.5)] rounded-full border border-[var(--color-primary)]"
                   >
-                    <ArrowNew flipped className="text-[var(--text-light)] w-5 h-5" />
+                    <ArrowNew
+                      flipped
+                      className="text-[var(--text-light)] w-5 h-5"
+                    />
                   </button>
                 </div>
               )}
@@ -119,8 +135,13 @@ const CabinCarouselMobile = () => {
         })}
       </div>
 
-      <TextBuilderMobile fontSize="12px" color="dark" className="text-center px-6">
-        Saharsh Cabins are utilizing high-quality materials and innovative construction techniques to ensure
+      <TextBuilderMobile
+        fontSize="12px"
+        color="dark"
+        className="text-center px-6"
+      >
+        Saharsh Cabins, luxury cottages, and luxury villas are crafted using
+        high-quality materials and innovative construction techniques to ensure
         durability, efficiency, and aesthetic appeal.
       </TextBuilderMobile>
     </div>

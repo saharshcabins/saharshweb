@@ -13,7 +13,6 @@ const projectLabels = [
   "Farmhouse Cottage",
   "Farmhouse Villa",
   "Resort",
-  "Cafe / Site office",
   "Other",
 ];
 
