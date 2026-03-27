@@ -43,7 +43,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         {/* Dynamic sections with spinners */}
         <SaharshAdvantage />
         <QuoteSection />
-        <NewMilestones />
+        {/* <NewMilestones /> */}
         <CabinCarousel />
         <TestimonialSection />
         <OurProcessNew />
