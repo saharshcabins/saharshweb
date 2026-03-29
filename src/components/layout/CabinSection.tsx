@@ -44,6 +44,7 @@ const CabinSection = () => {
           fill
           src="/assets/cabin/cabin_11.jpg"
           alt="cabin-section"
+          className="scale-[1.2]"
           style={{ objectFit: "contain" }}
           sizes="(max-width: 1040px) 100vw, 1040px"
         />
