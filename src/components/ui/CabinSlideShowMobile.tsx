@@ -25,7 +25,7 @@ const slides: Slide[] = [
   },
   {
     type: "image",
-    src: "/assets/built/cottages_1.png",
+    src: "/assets/built/cottage_1.png",
     title: "Modular Cottages",
     description:
       "The art of instant living.Architectural beauty, delivered to your doorstep.",
