@@ -38,13 +38,7 @@ const slides: Slide[] = [
     src: "/assets/built/cafe.png", // Update with actual filename
     title: "Modular Cafe",
     description: "Serve sooner. Scale faster.Turnkey cafe spaces for rapid expansion.",
-  },
-  {
-    type: "image",
-    src: "/assets/built/site_office.png", // Update with actual filename
-    title: "Site Office",
-    description: "Built for the grind.Rugged portable site offices for rapid deployment.",
-  },
+  }
 ];
 
 const CARD_WIDTH = 284 + 16; // card width + gap (px)

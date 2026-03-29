@@ -44,9 +44,10 @@ items={[
         <Image
         
           fill
-          src="/assets/cabin/cabin_1.png"
+          src="/assets/cabin/cabin_11.jpeg"
           alt="cabin-section"
           style={{ objectFit: "contain" }}
+          className="scale-[1.3]"
           sizes="(max-width: 1040px) 100vw, 1040px"
           
         />
