@@ -14,31 +14,36 @@ type Slide = {
   description: string;
 };
 
+
 const slides: Slide[] = [
   {
     type: "image",
-    src: "/assets/built/center.png", // Update with actual filename
+    src: "/assets/built/office_1.png",
     title: "Marketing Sales Offices",
-    description: "Showcase excellence anywhere.Mobile sales suites. Built to impress, designed to move.",
+    description:
+      "Showcase excellence anywhere.Mobile sales suites. Built to impress, designed to move.",
   },
   {
     type: "image",
-    src: "/assets/built/cottages.png", // Update with actual filename
+    src: "/assets/built/cottages_1.png",
     title: "Modular Cottages",
-    description: "The art of instant living.Architectural beauty, delivered to your doorstep.",
+    description:
+      "The art of instant living.Architectural beauty, delivered to your doorstep.",
   },
   {
     type: "image",
-    src: "/assets/built/villa.png", // Update with actual filename
+    src: "/assets/built/villa_1.png",
     title: "Modular Farmhouses",
-    description: "Land to living. Seamlessly.Precision-engineered homes for your private retreat.",
+    description:
+      "Land to living. Seamlessly.Precision-engineered homes for your private retreat.",
   },
   {
     type: "image",
-    src: "/assets/built/cafe.png", // Update with actual filename
+    src: "/assets/built/cafe_1.png",
     title: "Modular Cafe",
-    description: "Serve sooner. Scale faster.Turnkey cafe spaces for rapid expansion.",
-  }
+    description:
+      "Serve sooner. Scale faster.Turnkey cafe spaces for rapid expansion.",
+  },
 ];
 
 const CARD_WIDTH = 284 + 16; // card width + gap (px)
