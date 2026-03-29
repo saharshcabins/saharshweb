@@ -21,10 +21,10 @@ export default function MainLayoutSmall({ children }: { children: ReactNode }) {
       {/* Main Content Container with consistent padding */}
       <div className='flex flex-col items-center gap-20 w-full  mx-auto '>
         <ResponsiveHeroSection />
-        <CabinSectionMobile />
+        <CabinSectionMobile />        <CabinSlideShowMobile />        <SaharshAdvantage />
+
+
         <CabinCarouselMobile />
-        <SaharshAdvantage />
-        <CabinSlideShowMobile />
         <TestimonialSectionMobile />
         <OurProcessMobile />
         {/* <MilestoneMobile /> */}

@@ -15,7 +15,6 @@ const CabinSectionMobile = () => {
   {
     text: " delivered in weeks, not years, built with speed and certainty",
     color: "link",
-    breakAfter: true,
   },
   {
     text: " premium, custom-designed modular",
@@ -26,7 +25,6 @@ const CabinSectionMobile = () => {
     text: " cabins, luxury cottages, and luxury villas ",
     color: "dark",
     weight: "semibold",
-    breakAfter: true,
   },
   {
     text: "for resorts, farmhouses, and modern site offices.",
@@ -46,7 +44,7 @@ const CabinSectionMobile = () => {
       <div className="w-full aspect-[1040/500] relative ">
         <Image
           fill
-          src="/assets/cabin/cabin_1.webp"
+          src="/assets/cabin/cabin_11.jpeg"
           alt="cabin-section"
           style={{ objectFit: "cover" }}
           sizes="(max-width: 768px) 100vw"

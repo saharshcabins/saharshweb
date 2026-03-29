@@ -11,7 +11,46 @@ const NewHeroSection = () => {
   const [product, setProducts] = useState(false);
   const heading = "We Build Cabins";
   const letters = heading.split("");
+const words = [
+  "Cabins",
+  "Luxury Cottages",
+  "Villas",
+  "Offices",
+  "Resorts",
+];
 
+const [text, setText] = useState("");
+const [wordIndex, setWordIndex] = useState(0);
+const [isDeleting, setIsDeleting] = useState(false);
+
+useEffect(() => {
+  const currentWord = words[wordIndex];
+  let timeout: NodeJS.Timeout;
+
+  if (!isDeleting) {
+    // typing
+    if (text.length < currentWord.length) {
+      timeout = setTimeout(() => {
+        setText(currentWord.slice(0, text.length + 1));
+      }, 80);
+    } else {
+      // pause before deleting
+      timeout = setTimeout(() => setIsDeleting(true), 2000);
+    }
+  } else {
+    // deleting
+    if (text.length > 0) {
+      timeout = setTimeout(() => {
+        setText(currentWord.slice(0, text.length - 1));
+      }, 40);
+    } else {
+      setIsDeleting(false);
+      setWordIndex((prev) => (prev + 1) % words.length);
+    }
+  }
+
+  return () => clearTimeout(timeout);
+}, [text, isDeleting, wordIndex]);
   const containerVariants = {
     hidden: {},
     visible: {
@@ -22,10 +61,7 @@ const NewHeroSection = () => {
     },
   };
 
-  const letterVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.6 } },
-  };
+
 
   const slides = [
     {
@@ -162,30 +198,34 @@ const NewHeroSection = () => {
           variants={containerVariants}
           transition={{ delay: 0.8 }}
         >
-          <motion.div className="flex flex-wrap justify-center">
-            {letters.map((letter, idx) =>
-              letter === " " ? (
-                <span key={idx} className="mr-[10px]">
-                  &nbsp;
-                </span>
-              ) : (
-                <motion.span
-                  key={idx}
-                  variants={letterVariants}
-                  transition={{ delay: 0.5, duration: 0.6 }}
-                  style={{ display: "inline-block" }}
-                >
-                  <TextBuilder
-                    fontSize="75px"
-                    weight="extrabold"
-                    color="light"
-                  >
-                    {letter}
-                  </TextBuilder>
-                </motion.span>
-              )
-            )}
-          </motion.div>
+       <motion.div className="flex flex-wrap justify-center items-center gap-2">
+  {/* Static Part */}
+  <TextBuilder fontSize="75px" weight="extrabold" color="light">
+    We Build
+  </TextBuilder>
+
+  {/* Animated Part */}
+  <motion.span
+    key={wordIndex}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+  >
+    <TextBuilder fontSize="75px" weight="extrabold" color="light">
+      {text}
+    </TextBuilder>
+  </motion.span>
+
+  {/* Cursor */}
+  <motion.span
+    animate={{ opacity: [0, 1, 0] }}
+    transition={{ repeat: Infinity, duration: 1 }}
+  >
+    <TextBuilder fontSize="75px" weight="extrabold" color="light">
+      |
+    </TextBuilder>
+  </motion.span>
+</motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
