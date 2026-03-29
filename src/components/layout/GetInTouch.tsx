@@ -4,16 +4,17 @@ import React, { useState, useRef, useEffect } from "react";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 import InputBox from "../shared/Input";
-import ProjectLabel from "../shared/ProjectLabel";
 import Button from "../shared/Button";
 import toast, { Toaster } from "react-hot-toast";
 import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 
-const projectLabels = [
-  "Farmhouse Cottage",
-  "Farmhouse Villa",
-  "Resort",
-  "Other",
+const interestOptions = [
+  "Luxury Cottage",
+  "Luxury Villa",
+  "Luxury Sales Office",
+  "Luxury Cafe",
+  "Micro Resort",
+  "International Export",
 ];
 
 const budgetOptions = [
@@ -30,7 +31,8 @@ type FormErrors = {
   Phone?: string;
   "Project Location"?: string;
   Budget?: string;
-  "Project Details"?: string;
+  
+  Interest?: string;
 };
 
 const GetInTouch = () => {
@@ -39,14 +41,15 @@ const GetInTouch = () => {
     Phone: "",
     "Project Location": "",
     Email: "",
-    "Project Details": "",
   });
-  const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
   const [budget, setBudget] = useState<string>("");
   const [budgetOpen, setBudgetOpen] = useState(false);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const [interestOpen, setInterestOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const budgetRef = useRef<HTMLDivElement>(null);
+  const interestRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = (key: string, value: string) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
@@ -63,18 +66,22 @@ const GetInTouch = () => {
     }
   };
 
-  const handleLabelClick = (label: string) => {
-    setSelectedLabels((prevLabels) =>
-      prevLabels.includes(label)
-        ? prevLabels.filter((l) => l !== label)
-        : [...prevLabels, label],
+  const handleInterestToggle = (option: string) => {
+    setSelectedInterests((prev) =>
+      prev.includes(option) ? prev.filter((o) => o !== option) : [...prev, option]
     );
+    if (errors.Interest) {
+      setErrors((prev) => ({ ...prev, Interest: undefined }));
+    }
   };
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (budgetRef.current && !budgetRef.current.contains(e.target as Node)) {
         setBudgetOpen(false);
+      }
+      if (interestRef.current && !interestRef.current.contains(e.target as Node)) {
+        setInterestOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -84,9 +91,7 @@ const GetInTouch = () => {
   const validate = (): FormErrors => {
     const newErrors: FormErrors = {};
 
-    if (!formData.Name.trim()) {
-      newErrors.Name = "Name is required.";
-    }
+    if (!formData.Name.trim()) newErrors.Name = "Name is required.";
 
     if (!formData.Phone.trim()) {
       newErrors.Phone = "Phone number is required.";
@@ -94,17 +99,13 @@ const GetInTouch = () => {
       newErrors.Phone = "Enter a valid phone number.";
     }
 
-    if (!formData["Project Location"].trim()) {
+    if (!formData["Project Location"].trim())
       newErrors["Project Location"] = "Project location is required.";
-    }
 
-    if (!budget) {
-      newErrors.Budget = "Please select a budget range.";
-    }
+    if (!budget) newErrors.Budget = "Please select a budget range.";
 
-    if (!formData["Project Details"].trim()) {
-      newErrors["Project Details"] = "Project details are required.";
-    }
+    if (selectedInterests.length === 0)
+      newErrors.Interest = "Please select at least one interest.";
 
     return newErrors;
   };
@@ -124,7 +125,7 @@ const GetInTouch = () => {
         params.append(key, formData[key]);
       }
     }
-    params.append("Interested In", selectedLabels.join(", "));
+    params.append("Interested In", selectedInterests.join(", "));
     params.append("Budget", budget);
 
     try {
@@ -134,30 +135,20 @@ const GetInTouch = () => {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: params.toString(),
-        },
+        }
       );
 
       if (response.ok) {
         toast.success("Message sent successfully!", { position: "top-right" });
-        setFormData({
-          Name: "",
-          Phone: "",
-          "Project Location": "",
-          Email: "",
-          "Project Details": "",
-        });
-        setSelectedLabels([]);
+        setFormData({ Name: "", Phone: "", "Project Location": "", Email: "" });
+        setSelectedInterests([]);
         setBudget("");
         setErrors({});
       } else {
-        toast.error(`Failed to send: ${response.status}`, {
-          position: "top-right",
-        });
+        toast.error(`Failed to send: ${response.status}`, { position: "top-right" });
       }
     } catch (error) {
-      toast.error("Failed to send message. Please try again.", {
-        position: "top-right",
-      });
+      toast.error("Failed to send message. Please try again.", { position: "top-right" });
       console.error("Error submitting form:", error);
     } finally {
       setIsSubmitting(false);
@@ -165,9 +156,14 @@ const GetInTouch = () => {
   };
 
   const ErrorMsg = ({ msg }: { msg?: string }) =>
-    msg ? (
-      <p className="mt-1 text-[12px] md:text-[13px] text-red-500 pl-2">{msg}</p>
-    ) : null;
+    msg ? <p className="mt-1 text-[12px] md:text-[13px] text-red-500 pl-2">{msg}</p> : null;
+
+  const interestDisplayLabel =
+    selectedInterests.length === 0
+      ? "Interested In *"
+      : selectedInterests.length === 1
+      ? selectedInterests[0]
+      : `${selectedInterests[0]} +${selectedInterests.length - 1} more`;
 
   return (
     <div
@@ -184,12 +180,7 @@ const GetInTouch = () => {
           fontSize="24px"
           className="text-start sm:block md:block lg:hidden"
           items={[
-            {
-              text: "Love to hear from you,",
-              color: "dark",
-              weight: "medium",
-              breakAfter: true,
-            },
+            { text: "Love to hear from you,", color: "dark", weight: "medium", breakAfter: true },
             { text: "get in touch!", color: "primary", weight: "bold" },
           ]}
         />
@@ -197,12 +188,7 @@ const GetInTouch = () => {
           fontSize="56px"
           className="text-start max-lg:hidden lg:block"
           items={[
-            {
-              text: "Love to hear from you,",
-              color: "dark",
-              weight: "medium",
-              breakAfter: true,
-            },
+            { text: "Love to hear from you,", color: "dark", weight: "medium", breakAfter: true },
             { text: "get in touch!", color: "primary", weight: "bold" },
           ]}
         />
@@ -211,9 +197,8 @@ const GetInTouch = () => {
           color="dark-light"
           className="w-full md:w-[35%] pt-[5px] md:pt-[15px]"
         >
-          Understanding your requirements, budget, and project scope led the
-          initial discussion of design possibilities and technical
-          specifications.
+          Understanding your requirements, budget, and project scope led the initial discussion of
+          design possibilities and technical specifications.
         </TextBuilder>
       </div>
 
@@ -247,9 +232,7 @@ const GetInTouch = () => {
             <InputBox
               placeholder="Project Location *"
               value={formData["Project Location"]}
-              onChange={(e) =>
-                handleInputChange("Project Location", e.target.value)
-              }
+              onChange={(e) => handleInputChange("Project Location", e.target.value)}
               className={errors["Project Location"] ? "border-red-400" : ""}
             />
             <ErrorMsg msg={errors["Project Location"]} />
@@ -263,35 +246,25 @@ const GetInTouch = () => {
             />
           </div>
         </div>
-        <div className="flex max-sm:flex-col md:gap-6">
-          {" "}
-          <div className="mt-6 relative w-full" ref={budgetRef}>
+
+        {/* Row 3: Budget + Interested In — side by side on desktop, stacked on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          {/* Budget */}
+          <div className="relative" ref={budgetRef}>
             <div
               onClick={() => setBudgetOpen((prev) => !prev)}
-              className="
-              w-full cursor-pointer
-              h-[52px] md:h-[65px]
-              border bg-white
-              rounded-[12px] md:rounded-[16px]
-              px-[16px] md:px-[36px]
-              flex items-center justify-between
-              transition-all duration-300
-              select-none
-            "
+              className="w-full cursor-pointer h-[52px] md:h-[65px] border bg-white rounded-[12px] md:rounded-[16px] px-[16px] md:px-[36px] flex items-center justify-between transition-all duration-300 select-none"
               style={{
                 borderColor: errors.Budget
                   ? "rgb(248 113 113)"
                   : budgetOpen
-                    ? "var(--color-primary)"
-                    : "var(--text-dark-25)",
+                  ? "var(--color-primary)"
+                  : "var(--text-dark-25)",
               }}
             >
               <span
                 className="text-[14px] md:text-[18px]"
-                style={{
-                  color: "var(--text-dark-50)",
-                  opacity: budget ? 1 : 0.5,
-                }}
+                style={{ color: "var(--text-dark-50)", opacity: budget ? 1 : 0.5 }}
               >
                 {budget || "Budget *"}
               </span>
@@ -303,11 +276,7 @@ const GetInTouch = () => {
                 stroke="var(--text-dark-25)"
                 strokeWidth={2}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </div>
 
@@ -316,19 +285,10 @@ const GetInTouch = () => {
                 {budgetOptions.map((option, i) => (
                   <li
                     key={i}
-                    className="
-                    px-[16px] md:px-[36px] py-3
-                    text-[14px] md:text-[18px]
-                    text-[var(--text-dark-50)]
-                    cursor-pointer
-                    hover:bg-[var(--section-accent)]
-                    transition-colors duration-150
-                  "
+                    className="px-[16px] md:px-[36px] py-3 text-[14px] md:text-[18px] text-[var(--text-dark-50)] cursor-pointer hover:bg-[var(--section-accent)] transition-colors duration-150"
                     style={{
                       borderBottom:
-                        i < budgetOptions.length - 1
-                          ? "1px solid var(--text-dark-25)"
-                          : "none",
+                        i < budgetOptions.length - 1 ? "1px solid var(--text-dark-25)" : "none",
                     }}
                     onClick={() => handleBudgetSelect(option)}
                   >
@@ -339,41 +299,78 @@ const GetInTouch = () => {
             )}
             <ErrorMsg msg={errors.Budget} />
           </div>
-          {/* Project Details */}
-          <div className="mt-6 w-full">
-            <InputBox
-              placeholder="Project Details *"
-              value={formData["Project Details"]}
-              onChange={(e) =>
-                handleInputChange("Project Details", e.target.value)
-              }
-              className={errors["Project Details"] ? "border-red-400" : ""}
-            />
-            <ErrorMsg msg={errors["Project Details"]} />
-          </div>
-        </div>
-        {/* Interested In */}
-        <div className="mt-10 md:mt-12 flex flex-col md:flex-row items-start gap-6">
-          <TextBuilder
-            fontSize="16px md:18px"
-            color="dark50"
-            className="whitespace-nowrap pt-1"
-          >
-            Interested in *
-          </TextBuilder>
-          <div className="flex flex-wrap gap-3 w-full">
-            {projectLabels.map((label, index) => (
-              <ProjectLabel
-                key={index}
-                text={label}
-                isActive={selectedLabels.includes(label)}
-                onClick={() => handleLabelClick(label)}
-              />
-            ))}
-          </div>
-        </div>
 
-        {/* Budget Dropdown */}
+          {/* Interested In — multi-select dropdown */}
+          <div className="relative" ref={interestRef}>
+            <div
+              onClick={() => setInterestOpen((prev) => !prev)}
+              className="w-full cursor-pointer h-[52px] md:h-[65px] border bg-white rounded-[12px] md:rounded-[16px] px-[16px] md:px-[36px] flex items-center justify-between transition-all duration-300 select-none"
+              style={{
+                borderColor: errors.Interest
+                  ? "rgb(248 113 113)"
+                  : interestOpen
+                  ? "var(--color-primary)"
+                  : "var(--text-dark-25)",
+              }}
+            >
+              <span
+                className="text-[14px] md:text-[18px] truncate pr-2"
+                style={{
+                  color: "var(--text-dark-50)",
+                  opacity: selectedInterests.length > 0 ? 1 : 0.5,
+                }}
+              >
+                {interestDisplayLabel}
+              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`w-4 h-4 transition-transform duration-200 flex-shrink-0 ${interestOpen ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="var(--text-dark-25)"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+
+            {interestOpen && (
+              <ul className="absolute z-50 w-full mt-1 bg-white rounded-[12px] md:rounded-[16px] overflow-hidden shadow-lg border border-[var(--text-dark-25)]">
+                {interestOptions.map((option, i) => {
+                  const isSelected = selectedInterests.includes(option);
+                  return (
+                    <li
+                      key={i}
+                      className="px-[16px] md:px-[36px] py-3 text-[14px] md:text-[18px] cursor-pointer flex items-center justify-between transition-colors duration-150"
+                      style={{
+                        color: isSelected ? "var(--color-primary)" : "var(--text-dark-50)",
+                        backgroundColor: isSelected ? "var(--section-accent)" : "white",
+                        borderBottom:
+                          i < interestOptions.length - 1 ? "1px solid var(--text-dark-25)" : "none",
+                      }}
+                      onClick={() => handleInterestToggle(option)}
+                    >
+                      <span>{option}</span>
+                      {isSelected && (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-4 h-4 flex-shrink-0"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="var(--color-primary)"
+                          strokeWidth={2.5}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+            <ErrorMsg msg={errors.Interest} />
+          </div>
+        </div>
 
         {/* Submit */}
         <div className="mt-8 flex justify-end">

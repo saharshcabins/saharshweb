@@ -45,7 +45,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <QuoteSection />
         {/* <NewMilestones /> */}
         <CabinCarousel />
-        <TestimonialSection />
+        {/* <TestimonialSection /> */}
         <OurProcessNew />
         <FAQSection />
         <GetInTouch />

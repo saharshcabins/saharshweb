@@ -8,7 +8,7 @@ import Head from "next/head";
 const HeroSection = () => {
   const heading = "We Build Cabins";
   const letters = heading.split("");
-  const words = ["Cabins", "Luxury Cottages", "Villas", "Offices", "Resorts"];
+  const words = [ "Cottages", "Villas", "Offices", "Resorts"];
 
   const [text, setText] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
@@ -164,7 +164,7 @@ const HeroSection = () => {
           <motion.div className="flex flex-wrap justify-center items-center gap-2">
             {/* Static text */}
             <TextBuilder fontSize="40px" weight="extrabold" color="light">
-              We Build
+              We Build Luxury
             </TextBuilder>
 
             {/* Typing word */}

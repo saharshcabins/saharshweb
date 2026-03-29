@@ -21,7 +21,7 @@ export default function MainLayoutSmall({ children }: { children: ReactNode }) {
         <ResponsiveHeroSection />
         <CabinSectionMobile /> <CabinSlideShowMobile /> <SaharshAdvantage />
         <CabinCarouselMobile />
-        <TestimonialSectionMobile />
+        {/* <TestimonialSectionMobile /> */}
         <OurProcessMobile />
         {/* <MilestoneMobile /> */}
         <FAQSection />

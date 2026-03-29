@@ -71,9 +71,7 @@ const QuoteSection = () => {
                 color="dark"
                 className="leading-[1.25]"
               >
-                Saharsh Cabins is trying established a robust global logistics
-                network, ensuring that our extraordinary - modern cabins can be
-                delivered and installed anywhere in the world.
+               Saharsh Cabins: International quality, global reach. Our export-grade modern cabins are built to global standards and shipped worldwide for effortless on-site installation.
               </TextBuilder>
             </motion.div>
 

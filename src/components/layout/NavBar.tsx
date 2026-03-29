@@ -12,7 +12,7 @@ const NavBar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const NavLinks = [
-    { text: "Work", href: "#work" },
+    // { text: "Work", href: "#work" },
     { text: "About Us", href: "#about-us" },
     { text: "Contact Us", href: "#contact-us" },
   ];

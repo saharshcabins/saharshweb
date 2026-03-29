@@ -12,8 +12,7 @@ const NewHeroSection = () => {
   const heading = "We Build Cabins";
   const letters = heading.split("");
 const words = [
-  "Cabins",
-  "Luxury Cottages",
+  "Cottages",
   "Villas",
   "Offices",
   "Resorts",
@@ -201,7 +200,7 @@ useEffect(() => {
        <motion.div className="flex flex-wrap justify-center items-center gap-2">
   {/* Static Part */}
   <TextBuilder fontSize="75px" weight="extrabold" color="light">
-    We Build
+    We Build Luxury
   </TextBuilder>
 
   {/* Animated Part */}
