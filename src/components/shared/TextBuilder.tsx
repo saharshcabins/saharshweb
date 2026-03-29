@@ -78,12 +78,20 @@ const TextBuilder: FC<TextBuilderProps> = ({
     section: "text-[var(--section-accent)]",
   };
 
-  // Auto responsive scaling if pixel font size is given
+  // Auto responsive scaling if pixel font size is given.
+  // The vw value is derived proportionally from the target px size so that
+  // every text size scales relative to its own intended size — not a single
+  // fixed 5vw that makes all sizes converge at the same breakpoint.
+  // Formula: vw = (targetPx / 1440) * 100  (based on a 1440px design width)
+  // Min is 60% of target; max is the target itself.
   const computedStyle =
     fontSize && fontSize.endsWith("px")
-      ? {
-          fontSize: `clamp(${parseInt(fontSize) * 0.6}px, 5vw, ${fontSize})`,
-        }
+      ? (() => {
+          const px = parseInt(fontSize);
+          const vw = parseFloat(((px / 1440) * 100).toFixed(3));
+          const min = Math.round(px * 0.6);
+          return { fontSize: `clamp(${min}px, ${vw}vw, ${fontSize})` };
+        })()
       : fontSize
       ? { fontSize }
       : undefined;
