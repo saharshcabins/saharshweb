@@ -52,7 +52,7 @@ const CabinCarouselMobile = () => {
   return (
     <div className="flex flex-col items-center text-center gap-8  overflow-hidden">
       <MultiColorTextMobile
-        fontSize="40px" // Adjusted font size for mobile
+        fontSize="30px" // Adjusted font size for mobile
         items={[
           { text: "Our ", color: "dark", weight: "medium" },
           { text: " Bestsellers", color: "primary", weight: "semibold" },
@@ -60,7 +60,7 @@ const CabinCarouselMobile = () => {
       />
 
       {/* Cards Container */}
-      <div className="relative w-full flex justify-center items-center h-[230px]">
+      <div className="relative w-full flex justify-center items-center h-[260px]">
         {cabins.map((cabin, i) => {
           // Corrected distance and looping logic
           let distance = i - activeIndex;

@@ -6,7 +6,7 @@ import { InstagramIcon } from "lucide-react";
 
 const Footer = () => {
   const links = [
-    { label: "Our Work", href: "#work" },
+    // { label: "Our Work", href: "#work" },
     { label: "Contact Us", href: "#contact-us" },
     { label: "About Us", href: "/about" },
   ];

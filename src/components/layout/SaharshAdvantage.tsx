@@ -124,26 +124,26 @@ const SaharshAdvantage = () => {
         {comparisonDataMobile.map((row, index) => (
           <div key={index} className="bg-white rounded-lg shadow-lg p-6">
             <div className="mb-4 pb-2 border-b-2 border-primary">
-              <TextBuilder size="lg" weight="bold" color="dark">
+              <TextBuilder fontSize="24px" weight="bold" color="dark">
                 {row.feature}
               </TextBuilder>
             </div>
             
             <div className="space-y-3">
               <div>
-                <TextBuilder size="sm" weight="semibold" color="primary" className="block mb-1">
+                <TextBuilder fontSize="20px" weight="semibold" color="primary" className="block mb-1">
                   Saharsh Cabins
                 </TextBuilder>
-                <TextBuilder weight="medium" color="dark">
+                <TextBuilder weight="medium" fontSize="22px" color="dark">
                   {row.saharsh}
                 </TextBuilder>
               </div>
 
               <div>
-                <TextBuilder size="sm" weight="semibold" color="muted" className="block mb-1">
+                <TextBuilder fontSize="20px" weight="semibold" color="muted" className="block mb-1">
                   Traditional Construction
                 </TextBuilder>
-                <TextBuilder weight="normal" color="dark">
+                <TextBuilder weight="normal" color="dark" fontSize="22px">
                   {row.traditional}
                 </TextBuilder>
               </div>

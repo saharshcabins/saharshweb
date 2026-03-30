@@ -86,7 +86,7 @@ const CabinSectionMobile = () => {
           ]}
         />
 
-        <div className="flex flex-row w-full justify-between">
+        <div className="flex flex-row w-full gap-4 justify-center">
           <ButtonMobile text="About Us" />
           <ButtonMobile text="Schedule a Visit" />
         </div>

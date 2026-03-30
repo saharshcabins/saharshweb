@@ -31,7 +31,6 @@ type FormErrors = {
   Phone?: string;
   "Project Location"?: string;
   Budget?: string;
-  
   Interest?: string;
 };
 
@@ -175,6 +174,7 @@ const GetInTouch = () => {
       }}
     >
       <Toaster />
+      {/* ✅ removed duplicate id="contact-us" from this inner div */}
       <div className="flex flex-col md:flex-row justify-between items-start gap-6">
         <MultiColorTextMobile
           fontSize="24px"
@@ -247,7 +247,7 @@ const GetInTouch = () => {
           </div>
         </div>
 
-        {/* Row 3: Budget + Interested In — side by side on desktop, stacked on mobile */}
+        {/* Row 3: Budget + Interested In */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           {/* Budget */}
           <div className="relative" ref={budgetRef}>
@@ -300,7 +300,7 @@ const GetInTouch = () => {
             <ErrorMsg msg={errors.Budget} />
           </div>
 
-          {/* Interested In — multi-select dropdown */}
+          {/* Interested In */}
           <div className="relative" ref={interestRef}>
             <div
               onClick={() => setInterestOpen((prev) => !prev)}

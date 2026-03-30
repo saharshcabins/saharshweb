@@ -18,9 +18,11 @@ const ButtonMobile: FC<ButtonProps> = ({ text, onClick, className, disabled }) =
         group
         cursor-pointer
         border 
-        rounded-full 
-        py-[16px] 
-        px-[28px] // Changed from 36px to 28px
+        rounded-full
+        py-[8px] 
+        px-[16px]
+        md:py-[16px] 
+        md:px-[28px] // Changed from 36px to 28px
         flex 
         items-center 
         justify-center

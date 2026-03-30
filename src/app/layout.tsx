@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import NavBar from "@/components/layout/NavBar";
+import LenisProvider from "@/components/layout/LenisProvider";
 
 // Load Eudoxus Sans from /public/font/
 const eudoxus = localFont({
@@ -53,17 +54,15 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={eudoxus.variable}>
+   <html lang="en" className={eudoxus.variable}>
       <body>
+        <LenisProvider />   {/* ← add this */}
         <div className="">
           <NavBar />
         </div>
         {children}
         <Footer />
-
-
       </body>
-      
     </html>
   );
 }

@@ -6,12 +6,24 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
+type NavLink = { text: string; href: string };
+
+const getAbsoluteTop = (el: HTMLElement): number => {
+  let top = 0;
+  let current: HTMLElement | null = el;
+  while (current) {
+    top += current.offsetTop;
+    current = current.offsetParent as HTMLElement | null;
+  }
+  return top;
+};
+
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const NavLinks = [
+  const NavLinks: NavLink[] = [
     // { text: "Work", href: "#work" },
     { text: "About Us", href: "#about-us" },
     { text: "Contact Us", href: "#contact-us" },
@@ -37,49 +49,70 @@ const NavBar = () => {
     visible: { opacity: 1, y: 0 },
   };
 
-  // Scroll logic
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setShowNav(false); // scrolling down → hide
-      } else {
-        setShowNav(true); // scrolling up → show
-      }
-      setLastScrollY(window.scrollY);
+      const currentScrollY = window.scrollY;
+      if (Math.abs(currentScrollY - lastScrollY) < 10) return;
+      setShowNav(currentScrollY < lastScrollY);
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  const scrollToSection = (href: string) => {
+    // Find all matches, pick the visible one (offsetParent is null when hidden)
+    const targets = Array.from(document.querySelectorAll(href)) as HTMLElement[];
+    const target = targets.find((el) => el.offsetParent !== null) ?? targets[0];
+
+    if (!target) return;
+
+    const navbarHeight = 80;
+    const absoluteTop = getAbsoluteTop(target);
+    const targetPosition = absoluteTop - navbarHeight;
+
+    // Use documentElement since scrollY is on <html> not <body>
+    document.documentElement.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <motion.div
       className={`fixed top-8 md:top-3 left-1/2 -translate-x-1/2 z-50
-    transition-transform duration-300
-    ${showNav ? "translate-y-0" : "-translate-y-[150%]"}
-    bg-[var(--nav-bg-color)] p-4 lg:p-4 lg:px-6 rounded-[24px]
-    w-[90%] lg:w-[90%]`}
-      initial={{ opacity: 0,  }}
-      animate={{ opacity: 1, }}
+        transition-transform duration-300
+        ${showNav ? "translate-y-0" : "-translate-y-[150%]"}
+        bg-[var(--nav-bg-color)] p-4 lg:p-4 lg:px-6 rounded-[24px]
+        w-[90%] lg:w-[90%]`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
     >
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2 flex-shrink-0">
           <Image
-            
             src="/assets/logo/logo.svg"
             height={50}
             width={140}
             alt="saharsh-logo"
-            className="md:h-[50px] md:w-[140px] h-[40px] w-[120px]"
+            className="md:h-[50px] md:w-[140px] h-[30px] w-[90px]"
           />
         </div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex flex-row ml-auto gap-6 md:gap-16">
-          {NavLinks.map((link) => (
-            <a key={link.text} href={link.href}>
+          {NavLinks.map((link: NavLink) => (
+            <a
+              key={link.text}
+              href={link.href}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(link.href);
+              }}
+            >
               <TextBuilder fontSize="1.2vw" weight="bold" color="link">
                 {link.text}
               </TextBuilder>
@@ -129,15 +162,21 @@ const NavBar = () => {
             animate="visible"
             exit="hidden"
           >
-            {NavLinks.map((link) => (
+            {NavLinks.map((link: NavLink) => (
               <motion.a
                 key={link.text}
                 href={link.href}
                 className="w-full text-left"
                 variants={linkVariants}
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMenuOpen(false);
+                  setTimeout(() => {
+                    scrollToSection(link.href);
+                  }, 350);
+                }}
               >
-                <TextBuilder fontSize="14px" weight="bold" color="link">
+                <TextBuilder fontSize="20px" weight="bold" color="link">
                   {link.text}
                 </TextBuilder>
               </motion.a>
