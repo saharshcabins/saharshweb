@@ -9,14 +9,18 @@ type ProductPageProps = {
   };
 };
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const product = products.find((p) => p.slug === params.slug);
+export default async function ProductPage(props: any) {
+
+  const resolvedParams = await props.params; 
+  const slug = resolvedParams.slug;
+
+
+  const product = products.find((p) => p.slug === slug);
 
   if (!product) {
     return notFound();
   }
 
-  // Pass product data to the client-side component
   return <ProductPageClient product={product} />;
 }
 
