@@ -33,22 +33,28 @@ const QuoteSection = () => {
             }}
           >
             <MultiColorText
-              fontSize="56px"
+              fontSize="75px"
               className="leading-[1.2] whitespace-nowrap text-start"
               items={[
-                {
-                  text: "Engineered Here.",
+                {  
+
+                  text: "Built in India,",
                   weight: "bold",
                   color: "dark",
                   breakAfter: true,
                 },
                 {
-                  text: "Delivered to Your Site,",
+                  text: "Engineered for",
                   weight: "bold",
                   color: "primary",
                   breakAfter: true,
                 },
-                { text: "Anywhere.", weight: "bold", color: "primary" },
+                {
+                  text: " the World.",
+                  weight: "bold",
+                  color: "primary",
+                  breakAfter: true,
+                }
               ]}
             />
           </motion.div>
@@ -67,12 +73,11 @@ const QuoteSection = () => {
               }}
             >
               <TextBuilder
-                fontSize="24px"
+                fontSize="20px"
                 color="dark"
                 className="leading-[1.25]"
               >
-               Saharsh Cabins: International quality, global reach. Our export-grade modern cabins are built to global standards and shipped worldwide for effortless on-site installation.
-              </TextBuilder>
+Shipping worldwide is easy; shipping export-grade quality that withstands diverse climates is the hard part. Whether it’s the humidity of the tropics or the winds of the coast, Saharsh Cabins are built to thrive wherever they land.              </TextBuilder>
             </motion.div>
 
             {/* Button Animation */}

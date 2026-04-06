@@ -25,14 +25,14 @@ const slides: Slide[] = [
   {
     type: "image",
     src: "/assets/built/cottage_1.png",
-    title: "Modular Cottages",
+    title: "Luxury Cottages",
     description:
       "The art of instant living.  Architectural beauty, delivered to your doorstep.",
   },
   {
     type: "image",
     src: "/assets/built/villa_1.png",
-    title: "Modular Farmhouses",
+    title: "Luxury Villa",
     description:
       "Land to living. Seamlessly. Precision-engineered homes for your private retreat.",
   },

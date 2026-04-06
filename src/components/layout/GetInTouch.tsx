@@ -11,15 +11,15 @@ import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 const interestOptions = [
   "Luxury Cottage",
   "Luxury Villa",
-  "Luxury Sales Office",
-  "Luxury Cafe",
-  "Micro Resort",
+  "Marketing Sales Office",
+  "Portable Cafe",
+  "Resort",
   "International Export",
 ];
 
 const budgetOptions = [
   "8 lakh - 15 lakh",
-  "16 lakh - 30 lakh",
+  "15 lakh - 30 lakh",
   "30 lakh - 50 lakh",
   "50 lakh - 1 crore",
   "1 crore - 3 crore",
@@ -167,7 +167,7 @@ const GetInTouch = () => {
   return (
     <div
       id="contact-us"
-      className="w-full px-6 py-12 md:p-[10%] md:pr-[4%]"
+      className="w-full px-6 py-12 md:px-[10%] md:pr-[4%]"
       style={{
         background:
           "linear-gradient(180deg, var(--text-light) 0%, var(--section-accent) 50%, var(--text-light) 100%)",
@@ -175,7 +175,7 @@ const GetInTouch = () => {
     >
       <Toaster />
       {/* ✅ removed duplicate id="contact-us" from this inner div */}
-      <div className="flex flex-col md:flex-row justify-between items-start gap-6">
+      <div className="flex flex-col md:flex-col justify-between  md:items-center gap-4">
         <MultiColorTextMobile
           fontSize="24px"
           className="text-start sm:block md:block lg:hidden"
@@ -185,19 +185,19 @@ const GetInTouch = () => {
           ]}
         />
         <MultiColorText
-          fontSize="56px"
-          className="text-start max-lg:hidden lg:block"
+          fontSize="75px"
+          className="text-center max-lg:hidden lg:block"
           items={[
             { text: "Love to hear from you,", color: "dark", weight: "medium", breakAfter: true },
             { text: "get in touch!", color: "primary", weight: "bold" },
           ]}
         />
         <TextBuilder
-          fontSize="16px md:20px"
+          fontSize="20px"
           color="dark-light"
-          className="w-full md:w-[35%] pt-[5px] md:pt-[15px]"
+          className="w-full  pt-[5px] md:pt-[15px] text-center"
         >
-          Understanding your requirements, budget, and project scope led the initial discussion of
+          Understanding your requirements, budget, and project scope led <br />the initial discussion of
           design possibilities and technical specifications.
         </TextBuilder>
       </div>
@@ -373,7 +373,7 @@ const GetInTouch = () => {
         </div>
 
         {/* Submit */}
-        <div className="mt-8 flex justify-end">
+        <div className="mt-8 flex justify-center">
           <Button
             text={isSubmitting ? "Sending..." : "Submit"}
             className="w-full md:w-auto"

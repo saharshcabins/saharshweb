@@ -3,6 +3,7 @@ import React from "react";
 import TextBuilder from "../shared/TextBuilder";
 import { Copyright } from "@/utils/svgUtils";
 import { InstagramIcon } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   const links = [
@@ -30,7 +31,7 @@ const Footer = () => {
               alt="footer-logo"
             />
             <div className="flex flex-col gap-4">
-              <TextBuilder
+              {/* <TextBuilder
                 fontSize="12px"
                 color="light60"
                 className="w-[90%] lg:fontSize-[16px]"
@@ -38,20 +39,39 @@ const Footer = () => {
                 Saharsh Cabins began with a simple yet powerful vision: to
                 create innovative, sustainable, and customizable portable cabins
                 that redefine living and working spaces.
+              </TextBuilder> */}
+              <TextBuilder fontSize="16px" color="light60">
+                49/2, Sarjapur Attibele Road,
+                <br />
+                Near MRPL Petrol Pump,
+                <br />
+                Bangalore 562125
               </TextBuilder>
-
-              <a
-                href="https://www.instagram.com/saharshcabins/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <InstagramIcon className="cursor-pointer text-[var(--text-light)]" />
-              </a>
+              <div className="flex flex-row gap-4">
+                {" "}
+                <a
+                  href="https://www.instagram.com/saharshcabins/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <InstagramIcon className="cursor-pointer text-[var(--text-light)]" />
+                </a>
+                <a
+                  href="https://wa.me/+917019495021"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaWhatsapp
+                    size={24}
+                    className="cursor-pointer text-[var(--text-light)]"
+                  />
+                </a>{" "}
+              </div>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-col gap-[12px]">
+          {/* <div className="flex flex-col gap-[12px]">
             <TextBuilder
               fontSize="16px"
               weight="bold"
@@ -75,7 +95,7 @@ const Footer = () => {
                 </TextBuilder>
               </a>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom Section */}
@@ -85,7 +105,7 @@ const Footer = () => {
           </TextBuilder>
           <Copyright />
           <TextBuilder fontSize="12px" color="light" className="lg:text-[14px]">
-            2025 All Rights Reserved
+            2026 All Rights Reserved
           </TextBuilder>
         </div>
       </div>

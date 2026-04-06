@@ -16,7 +16,7 @@ const FAQSection = () => {
       question:
         "What materials are used in manufacturing the cabins and homes?",
       answer:
-        "Drawing on our 15 years of expertise, we use high-grade galvanized steel frames paired with weather-resistant insulated sandwich panels and fiber cement boards for maximum durability.",
+        "Drawing on our 15 years of expertise, we use high-grade galvanized steel frames paired with spray foam insulation and SPC wall panels for maximum durability and premium finish.",
     },
     {
       question:
@@ -27,7 +27,7 @@ const FAQSection = () => {
     {
       question: "Are these structures customizable?",
       answer:
-        "Yes, these structures are customiszable! You can fully customize floor plans, exterior cladding, interior finishes, and layouts to perfectly match the specific needs of your home, resort, or commercial space.",
+        "Yes, these structures are customizable! You can fully customize floor plans, exterior cladding, interior finishes, and layouts to perfectly match the specific needs of your home, resort, or commercial space.",
     },
   ];
 
@@ -39,9 +39,9 @@ const FAQSection = () => {
     <div className="w-full flex flex-col items-center gap-12 py-16 px-4">
       {/* Title */}
       <MultiColorText
-        fontSize="36px"
+        fontSize="75px"
         items={[
-          { text: "Frequently Asked ", color: "dark", weight: "semibold" },
+          { text: "Frequently Asked ", color: "dark", weight: "bold" },
           { text: "Questions", color: "primary", weight: "bold" },
         ]}
       />
@@ -51,7 +51,7 @@ const FAQSection = () => {
         {faqData.map((faq, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200"
+            className="bg-white rounded-xl  overflow-hidden border border-gray-200"
           >
             {/* Question Button */}
             <button
@@ -76,7 +76,7 @@ const FAQSection = () => {
                 <TextBuilder
                   weight="light"
                   color="primary"
-                  className="text-[18px] sm:text-[22px]"
+                  className="text-[18px] sm:text-[20px]"
                 >
                   +
                 </TextBuilder>
@@ -93,7 +93,7 @@ const FAQSection = () => {
                 <TextBuilder
                   weight="normal"
                   color="muted"
-                  className="leading-relaxed text-[13px] sm:text-[15px] md:text-[16px]"
+                  className="leading-relaxed text-[13px] sm:text-[15px] md:text-[20px]"
                 >
                   {faq.answer}
                 </TextBuilder>

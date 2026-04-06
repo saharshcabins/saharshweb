@@ -47,8 +47,8 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <CabinCarousel />
         {/* <TestimonialSection /> */}
         <OurProcessNew />
-        <FAQSection />
-        <GetInTouch />
+        <GetInTouch />        <FAQSection />
+
       </div>
     </div>
   );
