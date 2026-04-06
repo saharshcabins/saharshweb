@@ -33,7 +33,7 @@ const OurProcessCardNew: React.FC<OurProcessCardNewProps> = ({
 
       {/* Icon + Description */}
      <div className="flex flex-col items-center gap-4">
-  <div className="w-[80px] h-[80px] text-[var(--color-primary)] flex items-center justify-center">
+  <div className="w-[50px] h-[50px] text-[var(--color-primary)] flex items-center justify-center">
     <Icon />
   </div>
 

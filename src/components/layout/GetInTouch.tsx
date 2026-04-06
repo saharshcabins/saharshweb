@@ -384,8 +384,8 @@ const GetInTouch = () => {
 
         {/* Direct contact */}
         <div className="border-t mt-4 border-gray-200 pt-6 text-center space-y-2">
-          <TextBuilder weight="medium" color="dark" className="block">
-            Or reach us directly:
+          <TextBuilder weight="medium" color="dark" fontSize="20px" className="block">
+            Or Reach Us Directly
           </TextBuilder>
           <div className="space-y-1">
             <TextBuilder weight="normal" color="muted" className="block">
