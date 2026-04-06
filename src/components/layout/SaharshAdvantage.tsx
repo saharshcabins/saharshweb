@@ -2,154 +2,185 @@ import React from "react";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 
+const checkIcon = (color = "var(--color-primary)") => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+    <circle cx="9" cy="9" r="9" fill={color} fillOpacity="0.12" />
+    <path
+      d="M5 9.5L7.5 12L13 6.5"
+      stroke={color}
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const crossIcon = (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+    <circle cx="9" cy="9" r="9" fill="#ef4444" fillOpacity="0.10" />
+    <path
+      d="M6 6l6 6M12 6l-6 6"
+      stroke="#ef4444"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const comparisonData = [
+  {
+    saharsh: "30–60% Faster Delivery",
+    traditional: "12–24+ Months",
+  },
+  {
+    saharsh: "Fixed, upfront pricing. No surprises.",
+    traditional: "Prone to budget overruns & hidden costs.",
+  },
+  {
+    saharsh: "Precision factory manufacturing.",
+    traditional: "Variable on-site quality & conditions.",
+  },
+  {
+    saharsh: "Minimal disruption. Weeks of quiet assembly.",
+    traditional: "Months of noise, dust & traffic.",
+  },
+  {
+    saharsh: "Up to 90% less material waste.",
+    traditional: "Significant on-site wastage.",
+  },
+  {
+    saharsh: "Engineered steel for India's climate.",
+    traditional: "Susceptible to weather delays & damage.",
+  },
+];
+
 const SaharshAdvantage = () => {
-  const comparisonData = [
-    {
-      feature: "Construction Time",
-      saharsh: "30-60% Faster Delivery",
-      traditional: "12-24+ Months",
-    },
-    {
-      feature: "Cost Predictability",
-      saharsh: "Fixed, upfront pricing. No surprises.",
-      traditional: "Prone to budget overruns and hidden costs.",
-    },
-    {
-      feature: "Quality Control",
-      saharsh: "Precision factory manufacturing to exacting standards.",
-      traditional: "Variable quality dependent on on-site skill and conditions.",
-    },
-    {
-      feature: "On-Site Disruption",
-      saharsh: "Minimal. Weeks of quiet assembly.",
-      traditional: "Months of noise, dust, and traffic.",
-    },
-    {
-      feature: "Sustainability",
-      saharsh: "Up to 90% less material waste; reduced energy use.",
-      traditional: "Significant on-site wastage and higher carbon footprint.",
-    },
-    {
-      feature: "All-Weather Durability",
-      saharsh: "Engineered with high-quality steel for India's climate.",
-      traditional: "Susceptible to weather-related delays and damage.",
-    },
-  ];
- const comparisonDataMobile = [
-    {
-      feature: "Construction Time",
-      saharsh: "30-60% Faster Delivery",
-      traditional: "12-24+ Months",
-    },
-    {
-      feature: "Cost Predictability",
-      saharsh: "Fixed, upfront pricing. No surprises.",
-      traditional: "Prone to budget overruns and hidden costs.",
-    },
-    {
-      feature: "Quality Control",
-      saharsh: "Precision factory manufacturing to exacting standards.",
-      traditional: "Variable quality dependent on on-site skill and conditions.",
-    },
-    {
-      feature: "On-Site Disruption",
-      saharsh: "Minimal. Weeks of quiet assembly.",
-      traditional: "Months of noise, dust, and traffic.",
-    }
-  ];
   return (
-    <div className="w-full flex flex-col items-center gap-12 py-16 px-4">
+    <div className="w-full flex flex-col items-center gap-14 py-20 px-4">
       {/* Title */}
-      <MultiColorText
-        fontSize="36px"
-        items={[
-          { text: "The ", color: "dark", weight: "semibold" },
-          { text: "Saharsh ", color: "primary", weight: "bold" },
-          { text: "Advantage", color: "dark", weight: "semibold" },
-        ]}
-      />
-
-      {/* Table - Desktop */}
-      <div className="hidden md:block w-full max-w-[1200px]">
-        <div className="bg-white rounded-[24px]  border border-[var(--color-primary)] py-1 overflow-hidden">
-          {/* Header */}
-          <div className="grid grid-cols-3 bg-primary text-white">
-            <div className="py-4 px-6">
-              <TextBuilder weight="bold" color="primary">
-                Feature
-              </TextBuilder>
-            </div>
-            <div className="py-4 px-6">
-              <TextBuilder weight="bold" color="primary">
-                Saharsh Cabins
-              </TextBuilder>
-            </div>
-            <div className="py-4 px-6">
-              <TextBuilder weight="bold" color="primary">
-                Traditional Construction
-              </TextBuilder>
-            </div>
-          </div>
-
-          {/* Rows */}
-          {comparisonData.map((row, index) => (
-            <div
-              key={index}
-              className={`grid grid-cols-3 ${
-                index % 2 === 0 ? "bg-gray-50" : "bg-white"
-              }`}
-            >
-              <div className="py-4 px-6 border-b border-gray-200">
-                <TextBuilder weight="semibold" color="dark">
-                  {row.feature}
-                </TextBuilder>
-              </div>
-              <div className="py-4 px-6 border-b border-gray-200">
-                <TextBuilder weight="medium" color="dark">
-                  {row.saharsh}
-                </TextBuilder>
-              </div>
-              <div className="py-4 px-6 border-b border-gray-200">
-                <TextBuilder weight="normal" color="dark">
-                  {row.traditional}
-                </TextBuilder>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="flex flex-col items-center gap-3 text-center">
+        <MultiColorText
+          fontSize="75px"
+          items={[
+            { text: "The ", color: "dark", weight: "bold" },
+            { text: "Saharsh ", color: "primary", weight: "bold" },
+            { text: "Advantage", color: "dark", weight: "bold" },
+          ]}
+        />
+        <TextBuilder fontSize="20px" >
+ Build faster. Spend smarter. Get better results.        </TextBuilder>
       </div>
 
-      {/* Cards - Mobile */}
-      <div className="md:hidden w-full max-w-[600px] space-y-6">
-        {comparisonDataMobile.map((row, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-lg p-6">
-            <div className="mb-4 pb-2 border-b-2 border-primary">
-              <TextBuilder fontSize="24px" weight="bold" color="dark">
-                {row.feature}
+      {/* Cards Row */}
+<div className="w-full max-w-[960px] grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        {/* ── Saharsh Cabins (highlighted) ── */}
+        <div
+          className="relative rounded-[24px] overflow-hidden"
+          style={{
+            background: "var(--color-primary)",
+            boxShadow: "0 24px 60px -10px rgba(var(--color-primary-rgb, 0,0,0), 0.35)",
+          }}
+        >
+          {/* Decorative circle */}
+          <div
+            className="absolute -top-10 -right-10 w-40 h-40 rounded-full opacity-20"
+            style={{ background: "rgba(255,255,255,0.25)" }}
+          />
+          <div
+            className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full opacity-10"
+            style={{ background: "rgba(255,255,255,0.3)" }}
+          />
+
+          <div className="relative z-10 p-8 flex flex-col gap-6">
+            {/* Badge */}
+            <div className="flex items-center gap-2">
+              <span
+                className="text-xs font-semibold px-3 py-1 rounded-full"
+                style={{ background: "rgba(255,255,255,0.18)", color: "#fff" }}
+              >
+                ✦ Recommended
+              </span>
+            </div>
+
+            {/* Heading */}
+            <div>
+              <TextBuilder fontSize="28px" weight="bold" color="light">
+                Saharsh Cabins
+              </TextBuilder>
+              <TextBuilder fontSize="14px" weight="normal" color="light">
+                Prefabricated. Precise. Future-ready.
               </TextBuilder>
             </div>
-            
-            <div className="space-y-3">
-              <div>
-                <TextBuilder fontSize="20px" weight="semibold" color="primary" className="block mb-1">
-                  Saharsh Cabins
-                </TextBuilder>
-                <TextBuilder weight="medium" fontSize="22px" color="dark">
-                  {row.saharsh}
-                </TextBuilder>
-              </div>
 
-              <div>
-                <TextBuilder fontSize="20px" weight="semibold" color="muted" className="block mb-1">
-                  Traditional Construction
-                </TextBuilder>
-                <TextBuilder weight="normal" color="dark" fontSize="22px">
-                  {row.traditional}
-                </TextBuilder>
-              </div>
-            </div>
+            {/* Divider */}
+            <div className="h-px w-full bg-white opacity-20" />
+
+            {/* Feature list */}
+            <ul className="flex flex-col gap-4">
+              {comparisonData.map((row, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  {checkIcon("#fff")}
+                  <TextBuilder fontSize="14px" weight="medium" color="light">
+                    {row.saharsh}
+                  </TextBuilder>
+                </li>
+              ))}
+            </ul>
           </div>
-        ))}
+        </div>
+
+        {/* ── Traditional Construction ── */}
+        <div
+          className="relative rounded-[24px] overflow-hidden border"
+          style={{
+            background: "#fff",
+            borderColor: "var(--color-border, #e5e7eb)",
+            boxShadow: "0 8px 32px -8px rgba(0,0,0,0.08)",
+          }}
+        >
+          {/* Decorative circle */}
+          <div
+            className="absolute -top-10 -right-10 w-36 h-36 rounded-full opacity-5"
+            style={{ background: "#000" }}
+          />
+
+          <div className="relative z-10 p-8 flex flex-col gap-6">
+            {/* Badge */}
+            <div className="flex items-center gap-2">
+              <span
+                className="text-xs font-semibold px-3 py-1 rounded-full"
+                style={{ background: "#f3f4f6", color: "#6b7280" }}
+              >
+                Traditional
+              </span>
+            </div>
+
+            {/* Heading */}
+            <div>
+              <TextBuilder fontSize="28px" weight="bold" color="dark">
+                Traditional Construction
+              </TextBuilder>
+              <TextBuilder fontSize="14px" weight="normal" color="muted">
+                Conventional builds. Known trade-offs.
+              </TextBuilder>
+            </div>
+
+            {/* Divider */}
+            <div className="h-px w-full bg-gray-100" />
+
+            {/* Feature list */}
+            <ul className="flex flex-col gap-4">
+              {comparisonData.map((row, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  {crossIcon}
+                  <TextBuilder fontSize="14px" weight="normal" color="dark">
+                    {row.traditional}
+                  </TextBuilder>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

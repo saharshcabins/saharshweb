@@ -92,7 +92,7 @@ Shipping worldwide is easy; shipping export-grade quality that withstands divers
               }}
             >
               <Button
-                text="Get a Quote"
+                text="Know More"
                 className="w-fit"
                 onClick={() => {
                   const section = document.getElementById("contact-us");
