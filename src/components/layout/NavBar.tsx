@@ -5,7 +5,8 @@ import TextBuilder from "../shared/TextBuilder";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 type NavLink = { text: string; href: string };
 
 const getAbsoluteTop = (el: HTMLElement): number => {
@@ -22,15 +23,21 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
+  const router = useRouter();
   const NavLinks: NavLink[] = [
     // { text: "Work", href: "#work" },
-    { text: "About Us", href: "#about-us" },
+    { text: "Our Projects", href: "#about-us" },
     { text: "Contact Us", href: "#contact-us" },
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const pathname = usePathname();
 
+  useEffect(() => {
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [pathname]);
   const menuVariants = {
     hidden: {
       opacity: 0,
@@ -63,7 +70,9 @@ const NavBar = () => {
 
   const scrollToSection = (href: string) => {
     // Find all matches, pick the visible one (offsetParent is null when hidden)
-    const targets = Array.from(document.querySelectorAll(href)) as HTMLElement[];
+    const targets = Array.from(
+      document.querySelectorAll(href),
+    ) as HTMLElement[];
     const target = targets.find((el) => el.offsetParent !== null) ?? targets[0];
 
     if (!target) return;
@@ -84,7 +93,7 @@ const NavBar = () => {
       className={`fixed top-8 md:top-3 left-1/2 -translate-x-1/2 z-50
         transition-transform duration-300
         ${showNav ? "translate-y-0" : "-translate-y-[150%]"}
-        bg-[var(--nav-bg-color)] p-4 lg:p-4 lg:px-6 rounded-[24px]
+        bg-[var(--nav-bg-color)] p-4 lg:p-4 lg:px-8 rounded-[24px]
         w-[90%] lg:w-[90%]`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -92,7 +101,16 @@ const NavBar = () => {
     >
       <div className="flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2 flex-shrink-0">
+        <div
+          className="flex items-center gap-2 flex-shrink-0 cursor-pointer"
+          onClick={() => {
+            if (pathname === "/") {
+              document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              router.push("/");
+            }
+          }}
+        >
           <Image
             src="/assets/logo/logo.svg"
             height={50}
@@ -103,7 +121,7 @@ const NavBar = () => {
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex flex-row ml-auto gap-6 md:gap-16">
+        <div className="hidden md:flex flex-row ml-auto gap-6 md:gap-12">
           {NavLinks.map((link: NavLink) => (
             <a
               key={link.text}
@@ -113,7 +131,7 @@ const NavBar = () => {
                 scrollToSection(link.href);
               }}
             >
-              <TextBuilder fontSize="1.2vw" weight="bold" color="link">
+              <TextBuilder fontSize="20px" weight="bold" color="link">
                 {link.text}
               </TextBuilder>
             </a>

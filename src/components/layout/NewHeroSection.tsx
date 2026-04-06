@@ -6,50 +6,46 @@ import Label from "../ui/HeroLabel";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Head from "next/head";
+import Button from "../shared/Button";
 
 const NewHeroSection = () => {
   const [product, setProducts] = useState(false);
   const heading = "We Build Cabins";
   const letters = heading.split("");
-const words = [
-  "Cottages",
-  "Villas",
-  "Offices",
-  "Resorts",
-];
+  const words = ["Cottages", "Villas", "Offices"];
 
-const [text, setText] = useState("");
-const [wordIndex, setWordIndex] = useState(0);
-const [isDeleting, setIsDeleting] = useState(false);
+  const [text, setText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-useEffect(() => {
-  const currentWord = words[wordIndex];
-  let timeout: NodeJS.Timeout;
+  useEffect(() => {
+    const currentWord = words[wordIndex];
+    let timeout: NodeJS.Timeout;
 
-  if (!isDeleting) {
-    // typing
-    if (text.length < currentWord.length) {
-      timeout = setTimeout(() => {
-        setText(currentWord.slice(0, text.length + 1));
-      }, 80);
+    if (!isDeleting) {
+      // typing
+      if (text.length < currentWord.length) {
+        timeout = setTimeout(() => {
+          setText(currentWord.slice(0, text.length + 1));
+        }, 80);
+      } else {
+        // pause before deleting
+        timeout = setTimeout(() => setIsDeleting(true), 2000);
+      }
     } else {
-      // pause before deleting
-      timeout = setTimeout(() => setIsDeleting(true), 2000);
+      // deleting
+      if (text.length > 0) {
+        timeout = setTimeout(() => {
+          setText(currentWord.slice(0, text.length - 1));
+        }, 40);
+      } else {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % words.length);
+      }
     }
-  } else {
-    // deleting
-    if (text.length > 0) {
-      timeout = setTimeout(() => {
-        setText(currentWord.slice(0, text.length - 1));
-      }, 40);
-    } else {
-      setIsDeleting(false);
-      setWordIndex((prev) => (prev + 1) % words.length);
-    }
-  }
 
-  return () => clearTimeout(timeout);
-}, [text, isDeleting, wordIndex]);
+    return () => clearTimeout(timeout);
+  }, [text, isDeleting, wordIndex]);
   const containerVariants = {
     hidden: {},
     visible: {
@@ -59,9 +55,18 @@ useEffect(() => {
       },
     },
   };
+  const scrollToSection = (id: any) => {
+    const target = document.querySelector(id);
+    if (!target) return;
 
+    const navbarHeight = -80;
+    const elementPosition = target.getBoundingClientRect().top + window.scrollY;
 
-
+    window.scrollTo({
+      top: elementPosition - navbarHeight,
+      behavior: "smooth",
+    });
+  };
   const slides = [
     {
       id: 1,
@@ -132,7 +137,6 @@ useEffect(() => {
           crops from the same anchor point.
       */}
       <div className="w-full aspect-[4/3] md:aspect-auto md:h-screen bg-cover bg-center relative flex flex-col justify-between overflow-hidden">
-
         {/* Dark overlay when product panel open */}
         <AnimatePresence mode="wait">
           {product && (
@@ -185,7 +189,7 @@ useEffect(() => {
                   {/* Consistent gradient on all slides */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
                 </motion.div>
-              )
+              ),
           )}
         </AnimatePresence>
 
@@ -197,34 +201,34 @@ useEffect(() => {
           variants={containerVariants}
           transition={{ delay: 0.8 }}
         >
-       <motion.div className="flex flex-wrap justify-center items-center gap-2">
-  {/* Static Part */}
-  <TextBuilder fontSize="75px" weight="extrabold" color="light">
-    We Build Luxury
-  </TextBuilder>
+          <motion.div className="flex flex-wrap justify-center items-center gap-2">
+            {/* Static Part */}
+            <TextBuilder fontSize="75px" weight="extrabold" color="light">
+              We Build Luxury
+            </TextBuilder>
 
-  {/* Animated Part */}
-  <motion.span
-    key={wordIndex}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1 }}
-  >
-    <TextBuilder fontSize="75px" weight="extrabold" color="light">
-      {text}
-    </TextBuilder>
-  </motion.span>
+            {/* Animated Part */}
+            <motion.span
+              key={wordIndex}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
+              <TextBuilder fontSize="75px" weight="extrabold" color="light">
+                {text}
+              </TextBuilder>
+            </motion.span>
 
-  {/* Cursor */}
-  <motion.span
-    animate={{ opacity: [0, 1, 0] }}
-    transition={{ repeat: Infinity, duration: 1 }}
-  >
-    <TextBuilder fontSize="75px" weight="extrabold" color="light">
-      |
-    </TextBuilder>
-  </motion.span>
-</motion.div>
+            {/* Cursor */}
+            <motion.span
+              animate={{ opacity: [0, 1, 0] }}
+              transition={{ repeat: Infinity, duration: 1 }}
+            >
+              <TextBuilder fontSize="75px" weight="extrabold" color="light">
+                |
+              </TextBuilder>
+            </motion.span>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
@@ -239,8 +243,18 @@ useEffect(() => {
               <br /> An Extraordinary Living Experience.
             </TextBuilder>
           </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="pt-5"
+            transition={{
+              delay: letters.length * 0.05 + 0.2 + 0.5,
+              duration: 0.6,
+            }}
+          >
+            <Button text="Know More" onClick={() => scrollToSection("#work")} />
+          </motion.div>
         </motion.div>
-
       </div>
     </>
   );

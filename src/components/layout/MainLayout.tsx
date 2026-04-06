@@ -34,7 +34,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
       <NewHeroSection />
 
       <div className="flex flex-col gap-20">
-        <div className="w-[90%] mx-auto pt-30">
+        <div className="w-[90%] mx-auto py-20">
           <CabinSection />
         </div>
 

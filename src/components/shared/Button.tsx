@@ -32,14 +32,14 @@ const Button: FC<ButtonProps> = ({ text, onClick, className, disabled, isGrayout
             ? "border-white/25 cursor-default" // Grayout styles
             : disabled
             ? "border-[var(--text-dark-25)] cursor-not-allowed"
-            : "border-[var(--color-primary)] hover:bg-[var(--color-primary)]"
+            : "border-[var(--color-primary)] bg-[var(--text-light)] hover:bg-[var(--color-primary)]"
         }
         ${className || ""}
       `}
     >
       <TextBuilder
-        fontSize="24px"
-        weight="bold"
+        fontSize="20px"
+        weight="normal"
         color={
           isGrayout
             ? "light25"
