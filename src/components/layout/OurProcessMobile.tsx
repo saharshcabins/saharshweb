@@ -41,13 +41,13 @@ const OurProcessMobile = () => {
           <MultiColorTextMobile
             fontSize="30px"
             items={[
-              { text: "Our Proven", color: "dark", weight: "bold" },
+              { text: "Our", color: "dark", weight: "bold" },
               { text: " Process", color: "primary", weight: "bold" },
             ]}
           />
           <TextBuilderMobile fontSize="14px" color="dark">
-            From sleek architecture to luxurious interiors & scenic landscapes
-            come together to create living spaces that inspire and rejuvenate.
+           We guide you through a curated journey where architecture, interior design, and landscape artistry converge,
+transforming your vision into a sanctuary of rejuvenation through our precision-led workflow.
           </TextBuilderMobile>
         </div>
         {/* <Image

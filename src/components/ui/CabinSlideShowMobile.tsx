@@ -21,28 +21,28 @@ const slides: Slide[] = [
     src: "/assets/built/office_1.png",
     title: "Marketing Sales Offices",
     description:
-      "Showcase excellence anywhere.Mobile sales suites. Built to impress, designed to move.",
+      "Showcase excellence anywhere. Mobile sales suites. Built to impress, designed to move.",
   },
   {
     type: "image",
     src: "/assets/built/cottage_1.png",
-    title: "Modular Cottages",
+    title: "Luxury Cottages",
     description:
-      "The art of instant living.Architectural beauty, delivered to your doorstep.",
+      "The art of instant living.  Architectural beauty, delivered to your doorstep.",
   },
   {
     type: "image",
     src: "/assets/built/villa_1.png",
-    title: "Modular Farmhouses",
+    title: "Luxury Villa",
     description:
-      "Land to living. Seamlessly.Precision-engineered homes for your private retreat.",
+      "Land to living. Seamlessly. Precision-engineered homes for your private retreat.",
   },
   {
     type: "image",
     src: "/assets/built/cafe_1.png",
     title: "Modular Cafe",
     description:
-      "Serve sooner. Scale faster.Turnkey cafe spaces for rapid expansion.",
+      "Serve sooner. Scale faster. Turnkey cafe spaces for rapid expansion.",
   },
 ];
 
