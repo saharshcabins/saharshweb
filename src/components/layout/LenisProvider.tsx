@@ -8,17 +8,19 @@ export default function LenisProvider() {
     const lenis = new Lenis({ duration: 1.2 });
     (window as any).lenis = lenis;
 
+    let rafId: number;
+
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);  // ✅ always overwrite rafId
     }
 
-    const id = requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(rafId);  // ✅ now cancels the latest frame, not just the first
       lenis.destroy();
       (window as any).lenis = null;
-      cancelAnimationFrame(id);
     };
   }, []);
 

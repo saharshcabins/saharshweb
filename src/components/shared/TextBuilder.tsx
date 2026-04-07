@@ -24,7 +24,8 @@ type TextBuilderProps = {
     | "dark50"
     | "section50"
     | "section";
-  fontSize?: string; // e.g. "56px" or "3vw"
+  fontSize?: string;       // responsive (clamp if px)
+  fixedFontSize?: string;  // ✅ NEW: always fixed (no clamp)
   className?: string;
 };
 
@@ -34,6 +35,7 @@ const TextBuilder: FC<TextBuilderProps> = ({
   weight = "normal",
   color = "dark",
   fontSize,
+  fixedFontSize,
   className,
 }) => {
   // Tailwind size mapping
@@ -78,14 +80,15 @@ const TextBuilder: FC<TextBuilderProps> = ({
     section: "text-[var(--section-accent)]",
   };
 
-  // Auto responsive scaling if pixel font size is given.
-  // The vw value is derived proportionally from the target px size so that
-  // every text size scales relative to its own intended size — not a single
-  // fixed 5vw that makes all sizes converge at the same breakpoint.
-  // Formula: vw = (targetPx / 1440) * 100  (based on a 1440px design width)
-  // Min is 60% of target; max is the target itself.
+  // ✅ Priority:
+  // 1. fixedFontSize → exact value (no clamp)
+  // 2. fontSize (px) → responsive clamp
+  // 3. fontSize (other units) → direct apply
+  // 4. fallback → Tailwind size
   const computedStyle =
-    fontSize && fontSize.endsWith("px")
+    fixedFontSize
+      ? { fontSize: fixedFontSize }
+      : fontSize && fontSize.endsWith("px")
       ? (() => {
           const px = parseInt(fontSize);
           const vw = parseFloat(((px / 1440) * 100).toFixed(3));

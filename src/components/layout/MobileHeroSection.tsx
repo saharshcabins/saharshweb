@@ -4,128 +4,90 @@ import { AnimatePresence, motion } from "framer-motion";
 import TextBuilder from "../shared/TextBuilder";
 import Image from "next/image";
 import Head from "next/head";
+import Button from "../shared/Button";
+import ButtonMobile from "../shared/ButtonMobile";
+
+const slides = [
+  {
+    id: 1,
+    word: "Cottages",
+    bgImage: "/assets/built/cottages.png",
+  },
+  {
+    id: 2,
+    word: "Villas",
+    bgImage: "/assets/built/villa.png",
+  },
+  {
+    id: 3,
+    word: "Offices",
+    bgImage: "/assets/built/center.png",
+  },
+];
 
 const HeroSection = () => {
-  const heading = "We Build Cabins";
-  const letters = heading.split("");
-  const words = [ "Cottages", "Villas", "Offices", "Resorts"];
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [phase, setPhase] = useState<"typing" | "pausing" | "deleting" | "switching">("typing");
 
-  const [text, setText] = useState("");
-  const [wordIndex, setWordIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const scrollToSection = (id: string) => {
+    const target = document.querySelector(id);
+    if (!target) return;
+    const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: elementPosition + 80, behavior: "smooth" });
+  };
 
   useEffect(() => {
-    const currentWord = words[wordIndex];
+    const currentWord = slides[currentSlide].word;
     let timeout: NodeJS.Timeout;
 
-    if (!isDeleting) {
-      // typing
-      if (text.length < currentWord.length) {
+    if (phase === "typing") {
+      if (displayText.length < currentWord.length) {
         timeout = setTimeout(() => {
-          setText(currentWord.slice(0, text.length + 1));
+          setDisplayText(currentWord.slice(0, displayText.length + 1));
         }, 80);
       } else {
-        // pause before deleting
-        timeout = setTimeout(() => setIsDeleting(true), 2000);
-      }
-    } else {
-      // deleting
-      if (text.length > 0) {
-        timeout = setTimeout(() => {
-          setText(currentWord.slice(0, text.length - 1));
-        }, 40);
-      } else {
-        setIsDeleting(false);
-        setWordIndex((prev) => (prev + 1) % words.length);
+        setPhase("pausing");
       }
     }
 
+    if (phase === "pausing") {
+      timeout = setTimeout(() => {
+        setPhase("deleting");
+      }, 2000);
+    }
+
+    if (phase === "deleting") {
+      if (displayText.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayText(currentWord.slice(0, displayText.length - 1));
+        }, 40);
+      } else {
+        setPhase("switching");
+      }
+    }
+
+    if (phase === "switching") {
+      timeout = setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+        setDisplayText("");
+        setPhase("typing");
+      }, 300);
+    }
+
     return () => clearTimeout(timeout);
-  }, [text, isDeleting, wordIndex]);
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        delay: 0.5,
-        staggerChildren: 0.05,
-      },
-    },
-  };
-
-  const letterVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.6 } },
-  };
-
-  const slides = [
-    {
-      id: 1,
-      productName: "Rustico",
-      productLabel: ["2BHK", "800 SQFT", "1 BEDROOM + PANTRY"],
-      productPath: [
-        "/assets/newhero/product_1.webp",
-        "/assets/newhero/product_2.webp",
-      ],
-      specialLabel: "Interior",
-      bgImage: "/assets/built/cottages.png",
-    },
-    {
-      id: 2,
-      productName: "Lodge",
-      productLabel: ["3BHK", "1200 SQFT", "2 BEDROOM + PANTRY"],
-      productPath: [
-        "/assets/newhero/product_1.webp",
-        "/assets/newhero/product_2.webp",
-      ],
-      specialLabel: "Exterior",
-      bgImage: "/assets/built/villa.png",
-    },
-    {
-      id: 3,
-      productName: "Cabana",
-      productLabel: ["1BHK", "600 SQFT", "1 BEDROOM + PANTRY"],
-      productPath: [
-        "/assets/newhero/product_1.webp",
-        "/assets/newhero/product_2.webp",
-      ],
-      specialLabel: "Interior",
-      bgImage: "/assets/built/center.png",
-    },
-  ];
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  // Auto advance every 30s
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 30000);
-    return () => clearInterval(interval);
-  }, [currentSlide]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
+  }, [displayText, phase, currentSlide]);
 
   return (
     <>
       <Head>
-        <link rel="preload" as="image" href="/assets/newhero/hero_bg_1.webp" />
+        <link rel="preload" as="image" href="/assets/built/cottages.png" />
       </Head>
-      <div className="w-full h-screen bg-cover bg-center relative flex flex-col justify-center items-center md:hidden">
-        <motion.div
-          className="min-h-full bg-[#000000]/20 w-full absolute z-10"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        />
+
+      <div className="w-full h-screen bg-cover bg-center md:h-screen relative flex flex-col justify-between overflow-hidden">
 
         {/* Background slides */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="sync">
           {slides.map(
             (slide, idx) =>
               idx === currentSlide && (
@@ -135,49 +97,44 @@ const HeroSection = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
                 >
                   <Image
                     src={slide.bgImage}
-                    alt={`${slide.productName} background`}
+                    alt={`${slide.word} background`}
                     fill
                     priority={idx === 0}
-                    className="object-cover"
+                    className="object-cover object-center"
                     quality={100}
+                    // sizes="100vw"
                   />
-
-                  {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
                 </motion.div>
-              ),
+              )
           )}
         </AnimatePresence>
 
-        {/* Heading */}
+        {/* Initial fade-in overlay — pointer-events in style so Framer can't override */}
         <motion.div
-          className="flex flex-col items-center gap-4 text-center px-4 z-20"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          transition={{ delay: 0.8 }}
-        >
-          <motion.div className="flex flex-wrap justify-center items-center gap-2">
-            {/* Static text */}
+          className="min-h-full bg-black/20 w-full absolute z-10"
+          style={{ pointerEvents: "none" }}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        />
+
+        {/* Heading */}
+        <div className="my-auto flex flex-col items-center gap-3 text-center z-20 px-4">
+          <div className="flex flex-wrap justify-center items-center gap-2">
             <TextBuilder fontSize="40px" weight="extrabold" color="light">
               We Build Luxury
             </TextBuilder>
 
-            {/* Typing word */}
-            <motion.span
-              key={wordIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
+            <span>
               <TextBuilder fontSize="40px" weight="extrabold" color="light">
-                {text}
+                {displayText}
               </TextBuilder>
-            </motion.span>
+            </span>
 
             {/* Blinking cursor */}
             <motion.span
@@ -188,23 +145,29 @@ const HeroSection = () => {
                 |
               </TextBuilder>
             </motion.span>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="px-6"
+          >
+            <TextBuilder fontSize="16px" weight="medium" color="section">
+              Modern Design. Uncompromising Interiors.{" "}
+              An Extraordinary Living Experience.
+            </TextBuilder>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{
-              delay: letters.length * 0.05 + 0.2 + 0.5,
-              duration: 0.6,
-            }}
-            className="px-6 "
+            className="pt-5"
+            transition={{ delay: 0.9, duration: 0.6 }}
           >
-            <TextBuilder fontSize="16px" weight="medium" color="section">
-              Modern Design. Uncompromising Interiors. An Extraordinary Living
-              Experience.
-            </TextBuilder>
+            <ButtonMobile text="Know More" onClick={() => scrollToSection("#work")} />
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </>
   );

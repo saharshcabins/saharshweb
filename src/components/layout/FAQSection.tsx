@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
+import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -38,8 +39,17 @@ const FAQSection = () => {
   return (
     <div className="w-full flex flex-col items-center gap-12 py-16 px-4">
       {/* Title */}
+      <MultiColorTextMobile
+        fontSize="30px"
+        className="md:hidden"
+        items={[
+          { text: "Frequently Asked ", color: "dark", weight: "bold" },
+          { text: "Questions", color: "primary", weight: "bold" },
+        ]}
+      />
       <MultiColorText
         fontSize="75px"
+        className="max-md:hidden"
         items={[
           { text: "Frequently Asked ", color: "dark", weight: "bold" },
           { text: "Questions", color: "primary", weight: "bold" },

@@ -3,6 +3,7 @@ import Image from "next/image";
 import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 import ButtonMobile from "../shared/ButtonMobile";
 import TextBuilderMobile from "../shared/TextBuilderMobile";
+import TextBuilder from "../shared/TextBuilder";
 
 const features = [
   {
@@ -58,36 +59,31 @@ const features = [
 const CabinSectionMobile = () => {
   return (
     <div className="text-center leading-[1.2] flex flex-col gap-[32px] items-center">
-      <div className="w-[80%] flex flex-col gap-[28px]">
-        <MultiColorTextMobile
-          className="leading-[1.2]"
-          fontSize="14px"
-          items={[
-            {
-              text: "From vision to reality in weeks—not years ",
-              color: "primary",
-              weight: "bold",
-            },
-            {
-              text: " ",
-              color: "link",
-              breakAfter: true,
-            },
-            {
-              text: " Be spoke modular luxury for resorts, farmhouses, ",
-              color: "link",
-              weight: "medium",
-            },
-            {
-              text: "and workspaces.Built fast, finished to perfection.",
-              color: "link",
-              weight: "medium",
-            },
-          ]}
-        />
+      <div className="w-[90%] flex flex-col gap-[28px]">
+        <div className="flex flex-col gap-2 pb-4">
+          <TextBuilderMobile fontSize="30px" weight="bold" color="primary">
+            Luxury You Can Feel
+          </TextBuilderMobile>{" "}
+          <MultiColorTextMobile
+            className="leading-[1.2]"
+            fontSize="14px"
+            items={[
+              {
+                text: " From soundproof walls to premium finishes, our builds are engineered for perfection. ",
+                color: "link",
+                weight: "medium",
+              },
+              {
+                text: " We don’t just build modular; we build to a higher standard. Quality isn’t a goal—it’s our foundation.",
+                color: "link",
+                weight: "medium",
+              },
+            ]}
+          />
+        </div>
 
         <div className="flex flex-row w-full gap-4 justify-center">
-          <ButtonMobile text="About Us" />
+          {/* <ButtonMobile text="About Us" /> */}
           <ButtonMobile text="Schedule a Visit" />
         </div>
       </div>
@@ -111,11 +107,7 @@ const CabinSectionMobile = () => {
             className="rounded-[14px] border border-[var(--light-border)] bg-white px-4 py-4 flex flex-col gap-2"
           >
             {/* Title */}
-            <TextBuilderMobile
-              fontSize="13px"
-              weight="bold"
-              color="dark"
-            >
+            <TextBuilderMobile fontSize="13px" weight="bold" color="dark">
               {feature.title}
             </TextBuilderMobile>
 

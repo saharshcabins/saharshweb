@@ -50,12 +50,12 @@ const CabinCarouselMobile = () => {
   };
 
   return (
-    <div className="flex flex-col items-center text-center gap-8  overflow-hidden">
+    <div className="flex flex-col w-full items-center text-center gap-8  overflow-hidden">
       <MultiColorTextMobile
         fontSize="30px" // Adjusted font size for mobile
         items={[
-          { text: "Our ", color: "dark", weight: "medium" },
-          { text: " Bestsellers", color: "primary", weight: "semibold" },
+          { text: "Our ", color: "dark", weight: "bold" },
+          { text: " Bestsellers", color: "primary", weight: "bold" },
         ]}
       />
 
@@ -92,22 +92,22 @@ const CabinCarouselMobile = () => {
               <div className="absolute bottom-0 left-0 right-0 h-[100px] bg-gradient-to-t from-[#0F1B26] to-transparent z-10" />
 
               {/* Content */}
-              <div className="relative z-10 p-5 text-left flex flex-col items-start w-full">
+              <div className="relative z-10 p-5 text-left flex flex-col items-center w-full">
                 <TextBuilderMobile
-                  fontSize="18px"
+                  fontSize="16px"
                   weight="bold"
                   color="light"
                   className="leading-[1.2]"
                 >
                   {cabin.name}
                 </TextBuilderMobile>
-                <TextBuilderMobile
+                {/* <TextBuilderMobile
                   fontSize="10px"
                   color="light"
                   className="leading-[1.25]"
                 >
                   {cabin.description}
-                </TextBuilderMobile>
+                </TextBuilderMobile> */}
               </div>
 
               {/* Navigation Arrows */}
@@ -135,7 +135,7 @@ const CabinCarouselMobile = () => {
         })}
       </div>
 
-      <TextBuilderMobile
+      {/* <TextBuilderMobile
         fontSize="12px"
         color="dark"
         className="text-center px-6"
@@ -143,7 +143,7 @@ const CabinCarouselMobile = () => {
         Saharsh Cabins, luxury cottages, and luxury villas are crafted using
         high-quality materials and innovative construction techniques to ensure
         durability, efficiency, and aesthetic appeal.
-      </TextBuilderMobile>
+      </TextBuilderMobile> */}
     </div>
   );
 };

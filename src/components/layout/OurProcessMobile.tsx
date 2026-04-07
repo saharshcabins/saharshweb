@@ -1,62 +1,63 @@
 import React from "react";
 import Image from "next/image";
 import MultiColorText from "../shared/MultiColorText";
-import { Cube, HomeIcon, NoteIcon, Repair } from "@/utils/svgUtils";
+import {  HomeIcon, MagnifyingGlass, NoteIcon, Repair } from "@/utils/svgUtils";
 import TextBuilderMobile from "../shared/TextBuilderMobile";
+import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 
 const OurProcessMobile = () => {
-  const processItems = [
-    {
+ const processItems = [
+     {
       title: "Requirements & Assessments",
-      description:
-        "Understanding your requirements, budget, and project scope led to the initial discussion of design possibilities and technical specifications.",
-      icon: <NoteIcon />,
-    },
-    {
+       description:
+         "Understanding your requirements, budget, and project scope led to the initial discussion of design possibilities and technical specifications.",
+       icon: <MagnifyingGlass />,
+     },
+     {
       title: "Designs & Quotations",
-      description:
-        "After developing conceptual designs and layouts, a detailed quotation outlining costs and timelines was provided.",
-      icon: <HomeIcon />,
-    },
-    {
+       description:
+         "After developing conceptual designs and layouts, a detailed quotation outlining costs and timelines was provided.",
+       icon: <NoteIcon />,
+     },
+     {
       title: "Manufacturing & Quality Control",
-      description:
-        "Ensuring top-notch quality during the manufacturing process with thorough checks and adherence to standards.",
-      icon: <Cube />,
-    },
-    {
+       description:
+         "Ensuring top-notch quality during the manufacturing process with thorough checks and adherence to standards.",
+       icon:< Repair />,
+     },
+     {
       title: "Delivery & Installation",
-      description:
-        "Careful delivery and professional installation to ensure the project is completed efficiently and safely.",
-      icon: <Repair />,
-    },
-  ];
+       description:
+         "Careful delivery and professional installation to ensure the project is completed efficiently and safely.",
+       icon: <HomeIcon />,
+     },
+   ];
 
   return (
     <div className="w-full flex flex-col gap-[30px]">
       {/* Header */}
       <div className="flex flex-row items-start justify-between w-[90%] gap-4 mx-auto">
-        <div className="flex flex-col items-start justify-between gap-[16px]">
-          <MultiColorText
-            fontSize="22px"
+        <div className="flex flex-col items-center text-center justify-between gap-[16px]">
+          <MultiColorTextMobile
+            fontSize="30px"
             items={[
-              { text: "Our Proven", color: "dark", weight: "medium" },
+              { text: "Our Proven", color: "dark", weight: "bold" },
               { text: " Process", color: "primary", weight: "bold" },
             ]}
           />
-          <TextBuilderMobile fontSize="12px" color="dark">
+          <TextBuilderMobile fontSize="14px" color="dark">
             From sleek architecture to luxurious interiors & scenic landscapes
             come together to create living spaces that inspire and rejuvenate.
           </TextBuilderMobile>
         </div>
-        <Image
+        {/* <Image
           
           src="/assets/logo/logo_icon.svg"
           alt="logo-saharsh"
           width={49}
           height={45}
           className="object-contain"
-        />
+        /> */}
       </div>
 
       {/* Process Steps */}
@@ -81,9 +82,9 @@ const OurProcessMobile = () => {
                 )}
               </TextBuilderMobile>
             </div>
-            <TextBuilderMobile fontSize="12px" color="dark-light">
+            {/* <TextBuilderMobile fontSize="12px" color="dark-light">
               {item.description}
-            </TextBuilderMobile>
+            </TextBuilderMobile> */}
           </div>
         ))}
       </div>

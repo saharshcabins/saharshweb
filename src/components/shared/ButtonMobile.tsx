@@ -31,7 +31,7 @@ const ButtonMobile: FC<ButtonProps> = ({ text, onClick, className, disabled }) =
         ${
           disabled
             ? "border-[var(--text-dark-25)] cursor-not-allowed"
-            : "border-[var(--color-primary)] hover:bg-[var(--color-primary)]"
+            : "border-[var(--color-primary)] bg-[var(--text-light)] hover:bg-[var(--color-primary)]"
         }
         ${className || ""}
       `}

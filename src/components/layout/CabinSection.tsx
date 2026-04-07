@@ -22,7 +22,8 @@ const CabinSection = () => {
             },
             {
               text: " We don’t just build modular; we build to a higher standard. Quality isn’t a goal—it’s our foundation.",
-              color: "link",
+              color: "link",               weight: "medium",
+
               breakAfter: true,
             },
           ]}

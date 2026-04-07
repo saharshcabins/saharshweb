@@ -7,6 +7,7 @@ import InputBox from "../shared/Input";
 import Button from "../shared/Button";
 import toast, { Toaster } from "react-hot-toast";
 import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
+import TextBuilderMobile from "../shared/TextBuilderMobile";
 
 const interestOptions = [
   "Luxury Cottage",
@@ -175,10 +176,10 @@ const GetInTouch = () => {
     >
       <Toaster />
       {/* ✅ removed duplicate id="contact-us" from this inner div */}
-      <div className="flex flex-col md:flex-col justify-between  md:items-center gap-4">
+      <div className="flex flex-col md:flex-col justify-between  items-center gap-4">
         <MultiColorTextMobile
-          fontSize="24px"
-          className="text-start sm:block md:block lg:hidden"
+          fontSize="30px"
+          className="text-center sm:block md:block lg:hidden"
           items={[
             { text: "Love to hear from you,", color: "dark", weight: "medium", breakAfter: true },
             { text: "get in touch!", color: "primary", weight: "bold" },
@@ -192,10 +193,18 @@ const GetInTouch = () => {
             { text: "get in touch!", color: "primary", weight: "bold" },
           ]}
         />
+         <TextBuilderMobile
+          fontSize="14px"
+          color="dark-light"
+          className="w-full md:hidden pt-[5px] md:pt-[15px] text-center"
+        >
+          Understanding your requirements, budget, and project scope led the initial discussion of
+          design possibilities and technical specifications.
+        </TextBuilderMobile>
         <TextBuilder
           fontSize="20px"
           color="dark-light"
-          className="w-full  pt-[5px] md:pt-[15px] text-center"
+          className="w-full  pt-[5px] md:pt-[15px] text-center max-md:hidden"
         >
           Understanding your requirements, budget, and project scope led <br />the initial discussion of
           design possibilities and technical specifications.

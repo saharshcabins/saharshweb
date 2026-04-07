@@ -24,8 +24,7 @@ export default function MainLayoutSmall({ children }: { children: ReactNode }) {
         {/* <TestimonialSectionMobile /> */}
         <OurProcessMobile />
         {/* <MilestoneMobile /> */}
-        <FAQSection />
-        <GetInTouch />
+        <GetInTouch /> <FAQSection />
       </div>
     </div>
   );

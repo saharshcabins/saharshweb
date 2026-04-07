@@ -80,17 +80,19 @@ const CabinSlideShowMobile: React.FC = () => {
       className="bg-[var(--text-dark)] py-10 w-full flex flex-col gap-10 px-4"
     >
       {/* Header */}
-      <div className="flex flex-col gap-4 items-start">
+      <div className="flex flex-col gap-4 items-center text-center">
         <MultiColorTextMobile
-          fontSize="22px"
+          fontSize="30px"
           items={[
-            { text: "Built for ", color: "light", weight: "medium" },
-            { text: "Excellence", color: "primary", weight: "bold" },
+            { text: "Our ", color: "light", weight: "bold" },
+            { text: "Categories", color: "primary", weight: "bold" },
           ]}
         />
-        <TextBuilderMobile fontSize="12px" color="light">
-          A cabin is more than a structure, it’s where ambition takes shape,
-          whether as a luxury retreat or a personal sanctuary.
+        <TextBuilderMobile fontSize="14px" color="light">
+           Whether you are scaling a luxury resort, cultivating a private
+            farmhouse, or designing a premium 
+            workspace, our modular builds provide the premium foundation your
+            vision deserves.
         </TextBuilderMobile>
       </div>
 

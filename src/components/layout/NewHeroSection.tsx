@@ -121,7 +121,7 @@ const NewHeroSection = () => {
 
         {/* Initial fade-in overlay */}
         <motion.div
-          className="min-h-full bg-black/20 w-full absolute z-10 pointer-events-none"
+className="min-h-full bg-black/20 w-full absolute z-10"
           initial={{ opacity: 1 }}
           animate={{ opacity: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
