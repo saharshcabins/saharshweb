@@ -40,7 +40,7 @@ const slides: Slide[] = [
   {
     type: "image",
     src: "/assets/built/cafe_1.png",
-    title: "Cafes",
+    title: "Modular Cafes",
     description:
       "Serve sooner. Scale faster. Turnkey cafe spaces for rapid expansion.",
   },
