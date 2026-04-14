@@ -11,7 +11,7 @@ import TextBuilderMobile from "../shared/TextBuilderMobile";
 
 const interestOptions = [
   "Luxury Cottage",
-  "Luxury Villa",
+  "Luxury Villas",
   "Marketing Sales Office",
   "Portable Cafe",
   "Resort",
@@ -19,6 +19,7 @@ const interestOptions = [
 ];
 
 const budgetOptions = [
+    "Less than 8 lakh",
   "8 lakh - 15 lakh",
   "15 lakh - 30 lakh",
   "30 lakh - 50 lakh",

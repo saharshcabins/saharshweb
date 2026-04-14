@@ -23,7 +23,7 @@ const OurProcessCardNew: React.FC<OurProcessCardNewProps> = ({
         <TextBuilder fontSize="56px" weight="extrabold" color="primary">
           {number}
         </TextBuilder>
-        <TextBuilder fontSize="22px" weight="bold" color="light">
+        <TextBuilder fontSize="22px" weight="bold" color="light" className="whitespace-nowrap">
           {title}
         </TextBuilder>
       </div>

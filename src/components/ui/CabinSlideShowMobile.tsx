@@ -33,14 +33,14 @@ const slides: Slide[] = [
   {
     type: "image",
     src: "/assets/built/villa_1.png",
-    title: "Luxury Villa",
+    title: "Luxury Villas",
     description:
       "Land to living. Seamlessly. Precision-engineered homes for your private retreat.",
   },
   {
     type: "image",
     src: "/assets/built/cafe_1.png",
-    title: "Modular Cafe",
+    title: "Cafes",
     description:
       "Serve sooner. Scale faster. Turnkey cafe spaces for rapid expansion.",
   },

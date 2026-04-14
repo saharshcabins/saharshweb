@@ -8,36 +8,36 @@ import Image from "next/image";
 
 const QuoteSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.6, once: true });
+  // amount: 0.2 — only 20% needs to be visible to trigger, once: true so it doesn't re-fire
+  const isInView = useInView(ref, { amount: 0.2, once: true });
 
   return (
-    <div ref={ref} className="w-full  overflow-hidden -my-20">
+    <div ref={ref} className="w-full overflow-hidden -my-20">
       {/* Background + main content */}
       <motion.div
         className="px-[7%] bg-cover py-[7%] bg-center bg-no-repeat flex flex-row items-center justify-between relative"
         style={{ backgroundImage: "url('/assets/quote/quote_bg.png')" }}
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 1.2, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
         {/* Text and Button Section */}
         <div className="flex flex-col w-full gap-[88px]">
           {/* MultiColorText Animation */}
           <motion.div
-            initial={{ opacity: 0, y: 80 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{
-              ease: "easeInOut",
-              duration: 1.6,
-              delay: 1,
+              ease: "easeOut",
+              duration: 0.7,
+              delay: 0.15,
             }}
           >
             <MultiColorText
               fontSize="75px"
               className="leading-[1.2] whitespace-nowrap text-start"
               items={[
-                {  
-
+                {
                   text: "Built in India,",
                   weight: "bold",
                   color: "dark",
@@ -54,7 +54,7 @@ const QuoteSection = () => {
                   weight: "bold",
                   color: "primary",
                   breakAfter: true,
-                }
+                },
               ]}
             />
           </motion.div>
@@ -66,10 +66,9 @@ const QuoteSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                type: "tween",
-                duration: 1,
+                duration: 0.6,
                 ease: "easeOut",
-                delay: 0.7,
+                delay: 0.3,
               }}
             >
               <TextBuilder
@@ -77,7 +76,11 @@ const QuoteSection = () => {
                 color="dark"
                 className="leading-[1.25]"
               >
-Shipping worldwide is easy; shipping export-grade quality that withstands diverse climates is the hard part. Whether it’s the humidity of the tropics or the winds of the coast, Saharsh Cabins are built to thrive wherever they land.              </TextBuilder>
+                Shipping worldwide is easy; shipping export-grade quality that
+                withstands diverse climates is the hard part. Whether it's the
+                humidity of the tropics or the winds of the coast, Saharsh
+                Cabins are built to thrive wherever they land.
+              </TextBuilder>
             </motion.div>
 
             {/* Button Animation */}
@@ -85,10 +88,9 @@ Shipping worldwide is easy; shipping export-grade quality that withstands divers
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{
-                type: "tween",
-                duration: 0.8,
+                duration: 0.5,
                 ease: "easeOut",
-                delay: 2,
+                delay: 0.5,
               }}
             >
               <Button
@@ -107,17 +109,15 @@ Shipping worldwide is easy; shipping export-grade quality that withstands divers
 
         {/* Hanging Container Image Animation */}
         <motion.div
-          initial={{ y: -100, opacity: 0 }}
+          initial={{ y: -80, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           className="w-full flex items-center justify-center"
           transition={{
             type: "spring",
-            stiffness: 100,
-            damping: 9,
-            mass: 0.9,
-            bounce: 0.55,
-            duration: 1.6,
-            delay: 0.4,
+            stiffness: 120,
+            damping: 12,
+            mass: 0.8,
+            delay: 0.1,
           }}
         >
           <Image
