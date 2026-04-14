@@ -43,28 +43,36 @@ const crossIcon = (
 
 const comparisonData = [
   {
-    saharsh: "30–60% faster delivery",
-    traditional: "12–24+ months timeline",
+    saharsh: "Get operational 30–60% faster — no waiting, no delays	",
+    traditional: "Stuck for 12–24+ months before you even start operating	",
   },
   {
-    saharsh: "Fixed, upfront pricing. No surprises.",
-    traditional: "Prone to budget overruns & hidden costs.",
+    saharsh: "Lock your budget upfront — no hidden costs, ever",
+    traditional: "Budgets spiral out of control — surprises at every stage",
   },
   {
-    saharsh: "Precision factory manufacturing.",
-    traditional: "Variable on-site quality & conditions.",
+    saharsh: "Factory-built precision — zero compromise on quality	",
+    traditional: "Quality depends on labor & site conditions — no consistency	",
   },
   {
-    saharsh: "Minimal disruption. Weeks of quiet assembly.",
-    traditional: "Months of noise, dust & traffic disruption.",
+    saharsh: "Install in weeks, not months — minimal site chaos	",
+    traditional: "Endless noise, dust & disruption — impacts your business	",
   },
   {
-    saharsh: "Up to 90% less material waste.",
-    traditional: "Significant on-site material wastage.",
+    saharsh: "Cut waste by up to 90% — smarter, cleaner construction	",
+    traditional: "Massive material wastage — inefficient and costly	",
   },
   {
-    saharsh: "Engineered steel for India's climate.",
-    traditional: "Susceptible to weather delays & damage.",
+    saharsh: "Built for Site conditions — durable, reliable, proven	",
+    traditional: "Weather delays your progress — timelines keep slipping	",
+  },
+  {
+    saharsh: "Scale instantly when you grow — no rework, no hassle	",
+    traditional: "Hard to expand or modify later — you’re locked in	",
+  },
+  {
+    saharsh: "Premium finish, every single time — consistency you can trust	",
+    traditional: "Final output? Uncertain. — you pay more, risk more	",
   },
 ];
 
@@ -72,7 +80,7 @@ const SaharshAdvantage = () => {
   return (
     <div className="w-full flex flex-col items-center gap-14 md:py-20 px-4">
       {/* Title */}
-         <div className="flex flex-col items-center gap-3 text-center md:hidden">
+      <div className="flex flex-col items-center gap-3 text-center md:hidden">
         <MultiColorTextMobile
           fontSize="30px"
           items={[
@@ -82,7 +90,7 @@ const SaharshAdvantage = () => {
           ]}
         />
         <TextBuilderMobile fontSize="14px">
-          Build faster. Spend smarter. Get better results.{" "}
+          Why wait months when you can be ready in weeks?{" "}
         </TextBuilderMobile>
       </div>
       <div className="flex flex-col items-center gap-3 text-center max-md:hidden">
@@ -95,7 +103,7 @@ const SaharshAdvantage = () => {
           ]}
         />
         <TextBuilder fontSize="20px">
-          Build faster. Spend smarter. Get better results.{" "}
+          Why wait months when you can be ready in weeks?{" "}
         </TextBuilder>
       </div>
 
@@ -139,7 +147,7 @@ const SaharshAdvantage = () => {
               Saharsh Cabins
             </TextBuilder>
             <TextBuilder fontSize="16px" weight="normal" color="light">
-              Prefabricated. Precise. Future-ready.
+              Stop wasting time. Start building smarter.{" "}
             </TextBuilder>
           </div>
 
@@ -155,7 +163,8 @@ const SaharshAdvantage = () => {
           {/* Rows */}
           <ul style={{ padding: "0 24px 24px", margin: 0, listStyle: "none" }}>
             {comparisonData.map((row, i) => (
-              <li className="items-center"
+              <li
+                className="items-center"
                 key={i}
                 style={{
                   display: "flex",
@@ -207,7 +216,7 @@ const SaharshAdvantage = () => {
               Traditional Construction
             </TextBuilder>
             <TextBuilder fontSize="16px" weight="normal" color="muted">
-              Conventional builds. Known trade-offs.
+              Slow. Unpredictable. Expensive.{" "}
             </TextBuilder>
           </div>
 
@@ -223,7 +232,8 @@ const SaharshAdvantage = () => {
           {/* Rows */}
           <ul style={{ padding: "0 24px 24px", margin: 0, listStyle: "none" }}>
             {comparisonData.map((row, i) => (
-              <li className="items-center"
+              <li
+                className="items-center"
                 key={i}
                 style={{
                   display: "flex",
