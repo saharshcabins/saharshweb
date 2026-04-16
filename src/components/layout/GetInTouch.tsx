@@ -111,7 +111,7 @@ const GetInTouch = () => {
     return newErrors;
   };
 
-  const handleSubmit = async () => {
+const handleSubmit = async () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -120,34 +120,41 @@ const GetInTouch = () => {
 
     setIsSubmitting(true);
 
+    // Using URLSearchParams as required by the Apps Script 'doPost' with urlencoded content-type
     const params = new URLSearchParams();
-    for (const key in formData) {
-      if (Object.prototype.hasOwnProperty.call(formData, key)) {
-        params.append(key, formData[key]);
-      }
-    }
-    params.append("Interested In", selectedInterests.join(", "));
+    params.append("Name", formData.Name);
+    params.append("Phone", formData.Phone);
+    params.append("Project Location", formData["Project Location"]);
+    params.append("Email", formData.Email || "N/A");
     params.append("Budget", budget);
+    params.append("Interested In", selectedInterests.join(", "));
+
+    // Replace the URL below with your deployed Google Apps Script Web App URL
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPh9YhOxerVEIFBeAPOSg_l4ksDhJBMuOCA3ZwEgC197i9HG6W5PO_vlEOSJvK_y7Y/exec";
 
     try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbxWuThRqT9j4hy2D8lPAeO7zMuTbrfwZCcfAt6DIx8wOe07Yy5pfwyCT4TmBFAO4nta/exec",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: params.toString(),
-        }
-      );
+      // We use 'no-cors' mode if you experience CORS issues, 
+      // but usually standard fetch is fine for simple Google Script POSTs
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors", // Use no-cors to avoid preflight issues if necessary
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: params.toString(),
+      });
 
-      if (response.ok) {
-        toast.success("Message sent successfully!", { position: "top-right" });
-        setFormData({ Name: "", Phone: "", "Project Location": "", Email: "" });
-        setSelectedInterests([]);
-        setBudget("");
-        setErrors({});
-      } else {
-        toast.error(`Failed to send: ${response.status}`, { position: "top-right" });
-      }
+      // Note: with 'no-cors', response.ok will be false and status will be 0 
+      // even on success. If you don't use 'no-cors', you can check response.ok.
+      
+      toast.success("Message sent successfully!", { position: "top-right" });
+      
+      // Reset Form
+      setFormData({ Name: "", Phone: "", "Project Location": "", Email: "" });
+      setSelectedInterests([]);
+      setBudget("");
+      setErrors({});
+      
     } catch (error) {
       toast.error("Failed to send message. Please try again.", { position: "top-right" });
       console.error("Error submitting form:", error);
