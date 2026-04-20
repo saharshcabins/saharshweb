@@ -130,7 +130,7 @@ const handleSubmit = async () => {
     params.append("Interested In", selectedInterests.join(", "));
 
     // Replace the URL below with your deployed Google Apps Script Web App URL
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPh9YhOxerVEIFBeAPOSg_l4ksDhJBMuOCA3ZwEgC197i9HG6W5PO_vlEOSJvK_y7Y/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz40EPct829AbpCODWkpNf0M4FeOd08PgbpLQUTWYtgegXExywGdY9YEaCaoVD5cyVK/exec";
 
     try {
       // We use 'no-cors' mode if you experience CORS issues, 
