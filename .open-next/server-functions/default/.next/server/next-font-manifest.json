@@ -1,0 +1,22 @@
+{
+  "app": {
+    "[project]/src/app/_not-found/page": [
+      "static/media/EudoxusSans_Regular-s.p.03o8htngmait8.ttf",
+      "static/media/EudoxusSans_Medium-s.p.0~5en5.t1xg09.ttf",
+      "static/media/EudoxusSans_Bold-s.p.0.~h~a6dk~0bk.ttf"
+    ],
+    "[project]/src/app/page": [
+      "static/media/EudoxusSans_Regular-s.p.03o8htngmait8.ttf",
+      "static/media/EudoxusSans_Medium-s.p.0~5en5.t1xg09.ttf",
+      "static/media/EudoxusSans_Bold-s.p.0.~h~a6dk~0bk.ttf"
+    ],
+    "[project]/src/app/product/[slug]/page": [
+      "static/media/EudoxusSans_Regular-s.p.03o8htngmait8.ttf",
+      "static/media/EudoxusSans_Medium-s.p.0~5en5.t1xg09.ttf",
+      "static/media/EudoxusSans_Bold-s.p.0.~h~a6dk~0bk.ttf"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}
