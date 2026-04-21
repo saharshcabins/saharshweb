@@ -117,14 +117,14 @@ const CabinSectionMobile = () => {
                 <div key={pIdx} className="flex flex-row items-start gap-2">
                   {/* Dash icon */}
                   <TextBuilderMobile
-                    fontSize="12px"
+                    fontSize="14px"
                     color="primary"
                     weight="bold"
                   >
                     —
                   </TextBuilderMobile>
                   <TextBuilderMobile
-                    fontSize="12px"
+                    fontSize="14px"
                     color="dark-light"
                     weight="normal"
                   >

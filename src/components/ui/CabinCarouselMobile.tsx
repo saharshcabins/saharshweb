@@ -10,30 +10,31 @@ import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 const cabins = [
   {
     name: "Hutsie",
-    description: " 20’x8’ | Bathroom | 2 Pax | Kitchenet",
-    image: "/assets/cabin/hutsie.",
+    description: " 20'x8' | Bathroom | 2 Pax | Kitchenet",
+    image: "/assets/cabin/hutsie.png",
   },
   {
     name: "Rustico",
-    description: " 24’x12’ | Bathroom | 2 – 3 Pax | Kitchenet",
-    image: "/assets/cabin/rustico.",
+    description: " 24'x12' | Bathroom | 2 – 3 Pax | Kitchenet",
+    image: "/assets/cabin/rustico.png",
   },
   {
     name: "Barnie",
-    description: " 24’x10’ | Bathroom | 3 - 4 Pax | Kitchenet",
-    image: "/assets/cabin/barnie.",
+    description: " 24'x10' | Bathroom | 3 - 4 Pax | Kitchenet",
+    image: "/assets/cabin/barnie.png",
   },
   {
     name: "Skylighter",
-    description: " 20’x10’ | Bathroom | 2 – 3 Pax | Kitchenet",
-    image: "/assets/cabin/skylighter.",
+    description: " 20'x10' | Bathroom | 2 – 3 Pax | Kitchenet",
+    image: "/assets/cabin/skylighter.png",
   },
   {
     name: "Triango",
-    description: " 20’x12’ | Bathroom | 2 – 3 Pax | Kitchenet",
-    image: "/assets/cabin/triango.",
+    description: " 20'x12' | Bathroom | 2 – 3 Pax | Kitchenet",
+    image: "/assets/cabin/triango.png",
   },
 ];
+
 const CabinCarouselMobile = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -112,7 +113,7 @@ const CabinCarouselMobile = () => {
 
               {/* Navigation Arrows */}
               {i === activeIndex && (
-                <div className="absolute inset-0 flex items-center justify-between z-20 px-1">
+                <div className="absolute inset-0 flex items-end p-3 justify-between z-20  ">
                   <button
                     onClick={() => moveCarousel("left")}
                     className="p-2 bg-[rgba(15,27,38,0.5)] rounded-full border border-[var(--color-primary)]"

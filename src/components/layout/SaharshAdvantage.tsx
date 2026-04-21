@@ -178,7 +178,7 @@ const SaharshAdvantage = () => {
                 }}
               >
                 {checkIcon()}
-                <TextBuilder fontSize="13px" weight="normal" color="light">
+                <TextBuilder fontSize="14px" weight="normal" color="light">
                   {row.saharsh}
                 </TextBuilder>
               </li>
@@ -247,7 +247,7 @@ const SaharshAdvantage = () => {
                 }}
               >
                 {crossIcon}
-                <TextBuilder fontSize="13px" weight="normal" color="dark">
+                <TextBuilder fontSize="14px" weight="normal" color="dark">
                   {row.traditional}
                 </TextBuilder>
               </li>

@@ -141,7 +141,7 @@ const CabinSlideShowMobile: React.FC = () => {
                   {slide.title}
                 </TextBuilderMobile>
                 <TextBuilderMobile
-                  fontSize="11px"
+                  fontSize="14px"
                   className="leading-[1.2] text-left"
                   color="dark"
                 >
