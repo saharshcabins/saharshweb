@@ -29,26 +29,77 @@ const eudoxus = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Saharsh",
-  description: "Saharsh — Modern Cabin & Architecture Design Studio",
+  metadataBase: new URL("https://www.saharsh.co"), // ← your actual domain
+
+  title: {
+    default: "Saharsh Cabins — Luxury Prefab Cabins & Villas",
+    template: "%s | Saharsh Cabins",
+  },
+  description:
+    "Saharsh Cabins designs and builds premium prefab luxury cabins, villas, resorts, and portable cafes across India. Explore modern architectural craftsmanship.",
+
+  keywords: [
+    "luxury cabins India",
+    "prefab cabins",
+    "luxury villas",
+    "portable cafe",
+    "resort design",
+    "modular cabin",
+    "Saharsh Cabins",
+    "cabin manufacturer India",
+  ],
+
+  authors: [{ name: "Saharsh Cabins", url: "https://www.saharsh.co" }],
+  creator: "Saharsh Cabins",
+  publisher: "Saharsh Cabins",
+
   icons: {
-    icon: "/assets/logo/logo_icon.svg",        // browser tab icon (favicon)
-    shortcut: "/assets/logo/logo_icon.svg",    // optional: ensures Safari & others use it
-    apple: "/assets/logo/logo_icon.svg",       // for Apple touch icons
+    icon: "/assets/logo/logo_icon.svg",
+    shortcut: "/assets/logo/logo_icon.svg",
+    apple: "/assets/logo/logo_icon.svg",
   },
+
   openGraph: {
-    title: "Saharsh",
-    description: "Discover Saharsh — premium modern cabin design and architecture solutions.",
-    images: ["/assets/logo/logo_icon.svg"],
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.saharsh.co",
+    siteName: "Saharsh Cabins",
+    title: "Saharsh Cabins — Luxury Prefab Cabins & Villas",
+    description:
+      "Premium prefab luxury cabins, villas, resorts, and portable cafes designed and built across India.",
+    images: [
+      {
+        url: "/assets/og-image.jpg", // ← make a 1200x630 image for best results
+        width: 1200,
+        height: 630,
+        alt: "Saharsh Cabins — Luxury Prefab Design",
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Saharsh",
-    description: "Premium cabin design and architectural craftsmanship.",
-    images: ["/assets/logo/logo_icon.svg"],
+    site: "@saharshcabins", // ← your Twitter handle if you have one
+    title: "Saharsh Cabins — Luxury Prefab Cabins & Villas",
+    description:
+      "Premium prefab luxury cabins, villas, resorts, and portable cafes designed and built across India.",
+    images: ["/assets/og-image.jpg"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
+
+  alternates: {
+    canonical: "https://www.saharsh.co",
   },
 };
-
 
 export default function RootLayout({
   children,
