@@ -153,7 +153,7 @@ const HeroSection = () => {
             transition={{ delay: 0.7, duration: 0.6 }}
             className="px-6"
           >
-            <TextBuilder fontSize="16px" weight="medium" color="section">
+            <TextBuilder fontSize="20px" weight="medium" color="section">
               Modern Design. Uncompromising Interiors.{" "}
               An Extraordinary Living Experience.
             </TextBuilder>
