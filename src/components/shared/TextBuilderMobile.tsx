@@ -23,7 +23,8 @@ type TextBuilderProps = {
     | "light60"
     | "dark50"
     | "section50"
-    |"light70" | "section";
+    | "light70"
+    | "section";
   fontSize?: string; // e.g., "56px" or "3vw"
   className?: string;
 };
@@ -75,9 +76,8 @@ const TextBuilderMobile: FC<TextBuilderProps> = ({
     light60: "text-[var(--text-light-60)]",
     dark50: "text-[var(--text-dark-50)]",
     section50: "text-[var(--section-accent-50)]",
-    light70:"text-[var(--text-light-70)]",
-        section: "text-[var(--section-accent)]",
-
+    light70: "text-[var(--text-light-70)]",
+    section: "text-[var(--section-accent)]",
   };
 
   // Only apply the fontSize if it is provided
@@ -89,7 +89,7 @@ const TextBuilderMobile: FC<TextBuilderProps> = ({
         sizeClasses[size],
         weightClasses[weight],
         colorClasses[color],
-        className
+        className,
       )}
       style={computedStyle}
     >
