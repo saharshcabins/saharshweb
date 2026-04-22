@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "export": "next export",
-    "start": "next start",
-    "lint": "eslint",
-    "build": "next build",
+    "build": "opennextjs-cloudflare build",
     "cf:build": "opennextjs-cloudflare build",
     "deploy": "opennextjs-cloudflare deploy",
     "preview": "opennextjs-cloudflare preview"
