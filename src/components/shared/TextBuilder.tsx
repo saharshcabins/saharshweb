@@ -92,7 +92,7 @@ const TextBuilder: FC<TextBuilderProps> = ({
       ? (() => {
           const px = parseInt(fontSize);
           const vw = parseFloat(((px / 1440) * 100).toFixed(3));
-          const min = Math.round(px * 0.6);
+          const min = Math.round(px * 0.8);
           return { fontSize: `clamp(${min}px, ${vw}vw, ${fontSize})` };
         })()
       : fontSize

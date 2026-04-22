@@ -6,6 +6,7 @@ import Image from "next/image";
 import Head from "next/head";
 import Button from "../shared/Button";
 import ButtonMobile from "../shared/ButtonMobile";
+import TextBuilderMobile from "../shared/TextBuilderMobile";
 
 const slides = [
   {
@@ -153,10 +154,10 @@ const HeroSection = () => {
             transition={{ delay: 0.7, duration: 0.6 }}
             className="px-6"
           >
-            <TextBuilder fontSize="20px" weight="medium" color="section">
+            <TextBuilderMobile fontSize="14px" weight="medium" color="section">
               Modern Design. Uncompromising Interiors.{" "}
               An Extraordinary Living Experience.
-            </TextBuilder>
+            </TextBuilderMobile>
           </motion.div>
 
           <motion.div
