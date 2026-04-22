@@ -111,7 +111,7 @@ const SaharshAdvantage = () => {
       <div
         style={{
           width: "100%",
-          maxWidth: 900,
+          maxWidth: 1000,
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
           gap: 16,
