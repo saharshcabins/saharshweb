@@ -26,7 +26,7 @@ const NavBar = () => {
   const router = useRouter();
   const NavLinks: NavLink[] = [
     // { text: "Work", href: "#work" },
-    { text: "Our Projects", href: "#about-us" },
+    { text: "Our Projects", href: "/products" },
     { text: "Contact Us", href: "#contact-us" },
   ];
 
@@ -127,8 +127,13 @@ const NavBar = () => {
               key={link.text}
               href={link.href}
               onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(link.href);
+                if (link.href.startsWith("#")) {
+                  e.preventDefault();
+                  scrollToSection(link.href);
+                } else {
+                  // normal route navigation
+                  router.push(link.href);
+                }
               }}
             >
               <TextBuilder fontSize="20px" weight="bold" color="link">
@@ -187,11 +192,15 @@ const NavBar = () => {
                 className="w-full text-left"
                 variants={linkVariants}
                 onClick={(e) => {
-                  e.preventDefault();
-                  setIsMenuOpen(false);
-                  setTimeout(() => {
-                    scrollToSection(link.href);
-                  }, 350);
+                  if (link.href.startsWith("#")) {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    setTimeout(() => {
+                      scrollToSection(link.href);
+                    }, 350);
+                  } else {
+                    router.push(link.href);
+                  }
                 }}
               >
                 <TextBuilder fontSize="20px" weight="bold" color="link">
