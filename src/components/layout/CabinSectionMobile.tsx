@@ -89,16 +89,15 @@ const CabinSectionMobile = () => {
       </div>
 
       {/* Image Container */}
-      <div className="w-full aspect-[1040/500] relative">
+      <div className="w-full aspect-[4/3] relative">
         <Image
           fill
           src="/assets/cabin/cabin_1.png"
           alt="cabin-section"
           style={{ objectFit: "contain" }}
-          sizes="(max-width: 768px) 100vw"
         />
       </div>
-
+   
       {/* Features extracted from diagram */}
       <div className="w-full px-5 flex flex-col gap-4 text-left">
         {features.map((feature, idx) => (

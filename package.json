@@ -2,10 +2,10 @@
   "name": "saharsh",
   "version": "0.1.0",
   "private": true,
-  "scripts": {    "dev": "next dev",
-
-    "build": "opennextjs-cloudflare build",
-    "build:worker": "opennextjs-cloudflare build",
+  "scripts": {
+    "dev": "next dev",
+    "cf:build": "opennextjs-cloudflare build",
+    "build": "next build",
     "deploy": "opennextjs-cloudflare deploy",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview"
   },
