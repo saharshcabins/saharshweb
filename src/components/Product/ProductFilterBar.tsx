@@ -29,7 +29,7 @@ export default function ProductFilterBar({
       {/* ── Top row: search + result count ── */}
       <div className="flex items-center gap-3">
         {/* Search input */}
-        <div className="relative flex-1 ">
+        {/* <div className="relative flex-1 ">
           <span
             className="absolute left-3 top-1/2 -translate-y-1/2"
             style={{ color: "var(--text-dark-50)", fontSize: 15 }}
@@ -50,7 +50,7 @@ export default function ProductFilterBar({
               color: "var(--text-dark)",
             }}
           />
-        </div>
+        </div> */}
 
         {/* Result count */}
         {/* <div className="hidden sm:block">

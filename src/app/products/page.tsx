@@ -30,16 +30,16 @@ export default function ProductsPage() {
   }, [activeCategory, searchQuery]);
 
   return (
-    <div className="w-full md:w-[90%] mx-auto px-4   py-10 flex flex-col gap-8 mt-30">
+    <div className="w-full md:w-[90%] mx-auto px-4   py-10 flex flex-col gap-8 mt-20">
       {/* 🔹 Filter Bar */}
-      {/* <ProductFilterBar
+      <ProductFilterBar
         categories={productCategories}
         activeCategory={activeCategory}
         onCategoryChange={setActiveCategory}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         totalCount={filteredProducts.length}
-      /> */}
+      />
 
       {/* 🔹 Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
