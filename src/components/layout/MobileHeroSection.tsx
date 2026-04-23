@@ -12,17 +12,17 @@ const slides = [
   {
     id: 1,
     word: "Cottages",
-    bgImage: "/assets/built/cottages.png",
+    bgImage: "/assets/built/cottage_mobile.png",
   },
   {
     id: 2,
     word: "Villas",
-    bgImage: "/assets/built/villa.png",
+    bgImage: "/assets/built/villa_mobile.png",
   },
   {
     id: 3,
     word: "Offices",
-    bgImage: "/assets/built/center.png",
+    bgImage: "/assets/built/Office_mobile.png",
   },
 ];
 
@@ -85,8 +85,7 @@ const HeroSection = () => {
         <link rel="preload" as="image" href="/assets/built/cottages.png" />
       </Head>
 
-      <div className="w-full h-screen bg-cover bg-center md:h-screen relative flex flex-col justify-between overflow-hidden">
-
+<div className="w-full h-[90vh] md:h-[90vh] relative flex flex-col justify-between overflow-hidden">
         {/* Background slides */}
         <AnimatePresence mode="sync">
           {slides.map(
