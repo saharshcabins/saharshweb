@@ -1,0 +1,180 @@
+"use client";
+
+import React, { useState, useEffect, useCallback } from "react";
+import TextBuilder from "@/components/shared/TextBuilder";
+import TextBuilderMobile from "@/components/shared/TextBuilderMobile";
+
+interface GalleryModalProps {
+  images: string[];
+  startIndex: number;
+  onClose: () => void;
+}
+
+export default function GalleryModal({
+  images,
+  startIndex,
+  onClose,
+}: GalleryModalProps) {
+  const [current, setCurrent] = useState(startIndex);
+
+  const prev = useCallback(
+    () => setCurrent((c) => (c - 1 + images.length) % images.length),
+    [images.length]
+  );
+
+  const next = useCallback(
+    () => setCurrent((c) => (c + 1) % images.length),
+    [images.length]
+  );
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [prev, next, onClose]);
+
+  // Lock body scroll while open
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex flex-col"
+      style={{ background: "rgba(0,0,0,0.97)" }}
+    >
+      {/* ── Top bar ── */}
+      <div className="flex items-center justify-between px-6 py-4 shrink-0">
+        {/* Counter — desktop uses TextBuilder, mobile uses TextBuilderMobile */}
+        <span className="hidden lg:block">
+          <TextBuilder fontSize="14px" color="light50">
+            {current + 1} / {images.length}
+          </TextBuilder>
+        </span>
+        <span className="block lg:hidden">
+          <TextBuilderMobile fontSize="13px" color="light50">
+            {current + 1} / {images.length}
+          </TextBuilderMobile>
+        </span>
+
+        <button
+          onClick={onClose}
+          className="flex items-center gap-2 px-4 py-2 rounded-full transition-all hover:opacity-80 active:scale-95"
+          style={{
+            background: "rgba(255,255,255,0.08)",
+            border: "1px solid rgba(255,255,255,0.15)",
+          }}
+        >
+          <span style={{ color: "#fff", fontSize: 18, lineHeight: 1 }}>✕</span>
+          <span className="hidden lg:block">
+            <TextBuilder fontSize="14px" color="light">
+              Close
+            </TextBuilder>
+          </span>
+          <span className="block lg:hidden">
+            <TextBuilderMobile fontSize="13px" color="light">
+              Close
+            </TextBuilderMobile>
+          </span>
+        </button>
+      </div>
+
+      {/* ── Main image area ── */}
+      <div className="flex-1 flex items-center justify-center relative px-4 min-h-0">
+        {/* Prev button */}
+        <button
+          onClick={prev}
+          className="absolute left-4 md:left-8 z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+          style={{
+            background: "rgba(255,255,255,0.12)",
+            color: "#fff",
+            fontSize: 22,
+            border: "1px solid rgba(255,255,255,0.2)",
+          }}
+        >
+          ‹
+        </button>
+
+        {/* Image */}
+        <div
+          className="w-full max-w-5xl rounded-2xl overflow-hidden"
+          style={{ maxHeight: "calc(100vh - 220px)" }}
+        >
+          {images[current] ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={images[current]}
+              alt={`Photo ${current + 1}`}
+              className="w-full h-full object-cover"
+              style={{ maxHeight: "calc(100vh - 220px)" }}
+            />
+          ) : (
+            <div
+              className="w-full flex items-center justify-center"
+              style={{ height: "calc(100vh - 220px)", background: "#1a1a1a" }}
+            >
+              <TextBuilder fontSize="14px" color="light50">
+                No image available
+              </TextBuilder>
+            </div>
+          )}
+        </div>
+
+        {/* Next button */}
+        <button
+          onClick={next}
+          className="absolute right-4 md:right-8 z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+          style={{
+            background: "rgba(255,255,255,0.12)",
+            color: "#fff",
+            fontSize: 22,
+            border: "1px solid rgba(255,255,255,0.2)",
+          }}
+        >
+          ›
+        </button>
+      </div>
+
+      {/* ── Thumbnail strip ── */}
+      <div className="shrink-0 px-6 py-4 overflow-x-auto no-scrollbar">
+        <div className="flex gap-3 justify-center min-w-max mx-auto">
+          {images.map((img, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className="rounded-xl overflow-hidden transition-all shrink-0 hover:opacity-90"
+              style={{
+                width: 72,
+                height: 52,
+                border:
+                  i === current
+                    ? "2px solid var(--color-primary)"
+                    : "2px solid transparent",
+                opacity: i === current ? 1 : 0.45,
+              }}
+            >
+              {img ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={img}
+                  alt={`Thumbnail ${i + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full" style={{ background: "#333" }} />
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
