@@ -1,37 +1,37 @@
 import React from "react";
 import Image from "next/image";
 import MultiColorText from "../shared/MultiColorText";
-import {  HomeIcon, MagnifyingGlass, NoteIcon, Repair } from "@/utils/svgUtils";
+import { HomeIcon, MagnifyingGlass, NoteIcon, Repair } from "@/utils/svgUtils";
 import TextBuilderMobile from "../shared/TextBuilderMobile";
 import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 
 const OurProcessMobile = () => {
- const processItems = [
-     {
+  const processItems = [
+    {
       title: "Requirements & Assessments",
-       description:
-         "Understanding your requirements, budget, and project scope led to the initial discussion of design possibilities and technical specifications.",
-       icon: <MagnifyingGlass />,
-     },
-     {
+      description:
+        "Understanding your requirements, budget, and project scope led to the initial discussion of design possibilities and technical specifications.",
+      icon: <MagnifyingGlass />,
+    },
+    {
       title: "Designs & Quotations",
-       description:
-         "After developing conceptual designs and layouts, a detailed quotation outlining costs and timelines was provided.",
-       icon: <NoteIcon />,
-     },
-     {
+      description:
+        "After developing conceptual designs and layouts, a detailed quotation outlining costs and timelines was provided.",
+      icon: <NoteIcon />,
+    },
+    {
       title: "Manufacturing & Quality Control",
-       description:
-         "Ensuring top-notch quality during the manufacturing process with thorough checks and adherence to standards.",
-       icon:< Repair />,
-     },
-     {
+      description:
+        "Ensuring top-notch quality during the manufacturing process with thorough checks and adherence to standards.",
+      icon: <Repair />,
+    },
+    {
       title: "Delivery & Installation",
-       description:
-         "Careful delivery and professional installation to ensure the project is completed efficiently and safely.",
-       icon: <HomeIcon />,
-     },
-   ];
+      description:
+        "Careful delivery and professional installation to ensure the project is completed efficiently and safely.",
+      icon: <HomeIcon />,
+    },
+  ];
 
   return (
     <div className="w-full flex flex-col gap-[30px]">
@@ -46,8 +46,9 @@ const OurProcessMobile = () => {
             ]}
           />
           <TextBuilderMobile fontSize="14px" color="dark">
-           We guide you through a curated journey where architecture, interior design, and landscape artistry converge,
-transforming your vision into a sanctuary of rejuvenation through our precision-led workflow.
+            We guide you through a curated journey where architecture, interior
+            design, and landscape artistry converge, transforming your vision
+            into a sanctuary of rejuvenation through our precision-led workflow.
           </TextBuilderMobile>
         </div>
         {/* <Image
@@ -68,9 +69,17 @@ transforming your vision into a sanctuary of rejuvenation through our precision-
             className="flex flex-col px-[20px]  py-[24px] gap-[42px] border-b border-[var(--text-dark-50)]"
           >
             <div className="flex flex-row justify-between text-end">
-              <div className="w-[34px] h-[38px] text-[var(--color-primary)]">
+              <TextBuilderMobile
+                fontSize="34px"
+                color="primary"
+                weight="semibold"
+              >
+                {" "}
+                {index + 1}
+              </TextBuilderMobile>
+              {/* <div className="w-[34px] h-[38px] text-[var(--color-primary)]">
                 {item.icon}
-              </div>
+              </div> */}
               <TextBuilderMobile fontSize="18px" weight="bold" color="dark">
                 {item.title.includes("&") ? (
                   <>
