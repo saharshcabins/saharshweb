@@ -103,10 +103,14 @@ function HighlightRow({ text }: { text: string }) {
 
 function CTABox({ product }: { product: Product }) {
   const router = useRouter();
-
+const CTA_BULLETS = [
+  "PAN-India installation",
+  "7-year structural warranty",
+  "Site visit and design consultation available as a paid service",
+];
   return (
     <div
-      className=" rounded-2xl p-6 flex flex-col gap-6"
+      className="rounded-2xl p-6 flex flex-col gap-6"
       style={{
         border: "1px solid var(--light-border)",
         boxShadow: "0 8px 40px rgba(0,0,0,0.06)",
@@ -147,7 +151,20 @@ function CTABox({ product }: { product: Product }) {
         </TextBuilderMobile>
       </div>
 
-      {/* CTA — desktop uses Button, mobile uses ButtonMobile */}
+      {/* NEW: Benefits list */}
+      
+     <div className="flex flex-col gap-3">
+  {CTA_BULLETS.map((item, i) => (
+    <div key={i} className="flex items-start gap-3">
+      <TextBuilder fontSize="16px" color="primary">✓</TextBuilder>
+      <TextBuilder fontSize="14px" color="dark-light">
+        {item}
+      </TextBuilder>
+    </div>
+  ))}
+</div>
+
+      {/* CTA */}
       <div className="hidden lg:block">
         <Button
           text={product.ctaLabel}

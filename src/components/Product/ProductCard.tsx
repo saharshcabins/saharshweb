@@ -206,12 +206,13 @@ export default function ProductCard({ item }: { item: Product }) {
 
         {/* Price row (no price in PDF, just View Details CTA) */}
         <div className="flex  justify-end ">
-             <div className="flex items-center justify-end max-md:hidden">
+          <div className="flex items-center justify-end max-md:hidden">
             <Button text="View Details" className=" !py-2 !px-4 " />
           </div>
-              <div className="flex items-center justify-end md:hidden">
+          <div className="flex items-center justify-end md:hidden">
             <ButtonMobile text="View Details" className="  " />
-</div>        </div>
+          </div>{" "}
+        </div>
       </div>
     </Link>
   );

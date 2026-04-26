@@ -30,7 +30,7 @@ export default function FilterBar({
             <button
               key={cat}
               onClick={() => onChange(cat)}
-              className="shrink-0 px-4 py-2 rounded-full transition-all duration-200 active:scale-95"
+              className="shrink-0 px-4 py-2 rounded-full transition-all duration-200 active:scale-95 cursor-pointer"
               style={{
                 background: isActive
                   ? "var(--color-primary)"

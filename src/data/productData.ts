@@ -10,7 +10,6 @@
 export type ProductCategory =
   | "Luxury Cottages"
   | "Luxury Villas"
-  | "Resorts"
   | "Marketing Offices"
   | "Portable Cafes & Kiosks";
 
@@ -138,13 +137,91 @@ export const products: Product[] = [
     ctaLabel: "Request a Quote",
     ctaHref: "/contact",
   },
+    {
+    // ── Routing ──
+    slug: "teabar-cafe",
+
+    // ── Listing ──
+    category: "Portable Cafes & Kiosks",
+    featured: false,
+    tags: ["Modular", "Compact", "Relocatable"],
+    name: "TeaBar Cafe",
+    location: "Embassy Park, Bangalore",
+    shortDescription:
+      "A fully equipped modular cafe with commercial kitchen. Built in steel-framing, it is easily relocatable and expandable.",
+    coverImage: "/assets/products/teabar-cafe/cover.jpg",
+    areaLabel: "200 sq ft",
+    buildTimeLabel: "4–6 weeks",
+    amenityLabel: "Set-up: 24 hours",
+
+    // ── Detail ──
+    mainImage: "/assets/products/teabar-cafe/main.jpg",
+    images: [
+      "/assets/products/teabar-cafe/img-1.jpg",
+      "/assets/products/teabar-cafe/img-2.jpg",
+      "/assets/products/teabar-cafe/img-3.jpg",
+    ],
+    detailSubtitle: "Kiosk with commercial kitchen",
+    bathrooms: 0,
+    specifications: [
+      "Steel structure",
+      "100% insulation",
+      "FSSAI approved interiors",
+    ],
+    highlights: [
+      "Customizable design with terrace and deck for seating",
+      "Easy to relocate",
+      "Resellable",
+    ],
+    ctaLabel: "Request a Quote",
+    ctaHref: "/contact",
+  },
+
+  {
+    // ── Routing ──
+    slug: "total-environment-marketing-office",
+
+    // ── Listing ──
+    category: "Marketing Offices",
+    featured: false,
+    tags: ["Commercial", "Spacious", "Relocatable"],
+    name: "Total Environment - Down by the Water",
+    location: "Jakkur, Bangalore",
+    shortDescription:
+      "A fully furnished modular marketing office accommodating a spacious lobby, cafeteria, manager cabins and multiple meeting rooms.",
+    coverImage: "/assets/products/marketing-office/cover.jpg",
+    areaLabel: "2000 sq ft",
+    buildTimeLabel: "8–10 weeks",
+    amenityLabel: "Capacity: 60 guests",
+
+    // ── Detail ──
+    mainImage: "/assets/products/marketing-office/main.jpg",
+    images: [
+      "/assets/products/marketing-office/img-1.jpg",
+      "/assets/products/marketing-office/img-2.jpg",
+      "/assets/products/marketing-office/img-3.jpg",
+    ],
+    detailSubtitle:
+      "Lobby | 2 Manager Cabins | 4 Meeting Rooms | 2 Bathrooms | Cafeteria",
+    bathrooms: 2,
+    specifications: [
+      "Prefabricated steel structure",
+      "100% insulation",
+      "Commercial office interiors",
+    ],
+    highlights: [
+      "Relocatable and expandable design",
+      "Customisable exteriors",
+    ],
+    ctaLabel: "Request a Quote",
+    ctaHref: "/contact",
+  },
 ];
 
 // ── Unique categories (for filter bar) ───────────────────────────────────────
 export const productCategories: ProductCategory[] = [
   "Luxury Cottages",
   "Luxury Villas",
-  "Resorts",
   "Marketing Offices",
   "Portable Cafes & Kiosks",
 ];

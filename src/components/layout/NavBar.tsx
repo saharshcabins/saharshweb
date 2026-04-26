@@ -25,8 +25,9 @@ const NavBar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const router = useRouter();
   const NavLinks: NavLink[] = [
-    // { text: "Work", href: "#work" },
     { text: "Our Projects", href: "/products" },
+    { text: "About", href: "/about" },
+
     { text: "Contact Us", href: "#contact-us" },
   ];
 
