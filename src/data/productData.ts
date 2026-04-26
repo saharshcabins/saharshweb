@@ -11,6 +11,7 @@ export type ProductCategory =
   | "Luxury Cottages"
   | "Luxury Villas"
   | "Marketing Offices"
+  | "Forest Cabin"
   | "Portable Cafes & Kiosks";
 
 export interface Product {
@@ -137,7 +138,7 @@ export const products: Product[] = [
     ctaLabel: "Request a Quote",
     ctaHref: "/contact",
   },
-    {
+  {
     // ── Routing ──
     slug: "teabar-cafe",
 
@@ -209,10 +210,54 @@ export const products: Product[] = [
       "100% insulation",
       "Commercial office interiors",
     ],
-    highlights: [
-      "Relocatable and expandable design",
-      "Customisable exteriors",
+    highlights: ["Relocatable and expandable design", "Customisable exteriors"],
+    ctaLabel: "Request a Quote",
+    ctaHref: "/contact",
+  },
+  {
+    // ── Routing ──
+    slug: "forest-cabin",
+
+    // ── Listing ──
+    category: "Forest Cabin",
+    featured: false,
+    tags: ["Glamping", "Deck", "Portable"],
+    name: "Forest Cabin",
+    location: "Coorg, Karnataka",
+    shortDescription:
+      "A compact glamping cottage built with a steel structure and vintage wooden exterior. Designed for immersive forest and river views with a spacious deck.",
+
+    coverImage: "/assets/products/forest-cabin/cover.jpg",
+    areaLabel: "160 sq ft",
+    buildTimeLabel: "6–8 weeks",
+    amenityLabel: "Ensuite bathroom",
+
+    // ── Detail ──
+    mainImage: "/assets/products/forest-cabin/main.jpg",
+    images: [
+      "/assets/products/forest-cabin/img-1.jpg",
+      "/assets/products/forest-cabin/img-2.jpg",
+      "/assets/products/forest-cabin/img-3.jpg",
     ],
+
+    detailSubtitle: "Glamping Cabin · Forest View Retreat",
+    bathrooms: 1,
+
+    specifications: [
+      "Steel structure",
+      "100% insulation",
+      "Large panoramic windows",
+      "Vintage wooden exterior",
+      "Spacious deck",
+      "Premium interiors",
+    ],
+
+    highlights: [
+      "Customizable A-frame inspired design",
+      "Easy to relocate",
+      "Weather and water resistant",
+    ],
+
     ctaLabel: "Request a Quote",
     ctaHref: "/contact",
   },
@@ -224,4 +269,5 @@ export const productCategories: ProductCategory[] = [
   "Luxury Villas",
   "Marketing Offices",
   "Portable Cafes & Kiosks",
+  "Forest Cabin",
 ];
