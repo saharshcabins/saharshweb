@@ -1,39 +1,84 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import TextBuilder from "@/components/shared/TextBuilder";
 import TextBuilderMobile from "@/components/shared/TextBuilderMobile";
 import type { Product } from "@/data/productData";
+import { ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 // ─── Breadcrumb ───────────────────────────────────────────────────────────────
 
+export function BackButton() {
+  const router = useRouter();
+  const [canGoBackToProducts, setCanGoBackToProducts] = useState(false);
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      const referrer = document.referrer;
+
+      if (referrer.includes("/products")) {
+        setCanGoBackToProducts(true);
+      }
+    }
+  }, []);
+
+  const handleBack = () => {
+    if (canGoBackToProducts) {
+      router.back();
+    } else {
+      router.push("/");
+    }
+  };
+
+  return (
+    <div
+      onClick={handleBack}
+      className="flex items-center gap-2 mb-5 cursor-pointer w-fit hover:opacity-70 transition"
+    >
+      <ArrowLeft size={18} />
+
+      <span className="hidden lg:block">
+        <TextBuilder fontSize="13px" color="dark">
+          Back
+        </TextBuilder>
+      </span>
+
+      <span className="block lg:hidden">
+        <TextBuilderMobile fontSize="12px" color="dark">
+          Back
+        </TextBuilderMobile>
+      </span>
+    </div>
+  );
+}
 export function Breadcrumb({ name }: { name: string }) {
   return (
     <nav className="flex items-center gap-2 mb-5">
       {/* Desktop */}
       <div className="hidden lg:flex items-center gap-2">
-        <Link href="/" className="hover:underline">
-          <TextBuilder fontSize="13px" color="dark-50">Home</TextBuilder>
+        {/* <Link href="/" className="hover:underline">
+          <TextBuilder fontSize="13px" color="dark">Home</TextBuilder>
+        </Link> */}
+        <TextBuilder fontSize="13px" color="dark">›</TextBuilder>
+        {/* <Link href="/products" className="hover:underline">
+          <TextBuilder fontSize="13px" color="dark">Products</TextBuilder>
         </Link>
-        <TextBuilder fontSize="13px" color="dark-50">›</TextBuilder>
-        <Link href="/products" className="hover:underline">
-          <TextBuilder fontSize="13px" color="dark-50">Products</TextBuilder>
-        </Link>
-        <TextBuilder fontSize="13px" color="dark-50">›</TextBuilder>
+        <TextBuilder fontSize="13px" color="dark">›</TextBuilder> */}
         <TextBuilder fontSize="13px" color="dark">{name}</TextBuilder>
       </div>
 
       {/* Mobile */}
       <div className="flex lg:hidden items-center gap-2">
         <Link href="/" className="hover:underline">
-          <TextBuilderMobile fontSize="12px" color="dark-50">Home</TextBuilderMobile>
+          <TextBuilderMobile fontSize="12px" color="dark">Home</TextBuilderMobile>
         </Link>
-        <TextBuilderMobile fontSize="12px" color="dark-50">›</TextBuilderMobile>
+        <TextBuilderMobile fontSize="12px" color="dark">›</TextBuilderMobile>
         <Link href="/products" className="hover:underline">
-          <TextBuilderMobile fontSize="12px" color="dark-50">Products</TextBuilderMobile>
+          <TextBuilderMobile fontSize="12px" color="dark">Products</TextBuilderMobile>
         </Link>
-        <TextBuilderMobile fontSize="12px" color="dark-50">›</TextBuilderMobile>
+        <TextBuilderMobile fontSize="12px" color="dark">›</TextBuilderMobile>
         <TextBuilderMobile fontSize="12px" color="dark">{name}</TextBuilderMobile>
       </div>
     </nav>
@@ -60,10 +105,10 @@ export function ProductTitle({ product }: { product: Product }) {
 
       {/* Tagline */}
       <div className="hidden lg:block">
-        <TextBuilder fontSize="15px" color="dark-50">{product.tagline}</TextBuilder>
+        <TextBuilder fontSize="15px" color="dark">{product.location}</TextBuilder>
       </div>
       <div className="block lg:hidden">
-        <TextBuilderMobile fontSize="13px" color="dark-50">{product.tagline}</TextBuilderMobile>
+        <TextBuilderMobile fontSize="13px" color="dark">{product.location}</TextBuilderMobile>
       </div>
     </div>
   );
@@ -71,38 +116,11 @@ export function ProductTitle({ product }: { product: Product }) {
 
 // ─── Meta bar (guests · bedrooms · beds · bathrooms) ─────────────────────────
 
-export function MetaBar({ product }: { product: Product }) {
-  const items = [
-    product.guests > 0 && `${product.guests} guests`,
-    product.bedrooms > 0 && `${product.bedrooms} bedroom${product.bedrooms !== 1 ? "s" : ""}`,
-    product.beds > 0 && `${product.beds} bed${product.beds !== 1 ? "s" : ""}`,
-    product.bathrooms > 0 && `${product.bathrooms} bathroom${product.bathrooms !== 1 ? "s" : ""}`,
-  ].filter(Boolean) as string[];
-
-  return (
-    <div className="flex flex-wrap items-center gap-1">
-      {items.map((item, i) => (
-        <span key={i} className="flex items-center gap-1">
-          {i > 0 && (
-            <span style={{ color: "#ccc", margin: "0 2px" }}>·</span>
-          )}
-          <span className="hidden lg:block">
-            <TextBuilder fontSize="15px" color="dark">{item}</TextBuilder>
-          </span>
-          <span className="block lg:hidden">
-            <TextBuilderMobile fontSize="13px" color="dark">{item}</TextBuilderMobile>
-          </span>
-        </span>
-      ))}
-    </div>
-  );
-}
-
 // ─── Feature pill tags ────────────────────────────────────────────────────────
 
 export function FeatureTags({ features }: { features: string[] }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2 mt-4">
       {features.map((f) => (
         <span
           key={f}

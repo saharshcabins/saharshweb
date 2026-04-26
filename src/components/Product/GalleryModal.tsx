@@ -27,7 +27,6 @@ export default function GalleryModal({
     [images.length]
   );
 
-  // Keyboard navigation
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") prev();
@@ -38,7 +37,7 @@ export default function GalleryModal({
     return () => window.removeEventListener("keydown", handler);
   }, [prev, next, onClose]);
 
-  // Lock body scroll while open
+  // Lock scroll
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -48,26 +47,27 @@ export default function GalleryModal({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex flex-col"
+      className="fixed inset-0 z-[200] flex flex-col"
       style={{ background: "rgba(0,0,0,0.97)" }}
     >
       {/* ── Top bar ── */}
-      <div className="flex items-center justify-between px-6 py-4 shrink-0">
-        {/* Counter — desktop uses TextBuilder, mobile uses TextBuilderMobile */}
-        <span className="hidden lg:block">
+      <div className="flex items-center justify-between px-5 lg:px-8 py-4 shrink-0">
+        {/* Counter */}
+        <div className="hidden lg:block">
           <TextBuilder fontSize="14px" color="light50">
             {current + 1} / {images.length}
           </TextBuilder>
-        </span>
-        <span className="block lg:hidden">
+        </div>
+        <div className="block lg:hidden">
           <TextBuilderMobile fontSize="13px" color="light50">
             {current + 1} / {images.length}
           </TextBuilderMobile>
-        </span>
+        </div>
 
+        {/* Close */}
         <button
           onClick={onClose}
-          className="flex items-center gap-2 px-4 py-2 rounded-full transition-all hover:opacity-80 active:scale-95"
+          className="flex items-center gap-2 px-4 py-2 rounded-full transition-all hover:opacity-75 active:scale-95"
           style={{
             background: "rgba(255,255,255,0.08)",
             border: "1px solid rgba(255,255,255,0.15)",
@@ -75,29 +75,25 @@ export default function GalleryModal({
         >
           <span style={{ color: "#fff", fontSize: 18, lineHeight: 1 }}>✕</span>
           <span className="hidden lg:block">
-            <TextBuilder fontSize="14px" color="light">
-              Close
-            </TextBuilder>
+            <TextBuilder fontSize="14px" color="light">Close</TextBuilder>
           </span>
           <span className="block lg:hidden">
-            <TextBuilderMobile fontSize="13px" color="light">
-              Close
-            </TextBuilderMobile>
+            <TextBuilderMobile fontSize="13px" color="light">Close</TextBuilderMobile>
           </span>
         </button>
       </div>
 
-      {/* ── Main image area ── */}
+      {/* ── Main image ── */}
       <div className="flex-1 flex items-center justify-center relative px-4 min-h-0">
-        {/* Prev button */}
+        {/* Prev */}
         <button
           onClick={prev}
-          className="absolute left-4 md:left-8 z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+          className="absolute left-3 lg:left-8 z-10 w-11 h-11 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
           style={{
             background: "rgba(255,255,255,0.12)",
+            border: "1px solid rgba(255,255,255,0.2)",
             color: "#fff",
             fontSize: 22,
-            border: "1px solid rgba(255,255,255,0.2)",
           }}
         >
           ‹
@@ -113,7 +109,7 @@ export default function GalleryModal({
             <img
               src={images[current]}
               alt={`Photo ${current + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full object-cover"
               style={{ maxHeight: "calc(100vh - 220px)" }}
             />
           ) : (
@@ -121,22 +117,20 @@ export default function GalleryModal({
               className="w-full flex items-center justify-center"
               style={{ height: "calc(100vh - 220px)", background: "#1a1a1a" }}
             >
-              <TextBuilder fontSize="14px" color="light50">
-                No image available
-              </TextBuilder>
+              <TextBuilder fontSize="14px" color="light50">No image</TextBuilder>
             </div>
           )}
         </div>
 
-        {/* Next button */}
+        {/* Next */}
         <button
           onClick={next}
-          className="absolute right-4 md:right-8 z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+          className="absolute right-3 lg:right-8 z-10 w-11 h-11 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
           style={{
             background: "rgba(255,255,255,0.12)",
+            border: "1px solid rgba(255,255,255,0.2)",
             color: "#fff",
             fontSize: 22,
-            border: "1px solid rgba(255,255,255,0.2)",
           }}
         >
           ›
@@ -144,16 +138,16 @@ export default function GalleryModal({
       </div>
 
       {/* ── Thumbnail strip ── */}
-      <div className="shrink-0 px-6 py-4 overflow-x-auto no-scrollbar">
-        <div className="flex gap-3 justify-center min-w-max mx-auto">
+      <div className="shrink-0 px-5 py-4 overflow-x-auto no-scrollbar">
+        <div className="flex gap-2 justify-center min-w-max mx-auto">
           {images.map((img, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className="rounded-xl overflow-hidden transition-all shrink-0 hover:opacity-90"
+              className="shrink-0 rounded-xl overflow-hidden transition-all"
               style={{
-                width: 72,
-                height: 52,
+                width: 68,
+                height: 48,
                 border:
                   i === current
                     ? "2px solid var(--color-primary)"
@@ -165,7 +159,7 @@ export default function GalleryModal({
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={img}
-                  alt={`Thumbnail ${i + 1}`}
+                  alt={`thumb-${i}`}
                   className="w-full h-full object-cover"
                 />
               ) : (
