@@ -32,7 +32,7 @@ export default function ProductsClient() {
       {/* ── Filter + Grid ─────────────────────────────────────────────────── */}
       <div className="w-full md:w-[90%] mx-auto px-4   py-10 flex flex-col gap-8 mt-20">
         {/* Filter bar */}
-        <div className="mb-8 lg:mb-10">
+        <div className="mb-1 max-md:mt-4 lg:mb-10">
           <FilterBar
             categories={productCategories}
             active={activeCategory}

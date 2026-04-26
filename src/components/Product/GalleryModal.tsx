@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import TextBuilder from "@/components/shared/TextBuilder";
 import TextBuilderMobile from "@/components/shared/TextBuilderMobile";
+import { ChevronLeft, ChevronLeftIcon, ChevronRight, X } from "lucide-react";
 
 interface GalleryModalProps {
   images: string[];
@@ -19,12 +20,12 @@ export default function GalleryModal({
 
   const prev = useCallback(
     () => setCurrent((c) => (c - 1 + images.length) % images.length),
-    [images.length]
+    [images.length],
   );
 
   const next = useCallback(
     () => setCurrent((c) => (c + 1) % images.length),
-    [images.length]
+    [images.length],
   );
 
   useEffect(() => {
@@ -67,19 +68,13 @@ export default function GalleryModal({
         {/* Close */}
         <button
           onClick={onClose}
-          className="flex items-center gap-2 px-4 py-2 rounded-full transition-all hover:opacity-75 active:scale-95"
+          className="flex items-center gap-2 px-2 py-2 cursor-pointer rounded-full transition-all hover:opacity-75 active:scale-95"
           style={{
             background: "rgba(255,255,255,0.08)",
             border: "1px solid rgba(255,255,255,0.15)",
           }}
         >
-          <span style={{ color: "#fff", fontSize: 18, lineHeight: 1 }}>✕</span>
-          <span className="hidden lg:block">
-            <TextBuilder fontSize="14px" color="light">Close</TextBuilder>
-          </span>
-          <span className="block lg:hidden">
-            <TextBuilderMobile fontSize="13px" color="light">Close</TextBuilderMobile>
-          </span>
+          <X className="text-white" size={20} />
         </button>
       </div>
 
@@ -88,7 +83,7 @@ export default function GalleryModal({
         {/* Prev */}
         <button
           onClick={prev}
-          className="absolute left-3 lg:left-8 z-10 w-11 h-11 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+          className="absolute cursor-pointer left-3 lg:left-8 z-10 w-11 h-11 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
           style={{
             background: "rgba(255,255,255,0.12)",
             border: "1px solid rgba(255,255,255,0.2)",
@@ -96,7 +91,7 @@ export default function GalleryModal({
             fontSize: 22,
           }}
         >
-          ‹
+          <ChevronLeft size={20} />
         </button>
 
         {/* Image */}
@@ -117,7 +112,9 @@ export default function GalleryModal({
               className="w-full flex items-center justify-center"
               style={{ height: "calc(100vh - 220px)", background: "#1a1a1a" }}
             >
-              <TextBuilder fontSize="14px" color="light50">No image</TextBuilder>
+              <TextBuilder fontSize="14px" color="light50">
+                No image
+              </TextBuilder>
             </div>
           )}
         </div>
@@ -125,7 +122,7 @@ export default function GalleryModal({
         {/* Next */}
         <button
           onClick={next}
-          className="absolute right-3 lg:right-8 z-10 w-11 h-11 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+          className="absolute cursor-pointer right-3 lg:right-8 z-10 w-11 h-11 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
           style={{
             background: "rgba(255,255,255,0.12)",
             border: "1px solid rgba(255,255,255,0.2)",
@@ -133,7 +130,7 @@ export default function GalleryModal({
             fontSize: 22,
           }}
         >
-          ›
+          <ChevronRight size={20}/>
         </button>
       </div>
 

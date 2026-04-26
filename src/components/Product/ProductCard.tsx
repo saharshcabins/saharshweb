@@ -26,7 +26,8 @@ export default function ProductCard({ item }: { item: Product }) {
       onMouseLeave={() => setHovered(false)}
     >
       {/* ── Image panel ───────────────────────────────────────────────────── */}
-      <div className="relative overflow-hidden" style={{ height: 280 }}>
+      <div className="relative overflow-hidden aspect-[4/3]">
+        {" "}
         {/* Cover image with subtle zoom on hover */}
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
@@ -38,7 +39,6 @@ export default function ProductCard({ item }: { item: Product }) {
             transform: hovered ? "scale(1.04)" : "scale(1.0)",
           }}
         />
-
         {/* Bottom gradient so text is legible */}
         <div
           className="absolute inset-0"
@@ -47,7 +47,6 @@ export default function ProductCard({ item }: { item: Product }) {
               "linear-gradient(to top, rgba(15,27,38,0.72) 0%, rgba(15,27,38,0.10) 55%, transparent 100%)",
           }}
         />
-
         {/* Top-left: category pill */}
         <div className="absolute top-4 left-4">
           <span
@@ -62,7 +61,6 @@ export default function ProductCard({ item }: { item: Product }) {
             {item.category}
           </span>
         </div>
-
         {/* Top-right: Featured badge */}
         {item.featured && (
           <div className="absolute top-4 right-4">
@@ -78,7 +76,6 @@ export default function ProductCard({ item }: { item: Product }) {
             </span>
           </div>
         )}
-
         {/* Bottom overlay: tags → name → location */}
         <div className="absolute bottom-0 left-0 right-0 px-5 pb-4">
           {/* Tags */}

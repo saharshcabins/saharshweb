@@ -40,7 +40,7 @@ export default function ImageGrid({
         {/* Show all pill */}
         <button
           onClick={onShowAll}
-          className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg active:scale-95 transition-all"
+          className="absolute bottom-4 cursor-pointer right-4 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg active:scale-95 transition-all"
           style={{
             background: "#fff",
             border: "1px solid rgba(0,0,0,0.14)",
@@ -101,7 +101,7 @@ export default function ImageGrid({
               e.stopPropagation();
               onShowAll();
             }}
-            className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 rounded-xl shadow-md hover:shadow-lg active:scale-95 transition-all"
+            className="absolute bottom-4 cursor-pointer right-4 flex items-center gap-2 px-4 py-2 rounded-xl shadow-md hover:shadow-lg active:scale-95 transition-all"
             style={{
               background: "#fff",
               border: "1px solid rgba(0,0,0,0.12)",

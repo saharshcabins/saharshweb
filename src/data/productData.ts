@@ -68,17 +68,18 @@ export const products: Product[] = [
     location: "Georgia, Atlanta, US",
     shortDescription:
       "A compact luxury cabin designed for remote scenic locations. Shipped from India to Atlanta, US. Arrived 100% assembled with interiors.",
-    coverImage: "/assets/products/lakeside-cabin/cover.jpg",
+    coverImage: "/assets/products/lakeside-cabin/main.webp",
     areaLabel: "300 sq ft",
     buildTimeLabel: "6–8 weeks",
     amenityLabel: "Ensuite bathroom",
 
     // ── Detail ──
-    mainImage: "/assets/products/lakeside-cabin/main.jpg",
+    mainImage: "/assets/products/lakeside-cabin/main.webp",
     images: [
-      "/assets/products/lakeside-cabin/img-1.jpg",
-      "/assets/products/lakeside-cabin/img-2.jpg",
-      "/assets/products/lakeside-cabin/img-3.jpg",
+      "/assets/products/lakeside-cabin/img-1.webp",
+      "/assets/products/lakeside-cabin/img-2.webp",
+      "/assets/products/lakeside-cabin/img-3.webp",
+      "/assets/products/lakeside-cabin/img-4.webp",
     ],
     detailSubtitle: "Trailer Home · Compact Luxury · Off-grid",
     bathrooms: 1,
@@ -109,17 +110,21 @@ export const products: Product[] = [
     location: "Bangalore, Karnataka",
     shortDescription:
       "A beautiful spacious 3 BHK villa built with 7 refurbished shipping containers. Featured in the top 25 A+D Reflections for its sustainable differentiated design.",
-    coverImage: "/assets/products/qbinn-tusker/cover.jpg",
+    coverImage: "/assets/products/qbinn-tusker/main.webp",
     areaLabel: "3000 sq ft",
     buildTimeLabel: "4–6 months",
     amenityLabel: "Outdoor Jacuzzi",
 
     // ── Detail ──
-    mainImage: "/assets/products/qbinn-tusker/main.jpg",
+    mainImage: "/assets/products/qbinn-tusker/main.webp",
     images: [
-      "/assets/products/qbinn-tusker/img-1.jpg",
-      "/assets/products/qbinn-tusker/img-2.jpg",
-      "/assets/products/qbinn-tusker/img-3.jpg",
+      "/assets/products/qbinn-tusker/img-1.webp",
+      "/assets/products/qbinn-tusker/img-2.webp",
+      "/assets/products/qbinn-tusker/img-3.webp",
+      "/assets/products/qbinn-tusker/img-4.webp",
+      "/assets/products/qbinn-tusker/img-5.webp",
+      "/assets/products/qbinn-tusker/img-6.webp",
+      "/assets/products/qbinn-tusker/img-7.webp",
     ],
     detailSubtitle: "3BHK Pool Villa",
     bathrooms: 4,
@@ -150,17 +155,20 @@ export const products: Product[] = [
     location: "Embassy Park, Bangalore",
     shortDescription:
       "A fully equipped modular cafe with commercial kitchen. Built in steel-framing, it is easily relocatable and expandable.",
-    coverImage: "/assets/products/teabar-cafe/cover.jpg",
+    coverImage: "/assets/products/teabar-cafe/main.webp",
     areaLabel: "200 sq ft",
     buildTimeLabel: "4–6 weeks",
     amenityLabel: "Set-up: 24 hours",
 
     // ── Detail ──
-    mainImage: "/assets/products/teabar-cafe/main.jpg",
+    mainImage: "/assets/products/teabar-cafe/main.webp",
     images: [
-      "/assets/products/teabar-cafe/img-1.jpg",
-      "/assets/products/teabar-cafe/img-2.jpg",
-      "/assets/products/teabar-cafe/img-3.jpg",
+      "/assets/products/teabar-cafe/img-1.webp",
+      "/assets/products/teabar-cafe/img-2.webp",
+      "/assets/products/teabar-cafe/img-3.webp",
+      "/assets/products/teabar-cafe/img-4.webp",
+      "/assets/products/teabar-cafe/img-5.webp",
+      "/assets/products/teabar-cafe/img-6.webp",
     ],
     detailSubtitle: "Kiosk with commercial kitchen",
     bathrooms: 0,
@@ -190,17 +198,21 @@ export const products: Product[] = [
     location: "Jakkur, Bangalore",
     shortDescription:
       "A fully furnished modular marketing office accommodating a spacious lobby, cafeteria, manager cabins and multiple meeting rooms.",
-    coverImage: "/assets/products/marketing-office/cover.jpg",
+    coverImage: "/assets/products/marketing-office/main.webp",
     areaLabel: "2000 sq ft",
     buildTimeLabel: "8–10 weeks",
     amenityLabel: "Capacity: 60 guests",
 
     // ── Detail ──
-    mainImage: "/assets/products/marketing-office/main.jpg",
+    mainImage: "/assets/products/marketing-office/main.webp",
     images: [
-      "/assets/products/marketing-office/img-1.jpg",
-      "/assets/products/marketing-office/img-2.jpg",
-      "/assets/products/marketing-office/img-3.jpg",
+      "/assets/products/marketing-office/img-1.webp",
+      "/assets/products/marketing-office/img-2.webp",
+      "/assets/products/marketing-office/img-3.webp",
+      "/assets/products/marketing-office/img-4.webp",
+      "/assets/products/marketing-office/img-5.webp",
+      "/assets/products/marketing-office/img-6.webp",
+      "/assets/products/marketing-office/img-7.webp",
     ],
     detailSubtitle:
       "Lobby | 2 Manager Cabins | 4 Meeting Rooms | 2 Bathrooms | Cafeteria",
@@ -227,17 +239,19 @@ export const products: Product[] = [
     shortDescription:
       "A compact glamping cottage built with a steel structure and vintage wooden exterior. Designed for immersive forest and river views with a spacious deck.",
 
-    coverImage: "/assets/products/forest-cabin/cover.jpg",
+    coverImage: "/assets/products/forest-cabin/main.webp",
     areaLabel: "160 sq ft",
     buildTimeLabel: "6–8 weeks",
     amenityLabel: "Ensuite bathroom",
 
     // ── Detail ──
-    mainImage: "/assets/products/forest-cabin/main.jpg",
+    mainImage: "/assets/products/forest-cabin/main.webp",
     images: [
-      "/assets/products/forest-cabin/img-1.jpg",
-      "/assets/products/forest-cabin/img-2.jpg",
-      "/assets/products/forest-cabin/img-3.jpg",
+      "/assets/products/forest-cabin/img-1.webp",
+      "/assets/products/forest-cabin/img-2.webp",
+      "/assets/products/forest-cabin/img-3.webp",
+      "/assets/products/forest-cabin/img-4.webp",
+      "/assets/products/forest-cabin/img-5.webp",
     ],
 
     detailSubtitle: "Glamping Cabin · Forest View Retreat",

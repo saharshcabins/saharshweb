@@ -28,7 +28,7 @@ export function BackButton() {
     if (canGoBackToProducts) {
       router.back();
     } else {
-      router.push("/");
+      router.push("/products");
     }
   };
 
