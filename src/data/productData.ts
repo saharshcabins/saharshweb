@@ -28,6 +28,8 @@ export interface Product {
   shortDescription: string;
   /** Main cover image shown on listing card */
   coverImage: string;
+  metaBar: string[];
+
   areaLabel: string;
   buildTimeLabel: string;
   amenityLabel: string; // e.g. "Ensuite bathroom" / "Outdoor Jacuzzi"
@@ -40,6 +42,11 @@ export interface Product {
 
   /** Detail-page subtitle line e.g. "3BHK Pool Villa" */
   detailSubtitle: string;
+
+  /** Guest capacity e.g. "2-3 Guests" */
+  guests: string;
+
+  bedrooms: number;
   bathrooms: number;
 
   /** Specs string shown as a block e.g. "Steel structure, 100% insulation..." */
@@ -48,10 +55,20 @@ export interface Product {
   /** Comma-separated highlights */
   highlights: string[];
 
+  /** Offering details shown on the detail / CTA section */
+  offerings: string[];
+
   /** CTA label on detail page */
   ctaLabel: string;
   ctaHref: string;
 }
+
+// ── Shared offerings (same across all products) ───────────────────────────────
+const standardOfferings: string[] = [
+  "PAN-India installation",
+  "7-year structural warranty",
+  "Site visit and design consultation available as a paid service",
+];
 
 // ── Product data ──────────────────────────────────────────────────────────────
 
@@ -67,10 +84,12 @@ export const products: Product[] = [
     name: "Lakeside Cabin",
     location: "Georgia, Atlanta, US",
     shortDescription:
-      "A compact luxury cabin designed for remote scenic locations. Shipped from India to Atlanta, US. Arrived 100% assembled with interiors.",
+      "An asymmetric luxury cabin designed for remote scenic locations. Shipped from India to Atlanta, US. Arrived 100% assembled with interiors.",
     coverImage: "/assets/products/lakeside-cabin/main.webp",
     areaLabel: "300 sq ft",
     buildTimeLabel: "6–8 weeks",
+    metaBar: ["2–3 Guests", "1 Bedroom", "1 Bathroom"],
+
     amenityLabel: "Ensuite bathroom",
 
     // ── Detail ──
@@ -82,6 +101,8 @@ export const products: Product[] = [
       "/assets/products/lakeside-cabin/img-4.webp",
     ],
     detailSubtitle: "Trailer Home · Compact Luxury · Off-grid",
+    guests: "2–3 Guests",
+    bedrooms: 1,
     bathrooms: 1,
     specifications: [
       "Steel structure",
@@ -94,6 +115,7 @@ export const products: Product[] = [
       "Easy to relocate",
       "Weather resistant (−30°C to +55°C)",
     ],
+    offerings: standardOfferings,
     ctaLabel: "Request a Quote",
     ctaHref: "/contact",
   },
@@ -107,9 +129,9 @@ export const products: Product[] = [
     featured: true,
     tags: ["Turnkey", "Airbnb", "Container Home"],
     name: "Qbinn Tusker",
-    location: "Bangalore, Karnataka",
+    location: "Thalli, Bangalore",
     shortDescription:
-      "A beautiful spacious 3 BHK villa built with 7 refurbished shipping containers. Featured in the top 25 A+D Reflections for its sustainable differentiated design.",
+      "A spacious 3 BHK villa built with 7 refurbished shipping containers. Featured in the top 25 A+D Reflections for its sustainable differentiated design.",
     coverImage: "/assets/products/qbinn-tusker/main.webp",
     areaLabel: "3000 sq ft",
     buildTimeLabel: "4–6 months",
@@ -117,6 +139,14 @@ export const products: Product[] = [
 
     // ── Detail ──
     mainImage: "/assets/products/qbinn-tusker/main.webp",
+    metaBar: [
+      "6–10 Guests",
+      "3 Bedrooms",
+      "4 Bathrooms",
+      "Kitchen",
+      "Swimming Pool with Deck",
+    ],
+
     images: [
       "/assets/products/qbinn-tusker/img-1.webp",
       "/assets/products/qbinn-tusker/img-2.webp",
@@ -126,7 +156,10 @@ export const products: Product[] = [
       "/assets/products/qbinn-tusker/img-6.webp",
       "/assets/products/qbinn-tusker/img-7.webp",
     ],
-    detailSubtitle: "3BHK Pool Villa",
+    detailSubtitle:
+      "6–10 Guests | 3 Bedrooms | 4 Bathrooms | Kitchen | Swimming Pool with Deck",
+    guests: "6–10 Guests",
+    bedrooms: 3,
     bathrooms: 4,
     specifications: [
       "Turnkey execution",
@@ -140,9 +173,11 @@ export const products: Product[] = [
       "Weather resistant",
       "Retractable swimming pool deck",
     ],
+    offerings: standardOfferings,
     ctaLabel: "Request a Quote",
     ctaHref: "/contact",
   },
+
   {
     // ── Routing ──
     slug: "teabar-cafe",
@@ -154,7 +189,7 @@ export const products: Product[] = [
     name: "TeaBar Cafe",
     location: "Embassy Park, Bangalore",
     shortDescription:
-      "A fully equipped modular cafe with commercial kitchen. Built in steel-framing, it is easily relocatable and expandable.",
+      "A fully equipped modular cafe with a commercial kitchen. Built in steel-framing, it is easily relocatable and expandable.",
     coverImage: "/assets/products/teabar-cafe/main.webp",
     areaLabel: "200 sq ft",
     buildTimeLabel: "4–6 weeks",
@@ -170,8 +205,12 @@ export const products: Product[] = [
       "/assets/products/teabar-cafe/img-5.webp",
       "/assets/products/teabar-cafe/img-6.webp",
     ],
-    detailSubtitle: "Kiosk with commercial kitchen",
+    detailSubtitle: "Kiosk with Commercial Kitchen",
+    guests: "N/A",
+    bedrooms: 0,
     bathrooms: 0,
+    metaBar: ["Kiosk with Commercial Kitchen"],
+
     specifications: [
       "Steel structure",
       "100% insulation",
@@ -182,6 +221,7 @@ export const products: Product[] = [
       "Easy to relocate",
       "Resellable",
     ],
+    offerings: standardOfferings,
     ctaLabel: "Request a Quote",
     ctaHref: "/contact",
   },
@@ -215,17 +255,29 @@ export const products: Product[] = [
       "/assets/products/marketing-office/img-7.webp",
     ],
     detailSubtitle:
-      "Lobby | 2 Manager Cabins | 4 Meeting Rooms | 2 Bathrooms | Cafeteria",
+      "Marketing Office | Lobby | 2 Manager Cabins | 4 Meeting Rooms | 2 Bathrooms | Cafeteria",
+    guests: "Up to 60 Guests",
+    bedrooms: 0,
     bathrooms: 2,
+    metaBar: [
+      "Lobby",
+      "2 Manager Cabins",
+      "4 Meeting Rooms",
+      "2 Bathrooms",
+      "Cafeteria",
+    ],
+
     specifications: [
       "Prefabricated steel structure",
       "100% insulation",
       "Commercial office interiors",
     ],
     highlights: ["Relocatable and expandable design", "Customisable exteriors"],
+    offerings: standardOfferings,
     ctaLabel: "Request a Quote",
     ctaHref: "/contact",
   },
+
   {
     // ── Routing ──
     slug: "forest-cabin",
@@ -237,8 +289,7 @@ export const products: Product[] = [
     name: "Forest Cabin",
     location: "Coorg, Karnataka",
     shortDescription:
-      "A compact glamping cottage built with a steel structure and vintage wooden exterior. Designed for immersive forest and river views with a spacious deck.",
-
+      "A compact cottage built in steel and a vintage wooden exterior with large windows and deck for a scenic forest and river view.",
     coverImage: "/assets/products/forest-cabin/main.webp",
     areaLabel: "160 sq ft",
     buildTimeLabel: "6–8 weeks",
@@ -253,25 +304,25 @@ export const products: Product[] = [
       "/assets/products/forest-cabin/img-4.webp",
       "/assets/products/forest-cabin/img-5.webp",
     ],
-
     detailSubtitle: "Glamping Cabin · Forest View Retreat",
+    guests: "2 Guests",
+    bedrooms: 1,
     bathrooms: 1,
-
     specifications: [
       "Steel structure",
       "100% insulation",
-      "Large panoramic windows",
-      "Vintage wooden exterior",
-      "Spacious deck",
+      "Large windows",
+      "Deck",
       "Premium interiors",
     ],
-
     highlights: [
-      "Customizable A-frame inspired design",
+      "Customizable A-frame design",
       "Easy to relocate",
       "Weather and water resistant",
     ],
+    metaBar: ["2 Guests", "1 Bedroom", "1 Bathroom"],
 
+    offerings: standardOfferings,
     ctaLabel: "Request a Quote",
     ctaHref: "/contact",
   },

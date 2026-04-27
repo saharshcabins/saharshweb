@@ -14,6 +14,7 @@ import {
   BackButton,
   Breadcrumb,
   FeatureTags,
+  MetaBar,
   ProductTitle,
 } from "./ProductMeta";
 import { useRouter } from "next/navigation";
@@ -103,11 +104,11 @@ function HighlightRow({ text }: { text: string }) {
 
 function CTABox({ product }: { product: Product }) {
   const router = useRouter();
-const CTA_BULLETS = [
-  "PAN-India installation",
-  "7-year structural warranty",
-  "Site visit and design consultation available as a paid service",
-];
+  const CTA_BULLETS = [
+    "PAN-India installation",
+    "7-year structural warranty",
+    "Site visit and design consultation available as a paid service",
+  ];
   return (
     <div
       className="rounded-2xl p-6 flex flex-col gap-6"
@@ -128,18 +129,35 @@ const CTA_BULLETS = [
           Interested in this product?
         </TextBuilderMobile>
       </div>
-
       {/* Body */}
-      <div className="hidden lg:block">
-        <TextBuilder
-          fontSize="15px"
-          color="dark-light"
-          className="leading-[1.65] block"
-        >
-          Our team will walk you through customisation options, design,
-          timelines and transparent pricing.
-        </TextBuilder>
+      {/* NEW: Benefits list */}
+      <div className="flex flex-col gap-3">
+        {CTA_BULLETS.map((item, i) => (
+          <div key={i} className="flex items-start gap-3">
+            <TextBuilder fontSize="16px" color="primary">
+              ✓
+            </TextBuilder>
+            <TextBuilder fontSize="14px" color="dark-light">
+              {item}
+            </TextBuilder>
+          </div>
+        ))}
       </div>
+      {/* CTA */}
+      <div className="hidden lg:block">
+        <Button
+          text={product.ctaLabel}
+          className="w-full"
+          onClick={() => router.push(product.ctaHref)}
+        />
+      </div>
+      <div className="block lg:hidden">
+        <ButtonMobile
+          text={product.ctaLabel}
+          className="w-full"
+          onClick={() => router.push(product.ctaHref)}
+        />
+      </div>{" "}
       <div className="block lg:hidden">
         <TextBuilderMobile
           fontSize="13px"
@@ -149,36 +167,16 @@ const CTA_BULLETS = [
           Our team will walk you through customisation options, design,
           timelines and transparent pricing.
         </TextBuilderMobile>
-      </div>
-
-      {/* NEW: Benefits list */}
-      
-     <div className="flex flex-col gap-3">
-  {CTA_BULLETS.map((item, i) => (
-    <div key={i} className="flex items-start gap-3">
-      <TextBuilder fontSize="16px" color="primary">✓</TextBuilder>
-      <TextBuilder fontSize="14px" color="dark-light">
-        {item}
-      </TextBuilder>
-    </div>
-  ))}
-</div>
-
-      {/* CTA */}
+      </div>{" "}
       <div className="hidden lg:block">
-        <Button
-          text={product.ctaLabel}
-          className="w-full"
-          onClick={() => router.push(product.ctaHref)}
-        />
-      </div>
-
-      <div className="block lg:hidden">
-        <ButtonMobile
-          text={product.ctaLabel}
-          className="w-full"
-          onClick={() => router.push(product.ctaHref)}
-        />
+        <TextBuilder
+          fontSize="15px"
+          color="dark-light"
+          className="leading-[1.65] block"
+        >
+          Our team will walk you through customisation options, design,
+          timelines and transparent pricing.
+        </TextBuilder>
       </div>
     </div>
   );
@@ -218,7 +216,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         className="min-h-screen pb-10 mt-20"
         style={{ background: "var(--background)" }}
       >
-        <div className="max-w-6xl mx-auto px-5 md:px-8 lg:px-10 pt-6 lg:pt-10">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-10 pt-6 lg:pt-10">
           {/* ── Breadcrumb ── */}
           <BackButton />
 
@@ -239,8 +237,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           <div className="mt-8 lg:mt-10 flex flex-col lg:flex-row gap-12">
             {/* ── LEFT: main content ── */}
             <div className="flex-1 min-w-0">
-              {/* Short description */}
-              <div className="hidden lg:block">
+              {/* <div className="hidden lg:block">
                 <TextBuilder
                   fontSize="16px"
                   color="dark"
@@ -257,23 +254,34 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 >
                   {product.shortDescription}
                 </TextBuilderMobile>
+              </div> */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div>
+                  <div className="mb-1">
+                    <TextBuilder fontSize="20px" weight="bold" color="dark">
+                      {product.name}
+                    </TextBuilder>
+                  </div>
+                  <MetaBar product={product} />
+                </div>
               </div>
-              <FeatureTags features={product.tags} />
+
+              {/* <FeatureTags features={product.tags} /> */}
 
               <Divider />
 
               {/* Specs — Area, Ready in, Amenity, Bathrooms */}
-              <div className="flex flex-col gap-3">
+              {/* <div className="flex flex-col gap-3">
                 <SpecRow label="Area" value={product.areaLabel} />
                 <SpecRow label="Ready in" value={product.buildTimeLabel} />
                 <SpecRow label={product.amenityLabel} value="" />
                 <SpecRow label="Bathrooms" value={String(product.bathrooms)} />
-              </div>
+              </div> */}
 
-              <Divider />
+              {/* <Divider /> */}
 
               {/* Detail subtitle (e.g. "3BHK Pool Villa") */}
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <span className="hidden lg:block">
                   <TextBuilder fontSize="22px" weight="bold" color="dark">
                     {product.detailSubtitle}
@@ -284,7 +292,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                     {product.detailSubtitle}
                   </TextBuilderMobile>
                 </span>
-              </div>
+              </div> */}
 
               {/* Specifications block */}
               <div className="mb-2">
