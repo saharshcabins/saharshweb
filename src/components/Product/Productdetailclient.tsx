@@ -255,11 +255,11 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   {product.shortDescription}
                 </TextBuilderMobile>
               </div> */}
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div>
                   <div className="mb-1">
                     <TextBuilder fontSize="20px" weight="bold" color="dark">
-{product.name}
+                      {product.name}
                     </TextBuilder>
                   </div>
                   <MetaBar product={product} />
