@@ -141,7 +141,23 @@ export function FeatureTags({ features }: { features: string[] }) {
     </div>
   );
 }
-
+export function MetaBar({ product }: { product: Product }) {
+  return (
+    <div className="flex flex-wrap items-center gap-1">
+      {product.metaBar.map((item, i) => (
+        <span key={i} className="flex items-center gap-1">
+          {i > 0 && <span style={{ color: "#ccc", margin: "0 2px" }}>·</span>}
+          <span className="hidden lg:block">
+            <TextBuilder fontSize="15px" color="dark">{item}</TextBuilder>
+          </span>
+          <span className="block lg:hidden">
+            <TextBuilderMobile fontSize="13px" color="dark">{item}</TextBuilderMobile>
+          </span>
+        </span>
+      ))}
+    </div>
+  );
+}
 // ─── Section heading ──────────────────────────────────────────────────────────
 
 export function SectionHeading({ children }: { children: React.ReactNode }) {
