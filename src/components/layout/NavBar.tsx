@@ -60,6 +60,14 @@ const NavBar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+
+      // Always show navbar when near the top
+      if (currentScrollY < 10) {
+        setShowNav(true);
+        setLastScrollY(currentScrollY);
+        return;
+      }
+
       if (Math.abs(currentScrollY - lastScrollY) < 10) return;
       setShowNav(currentScrollY < lastScrollY);
       setLastScrollY(currentScrollY);
