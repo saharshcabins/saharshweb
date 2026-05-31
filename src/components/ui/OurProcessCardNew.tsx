@@ -28,7 +28,7 @@ const OurProcessCardNew: React.FC<OurProcessCardNewProps> = ({
         >
           {number}
         </TextBuilder>
-        <TextBuilder fontSize="22px" weight="bold" color="light" className="whitespace-nowrap">
+        <TextBuilder fontSize="22px" weight="bold" color="light" className="whitespace-nowrap group-hover:text-[var(--color-primary)] transition-colors duration-300">
           {title}
         </TextBuilder>
       </div>
