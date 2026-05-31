@@ -20,7 +20,7 @@ const slides: Slide[] = [
     src: "/assets/built/office_1.png",
     title: "Marketing Sales Offices",
     description:
-      "Factory-built sales offices installed at your site â€” ready to receive buyers from day one.",
+      “Pre-engineered sales offices installed at your site — ready to host buyers from day one.”,
   },
   {
     type: "image",
