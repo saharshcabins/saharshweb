@@ -34,36 +34,11 @@ export default function GalleryPage() {
   const [activeIndex, setActiveIndex] = useState(startIndex);
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
 
-  // ✅ Track unique loaded images (fixes Swiper loop duplicates)
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
-
-  const handleImageLoad = (src: string) => {
-    setLoadedImages((prev) => {
-      if (prev.has(src)) return prev;
-      const updated = new Set(prev);
-      updated.add(src);
-      return updated;
-    });
-  };
-
-  const allLoaded = loadedImages.size === images.length;
-
   return (
     <div
       className="fixed inset-0 z-[200] flex flex-col"
       style={{ background: "rgba(0,0,0,0.97)" }}
     >
-      {/* 🔄 Loading Overlay */}
-      {!allLoaded && (
-        <div className="absolute inset-0 z-[300] flex items-center justify-center bg-black">
-          <div className="flex flex-col items-center gap-3">
-            <div className="w-10 h-10 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            <span className="text-white text-sm opacity-70">
-              Loading images...
-            </span>
-          </div>
-        </div>
-      )}
 
       {/* ── Top bar ── */}
       <div className="flex items-center justify-between px-5 lg:px-8 py-4 shrink-0">
@@ -123,10 +98,7 @@ export default function GalleryPage() {
                   <img
                     src={src}
                     draggable={false}
-                    onLoad={() => handleImageLoad(src)}
-                    className={`max-h-full max-w-full object-contain transition-opacity duration-500 ${
-                      allLoaded ? "opacity-100" : "opacity-0"
-                    }`}
+                    className="max-h-full max-w-full object-contain"
                   />
                 </div>
               </SwiperSlide>
@@ -173,7 +145,6 @@ export default function GalleryPage() {
                 <img
                   src={img}
                   draggable={false}
-                  onLoad={() => handleImageLoad(img)}
                   className="w-full h-full object-cover"
                 />
               </div>
