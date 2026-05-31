@@ -56,6 +56,8 @@ const Footer = () => {
               height={44}
               width={156}
               alt="Saharsh Cabins"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              style={{ cursor: "pointer" }}
             />
             <p
               style={{
