@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getResend, TO, FROM } from "@/lib/mailer";
+﻿import { NextRequest, NextResponse } from "next/server";
+import { getResend, TO, CC, FROM } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   try {
@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
 
     await getResend().emails.send({
       from: FROM,
-      to: TO,
+      to: TO, cc: CC,
       subject: `New Global Alliance Enquiry - ${full_name}`,
       html: `
         <h2>Global Alliance Form Submission</h2>
