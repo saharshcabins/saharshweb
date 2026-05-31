@@ -17,7 +17,7 @@ const QuoteSection = () => {
   });
 
   // Cabin drops in as section enters, lifts out as section exits
-  const cabinY = useTransform(scrollYProgress, [0, 0.45, 0.55, 1], [-90, 0, 0, 90]);
+  const cabinY = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [-280, 0, 0, 280]);
 
   return (
     <>
