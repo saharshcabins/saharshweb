@@ -39,7 +39,7 @@ const HeroSection = () => {
     const target =
       targets.find((el) => el.offsetParent !== null) ?? targets[0];
     if (!target) return;
-    const top = target.getBoundingClientRect().top + window.scrollY - 80;
+    const top = target.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({ top, behavior: "smooth" });
   };
 
