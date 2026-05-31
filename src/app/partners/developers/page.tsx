@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import styles from "./developers.module.css";
@@ -39,7 +39,7 @@ export default function DevelopersPage() {
   async function handleSubmit() {
     setStatus("loading");
     try {
-      const res = await fetch("https://api.saharsh.co/api/partner-developers", {
+      const res = await fetch("/api/partner-developers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(fields),
@@ -91,7 +91,7 @@ export default function DevelopersPage() {
             <p className={styles.heroSub}>
               India&apos;s leading real estate developers trust Saharsh Cabins to
               deploy premium marketing suites, engineer accommodation hubs,
-              canteens, and site offices — fully furnished and operational in
+              canteens, and site offices â€” fully furnished and operational in
               weeks. Because your project launch cannot wait for conventional
               construction.
             </p>
@@ -115,7 +115,7 @@ export default function DevelopersPage() {
             "mb-14 max-w-[calc(100vw-32px)]",
           ].join(" ")}
         >
-          PREFERRED PARTNER — OUTDOORS BY MARRIOTT BONVOY
+          PREFERRED PARTNER â€” OUTDOORS BY MARRIOTT BONVOY
         </div>
       </section>
 
@@ -131,9 +131,9 @@ export default function DevelopersPage() {
             </h2>
             <p className={styles.sectionBody}>
               Conventional construction for a marketing suite or engineer hub
-              takes 4–6 months and leaves behind a permanent, unrecoverable
+              takes 4â€“6 months and leaves behind a permanent, unrecoverable
               cost. Saharsh Cabins delivers fully furnished, premium-grade
-              modular infrastructure in 7–8 weeks — factory-built to your
+              modular infrastructure in 7â€“8 weeks â€” factory-built to your
               specifications, transported to site, and operational from day
               one. When the development completes, the unit relocates to your
               next project or is sold as a high-value asset.
@@ -147,11 +147,11 @@ export default function DevelopersPage() {
                   </svg>
                 </span>
                 <div className={styles.pillarText}>
-                  <h3 className={styles.pillarTitle}>7–8 Week Delivery, Always</h3>
+                  <h3 className={styles.pillarTitle}>7â€“8 Week Delivery, Always</h3>
                   <p className={styles.pillarSub}>
                     Factory-controlled production means no weather delays, no
                     labour shortages, no missed milestones. Your marketing suite
-                    is ready before your first buyer visit — not after it.
+                    is ready before your first buyer visit â€” not after it.
                   </p>
                 </div>
               </div>
@@ -167,7 +167,7 @@ export default function DevelopersPage() {
                   <p className={styles.pillarSub}>
                     Unlike a permanent structure, a Saharsh modular unit is a
                     tangible, reusable asset. Move it to your next project when
-                    this one sells — or liquidate it and recover a significant
+                    this one sells â€” or liquidate it and recover a significant
                     portion of the investment.
                   </p>
                 </div>
@@ -193,7 +193,7 @@ export default function DevelopersPage() {
           <div className={styles.showcaseBlock}>
             <Image
               src="/assets/products/marketing-office/img-1.webp"
-              alt="Saharsh Cabins — Premium Marketing Office"
+              alt="Saharsh Cabins â€” Premium Marketing Office"
               fill
               className={styles.showcaseImg}
               sizes="(max-width: 768px) 100vw, 420px"
@@ -202,16 +202,16 @@ export default function DevelopersPage() {
         </div>
       </section>
 
-      {/* What we build for developers — use-cases strip */}
+      {/* What we build for developers â€” use-cases strip */}
       <div className={styles.commissionStrip}>
         <div className={styles.commissionInner}>
           <span className={styles.commissionLabel}>What We Build</span>
           <span className={styles.commissionDivider} />
           <span className={styles.commissionText}>
-            <strong>Marketing Suites</strong> &nbsp;·&nbsp;{" "}
-            <strong>Engineer Accommodation Hubs</strong> &nbsp;·&nbsp;{" "}
-            <strong>Canteens &amp; Cafés</strong> &nbsp;·&nbsp;{" "}
-            <strong>Site Offices</strong> &nbsp;·&nbsp;{" "}
+            <strong>Marketing Suites</strong> &nbsp;Â·&nbsp;{" "}
+            <strong>Engineer Accommodation Hubs</strong> &nbsp;Â·&nbsp;{" "}
+            <strong>Canteens &amp; CafÃ©s</strong> &nbsp;Â·&nbsp;{" "}
+            <strong>Site Offices</strong> &nbsp;Â·&nbsp;{" "}
             <strong>Model Apartments</strong>
           </span>
           <a
@@ -222,7 +222,7 @@ export default function DevelopersPage() {
               scrollToForm();
             }}
           >
-            Discuss Your Requirement →
+            Discuss Your Requirement â†’
           </a>
         </div>
       </div>
@@ -239,7 +239,7 @@ export default function DevelopersPage() {
             <div className={styles.statLabel}>Projects Commissioned</div>
           </div>
           <div className={styles.statBox}>
-            <div className={styles.statNum}>7–8</div>
+            <div className={styles.statNum}>7â€“8</div>
             <div className={styles.statLabel}>Week Standard Delivery</div>
           </div>
           <div className={styles.statBox}>
@@ -254,14 +254,14 @@ export default function DevelopersPage() {
         <h2 className={styles.sectionH2}>
           From Brief to{" "}
           <span style={{ color: "var(--color-primary)" }}>Operational</span>
-          {" "}— Four Steps.
+          {" "}â€” Four Steps.
         </h2>
         <div className={styles.allianceGrid}>
           <div className={styles.allianceCard}>
             <div className={styles.allianceNum}>01</div>
             <h3 className={styles.allianceCardTitle}>Share Your Brief</h3>
             <p className={styles.allianceCardBody}>
-              Tell us what you need — the type of structure, site location,
+              Tell us what you need â€” the type of structure, site location,
               configuration, and your target operational date. Our team responds
               with a preliminary proposal and feasibility assessment within 48
               hours.
@@ -281,7 +281,7 @@ export default function DevelopersPage() {
             <h3 className={styles.allianceCardTitle}>Factory Production</h3>
             <p className={styles.allianceCardBody}>
               Your unit enters our controlled manufacturing environment on a
-              confirmed schedule. You receive milestone updates throughout —
+              confirmed schedule. You receive milestone updates throughout â€”
               so your site team, sales team, and launch calendar stay
               synchronised.
             </p>
@@ -291,7 +291,7 @@ export default function DevelopersPage() {
             <h3 className={styles.allianceCardTitle}>Installation &amp; Handover</h3>
             <p className={styles.allianceCardBody}>
               We transport, position, and commission the structure at your
-              site — fully furnished, branded, utilities connected, and ready
+              site â€” fully furnished, branded, utilities connected, and ready
               for the first visitor. Your team walks into a completed space,
               not a work in progress.
             </p>
@@ -299,7 +299,7 @@ export default function DevelopersPage() {
         </div>
       </section>
 
-      {/* Testimonial — drawn from the real Total Environment project */}
+      {/* Testimonial â€” drawn from the real Total Environment project */}
       <section className={styles.testimonialSection}>
         <div className={styles.testimonialInner}>
           <div className={styles.testimonialBadge}>Delivered Project</div>
@@ -307,14 +307,14 @@ export default function DevelopersPage() {
             &ldquo;We needed a 2,000 sq. ft. premium marketing office
             operational before our project launch. Saharsh Cabins delivered a
             three-unit, 40&apos; modular suite that impressed every buyer who
-            walked through it — fully furnished, branded, and ready in under 8
+            walked through it â€” fully furnished, branded, and ready in under 8
             weeks.&rdquo;
           </blockquote>
           <div className={styles.testimonialMeta}>
             <span className={styles.testimonialAuthor}>
-              — Total Environment &lsquo;Down by the Water&rsquo;
+              â€” Total Environment &lsquo;Down by the Water&rsquo;
             </span>
-            <span className={styles.testimonialDivider}>·</span>
+            <span className={styles.testimonialDivider}>Â·</span>
             <span className={styles.testimonialFirm}>
               Jakkur, Bangalore
             </span>
@@ -334,7 +334,7 @@ export default function DevelopersPage() {
             </h2>
             <p className={styles.formSubtext}>
               Share your project brief and we will put together a tailored
-              modular infrastructure proposal — floor plan options, indicative
+              modular infrastructure proposal â€” floor plan options, indicative
               pricing, and a delivery schedule that works around your launch
               timeline.
             </p>
@@ -437,7 +437,7 @@ export default function DevelopersPage() {
                       <option value="" disabled>Structure Required</option>
                       <option value="marketing-suite">Marketing Suite / Sales Office</option>
                       <option value="engineer-accommodation">Engineer Accommodation Hub</option>
-                      <option value="canteen-cafe">Canteen &amp; Café</option>
+                      <option value="canteen-cafe">Canteen &amp; CafÃ©</option>
                       <option value="model-apartment">Model Apartment</option>
                       <option value="site-office">Site Office</option>
                       <option value="multiple">Multiple Structures</option>
@@ -456,7 +456,7 @@ export default function DevelopersPage() {
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Tell us about your requirement — size, configuration, timeline, and anything specific to your project or brand..."
+                  placeholder="Tell us about your requirement â€” size, configuration, timeline, and anything specific to your project or brand..."
                   value={fields.message}
                   onChange={handleChange}
                   className={styles.formTextarea}
@@ -466,7 +466,7 @@ export default function DevelopersPage() {
 
               <div className="pb-[100px] md:pb-0" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: 32, gap: 12 }}>
                 <Button
-                  text={status === "loading" ? "Submitting…" : "Submit Enquiry"}
+                  text={status === "loading" ? "Submittingâ€¦" : "Submit Enquiry"}
                   onClick={handleSubmit}
                   disabled={status === "loading"}
                 />
