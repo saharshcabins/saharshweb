@@ -83,15 +83,18 @@ const SaharshAdvantage = () => {
               padding: "40px 36px 44px",
               display: "flex",
               flexDirection: "column",
-              transition: "transform 0.25s ease, box-shadow 0.25s ease",
+              border: "1px solid transparent",
+              transition: "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
               (e.currentTarget as HTMLDivElement).style.boxShadow = "0 16px 48px rgba(0,0,0,0.22)";
+              (e.currentTarget as HTMLDivElement).style.borderColor = "var(--color-primary)";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
               (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+              (e.currentTarget as HTMLDivElement).style.borderColor = "transparent";
             }}
           >
             {/* Number */}
