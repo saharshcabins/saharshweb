@@ -13,7 +13,7 @@ const QuoteSection = () => {
   // Scroll progress through the section — 0 when entering, 1 when fully exited
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 70%", "end start"],
+    offset: ["start 30%", "end start"],
   });
 
   // Cabin drops in as section enters, lifts out as section exits
