@@ -53,6 +53,7 @@ const GAP = 40;
 
 const CabinSlideShow: React.FC = () => {
   const [index, setIndex] = useState<number>(0);
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const controls = useAnimation();
 
   const totalWidth = (CARD_WIDTH + GAP) * slides.length;
@@ -143,7 +144,10 @@ const CabinSlideShow: React.FC = () => {
                 key={idx}
                 className="min-w-[390px] mr-[40px]"
                 initial="rest"
-                whileHover="hover"
+                animate={activeIdx === idx ? "hover" : "rest"}
+                onHoverStart={() => setActiveIdx(idx)}
+                onHoverEnd={() => setActiveIdx(null)}
+                onTap={() => setActiveIdx((prev) => (prev === idx ? null : idx))}
               >
                 <div className="relative w-[390px] h-[460px] rounded-[30px] overflow-hidden cursor-pointer">
                   <Image

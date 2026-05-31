@@ -120,7 +120,7 @@ const CabinSection = () => {
   }, [activeId]);
 
   useEffect(() => {
-    const handleOutsideClick = (e: MouseEvent) => {
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
       const target = e.target as HTMLElement;
       if (!target.closest(".luxury-popup-card") && !target.closest(".luxury-node")) {
         setActiveId(null);
@@ -130,9 +130,11 @@ const CabinSection = () => {
       if (e.key === "Escape") setActiveId(null);
     };
     document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
