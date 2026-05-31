@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { resend, TO, FROM } from "@/lib/mailer";
+import { getResend, TO, FROM } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   try {
     const { full_name, email, firm_name, role, website, specialisation, message } = await req.json();
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: FROM,
       to: TO,
-      subject: `New Architect Partner Enquiry – ${full_name}`,
+      subject: `New Architect Partner Enquiry - ${full_name}`,
       html: `
         <h2>Architect Partner Form Submission</h2>
         <p><b>Name:</b> ${full_name}</p>
