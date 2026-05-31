@@ -33,8 +33,7 @@ const NewHeroSection = () => {
     const targets = Array.from(document.querySelectorAll(id)) as HTMLElement[];
     const target = targets.find((el) => el.offsetParent !== null) ?? targets[0];
     if (!target) return;
-    const top = target.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top, behavior: "smooth" });
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   useEffect(() => {
