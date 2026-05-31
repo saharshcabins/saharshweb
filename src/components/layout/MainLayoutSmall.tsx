@@ -1,0 +1,26 @@
+import React, { ReactNode } from "react";
+import CabinSectionMobile from "./CabinSectionMobile";
+import CabinCarouselMobile from "../ui/CabinCarouselMobile";
+import CabinSlideShowMobile from "../ui/CabinSlideShowMobile";
+import OurProcessMobile from "./OurProcessMobile";
+import GetInTouch from "./GetInTouch";
+import ResponsiveHeroSection from "./MobileHeroSection";
+import SaharshAdvantage from "./SaharshAdvantage";
+import FAQSection from "./FAQSection";
+import OurWorkSpeaks from "./OurWorkSpeaks";
+
+export default function MainLayoutSmall({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex flex-col items-center w-full min-h-screen bg-[var(--color-background)]">
+      {/* Main Content Container with consistent padding */}
+      <div className="flex flex-col items-center w-full mx-auto ">
+        <ResponsiveHeroSection />
+        <OurWorkSpeaks />
+        <CabinSectionMobile /> <CabinSlideShowMobile /> <SaharshAdvantage />
+        <CabinCarouselMobile />
+        <OurProcessMobile />
+        <GetInTouch /><FAQSection />
+      </div>
+    </div>
+  );
+}

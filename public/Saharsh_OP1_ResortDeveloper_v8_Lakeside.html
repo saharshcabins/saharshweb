@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Saharsh Cabins — Resort Developers (Lakeside)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --stone:#0F1B2D;--stone2:#162236;h
+  --gold:#C9A96E;--gdim:rgba(201,169,110,0.15);--gb:rgba(201,169,110,0.38);
+  --linen:#F5F2EC;
+  --serif:'Cormorant Garamond',serif;--sans:'Outfit',sans-serif;
+}
+html,body{background:#0a1220;}
+body{font-family:var(--sans);color:var(--linen);line-height:1.5;-webkit-font-smoothing:antialiased;}
+
+/* Mobile-first single-column container */
+.doc{max-width:560px;margin:0 auto;background:var(--stone);min-height:100vh;
+     box-shadow:0 0 60px rgba(0,0,0,0.5);}
+
+/* ── HERO ── */
+.hero{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;}
+.hero img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-ov{position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom,
+      rgba(15,27,45,0.85) 0%,
+      rgba(15,27,45,0.05) 22%,
+      rgba(15,27,45,0.05) 45%,
+      rgba(15,27,45,0.95) 100%);}
+.hero-top{position:absolute;top:0;left:0;right:0;padding:20px 22px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:rgba(15,27,45,0.78);backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(201,169,110,0.25);}
+.brand{display:flex;align-items:center;}
+.brand img{height:40px;width:auto;display:block;}
+.cred{display:inline-flex;align-items:center;gap:7px;
+  background:rgba(201,169,110,0.22);border:1.2px solid rgba(201,169,110,0.7);
+  border-radius:3px;padding:5px 11px;flex-shrink:0;}
+.cdot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+.ctext{font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;line-height:1;}
+
+.hero-bottom{position:absolute;left:0;right:0;bottom:0;padding:30px 24px 28px;}
+.tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--gold);margin-bottom:14px;}
+.h1{font-family:var(--serif);font-size:54px;font-weight:300;line-height:1.02;color:var(--linen);}
+.h1 em{font-style:italic;color:var(--gold);}
+.sub{font-size:13px;font-weight:300;color:rgba(245,242,236,0.72);margin-top:14px;line-height:1.6;}
+.sub strong{color:rgba(245,242,236,0.96);font-weight:500;}
+
+/* Stats strip */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(201,169,110,0.25);
+  border-bottom:1px solid rgba(201,169,110,0.25);}
+.stat{padding:18px 14px;text-align:center;border-right:1px solid rgba(201,169,110,0.15);}
+.stat:last-child{border-right:none;}
+.sn{font-family:var(--serif);font-size:30px;font-weight:400;color:var(--gold);line-height:1;}
+.sl{font-size:9px;color:rgba(245,242,236,0.45);letter-spacing:.08em;text-transform:uppercase;margin-top:6px;font-weight:500;}
+
+/* Content bands */
+.band{padding:32px 24px;}
+.band-tight{padding:24px 24px;}
+.rh1{font-family:var(--serif);font-size:28px;font-weight:300;line-height:1.18;color:var(--linen);}
+.rh1 em{font-style:italic;color:var(--gold);}
+.divline{height:1px;background:rgba(201,169,110,0.18);}
+
+.reframe{
+  background:rgba(201,169,110,0.10);
+  border:1px solid rgba(201,169,110,0.28);
+  border-radius:4px;padding:22px 22px;}
+.rfh{font-family:var(--serif);font-size:22px;font-weight:300;color:var(--linen);line-height:1.28;}
+.rfh em{font-style:italic;color:var(--gold);}
+.rfb{font-size:12px;color:rgba(245,242,236,0.55);line-height:1.7;font-weight:300;margin-top:12px;}
+.rfb strong{color:rgba(245,242,236,0.92);font-weight:500;}
+
+/* Comparison table */
+.compare-wrap{margin-top:8px;}
+.compare-header{display:grid;grid-template-columns:1fr 1fr;}
+.col-head{font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:10px 12px;}
+.col-head-g{background:rgba(201,169,110,0.2);color:var(--gold);
+  border:1px solid rgba(201,169,110,0.32);border-bottom:none;border-radius:3px 0 0 0;}
+.col-head-s{background:rgba(255,255,255,0.04);color:rgba(245,242,236,0.32);
+  border:1px solid rgba(255,255,255,0.08);border-left:none;border-bottom:none;border-radius:0 3px 0 0;}
+.compare-rows{display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid rgba(201,169,110,0.22);border-radius:0 0 3px 3px;overflow:hidden;}
+.col-g{background:rgba(201,169,110,0.07);}
+.col-s{background:rgba(255,255,255,0.02);border-left:1px solid rgba(255,255,255,0.07);}
+.crow{display:flex;align-items:flex-start;gap:8px;padding:10px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  font-size:11px;line-height:1.4;font-weight:300;min-height:42px;}
+.crow:last-child{border-bottom:none;}
+.crow-g{color:rgba(245,242,236,0.78);}
+.crow-s{color:rgba(245,242,236,0.32);}
+.dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.dot-g{background:var(--gold);}
+.dot-s{background:rgba(245,242,236,0.22);}
+
+/* Image showcase strip */
+.showcase{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:rgba(201,169,110,0.18);}
+.showcase img{width:100%;height:160px;object-fit:cover;display:block;}
+
+/* Full-width inline image — cropped vertically for crisp framing */
+.bleed{width:100%;display:block;overflow:hidden;}
+.bleed img{width:100%;height:100%;object-fit:cover;display:block;}
+.bleed-crop{aspect-ratio:21/9;}
+.bleed-caption{font-size:9px;color:rgba(201,169,110,0.75);letter-spacing:.12em;text-transform:uppercase;
+  padding:14px 24px 0;font-weight:500;text-align:center;}
+
+/* Credibility band */
+.credband{position:relative;}
+.credband img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;}
+.credband-ov{position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(15,27,45,0.55) 0%,rgba(15,27,45,0.94) 100%);}
+.credband-content{position:absolute;left:0;right:0;bottom:0;padding:22px 24px;}
+.credband-tag{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+.credband-h{font-family:var(--serif);font-size:18px;font-weight:300;color:var(--linen);
+  line-height:1.35;margin-top:10px;}
+.credband-h em{font-style:italic;color:var(--gold);}
+.credband-b{font-size:11px;color:rgba(245,242,236,0.65);line-height:1.65;margin-top:8px;font-weight:300;}
+.credband-b strong{color:rgba(245,242,236,0.95);font-weight:500;}
+
+.credline{font-family:var(--serif);font-size:13px;font-weight:300;font-style:italic;
+  color:rgba(245,242,236,0.6);line-height:1.65;
+  padding:18px 22px;border-left:2px solid rgba(201,169,110,0.5);
+  background:rgba(201,169,110,0.04);}
+.credline strong{color:rgba(245,242,236,0.92);font-weight:400;font-style:normal;}
+
+/* CTA */
+.cta{background:var(--gold);padding:28px 24px;}
+.ctah{font-family:var(--serif);font-size:24px;font-weight:300;color:var(--stone);line-height:1.15;}
+.ctah em{font-style:italic;}
+.ctameta{margin-top:14px;display:flex;flex-direction:column;gap:4px;}
+.ctaphone{font-size:14px;font-weight:600;color:var(--stone);}
+.ctaemail{font-size:11px;color:rgba(15,27,45,0.62);}
+.ctacities{font-size:9px;color:rgba(15,27,45,0.55);letter-spacing:.08em;
+  text-transform:uppercase;font-weight:500;margin-top:10px;}
+
+.foot{padding:20px 24px;text-align:center;
+  background:#080f1c;border-top:1px solid rgba(201,169,110,0.12);}
+.foot-text{font-size:9px;color:rgba(245,242,236,0.32);letter-spacing:.15em;text-transform:uppercase;font-weight:500;}
+
+<img src=@media (min-width:600px){
+  .doc{margin:24px auto;border-radius:4px;overflow:hidden;}
+}
+
+/* Print: A4 portrait */
+@media print{
+  body{background:white;}
+  .doc{max-width:none;width:210mm;margin:0;box-shadow:none;border-radius:0;}
+  .hero{aspect-ratio:auto;height:100mm;}
+  .showcase img{height:60mm;}
+}
+  /* ═══ DESKTOP ≥ 768px ═══ */
+  @media(min-width:768px){
+    .doc{max-width:1100px;}
+    .hero{aspect-ratio:16/7;}
+    .hero-top{padding:24px 48px;}
+    .brand img{height:52px;}
+    .hero-bottom{padding:48px 56px 52px;}
+    .tag{font-size:10px;margin-bottom:18px;}
+    .h1{font-size:80px;}
+    .sub{font-size:16px;margin-top:18px;max-width:580px;}
+    .stats{grid-template-columns:repeat(3,1fr);}
+    .stat{padding:28px 20px;}
+    .sn{font-size:42px;}
+    .sl{font-size:10px;margin-top:8px;}
+    .band{padding:52px 56px;}
+    .band-tight{padding:36px 56px;}
+    .rh1{font-size:38px;}
+    .reframe{padding:32px 36px;}
+    .rfh{font-size:28px;}
+             .rfb{font-size:14px;margin-top:16px;}
+    .dt-two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
+    .compare-wrap{margin-top:0;}
+    .col-head{font-size:10px;padding:12px 16px;}
+    .crow{font-size:13px;padding:13px 16px;min-height:52px;}
+    .showcase{grid-template-columns:repeat(3,1fr);}
+    .showcase img{height:240px;}
+    .credband-content{padding:36px 56px;}
+    .credband-h{font-size:22px;}
+    .cta{padding:56px 56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+    .ctameta{margin-top:0;}
+    .ctah{font-size:40px;}
+    .ctaphone{font-size:22px;}
+    .ctaemail{font-size:13px;}
+    .ctacities{font-size:10px;margin-top:16px;}
+    .foot{padding:20px 56px;}
+    .foot-text{font-size:10px;}
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- ━━━━━━━━━━━━━ HERO ━━━━━━━━━━━━━ -->
+  <section class="hero">
+    <img src="Lakeside Cabin/Lakeside (3).jpg" alt="Lakeside A-frame cabin at sunset" loading="lazy" decoding="async">
+    <div class="hero-ov"></div>
+    <div class="hero-top">
+      <div class="brand"><img src="Saharsh Logo Variants/logo_saharsh_cabins_white_orange_horizontal.png" alt="Saharsh Cabins" loading="lazy" decoding="async"></div>
+      <div class="cred"><span class="cdot"></span><span class="ctext">Preferred partner — Marriott Bonvoy</span></div>
+    </div>
+    <div class="hero-bottom">
+      <div class="tag">For resort developers</div>
+      <div class="h1">Open sooner.<br><em>Earn sooner.</em></div>
+      <p class="sub">Luxury resort cottages, <strong>guest-ready in 4–5 weeks.</strong> Every month of delay is revenue your property will never recover.</p>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━ STATS ━━━━━━━━━━━━━ -->
+  <div class="stats">
+    <div class="stat"><div class="sn">4–5</div><div class="sl">Weeks to handover</div></div>
+    <div class="stat"><div class="sn">₹10L+</div><div class="sl">Per cottage</div></div>
+    <div class="stat"><div class="sn">0</div><div class="sl">Hidden costs</div></div>
+  </div>
+
+  <!-- ━━━━━━━━━━━━━ REFRAME ━━━━━━━━━━━━━ -->
+  <section class="band">
+    <div class="rh1">The question is not what modular <em>costs.</em><br>It's what delay <em>costs you.</em></div>
+    <div style="height:18px;"></div>
+    <div class="reframe">
+      <div class="rfh">15 cottages × ₹5,000/night.<br><em>Open four months earlier.</em></div>
+      <p class="rfb">That is <strong>₹90 lakhs in additional first-year revenue.</strong> The cost difference between modular and traditional is a fraction of what you unlock by opening sooner.</p>
+    </div>
+  </section>
+
+        <div class="dt-two-col">
+          <!-- ━━━━━━━━━━━━━ SHOWCASE STRIP 1 ━━━━━━━━━━━━━ -->
+  <div class="showcase">
+    <img src="Lakeside Cabin/Lakeside (1).jpg" alt="A-frame at golden hour" loading="lazy" decoding="async">
+    <img src="Lakeside Cabin/Lakeside (2).jpg" alt="Lakeside cabin exterior" loading="lazy" decoding="async">
+    <img src="Lakeside Cabin/Lakeside (4).jpg" alt="Lakeside cabin at dusk" loading="lazy" decoding="async">
+  </div>
+
+  <!-- ━━━━━━━━━━━━━ COMPARISON ━━━━━━━━━━━━━ -->
+  <section class="band">
+    <div class="tag" style="margin-bottom:14px;">Saharsh modular vs traditional construction</div>
+    <div class="compare-wrap">
+      <div class="compare-header">
+        <div class="col-head col-head-g">Saharsh modular</div>
+        <div class="col-head col-head-s">Traditional construction</div>
+      </div>
+      <div class="compare-rows">
+        <div class="col-g">
+          <div class="crow crow-g"><div class="dot dot-g"></div>Guest-ready in 4–5 weeks</div>
+          <div class="crow crow-g"><div class="dot dot-g"></div>Price locked before build</div>
+          <div class="crow crow-g"><div class="dot dot-g"></div>Marriott-validated quality</div>
+          <div class="crow crow-g"><div class="dot dot-g"></div>Scalable at any time</div>
+        </div>
+        <div class="col-s">
+          <div class="crow crow-s"><div class="dot dot-s"></div>12–24 months minimum</div>
+          <div class="crow crow-s"><div class="dot dot-s"></div>Budget overruns endemic</div>
+          <div class="crow crow-s"><div class="dot dot-s"></div>Quality varies by site</div>
+          <div class="crow crow-s"><div class="dot dot-s"></div>Expansion = full rebuild</div>
+        </div>
+      </div>
+    </div>
+  </section>
+        </div><!-- /dt-two-col -->
+
+  <!-- ━━━━━━━━━━━━━ CREDLINE ━━━━━━━━━━━━━ -->
+  <section class="band-tight">
+    <div class="credline">
+      Trusted by <strong>Marriott Bonvoy</strong> — and the only Indian manufacturer whose work has been showcased at <strong>The Lodging Conference, Phoenix.</strong>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━ CLOSING IMAGE: TRANSPORT/PROOF ━━━━━━━━━━━━━ -->
+  <div class="bleed bleed-crop">
+    <img src="Lakeside Cabin/Lakeside (5).jpg" alt="Saharsh modular unit in transport, oversize load — proof of factory-built quality" style="object-position:center 50%;">
+  </div>
+
+  <!-- ━━━━━━━━━━━━━ CTA ━━━━━━━━━━━━━ -->
+  <section class="cta">
+    <div class="ctah">Ready to open <em>sooner?</em></div>
+    <div class="ctameta">
+      <div class="ctaphone">+91 701 949 5021</div>
+      <div class="ctaemail">sales@saharsh.co · saharsh.co</div>
+      <div class="ctacities">Bangalore · Mumbai · Nagpur · Cuttack</div>
+    </div>
+  </section>
+
+  <div class="foot"><div class="foot-text">Saharsh Cabins · Built in 4–5 weeks · Built to last</div></div>
+
+</div>
+</body>
+</html>
