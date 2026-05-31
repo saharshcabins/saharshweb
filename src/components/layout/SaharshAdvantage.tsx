@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import MultiColorText from "../shared/MultiColorText";
 import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 import TextBuilder from "../shared/TextBuilder";

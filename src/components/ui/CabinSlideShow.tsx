@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import { motion, useAnimation } from "framer-motion";
@@ -41,7 +41,7 @@ const slides: Slide[] = [
     src: "/assets/built/cafe_1.png",
     title: "Modular Cafes",
     description:
-      "Built in our factory and installed anywhere â€” ready to serve customers on arrival.",
+      "Built in our factory and installed anywhere - ready to serve customers on arrival.",
   },
 ];
 
@@ -67,7 +67,6 @@ const CabinSlideShow: React.FC = () => {
       transition: { duration: 0.6, ease: "easeInOut" },
     });
 
-    // reset seamlessly
     if (newIndex >= slides.length) {
       setIndex(0);
       controls.set({ x: 0 });
@@ -76,10 +75,7 @@ const CabinSlideShow: React.FC = () => {
 
   const handlePrev = async () => {
     if (index === 0) {
-      // jump to end instantly
-      controls.set({
-        x: -totalWidth,
-      });
+      controls.set({ x: -totalWidth });
 
       const newIndex = slides.length - 1;
       setIndex(newIndex);
@@ -101,13 +97,6 @@ const CabinSlideShow: React.FC = () => {
 
   return (
     <>
-    {/* ==========================================
-       HOME SECTION: PRODUCT CATEGORIES
-       Purpose:
-       Showcase the full range of modular build types â€” offices, cottages, villas, cafes.
-       Primary conversion objective:
-       Match each visitor's intent to a product category and move them toward a consultation.
-    ========================================== */}
     <section
       id="product-categories"
       data-section="product-categories"
@@ -136,7 +125,6 @@ const CabinSlideShow: React.FC = () => {
 
       {/* Carousel */}
       <div className="mt-10">
-        {/* Slides â€” no arrows overlapping imagery */}
         <div className="overflow-hidden">
           <motion.div className="flex" animate={controls} initial={{ x: 0 }}>
             {duplicatedSlides.map((slide, idx) => (
@@ -203,9 +191,8 @@ const CabinSlideShow: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Editorial navigation â€” below imagery, unobstructed */}
+        {/* Navigation */}
         <div className="flex items-center justify-between mt-8 px-1">
-          {/* Progress bars */}
           <div className="flex items-center gap-2">
             {slides.map((_, i) => (
               <div
@@ -224,27 +211,19 @@ const CabinSlideShow: React.FC = () => {
             ))}
           </div>
 
-          {/* Prev / Next â€” minimal circle buttons */}
           <div className="flex items-center gap-3">
             <button
               onClick={handlePrev}
               aria-label="Previous"
               className="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-200"
-              style={{
-                border: "1px solid rgba(255,255,255,0.25)",
-                color: "rgba(255,255,255,0.7)",
-              }}
+              style={{ border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.7)" }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.borderColor =
-                  "var(--color-primary)";
-                (e.currentTarget as HTMLButtonElement).style.color =
-                  "var(--color-primary)";
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-primary)";
+                (e.currentTarget as HTMLButtonElement).style.color = "var(--color-primary)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.borderColor =
-                  "rgba(255,255,255,0.25)";
-                (e.currentTarget as HTMLButtonElement).style.color =
-                  "rgba(255,255,255,0.7)";
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.25)";
+                (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.7)";
               }}
             >
               <ArrowNew className="w-4 h-4" />
@@ -253,21 +232,14 @@ const CabinSlideShow: React.FC = () => {
               onClick={handleNext}
               aria-label="Next"
               className="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-200"
-              style={{
-                border: "1px solid rgba(255,255,255,0.25)",
-                color: "rgba(255,255,255,0.7)",
-              }}
+              style={{ border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.7)" }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.borderColor =
-                  "var(--color-primary)";
-                (e.currentTarget as HTMLButtonElement).style.color =
-                  "var(--color-primary)";
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-primary)";
+                (e.currentTarget as HTMLButtonElement).style.color = "var(--color-primary)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.borderColor =
-                  "rgba(255,255,255,0.25)";
-                (e.currentTarget as HTMLButtonElement).style.color =
-                  "rgba(255,255,255,0.7)";
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.25)";
+                (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.7)";
               }}
             >
               <ArrowNew className="w-4 h-4" flipped />
