@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 import Button from "../shared/Button";
@@ -8,8 +8,16 @@ import Image from "next/image";
 
 const QuoteSection = () => {
   const ref = useRef(null);
-  // amount: 0.2 — only 20% needs to be visible to trigger, once: true so it doesn't re-fire
-  const isInView = useInView(ref, { amount: 0.2, once: true });
+  const isInView = useInView(ref, { amount: 0.2, once: false });
+
+  // Scroll progress through the section — 0 when entering, 1 when fully exited
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  // Cabin drops in as section enters, lifts out as section exits
+  const cabinY = useTransform(scrollYProgress, [0, 0.45, 0.55, 1], [-90, 0, 0, 90]);
 
   return (
     <>
@@ -31,7 +39,7 @@ const QuoteSection = () => {
         className="px-[7%] bg-cover py-[7%] bg-center bg-no-repeat flex flex-row items-center justify-between relative"
         style={{ backgroundImage: "url('/assets/quote/quote_bg.png')" }}
         initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         {/* Text and Button Section */}
@@ -39,57 +47,29 @@ const QuoteSection = () => {
           {/* MultiColorText Animation */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{
-              ease: "easeOut",
-              duration: 0.7,
-              delay: 0.15,
-            }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ ease: "easeOut", duration: 0.7, delay: 0.15 }}
           >
             <p className="eyebrow-label mb-4">Manufacturing Excellence</p>
             <MultiColorText
               fontSize="75px"
               className="leading-[1.2] whitespace-nowrap text-start"
               items={[
-                {
-                  text: "Built in India,",
-                  weight: "bold",
-                  color: "dark",
-                  breakAfter: true,
-                },
-                {
-                  text: "Engineered for",
-                  weight: "bold",
-                  color: "primary",
-                  breakAfter: true,
-                },
-                {
-                  text: " the World.",
-                  weight: "bold",
-                  color: "primary",
-                  breakAfter: true,
-                },
+                { text: "Built in India,", weight: "bold", color: "dark", breakAfter: true },
+                { text: "Engineered for", weight: "bold", color: "primary", breakAfter: true },
+                { text: " the World.", weight: "bold", color: "primary", breakAfter: true },
               ]}
             />
           </motion.div>
 
           {/* Paragraph + Button container */}
           <div className="flex flex-col gap-[50px]">
-            {/* TextBuilder Animation */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.6,
-                ease: "easeOut",
-                delay: 0.3,
-              }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
             >
-              <TextBuilder
-                fontSize="20px"
-                color="dark"
-                className="leading-[1.25]"
-              >
+              <TextBuilder fontSize="20px" color="dark" className="leading-[1.25]">
                 Shipping worldwide is easy; shipping export-grade quality that
                 withstands diverse climates is the hard part. Whether it's the
                 humidity of the tropics or the winds of the coast, Saharsh
@@ -97,15 +77,10 @@ const QuoteSection = () => {
               </TextBuilder>
             </motion.div>
 
-            {/* Button Animation */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{
-                duration: 0.5,
-                ease: "easeOut",
-                delay: 0.5,
-              }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.5 }}
             >
               <Button
                 text="Request a Private Consultation"
@@ -121,18 +96,10 @@ const QuoteSection = () => {
           </div>
         </div>
 
-        {/* Hanging Container Image Animation */}
+        {/* Cabin — scroll-driven drop/lift */}
         <motion.div
-          initial={{ y: -80, opacity: 0 }}
-          animate={isInView ? { y: 0, opacity: 1 } : {}}
           className="w-full flex items-center justify-center"
-          transition={{
-            type: "spring",
-            stiffness: 120,
-            damping: 12,
-            mass: 0.8,
-            delay: 0.1,
-          }}
+          style={{ y: cabinY }}
         >
           <Image
             src={"/assets/quote/handing_container.png"}
