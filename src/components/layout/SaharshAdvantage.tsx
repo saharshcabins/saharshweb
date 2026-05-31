@@ -77,32 +77,16 @@ const SaharshAdvantage = () => {
         {principles.map((p, i) => (
           <div
             key={i}
-            style={{
-              background: "var(--text-dark)",
-              borderRadius: 16,
-              padding: "40px 36px 44px",
-              display: "flex",
-              flexDirection: "column",
-              border: "1px solid transparent",
-              transition: "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
-              (e.currentTarget as HTMLDivElement).style.boxShadow = "0 16px 48px rgba(0,0,0,0.22)";
-              (e.currentTarget as HTMLDivElement).style.borderColor = "var(--color-primary)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-              (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-              (e.currentTarget as HTMLDivElement).style.borderColor = "transparent";
-            }}
+            className="group flex flex-col rounded-2xl border border-[var(--light-border)] hover:border-[var(--color-primary)] transition-colors duration-300"
+            style={{ background: "var(--text-dark)", padding: "40px 36px 44px" }}
           >
             {/* Number */}
             <span
+              className="group-hover:text-[var(--color-primary)] transition-colors duration-300"
               style={{
                 fontSize: 52,
                 fontWeight: 800,
-                color: "var(--color-primary)",
+                color: "rgba(255,255,255,0.9)",
                 lineHeight: 1,
                 letterSpacing: "-0.03em",
                 display: "block",
@@ -113,12 +97,13 @@ const SaharshAdvantage = () => {
               {p.number}
             </span>
 
-            {/* Orange accent bar */}
+            {/* Accent bar */}
             <div
+              className="group-hover:bg-[var(--color-primary)] transition-colors duration-300"
               style={{
                 width: 36,
                 height: 3,
-                background: "var(--color-primary)",
+                background: "rgba(255,255,255,0.9)",
                 borderRadius: 2,
                 marginBottom: 32,
               }}
