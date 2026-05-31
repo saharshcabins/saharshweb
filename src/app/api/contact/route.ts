@@ -3,23 +3,23 @@ import { getResend, TO, FROM } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, phone, email, location, notes, projectTypes, investment, timeline, contactMethod } = await req.json();
+    const data = await req.json();
 
     await getResend().emails.send({
       from: FROM,
       to: TO,
-      subject: `New Contact Request - ${name}`,
+      subject: `New Contact Request - ${data.Name}`,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Phone:</b> ${phone}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Location:</b> ${location}</p>
-        <p><b>Project Types:</b> ${projectTypes?.join(", ")}</p>
-        <p><b>Investment:</b> ${investment}</p>
-        <p><b>Timeline:</b> ${timeline}</p>
-        <p><b>Preferred Contact:</b> ${contactMethod}</p>
-        <p><b>Notes:</b> ${notes}</p>
+        <p><b>Name:</b> ${data.Name}</p>
+        <p><b>Phone:</b> ${data.Phone}</p>
+        <p><b>Email:</b> ${data.Email}</p>
+        <p><b>Project Location:</b> ${data["Project Location"]}</p>
+        <p><b>Interest:</b> ${data.Interest}</p>
+        <p><b>Budget:</b> ${data.Budget}</p>
+        <p><b>Timeline:</b> ${data.Timeline}</p>
+        <p><b>Contact Method:</b> ${data["Contact Method"]}</p>
+        <p><b>Notes:</b> ${data.Notes}</p>
       `,
     });
 
