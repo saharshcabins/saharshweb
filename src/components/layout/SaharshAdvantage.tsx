@@ -77,7 +77,7 @@ const SaharshAdvantage = () => {
         {principles.map((p, i) => (
           <div
             key={i}
-            className="group flex flex-col rounded-2xl border border-white/15 hover:border-[var(--color-primary)] transition-colors duration-300"
+            className="group flex flex-col rounded-2xl transition-all duration-300 border border-[var(--light-border)] hover:border-[var(--color-primary)] w-full"
             style={{ background: "var(--text-dark)", padding: "40px 36px 44px" }}
           >
             {/* Number */}
