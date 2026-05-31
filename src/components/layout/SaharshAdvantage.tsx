@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import MultiColorText from "../shared/MultiColorText";
 import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 import TextBuilder from "../shared/TextBuilder";
@@ -8,7 +8,7 @@ const principles = [
     number: "01",
     title: "Precision Engineering",
     description:
-      "Every structure is produced within controlled manufacturing environments where tolerances, materials, and quality standards remain consistent from the first unit to the last.",
+      "Every structure is produced in controlled environments where tolerances, materials, and quality standards remain consistent from the first unit to the last.",
   },
   {
     number: "02",
@@ -72,7 +72,7 @@ const SaharshAdvantage = () => {
         </TextBuilder>
       </div>
 
-      {/* Three principles — card variant */}
+      {/* Three principles â€” card variant */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {principles.map((p, i) => (
           <div

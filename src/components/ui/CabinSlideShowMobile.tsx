@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -20,7 +20,7 @@ const slides: Slide[] = [
     src: "/assets/built/office_1.png",
     title: "Marketing Sales Offices",
     description:
-      "Factory-built sales offices installed at your site — ready to receive buyers from day one.",
+      "Factory-built sales offices installed at your site â€” ready to receive buyers from day one.",
   },
   {
     type: "image",
@@ -41,7 +41,7 @@ const slides: Slide[] = [
     src: "/assets/built/cafe_1.png",
     title: "Modular Cafes",
     description:
-      "Built in our factory and installed anywhere — ready to serve customers on arrival.",
+      "Built in our factory and installed anywhere â€” ready to serve customers on arrival.",
   },
 ];
 
@@ -50,16 +50,16 @@ const CARD_WIDTH = 284 + 16;
 const CabinSlideShowMobile: React.FC = () => {
   const total = slides.length;
 
-  // 🔁 create real loop buffer
+  // ðŸ” create real loop buffer
   const loopSlides = [...slides, ...slides, ...slides];
 
-  // 🎯 start from middle copy
+  // ðŸŽ¯ start from middle copy
   const [activeIndex, setActiveIndex] = useState(total);
   const [isAnimating, setIsAnimating] = useState(true);
 
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
-  // ▶️ video control
+  // â–¶ï¸ video control
   useEffect(() => {
     videoRefs.current.forEach((video, idx) => {
       if (!video) return;
@@ -74,7 +74,7 @@ const CabinSlideShowMobile: React.FC = () => {
     });
   }, [activeIndex]);
 
-  // 👉 next / prev
+  // ðŸ‘‰ next / prev
   const nextSlide = () => {
     setActiveIndex((prev) => prev + 1);
   };
@@ -83,7 +83,7 @@ const CabinSlideShowMobile: React.FC = () => {
     setActiveIndex((prev) => prev - 1);
   };
 
-  // 🧠 invisible reset logic (core of infinite loop)
+  // ðŸ§  invisible reset logic (core of infinite loop)
   useEffect(() => {
     if (activeIndex >= total * 2) {
       setTimeout(() => {
@@ -105,7 +105,7 @@ const CabinSlideShowMobile: React.FC = () => {
     {/* ==========================================
        HOME SECTION: PRODUCT CATEGORIES
        Purpose:
-       Showcase the full range of modular build types — offices, cottages, villas, cafes.
+       Showcase the full range of modular build types â€” offices, cottages, villas, cafes.
        Primary conversion objective:
        Match each visitor's intent to a product category and move them toward a consultation.
     ========================================== */}

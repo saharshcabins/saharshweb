@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { motion, useAnimation } from "framer-motion";
@@ -20,7 +20,7 @@ const slides: Slide[] = [
     src: "/assets/built/office_1.png",
     title: "Marketing Sales Offices",
     description:
-      "Factory-built sales offices installed at your site — ready to receive buyers from day one.",
+      "Factory-built sales offices installed at your site â€” ready to receive buyers from day one.",
   },
   {
     type: "image",
@@ -41,7 +41,7 @@ const slides: Slide[] = [
     src: "/assets/built/cafe_1.png",
     title: "Modular Cafes",
     description:
-      "Built in our factory and installed anywhere — ready to serve customers on arrival.",
+      "Built in our factory and installed anywhere â€” ready to serve customers on arrival.",
   },
 ];
 
@@ -104,7 +104,7 @@ const CabinSlideShow: React.FC = () => {
     {/* ==========================================
        HOME SECTION: PRODUCT CATEGORIES
        Purpose:
-       Showcase the full range of modular build types — offices, cottages, villas, cafes.
+       Showcase the full range of modular build types â€” offices, cottages, villas, cafes.
        Primary conversion objective:
        Match each visitor's intent to a product category and move them toward a consultation.
     ========================================== */}
@@ -136,7 +136,7 @@ const CabinSlideShow: React.FC = () => {
 
       {/* Carousel */}
       <div className="mt-10">
-        {/* Slides — no arrows overlapping imagery */}
+        {/* Slides â€” no arrows overlapping imagery */}
         <div className="overflow-hidden">
           <motion.div className="flex" animate={controls} initial={{ x: 0 }}>
             {duplicatedSlides.map((slide, idx) => (
@@ -203,7 +203,7 @@ const CabinSlideShow: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Editorial navigation — below imagery, unobstructed */}
+        {/* Editorial navigation â€” below imagery, unobstructed */}
         <div className="flex items-center justify-between mt-8 px-1">
           {/* Progress bars */}
           <div className="flex items-center gap-2">
@@ -224,7 +224,7 @@ const CabinSlideShow: React.FC = () => {
             ))}
           </div>
 
-          {/* Prev / Next — minimal circle buttons */}
+          {/* Prev / Next â€” minimal circle buttons */}
           <div className="flex items-center gap-3">
             <button
               onClick={handlePrev}
