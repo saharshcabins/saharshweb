@@ -82,11 +82,10 @@ const SaharshAdvantage = () => {
           >
             {/* Number */}
             <span
-              className="group-hover:text-[var(--color-primary)] transition-colors duration-300"
+              className="text-white/90 group-hover:text-[var(--color-primary)] transition-colors duration-300"
               style={{
                 fontSize: 52,
                 fontWeight: 800,
-                color: "rgba(255,255,255,0.9)",
                 lineHeight: 1,
                 letterSpacing: "-0.03em",
                 display: "block",
@@ -99,11 +98,10 @@ const SaharshAdvantage = () => {
 
             {/* Accent bar */}
             <div
-              className="group-hover:bg-[var(--color-primary)] transition-colors duration-300"
+              className="bg-white/90 group-hover:bg-[var(--color-primary)] transition-colors duration-300"
               style={{
                 width: 36,
                 height: 3,
-                background: "rgba(255,255,255,0.9)",
                 borderRadius: 2,
                 marginBottom: 32,
               }}
