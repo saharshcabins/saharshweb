@@ -91,7 +91,7 @@ export default function DevelopersPage() {
             <p className={styles.heroSub}>
               India&apos;s leading real estate developers trust Saharsh Cabins to
               deploy premium marketing suites, engineer accommodation hubs,
-              canteens, and site offices â€” fully furnished and operational in
+              canteens, and site offices â€" fully furnished and operational in
               weeks. Because your project launch cannot wait for conventional
               construction.
             </p>
@@ -115,7 +115,7 @@ export default function DevelopersPage() {
             "mb-14 max-w-[calc(100vw-32px)]",
           ].join(" ")}
         >
-          PREFERRED PARTNER â€” OUTDOORS BY MARRIOTT BONVOY
+          PREFERRED PARTNER â€" OUTDOORS BY MARRIOTT BONVOY
         </div>
       </section>
 
@@ -167,7 +167,7 @@ export default function DevelopersPage() {
                   <p className={styles.pillarSub}>
                     Unlike a permanent structure, a Saharsh modular unit is a
                     tangible, reusable asset. Move it to your next project when
-                    this one sells â€” or liquidate it and recover a significant
+                    this one sells â€" or liquidate it and recover a significant
                     portion of the investment.
                   </p>
                 </div>
@@ -192,11 +192,11 @@ export default function DevelopersPage() {
           </div>
           <div className={styles.showcaseBlock}>
             <Image
-              src=”/assets/products/marketing-office/img-1.webp”
-              alt=”Saharsh Cabins - Premium Marketing Office”
+              src="/assets/products/marketing-office/img-1.webp"
+              alt="Saharsh Cabins - Premium Marketing Office"
               fill
               className={styles.showcaseImg}
-              sizes=”(max-width: 768px) 100vw, 420px”
+              sizes="(max-width: 768px) 100vw, 420px"
             />
           </div>
         </div>
@@ -252,9 +252,9 @@ export default function DevelopersPage() {
       {/* How It Works */}
       <section className={styles.hiwSection}>
         <h2 className={styles.sectionH2}>
-          From Brief to{“ “}
-          <span style={{ color: “var(--color-primary)” }}>Operational</span>
-          {“ “} -  Four Steps.
+          From Brief to{" "}
+          <span style={{ color: "var(--color-primary)" }}>Operational</span>
+          {" "} -  Four Steps.
         </h2>
         <div className={styles.allianceGrid}>
           <div className={styles.allianceCard}>
@@ -307,12 +307,12 @@ export default function DevelopersPage() {
             &ldquo;We needed a 2,000 sq. ft. premium marketing office
             operational before our project launch. Saharsh Cabins delivered a
             three-unit, 40&apos; modular suite that impressed every buyer who
-            walked through it â€” fully furnished, branded, and ready in under 8
+            walked through it â€" fully furnished, branded, and ready in under 8
             weeks.&rdquo;
           </blockquote>
           <div className={styles.testimonialMeta}>
             <span className={styles.testimonialAuthor}>
-              â€” Total Environment &lsquo;Down by the Water&rsquo;
+              â€" Total Environment &lsquo;Down by the Water&rsquo;
             </span>
             <span className={styles.testimonialDivider}>·</span>
             <span className={styles.testimonialFirm}>
@@ -334,7 +334,7 @@ export default function DevelopersPage() {
             </h2>
             <p className={styles.formSubtext}>
               Share your project brief and we will put together a tailored
-              modular infrastructure proposal â€” floor plan options, indicative
+              modular infrastructure proposal â€" floor plan options, indicative
               pricing, and a delivery schedule that works around your launch
               timeline.
             </p>
@@ -454,9 +454,9 @@ export default function DevelopersPage() {
 
               <div className={styles.formRow}>
                 <textarea
-                  id=”message”
-                  name=”message”
-                  placeholder=”Tell us about your requirement  -  size, configuration, timeline, and anything specific to your project or brand...”
+                  id="message"
+                  name="message"
+                  placeholder="Tell us about your requirement  -  size, configuration, timeline, and anything specific to your project or brand..."
                   value={fields.message}
                   onChange={handleChange}
                   className={styles.formTextarea}

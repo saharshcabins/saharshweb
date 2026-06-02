@@ -90,7 +90,7 @@ export default function ArchitectsPage() {
 
             <p className={styles.heroSub}>
               Saharsh Cabins is the manufacturing partner architects trust to
-              translate vision into structure  - ” without substitution, without
+              translate vision into structure  -  without substitution, without
               shortcuts, and without compromising what makes the design
               extraordinary. You hold the creative authority. We hold the
               execution.
@@ -115,7 +115,7 @@ export default function ArchitectsPage() {
             "mb-14 max-w-[calc(100vw-32px)]",
           ].join(" ")}
         >
-          PREFERRED PARTNER  - ” OUTDOORS BY MARRIOTT BONVOY
+          PREFERRED PARTNER  -  OUTDOORS BY MARRIOTT BONVOY
         </div>
       </section>
 
@@ -130,9 +130,9 @@ export default function ArchitectsPage() {
               <span style={{ color: "var(--color-primary)" }}>You Draw.</span>
             </h2>
             <p className={styles.sectionBody}>
-              We don&apos;t value-engineer the design to suit our process  - ” we
+              We don&apos;t value-engineer the design to suit our process  -  we
               resource our process to honour your design. The geometry, the
-              material palette, the proportions, the detailing  - ” all of it is
+              material palette, the proportions, the detailing  -  all of it is
               treated as non-negotiable. Our job is to find a way to make your
               vision happen. Not a version of it.
             </p>
@@ -147,7 +147,7 @@ export default function ArchitectsPage() {
                 <div className={styles.pillarText}>
                   <h3 className={styles.pillarTitle}>We Respect the Geometry</h3>
                   <p className={styles.pillarSub}>
-                    Your drawings become our manufacturing brief  - ” spatial
+                    Your drawings become our manufacturing brief  -  spatial
                     dimensions, ceiling heights, openings, and structural
                     intent are preserved exactly. We come back to you before
                     any deviation, not after.
@@ -164,7 +164,7 @@ export default function ArchitectsPage() {
                 <div className={styles.pillarText}>
                   <h3 className={styles.pillarTitle}>We Honour the Material Spec</h3>
                   <p className={styles.pillarSub}>
-                    DGU aluminium windows, hardwood cladding, bespoke finishes  - ”
+                    DGU aluminium windows, hardwood cladding, bespoke finishes  - 
                     we source the material you specify. If a substitution is ever
                     unavoidable, we present alternatives for your approval. Never
                     a surprise on site.
@@ -182,7 +182,7 @@ export default function ArchitectsPage() {
                 <div className={styles.pillarText}>
                   <h3 className={styles.pillarTitle}>A True Working Partnership</h3>
                   <p className={styles.pillarSub}>
-                    You stay involved throughout  - ” not just at brief and
+                    You stay involved throughout  -  not just at brief and
                     handover. We share production milestones, photos, and
                     material samples at every key stage so you can course-correct
                     before it matters.
@@ -194,7 +194,7 @@ export default function ArchitectsPage() {
           <div className={styles.showcaseBlock}>
             <Image
               src="/assets/products/qbinn-tusker/img-2.webp"
-              alt="Saharsh Cabins  - ” Qbinn Tusker Villa"
+              alt="Saharsh Cabins  -  Qbinn Tusker Villa"
               fill
               className={styles.showcaseImg}
               sizes="(max-width: 768px) 100vw, 420px"
@@ -203,14 +203,14 @@ export default function ArchitectsPage() {
         </div>
       </section>
 
-      {/* Partnership value strip  - ” no commission, just craft */}
+      {/* Partnership value strip  -  no commission, just craft */}
       <div className={styles.commissionStrip}>
         <div className={styles.commissionInner}>
           <span className={styles.commissionLabel}>Our Promise to You</span>
           <span className={styles.commissionDivider} />
           <span className={styles.commissionText}>
             No value engineering. No silent substitutions. No surprises on site.{" "}
-            <strong>Your design intent is our manufacturing brief</strong>  - ” from
+            <strong>Your design intent is our manufacturing brief</strong>  -  from
             the first structural translation to final on-site positioning.
           </span>
           <a
@@ -261,7 +261,7 @@ export default function ArchitectsPage() {
             <h3 className={styles.allianceCardTitle}>Share Your Concept</h3>
             <p className={styles.allianceCardBody}>
               Bring us your drawings, 3D models, or even rough conceptual
-              sketches. We study the intent, not just the dimensions  - ” and
+              sketches. We study the intent, not just the dimensions  -  and
               respond with preliminary structural feasibility within 3 business
               days.
             </p>
@@ -282,7 +282,7 @@ export default function ArchitectsPage() {
             <p className={styles.allianceCardBody}>
               Your project enters our factory on a fixed schedule with design
               oversight built in. We document and share every production
-              milestone  - ” and flag any material or structural decision that
+              milestone  -  and flag any material or structural decision that
               affects design intent before executing it.
             </p>
           </div>
@@ -292,7 +292,7 @@ export default function ArchitectsPage() {
             <p className={styles.allianceCardBody}>
               We deliver, position, and install the structure at site. You walk
               through the finished space against your drawings. That is the
-              standard we hold ourselves to  - ” and the conversation we welcome
+              standard we hold ourselves to  -  and the conversation we welcome
               at every handover.
             </p>
           </div>
@@ -306,13 +306,13 @@ export default function ArchitectsPage() {
           <blockquote className={styles.testimonialQuote}>
             &ldquo;Working with Saharsh Cabins was unlike any manufacturing
             engagement we&apos;ve had before. They followed our drawings with
-            absolute precision  - ” every material we specified arrived on site,
+            absolute precision  -  every material we specified arrived on site,
             nothing was substituted without a call first. The finished structure
             is exactly what we drew.&rdquo;
           </blockquote>
           <div className={styles.testimonialMeta}>
             <span className={styles.testimonialAuthor}>
-               - ” Principal Architect, Bangalore Design Studio
+               -  Principal Architect, Bangalore Design Studio
             </span>
             <span className={styles.testimonialDivider}>·</span>
             <span className={styles.testimonialFirm}>
@@ -335,7 +335,7 @@ export default function ArchitectsPage() {
             <p className={styles.formSubtext}>
               We work with architects, interior designers, and design
               consultants on luxury hospitality, resort, and high-end residential
-              projects. This is a working partnership  - ” no referral
+              projects. This is a working partnership  -  no referral
               arrangements, just shared craft and a commitment to getting every
               detail right.
             </p>
@@ -467,7 +467,7 @@ export default function ArchitectsPage() {
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Tell us about your current or upcoming project  - ” what you're designing, the brief, and what you're hoping a manufacturing partner can deliver..."
+                  placeholder="Tell us about your current or upcoming project  -  what you're designing, the brief, and what you're hoping a manufacturing partner can deliver..."
                   value={fields.message}
                   onChange={handleChange}
                   className={styles.formTextarea}
