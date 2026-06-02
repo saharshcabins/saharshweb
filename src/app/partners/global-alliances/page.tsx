@@ -130,7 +130,7 @@ export default function GlobalAlliancesPage() {
             "mb-14 max-w-[calc(100vw-32px)]",
           ].join(" ")}
         >
-          PREFERRED PARTNER â€” OUTDOORS BY MARRIOTT BONVOY
+          PREFERRED PARTNER —” OUTDOORS BY MARRIOTT BONVOY
         </div>
       </section>
 
@@ -162,7 +162,7 @@ export default function GlobalAlliancesPage() {
                 <div className={styles.pillarText}>
                   <h3 className={styles.pillarTitle}>Architecture-First Manufacturing</h3>
                   <p className={styles.pillarSub}>
-                    We manufacture around the design intent â€” preserving the
+                    We manufacture around the design intent —” preserving the
                     spatial experience, materials, and luxury detailing
                     envisioned by your architect.
                   </p>
@@ -204,7 +204,7 @@ export default function GlobalAlliancesPage() {
           <div className={styles.showcaseBlock}>
             <Image
               src="/assets/products/lakeside-cabin/main.webp"
-              alt="Saharsh â€” Lakeside Cabin"
+              alt="Saharsh —” Lakeside Cabin"
               fill
               className={styles.showcaseImg}
               sizes="(max-width: 768px) 100vw, 420px"
@@ -221,7 +221,7 @@ export default function GlobalAlliancesPage() {
           <span className={styles.commissionText}>
             Partners earn a{" "}
             <strong>transparent, pre-agreed profit-sharing stake</strong>{" "}
-            calculated on verified contract value â€” paid on execution, not on
+            calculated on verified contract value —” paid on execution, not on
             promise.
           </span>
           <a
@@ -264,7 +264,7 @@ export default function GlobalAlliancesPage() {
         <h2 className={styles.sectionH2}>
           From Introduction to{" "}
           <span style={{ color: "var(--color-primary)" }}>Commission</span>{" "}
-          â€” Four Clean Steps.
+          —” Four Clean Steps.
         </h2>
         <div className={styles.allianceGrid}>
           <div className={styles.allianceCard}>
@@ -319,7 +319,7 @@ export default function GlobalAlliancesPage() {
           </blockquote>
           <div className={styles.testimonialMeta}>
             <span className={styles.testimonialAuthor}>
-              â€” Senior Estate Advisor, Middle East Portfolio
+              —” Senior Estate Advisor, Middle East Portfolio
             </span>
             <span className={styles.testimonialDivider}>·</span>
             <span className={styles.testimonialFirm}>
