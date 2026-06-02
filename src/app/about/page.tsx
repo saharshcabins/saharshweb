@@ -625,17 +625,33 @@ export default function AboutPage() {
           background: "var(--section-dark)",
           borderTop: "1px solid var(--text-light-25)",
         }}
-        className="px-8 lg:px-[135px] py-16 lg:py-20"
+        className="px-8 lg:px-[135px] py-20 lg:py-24"
       >
-        <div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0 lg:divide-x"
-          style={{ "--tw-divide-opacity": "1" } as React.CSSProperties}
-        >
-          {stats.map((s, i) => (
-            <div key={i} className="lg:px-10 first:pl-0 last:pr-0 flex justify-center">
-              <AnimatedStat value={s.value} label={s.label} />
-            </div>
-          ))}
+        {/* Stats container with proper structure */}
+        <div className="max-w-6xl mx-auto">
+          {/* Stats grid */}
+          <div
+            className="grid grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-0 lg:divide-x"
+            style={{
+              "--tw-divide-color": "var(--text-light-25)",
+              "--tw-divide-opacity": "1"
+            } as React.CSSProperties}
+          >
+            {stats.map((s, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center lg:items-center lg:px-12 first:lg:pl-0 last:lg:pr-0"
+                style={{
+                  minHeight: "140px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <AnimatedStat value={s.value} label={s.label} />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
