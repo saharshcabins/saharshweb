@@ -302,48 +302,55 @@
 }
 
 .statsGridStrip {
-  background-color: var(--text-dark);
-  padding: 64px 7%;
+  background-color: var(--section-dark);
+  padding: 80px 7%;
+  border-top: 1px solid var(--text-light-25);
 }
 
 .statsInner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .statBox {
-  padding: 16px 28px;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px 32px;
+  border-right: 1px solid var(--text-light-25);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 180px;
 }
 
 .statBox:first-child {
-  padding-left: 0;
+  padding-left: 32px;
 }
 
 .statBox:last-child {
   border-right: none;
+  padding-right: 32px;
 }
 
 .statNum {
-  font-size: 52px;
+  font-size: clamp(40px, 5vw, 56px);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.1;
   letter-spacing: -0.03em;
   color: var(--color-primary);
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .statLabel {
-  font-size: 13px;
+  font-size: clamp(12px, 1.2vw, 14px);
   font-weight: 500;
-  line-height: 1.5;
-  color: var(--text-light);
-  opacity: 1;
-  max-width: 140px;
+  line-height: 1.6;
+  color: var(--text-light-60);
+  max-width: 180px;
+  text-align: center;
 }
 
 /* ==========================================
@@ -714,7 +721,8 @@
   }
 
   .statsGridStrip {
-    padding: 56px 5%;
+    padding: 60px 5%;
+    border-top: 1px solid var(--text-light-25);
   }
 
   .statsInner {
@@ -722,11 +730,28 @@
   }
 
   .statBox {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 32px 24px;
+    min-height: 160px;
+    border-right: 1px solid var(--text-light-25);
+    border-bottom: 1px solid var(--text-light-25);
   }
 
   .statBox:nth-child(2n) {
     border-right: none;
+  }
+
+  .statBox:nth-child(n + 3) {
+    border-bottom: none;
+  }
+
+  .statNum {
+    font-size: clamp(32px, 5vw, 44px);
+    margin-bottom: 12px;
+  }
+
+  .statLabel {
+    font-size: clamp(11px, 1.1vw, 13px);
+    max-width: 150px;
   }
 
   .commissionStrip {
