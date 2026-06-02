@@ -22,7 +22,7 @@ const projectCards: ProjectCard[] = [
     headline: "The Lodging Conference\nMarriott Bonvoy",
     body: "A unit we built was showcased in US at one of the world's largest hospitality conferences - TLC, Phoenix 2025. Marriott approved it! We are now one of their preferred manufacturing partners for Outdoors by Marriott Bonvoy.",
     location: "Phoenix, USA",
-    galleryLink: "/ourprojects/lakeside-cabin/gallery/?index=0",
+    galleryLink: "/ourprojects/lakeside-cabin/",
     partnerLink: "/partners/global-alliances",
   },
   {
