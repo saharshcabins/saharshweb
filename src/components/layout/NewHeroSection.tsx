@@ -28,18 +28,28 @@ const NewHeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [phase, setPhase] = useState<"typing" | "pausing" | "deleting" | "switching">("typing");
+  const [isPageReady, setIsPageReady] = useState(false);
 
   const scrollToSection = (id: string) => {
-    // Use requestAnimationFrame to ensure scroll happens after layout is complete
-    requestAnimationFrame(() => {
-      const targets = Array.from(document.querySelectorAll(id)) as HTMLElement[];
-      const target = targets.find((el) => el.offsetParent !== null) ?? targets[0];
-      if (!target) return;
-      // Add a small delay to ensure all elements are fully rendered
-      setTimeout(() => {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
-    });
+    // Wait until page is fully loaded before scrolling
+    if (!isPageReady) {
+      // Queue scroll for when page is ready
+      const checkReady = setInterval(() => {
+        if (isPageReady) {
+          clearInterval(checkReady);
+          performScroll(id);
+        }
+      }, 50);
+      return;
+    }
+    performScroll(id);
+  };
+
+  const performScroll = (id: string) => {
+    const targets = Array.from(document.querySelectorAll(id)) as HTMLElement[];
+    const target = targets.find((el) => el.offsetParent !== null) ?? targets[0];
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   useEffect(() => {
@@ -88,6 +98,22 @@ const NewHeroSection = () => {
 
     return () => clearTimeout(timeout);
   }, [displayText, phase, currentSlide]);
+
+  // Track when page is fully loaded (images, fonts, etc.)
+  useEffect(() => {
+    const handleLoad = () => {
+      setIsPageReady(true);
+    };
+
+    // If page is already loaded, set ready immediately
+    if (document.readyState === "complete") {
+      setIsPageReady(true);
+    } else {
+      // Otherwise wait for load event
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
+    }
+  }, []);
 
   return (
     <>
