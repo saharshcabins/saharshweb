@@ -192,11 +192,11 @@ export default function DevelopersPage() {
           </div>
           <div className={styles.showcaseBlock}>
             <Image
-              src="/assets/products/marketing-office/img-1.webp"
-              alt=”Saharsh Cabins  -  Premium Marketing Office”
+              src=”/assets/products/marketing-office/img-1.webp”
+              alt=”Saharsh Cabins - Premium Marketing Office”
               fill
               className={styles.showcaseImg}
-              sizes="(max-width: 768px) 100vw, 420px"
+              sizes=”(max-width: 768px) 100vw, 420px”
             />
           </div>
         </div>
@@ -222,7 +222,7 @@ export default function DevelopersPage() {
               scrollToForm();
             }}
           >
-            Discuss Your Requirement ->
+            Discuss Your Requirement
           </a>
         </div>
       </div>

@@ -221,7 +221,7 @@ export default function ArchitectsPage() {
               scrollToForm();
             }}
           >
-            Start a Conversation ->
+            Start a Conversation
           </a>
         </div>
       </div>

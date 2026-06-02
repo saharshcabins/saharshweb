@@ -130,7 +130,7 @@ export default function GlobalAlliancesPage() {
             "mb-14 max-w-[calc(100vw-32px)]",
           ].join(" ")}
         >
-          PREFERRED PARTNER  - ” OUTDOORS BY MARRIOTT BONVOY
+          PREFERRED PARTNER - OUTDOORS BY MARRIOTT BONVOY
         </div>
       </section>
 
@@ -162,7 +162,7 @@ export default function GlobalAlliancesPage() {
                 <div className={styles.pillarText}>
                   <h3 className={styles.pillarTitle}>Architecture-First Manufacturing</h3>
                   <p className={styles.pillarSub}>
-                    We manufacture around the design intent  - ” preserving the
+                    We manufacture around the design intent - preserving the
                     spatial experience, materials, and luxury detailing
                     envisioned by your architect.
                   </p>
@@ -232,7 +232,7 @@ export default function GlobalAlliancesPage() {
               scrollToForm();
             }}
           >
-            Discuss Terms ->
+            Discuss Terms
           </a>
         </div>
       </div>
