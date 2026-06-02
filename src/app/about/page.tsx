@@ -440,7 +440,7 @@ export default function AboutPage() {
       {/* ── MILESTONES — compact timeline ─────────────────────────────────── */}
       <section
         className="px-8 lg:px-[135px] py-16 lg:py-20 relative overflow-hidden"
-        style={{ background: "var(--text-dark)" }}
+        style={{ background: "var(--section-dark)" }}
       >
         {/* Section heading */}
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-12">
