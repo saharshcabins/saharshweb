@@ -111,7 +111,7 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
   return (
     <motion.div
       ref={ref}
-      className="flex flex-col gap-1"
+      className="flex flex-col gap-1 items-center justify-center text-center"
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -631,24 +631,24 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           {/* Stats grid */}
           <div
-            className="grid grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-0 lg:divide-x"
-            style={{
-              "--tw-divide-color": "var(--text-light-25)",
-              "--tw-divide-opacity": "1"
-            } as React.CSSProperties}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-6"
+            style={{}}
           >
             {stats.map((s, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center lg:items-center lg:px-12 first:lg:pl-0 last:lg:pr-0"
+                className="flex flex-col items-center justify-center lg:items-center lg:px-4"
                 style={{
-                  minHeight: "140px",
+                  minHeight: "120px",
                   display: "flex",
                   justifyContent: "center",
-                  alignItems: "center"
+                  alignItems: "center",
+                  textAlign: "center"
                 }}
               >
-                <AnimatedStat value={s.value} label={s.label} />
+                <div className="text-center">
+                  <AnimatedStat value={s.value} label={s.label} />
+                </div>
               </div>
             ))}
           </div>
