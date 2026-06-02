@@ -303,7 +303,7 @@
 
 .statsGridStrip {
   background-color: var(--section-dark);
-  padding: 80px 7%;
+  padding: 56px 7%;
   border-top: 1px solid var(--text-light-25);
 }
 
@@ -316,14 +316,14 @@
 }
 
 .statBox {
-  padding: 40px 32px;
+  padding: 24px 32px;
   border-right: 1px solid var(--text-light-25);
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 180px;
+  min-height: 130px;
 }
 
 .statBox:first-child {
@@ -338,10 +338,10 @@
 .statNum {
   font-size: clamp(40px, 5vw, 56px);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1;
   letter-spacing: -0.03em;
   color: var(--color-primary);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .statLabel {
