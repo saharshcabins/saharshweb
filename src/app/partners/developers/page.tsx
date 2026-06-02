@@ -131,9 +131,9 @@ export default function DevelopersPage() {
             </h2>
             <p className={styles.sectionBody}>
               Conventional construction for a marketing suite or engineer hub
-              takes 4&ndash;6 months and leaves behind a permanent, unrecoverable
+              takes 4-6 months and leaves behind a permanent, unrecoverable
               cost. Saharsh Cabins delivers fully furnished, premium-grade
-              modular infrastructure in 7&ndash;8 weeks &mdash; factory-built to your
+              modular infrastructure in 7-8 weeks  -  factory-built to your
               specifications, transported to site, and operational from day
               one. When the development completes, the unit relocates to your
               next project or is sold as a high-value asset.
@@ -147,11 +147,11 @@ export default function DevelopersPage() {
                   </svg>
                 </span>
                 <div className={styles.pillarText}>
-                  <h3 className={styles.pillarTitle}>7&ndash;8 Week Delivery, Always</h3>
+                  <h3 className={styles.pillarTitle}>7-8 Week Delivery, Always</h3>
                   <p className={styles.pillarSub}>
                     Factory-controlled production means no weather delays, no
                     labour shortages, no missed milestones. Your marketing suite
-                    is ready before your first buyer visit &mdash; not after it.
+                    is ready before your first buyer visit  -  not after it.
                   </p>
                 </div>
               </div>
@@ -193,7 +193,7 @@ export default function DevelopersPage() {
           <div className={styles.showcaseBlock}>
             <Image
               src="/assets/products/marketing-office/img-1.webp"
-              alt=”Saharsh Cabins &mdash; Premium Marketing Office”
+              alt=”Saharsh Cabins  -  Premium Marketing Office”
               fill
               className={styles.showcaseImg}
               sizes="(max-width: 768px) 100vw, 420px"
@@ -202,16 +202,16 @@ export default function DevelopersPage() {
         </div>
       </section>
 
-      {/* What we build for developers &mdash; use-cases strip */}
+      {/* What we build for developers  -  use-cases strip */}
       <div className={styles.commissionStrip}>
         <div className={styles.commissionInner}>
           <span className={styles.commissionLabel}>What We Build</span>
           <span className={styles.commissionDivider} />
           <span className={styles.commissionText}>
-            <strong>Marketing Suites</strong> &nbsp;&middot;&nbsp;{" "}
-            <strong>Engineer Accommodation Hubs</strong> &nbsp;&middot;&nbsp;{" "}
-            <strong>Canteens &amp; Cafés</strong> &nbsp;&middot;&nbsp;{" "}
-            <strong>Site Offices</strong> &nbsp;&middot;&nbsp;{" "}
+            <strong>Marketing Suites</strong> &nbsp;·&nbsp;{" "}
+            <strong>Engineer Accommodation Hubs</strong> &nbsp;·&nbsp;{" "}
+            <strong>Canteens &amp; Cafés</strong> &nbsp;·&nbsp;{" "}
+            <strong>Site Offices</strong> &nbsp;·&nbsp;{" "}
             <strong>Model Apartments</strong>
           </span>
           <a
@@ -222,7 +222,7 @@ export default function DevelopersPage() {
               scrollToForm();
             }}
           >
-            Discuss Your Requirement &rarr;
+            Discuss Your Requirement ->
           </a>
         </div>
       </div>
@@ -239,7 +239,7 @@ export default function DevelopersPage() {
             <div className={styles.statLabel}>Projects Commissioned</div>
           </div>
           <div className={styles.statBox}>
-            <div className={styles.statNum}>7&ndash;8</div>
+            <div className={styles.statNum}>7-8</div>
             <div className={styles.statLabel}>Week Standard Delivery</div>
           </div>
           <div className={styles.statBox}>
@@ -254,14 +254,14 @@ export default function DevelopersPage() {
         <h2 className={styles.sectionH2}>
           From Brief to{“ “}
           <span style={{ color: “var(--color-primary)” }}>Operational</span>
-          {“ “}&mdash; Four Steps.
+          {“ “} -  Four Steps.
         </h2>
         <div className={styles.allianceGrid}>
           <div className={styles.allianceCard}>
             <div className={styles.allianceNum}>01</div>
             <h3 className={styles.allianceCardTitle}>Share Your Brief</h3>
             <p className={styles.allianceCardBody}>
-              Tell us what you need &mdash; the type of structure, site location,
+              Tell us what you need  -  the type of structure, site location,
               configuration, and your target operational date. Our team responds
               with a preliminary proposal and feasibility assessment within 48
               hours.
@@ -281,7 +281,7 @@ export default function DevelopersPage() {
             <h3 className={styles.allianceCardTitle}>Factory Production</h3>
             <p className={styles.allianceCardBody}>
               Your unit enters our controlled manufacturing environment on a
-              confirmed schedule. You receive milestone updates throughout &mdash;
+              confirmed schedule. You receive milestone updates throughout  - 
               so your site team, sales team, and launch calendar stay
               synchronised.
             </p>
@@ -291,7 +291,7 @@ export default function DevelopersPage() {
             <h3 className={styles.allianceCardTitle}>Installation &amp; Handover</h3>
             <p className={styles.allianceCardBody}>
               We transport, position, and commission the structure at your
-              site &mdash; fully furnished, branded, utilities connected, and ready
+              site  -  fully furnished, branded, utilities connected, and ready
               for the first visitor. Your team walks into a completed space,
               not a work in progress.
             </p>
@@ -299,7 +299,7 @@ export default function DevelopersPage() {
         </div>
       </section>
 
-      {/* Testimonial &mdash; drawn from the real Total Environment project */}
+      {/* Testimonial  -  drawn from the real Total Environment project */}
       <section className={styles.testimonialSection}>
         <div className={styles.testimonialInner}>
           <div className={styles.testimonialBadge}>Delivered Project</div>
@@ -314,7 +314,7 @@ export default function DevelopersPage() {
             <span className={styles.testimonialAuthor}>
               â€” Total Environment &lsquo;Down by the Water&rsquo;
             </span>
-            <span className={styles.testimonialDivider}>&middot;</span>
+            <span className={styles.testimonialDivider}>·</span>
             <span className={styles.testimonialFirm}>
               Jakkur, Bangalore
             </span>
@@ -456,7 +456,7 @@ export default function DevelopersPage() {
                 <textarea
                   id=”message”
                   name=”message”
-                  placeholder=”Tell us about your requirement &mdash; size, configuration, timeline, and anything specific to your project or brand...”
+                  placeholder=”Tell us about your requirement  -  size, configuration, timeline, and anything specific to your project or brand...”
                   value={fields.message}
                   onChange={handleChange}
                   className={styles.formTextarea}
@@ -466,7 +466,7 @@ export default function DevelopersPage() {
 
               <div className="pb-[100px] md:pb-0" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: 32, gap: 12 }}>
                 <Button
-                  text={status === "loading" ? "Submitting&hellip;" : "Submit Enquiry"}
+                  text={status === "loading" ? "Submitting..." : "Submit Enquiry"}
                   onClick={handleSubmit}
                   disabled={status === "loading"}
                 />

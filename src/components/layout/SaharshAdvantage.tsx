@@ -72,7 +72,7 @@ const SaharshAdvantage = () => {
         </TextBuilder>
       </div>
 
-      {/* Three principles &mdash; card variant */}
+      {/* Three principles  -  card variant */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {principles.map((p, i) => (
           <div
