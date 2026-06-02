@@ -30,10 +30,16 @@ const NewHeroSection = () => {
   const [phase, setPhase] = useState<"typing" | "pausing" | "deleting" | "switching">("typing");
 
   const scrollToSection = (id: string) => {
-    const targets = Array.from(document.querySelectorAll(id)) as HTMLElement[];
-    const target = targets.find((el) => el.offsetParent !== null) ?? targets[0];
-    if (!target) return;
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Use requestAnimationFrame to ensure scroll happens after layout is complete
+    requestAnimationFrame(() => {
+      const targets = Array.from(document.querySelectorAll(id)) as HTMLElement[];
+      const target = targets.find((el) => el.offsetParent !== null) ?? targets[0];
+      if (!target) return;
+      // Add a small delay to ensure all elements are fully rendered
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    });
   };
 
   useEffect(() => {
