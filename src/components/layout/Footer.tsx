@@ -46,7 +46,7 @@ const Footer = () => {
         {/* ── Four-column grid ── */}
         <div
           className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-12 lg:gap-8"
-          style={{ paddingBottom: 48, borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+          style={{ paddingBottom: 48 }}
         >
 
           {/* ── Col 1: Brand ── */}
@@ -278,16 +278,6 @@ const Footer = () => {
             </span>
           </div>
 
-          <span
-            style={{
-              fontSize: 12,
-              color: "rgba(255,255,255,0.2)",
-              fontFamily: "var(--font-eudoxus), sans-serif",
-              letterSpacing: "0.04em",
-            }}
-          >
-            Designed with precision. Built to last.
-          </span>
         </div>
       </div>
 
