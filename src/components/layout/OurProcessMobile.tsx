@@ -39,7 +39,7 @@ const OurProcessMobile = () => {
       id="delivery-process"
       data-section="delivery-process"
       className="w-full flex flex-col section-mobile-padding"
-      style={{ background: "var(--text-dark)" }}
+      style={{ background: "var(--section-dark)" }}
     >
       {/* Header */}
       <div
