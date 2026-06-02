@@ -52,8 +52,16 @@ export default function ArchitectsPage() {
   }
 
   const scrollToForm = () => {
-    const section = document.getElementById("architect-form");
-    if (section) section.scrollIntoView({ behavior: "smooth" });
+    // Use requestAnimationFrame to ensure scroll happens after layout is complete
+    requestAnimationFrame(() => {
+      const section = document.getElementById("architect-form");
+      if (section) {
+        // Add a small delay to ensure all elements are fully rendered
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+      }
+    });
   };
 
   return (
