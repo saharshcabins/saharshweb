@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import styles from "./developers.module.css";
@@ -208,10 +208,10 @@ export default function DevelopersPage() {
           <span className={styles.commissionLabel}>What We Build</span>
           <span className={styles.commissionDivider} />
           <span className={styles.commissionText}>
-            <strong>Marketing Suites</strong> &nbsp;Â·&nbsp;{" "}
-            <strong>Engineer Accommodation Hubs</strong> &nbsp;Â·&nbsp;{" "}
-            <strong>Canteens &amp; CafÃ©s</strong> &nbsp;Â·&nbsp;{" "}
-            <strong>Site Offices</strong> &nbsp;Â·&nbsp;{" "}
+            <strong>Marketing Suites</strong> &nbsp;·&nbsp;{" "}
+            <strong>Engineer Accommodation Hubs</strong> &nbsp;·&nbsp;{" "}
+            <strong>Canteens &amp; Cafés</strong> &nbsp;·&nbsp;{" "}
+            <strong>Site Offices</strong> &nbsp;·&nbsp;{" "}
             <strong>Model Apartments</strong>
           </span>
           <a
@@ -222,7 +222,7 @@ export default function DevelopersPage() {
               scrollToForm();
             }}
           >
-            Discuss Your Requirement â†’
+            Discuss Your Requirement →
           </a>
         </div>
       </div>
@@ -314,7 +314,7 @@ export default function DevelopersPage() {
             <span className={styles.testimonialAuthor}>
               â€” Total Environment &lsquo;Down by the Water&rsquo;
             </span>
-            <span className={styles.testimonialDivider}>Â·</span>
+            <span className={styles.testimonialDivider}>·</span>
             <span className={styles.testimonialFirm}>
               Jakkur, Bangalore
             </span>
@@ -437,7 +437,7 @@ export default function DevelopersPage() {
                       <option value="" disabled>Structure Required</option>
                       <option value="marketing-suite">Marketing Suite / Sales Office</option>
                       <option value="engineer-accommodation">Engineer Accommodation Hub</option>
-                      <option value="canteen-cafe">Canteen &amp; CafÃ©</option>
+                      <option value="canteen-cafe">Canteen &amp; Café</option>
                       <option value="model-apartment">Model Apartment</option>
                       <option value="site-office">Site Office</option>
                       <option value="multiple">Multiple Structures</option>
@@ -466,7 +466,7 @@ export default function DevelopersPage() {
 
               <div className="pb-[100px] md:pb-0" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: 32, gap: 12 }}>
                 <Button
-                  text={status === "loading" ? "Submittingâ€¦" : "Submit Enquiry"}
+                  text={status === "loading" ? "Submitting…" : "Submit Enquiry"}
                   onClick={handleSubmit}
                   disabled={status === "loading"}
                 />

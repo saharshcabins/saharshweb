@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import styles from "./global-alliances.module.css";
@@ -232,7 +232,7 @@ export default function GlobalAlliancesPage() {
               scrollToForm();
             }}
           >
-            Discuss Terms â†’
+            Discuss Terms →
           </a>
         </div>
       </div>
@@ -321,7 +321,7 @@ export default function GlobalAlliancesPage() {
             <span className={styles.testimonialAuthor}>
               â€” Senior Estate Advisor, Middle East Portfolio
             </span>
-            <span className={styles.testimonialDivider}>Â·</span>
+            <span className={styles.testimonialDivider}>·</span>
             <span className={styles.testimonialFirm}>
               International Luxury Hospitality Group
             </span>
@@ -477,7 +477,7 @@ export default function GlobalAlliancesPage() {
 
               <div className="pb-[100px] md:pb-0" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: 32, gap: 12 }}>
                 <Button
-                  text={status === "loading" ? "Submittingâ€¦" : "Submit Application"}
+                  text={status === "loading" ? "Submitting…" : "Submit Application"}
                   onClick={handleSubmit}
                   disabled={status === "loading"}
                 />

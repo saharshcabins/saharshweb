@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import styles from "./architects.module.css";
@@ -221,7 +221,7 @@ export default function ArchitectsPage() {
               scrollToForm();
             }}
           >
-            Start a Conversation â†’
+            Start a Conversation →
           </a>
         </div>
       </div>
@@ -314,7 +314,7 @@ export default function ArchitectsPage() {
             <span className={styles.testimonialAuthor}>
               â€” Principal Architect, Bangalore Design Studio
             </span>
-            <span className={styles.testimonialDivider}>Â·</span>
+            <span className={styles.testimonialDivider}>·</span>
             <span className={styles.testimonialFirm}>
               Luxury Hospitality Practice
             </span>
@@ -477,7 +477,7 @@ export default function ArchitectsPage() {
 
               <div className="pb-[100px] md:pb-0" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: 32, gap: 12 }}>
                 <Button
-                  text={status === "loading" ? "Submittingâ€¦" : "Submit Brief"}
+                  text={status === "loading" ? "Submitting…" : "Submit Brief"}
                   onClick={handleSubmit}
                   disabled={status === "loading"}
                 />
