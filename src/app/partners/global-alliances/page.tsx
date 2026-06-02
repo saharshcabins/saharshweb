@@ -245,8 +245,8 @@ export default function GlobalAlliancesPage() {
             <div className={styles.statLabel}>Years Manufacturing Experience</div>
           </div>
           <div className={styles.statBox}>
-            <div className={styles.statNum}>500+</div>
-            <div className={styles.statLabel}>Projects Commissioned</div>
+            <div className={styles.statNum}>1000+</div>
+            <div className={styles.statLabel}>Projects Delivered</div>
           </div>
           <div className={styles.statBox}>
             <div className={styles.statNum}>120</div>

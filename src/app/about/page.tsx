@@ -300,25 +300,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── STATS BAND ────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          background: "var(--section-dark)",
-          borderTop: "1px solid var(--text-light-25)",
-        }}
-        className="px-8 lg:px-[135px] py-16 lg:py-20"
-      >
-        <div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0 lg:divide-x"
-          style={{ "--tw-divide-opacity": "1" } as React.CSSProperties}
-        >
-          {stats.map((s, i) => (
-            <div key={i} className="lg:px-10 first:pl-0 last:pr-0">
-              <AnimatedStat value={s.value} label={s.label} />
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ── WHO WE ARE ────────────────────────────────────────────────────── */}
       <section
@@ -637,6 +618,27 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* ── STATS BAND ────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          background: "var(--section-dark)",
+          borderTop: "1px solid var(--text-light-25)",
+        }}
+        className="px-8 lg:px-[135px] py-16 lg:py-20"
+      >
+        <div
+          className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0 lg:divide-x"
+          style={{ "--tw-divide-opacity": "1" } as React.CSSProperties}
+        >
+          {stats.map((s, i) => (
+            <div key={i} className="lg:px-10 first:pl-0 last:pr-0 flex justify-center">
+              <AnimatedStat value={s.value} label={s.label} />
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── CTA ───────────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden px-8 lg:px-[135px] py-24 lg:py-32 text-center"
