@@ -578,7 +578,7 @@
 }
 
 .formInput::placeholder {
-  color: rgba(15, 27, 38, 0.4);
+  color: #0f1b26;
 }
 
 .formInput:focus {
@@ -643,7 +643,7 @@
 }
 
 .formTextarea::placeholder {
-  color: rgba(15, 27, 38, 0.4);
+  color: #0f1b26;
 }
 
 .formSelect option[value=""],
