@@ -2,6 +2,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import MultiColorText from "../shared/MultiColorText";
+import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 import { ArrowNew } from "../../utils/svgUtils"; // ✅ Using your actual codebase arrow asset
 
 /* ─── Project card data ──────────────────────────────────────────── */
@@ -86,15 +87,28 @@ const OurWorkSpeaks: React.FC = () => {
         }}
       >
         <p className="eyebrow-label">Our Work Speaks</p>
-        <MultiColorText
-          fontSize="clamp(48px, 5.208vw, 75px)"
-          className="leading-[1.08] text-center"
-          items={[
-            { text: "The standard that ", weight: "bold", color: "light" },
-            { text: "earns", weight: "bold", color: "primary" },
-            { text: " trust", weight: "bold", color: "light" },
-          ]}
-        />
+        <div className="block lg:hidden">
+          <MultiColorTextMobile
+            fontSize="30px"
+            className="leading-[1.08] text-center"
+            items={[
+              { text: "The standard that ", weight: "bold", color: "light" },
+              { text: "earns", weight: "bold", color: "primary" },
+              { text: " trust", weight: "bold", color: "light" },
+            ]}
+          />
+        </div>
+        <div className="hidden lg:block">
+          <MultiColorText
+            fontSize="clamp(48px, 5.208vw, 75px)"
+            className="leading-[1.08] text-center"
+            items={[
+              { text: "The standard that ", weight: "bold", color: "light" },
+              { text: "earns", weight: "bold", color: "primary" },
+              { text: " trust", weight: "bold", color: "light" },
+            ]}
+          />
+        </div>
 
         <p
           style={{

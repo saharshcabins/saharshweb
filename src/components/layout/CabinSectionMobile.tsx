@@ -121,7 +121,7 @@ const CabinSectionMobile = () => {
       id="luxury-you-can-feel"
       data-section="luxury-you-can-feel"
       className="text-center leading-[1.2] flex flex-col gap-[24px] items-center w-full px-4 py-12 overflow-hidden"
-      style={{ background: "var(--section-accent)" }}
+      style={{ background: "var(--section-dark)" }}
     >
       {/* Header section */}
       <div className="w-full flex flex-col gap-[16px]">
@@ -136,12 +136,12 @@ const CabinSectionMobile = () => {
             items={[
               {
                 text: " From soundproof walls to premium finishes, our builds are engineered for perfection. ",
-                color: "link",
+                color: "light",
                 weight: "medium",
               },
               {
                 text: " We don’t just build modular; we build to a higher standard. Quality isn’t a goal—it’s our foundation.",
-                color: "link",
+                color: "light",
                 weight: "medium",
               },
             ]}
