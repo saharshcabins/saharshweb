@@ -121,7 +121,7 @@ const CabinSectionMobile = () => {
       id="luxury-you-can-feel"
       data-section="luxury-you-can-feel"
       className="text-center leading-[1.2] flex flex-col gap-[24px] items-center w-full px-4 py-12 overflow-hidden"
-      style={{ backgroundColor: "var(--section-accent)" }}
+      style={{ backgroundColor: "#ffffff" }}
     >
       {/* Header section */}
       <div className="w-full flex flex-col gap-[16px]">
@@ -152,7 +152,7 @@ const CabinSectionMobile = () => {
       {/* Main Container Layer */}
       <div
         className="w-full relative aspect-[1270/1180] overflow-hidden"
-        style={{ marginTop: "16px", background: "var(--section-accent)" }}
+        style={{ marginTop: "16px", background: "#ffffff" }}
       >
         {/* IMAGE SCALED BY 125% INDEPENDENTLY */}
         <Image

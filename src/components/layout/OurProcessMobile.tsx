@@ -38,20 +38,20 @@ const OurProcessMobile = () => {
     <section
       id="delivery-process"
       data-section="delivery-process"
-      className="w-full flex flex-col px-4 py-12 gap-8"
+      className="w-full flex flex-col px-4 py-16 gap-8"
       style={{ backgroundColor: "var(--section-dark)" }}
     >
       {/* Header */}
-      <div className="w-full flex flex-col gap-4 text-center items-center">
+      <div className="w-full flex flex-col gap-3 text-center items-center">
         <p className="eyebrow-label">How It Comes Together</p>
         <MultiColorTextMobile
-          fontSize="30px"
+          fontSize="28px"
           items={[
             { text: "From Concept ", color: "light", weight: "bold" },
             { text: "To Installation", color: "primary", weight: "bold" },
           ]}
         />
-        <TextBuilderMobile fontSize="14px" color="light">
+        <TextBuilderMobile fontSize="13px" color="light">
           <span className="body-text-premium">
             We guide you through a curated journey where architecture, interior
             design, and landscape artistry converge, transforming your vision
@@ -61,7 +61,7 @@ const OurProcessMobile = () => {
       </div>
 
       {/* Process Steps — unified vertical layout */}
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full gap-0">
         {processItems.map((item, index) => (
           <div
             key={index}
