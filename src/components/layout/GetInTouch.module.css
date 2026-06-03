@@ -138,7 +138,7 @@
 .formSelect {
   cursor: pointer;
   padding-right: 48px;
-  color: var(--text-dark);
+  color: #0f1b26;
 }
 
 .formSelect option {
