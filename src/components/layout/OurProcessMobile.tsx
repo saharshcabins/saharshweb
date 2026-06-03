@@ -56,7 +56,7 @@ const OurProcessMobile = () => {
         <MultiColorTextMobile
           fontSize="30px"
           items={[
-            { text: "From Concept ", color: "dark", weight: "bold" },
+            { text: "From Concept ", color: "light", weight: "bold" },
             { text: "To Installation", color: "primary", weight: "bold" },
           ]}
         />

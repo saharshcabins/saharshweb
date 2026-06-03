@@ -173,7 +173,7 @@ const HeroSection = () => {
           gap-y-6 + py-8 px-4 gives consistent breathing room down to 360px.
           my-auto centres the block vertically within the flex shell.
         */}
-        <div className="relative z-20 flex flex-col items-center gap-y-6 text-center py-8 px-4 my-auto">
+        <div className="relative z-20 flex flex-col items-center gap-y-6 text-center py-8 px-4 mt-auto mb-0">
 
           {/* Heading block */}
           <div className="flex flex-col justify-center items-center gap-2">

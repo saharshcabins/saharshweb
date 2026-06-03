@@ -1,4 +1,4 @@
-﻿import React from "react";
+﻿import React, { useState } from "react";
 import MultiColorText from "../shared/MultiColorText";
 import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
 import TextBuilder from "../shared/TextBuilder";
@@ -25,6 +25,8 @@ const principles = [
 ];
 
 const SaharshAdvantage = () => {
+  const [activeId, setActiveId] = useState<number | null>(null);
+
   return (
     <>
     {/* ==========================================
@@ -74,15 +76,22 @@ const SaharshAdvantage = () => {
 
       {/* Three principles  -  card variant */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        {principles.map((p, i) => (
+        {principles.map((p, i) => {
+          const isActive = activeId === i;
+          return (
           <div
             key={i}
-            className="group flex flex-col rounded-2xl transition-all duration-300 border border-[var(--light-border)] hover:border-[var(--color-primary)] w-full"
-            style={{ background: "var(--text-dark)", padding: "40px 36px 44px" }}
+            className="group flex flex-col rounded-2xl transition-all duration-300 border cursor-pointer w-full"
+            style={{
+              background: "var(--text-dark)",
+              padding: "40px 36px 44px",
+              borderColor: isActive ? "var(--color-primary)" : "var(--light-border)"
+            }}
+            onClick={() => setActiveId(isActive ? null : i)}
           >
             {/* Number */}
             <span
-              className="text-white/90 group-hover:text-[var(--color-primary)] transition-colors duration-300"
+              className="transition-colors duration-300"
               style={{
                 fontSize: 52,
                 fontWeight: 800,
@@ -91,6 +100,7 @@ const SaharshAdvantage = () => {
                 display: "block",
                 marginBottom: 24,
                 fontFamily: "var(--font-sans)",
+                color: isActive ? "var(--color-primary)" : "rgba(255,255,255,0.9)"
               }}
             >
               {p.number}
@@ -98,24 +108,26 @@ const SaharshAdvantage = () => {
 
             {/* Accent bar */}
             <div
-              className="bg-white/90 group-hover:bg-[var(--color-primary)] transition-colors duration-300"
+              className="transition-colors duration-300"
               style={{
                 width: 36,
                 height: 3,
                 borderRadius: 2,
                 marginBottom: 32,
+                backgroundColor: isActive ? "var(--color-primary)" : "rgba(255,255,255,0.9)"
               }}
             />
 
             {/* Title */}
             <h3
-              className="text-white group-hover:text-[var(--color-primary)] transition-colors duration-300"
+              className="transition-colors duration-300"
               style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: 18,
                 fontWeight: 700,
                 marginBottom: 16,
                 lineHeight: 1.3,
+                color: isActive ? "var(--color-primary)" : "rgba(255,255,255,1)"
               }}
             >
               {p.title}
@@ -134,7 +146,8 @@ const SaharshAdvantage = () => {
               {p.description}
             </p>
           </div>
-        ))}
+        );
+        })}
       </div>
     </section>
     </>
