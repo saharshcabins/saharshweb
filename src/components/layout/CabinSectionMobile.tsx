@@ -151,8 +151,8 @@ const CabinSectionMobile = () => {
 
       {/* Main Container Layer */}
       <div
-        className="w-full relative aspect-[1270/1180] overflow-hidden bg-transparent"
-        style={{ marginTop: "16px" }}
+        className="w-full relative aspect-[1270/1180] overflow-hidden"
+        style={{ marginTop: "16px", background: "var(--section-accent)" }}
       >
         {/* IMAGE SCALED BY 125% INDEPENDENTLY */}
         <Image
