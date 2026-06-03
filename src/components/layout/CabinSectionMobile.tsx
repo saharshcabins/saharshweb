@@ -136,12 +136,12 @@ const CabinSectionMobile = () => {
             items={[
               {
                 text: " From soundproof walls to premium finishes, our builds are engineered for perfection. ",
-                color: "light",
+                color: "dark",
                 weight: "medium",
               },
               {
                 text: " We don’t just build modular; we build to a higher standard. Quality isn’t a goal—it’s our foundation.",
-                color: "light",
+                color: "dark",
                 weight: "medium",
               },
             ]}
