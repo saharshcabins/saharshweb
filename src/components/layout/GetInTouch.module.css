@@ -117,15 +117,15 @@
 }
 
 .formInput::-webkit-input-placeholder {
-  color: rgba(15, 27, 38, 0.4);
+  color: #0f1b26;
 }
 
 .formInput::-moz-placeholder {
-  color: rgba(15, 27, 38, 0.4);
+  color: #0f1b26;
 }
 
 .formInput:-ms-input-placeholder {
-  color: rgba(15, 27, 38, 0.4);
+  color: #0f1b26;
 }
 
 .formInput:focus,
