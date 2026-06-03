@@ -1,0 +1,115 @@
+/* ─── Stats Ribbon: Standardized Design ─────────────────────────────────── */
+
+.statsGridStrip {
+  background-color: var(--text-dark);
+  padding: 56px 7%;
+  border-top: 1px solid var(--text-light-25);
+}
+
+.statsInner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.statBox {
+  padding: 24px 32px;
+  border-right: 1px solid var(--text-light-25);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 130px;
+}
+
+.statBox:first-child {
+  padding-left: 32px;
+}
+
+.statBox:last-child {
+  border-right: none;
+  padding-right: 32px;
+}
+
+.statNum {
+  font-size: clamp(40px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--text-light-60);
+  max-width: 180px;
+  text-align: center;
+}
+
+/* ─── Mobile Responsive (768px and below) ─────────────────────────────────── */
+@media (max-width: 900px) {
+  .statsGridStrip {
+    padding: 60px 5%;
+    border-top: 1px solid var(--text-light-25);
+  }
+
+  .statsInner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statBox {
+    padding: 32px 24px;
+    min-height: 160px;
+    border-right: 1px solid var(--text-light-25);
+    border-bottom: 1px solid var(--text-light-25);
+  }
+
+  .statBox:nth-child(2n) {
+    border-right: none;
+  }
+
+  .statBox:nth-child(n + 3) {
+    border-bottom: none;
+  }
+
+  .statNum {
+    font-size: clamp(32px, 5vw, 44px);
+    margin-bottom: 12px;
+  }
+
+  .statLabel {
+    font-size: clamp(11px, 1.1vw, 13px);
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 560px) {
+  .statsGridStrip {
+    padding: 48px 4%;
+  }
+
+  .statsInner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statBox {
+    padding: 24px 16px;
+    min-height: 120px;
+  }
+
+  .statNum {
+    font-size: clamp(28px, 4vw, 36px);
+    margin-bottom: 8px;
+  }
+
+  .statLabel {
+    font-size: clamp(10px, 1vw, 12px);
+    max-width: 100px;
+  }
+}

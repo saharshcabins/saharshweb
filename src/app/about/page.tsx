@@ -10,6 +10,7 @@ import TextBuilder from "@/components/shared/TextBuilder";
 import TextBuilderMobile from "@/components/shared/TextBuilderMobile";
 import MultiColorTextMobile from "@/components/shared/MultiTextBuilderMobile";
 import MultiColorText from "@/components/shared/MultiColorText";
+import StatsRibbon from "@/components/shared/StatsRibbon";
 
 // ─── Milestone Data ────────────────────────────────────────────────────────────
 const milestoneData = [
@@ -100,62 +101,6 @@ function FadeUp({
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay }}
     >
       {children}
-    </motion.div>
-  );
-}
-
-// ─── Animated Stat ─────────────────────────────────────────────────────────────
-function AnimatedStat({ value, label }: { value: string; label: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
-  return (
-    <motion.div
-      ref={ref}
-      className="flex flex-col gap-1 items-center justify-center text-center"
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
-      <span className="hidden lg:block">
-        <TextBuilder
-          fontSize="clamp(40px, 5vw, 72px)"
-          weight="bold"
-          color="primary"
-          className="leading-none"
-        >
-          {value}
-        </TextBuilder>
-      </span>
-      <span className="block lg:hidden">
-        <TextBuilderMobile
-          fontSize="40px"
-          weight="bold"
-          color="primary"
-          className="leading-none"
-        >
-          {value}
-        </TextBuilderMobile>
-      </span>
-      <span className="hidden lg:block">
-        <TextBuilder
-          fontSize="clamp(14px, 1.5vw, 18px)"
-          weight="medium"
-          color="lighter"
-          className="tracking-[0.04em]"
-        >
-          {label}
-        </TextBuilder>
-      </span>
-      <span className="block lg:hidden">
-        <TextBuilderMobile
-          fontSize="14px"
-          weight="medium"
-          color="lighter"
-          className="tracking-[0.04em]"
-        >
-          {label}
-        </TextBuilderMobile>
-      </span>
     </motion.div>
   );
 }
@@ -620,40 +565,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── STATS BAND ────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          background: "var(--text-dark)",
-          borderTop: "1px solid var(--text-light-25)",
-        }}
-        className="px-8 lg:px-[135px] py-20 lg:py-24"
-      >
-        {/* Stats container with proper structure */}
-        <div className="max-w-6xl mx-auto">
-          {/* Stats grid */}
-          <div
-            className="grid grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-6"
-            style={{}}
-          >
-            {stats.map((s, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center justify-center lg:items-center lg:px-4"
-                style={{
-                  minHeight: "120px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  textAlign: "center"
-                }}
-              >
-                <div className="text-center">
-                  <AnimatedStat value={s.value} label={s.label} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <StatsRibbon stats={stats} topBorder={true} />
 
       {/* ── CTA ───────────────────────────────────────────────────────────── */}
       <section

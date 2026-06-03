@@ -4,6 +4,7 @@ import NewHeroSection from "./NewHeroSection";
 import SaharshAdvantage from "./SaharshAdvantage";
 import FAQSection from "./FAQSection";
 import OurWorkSpeaks from "./OurWorkSpeaks";
+import StatsRibbon, { StatItem } from "@/components/shared/StatsRibbon";
 
 const CabinSection = dynamic(() => import("./CabinSection"), { ssr: false });
 const CabinCarousel = dynamic(() => import("../ui/CabinCarousel"), { ssr: false });
@@ -13,6 +14,13 @@ const QuoteSection = dynamic(() => import("./QuoteSection"), { ssr: false });
 const OurProcessNew = dynamic(() => import("./OurProcessNew"), { ssr: false });
 
 export const dynamicRendering = "force-dynamic";
+
+const homePageStats: StatItem[] = [
+  { value: "15+", label: "Years of Excellence" },
+  { value: "1,000+", label: "Projects Delivered" },
+  { value: "120-Day", label: "Delivery Standard" },
+  { value: "Global", label: "Reach & Partnerships" },
+];
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -29,6 +37,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <CabinCarousel />
         <OurProcessNew />
         <GetInTouch />
+        <StatsRibbon stats={homePageStats} topBorder={true} />
         <FAQSection />
       </div>
     </div>

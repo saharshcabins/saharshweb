@@ -1,10 +1,6 @@
-// components/GetInTouch.tsx
 "use client";
 import React, { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import MultiColorText from "../shared/MultiColorText";
-import MultiColorTextMobile from "../shared/MultiTextBuilderMobile";
-import Button from "../shared/Button";
+import styles from "./GetInTouch.module.css";
 
 // ─── Data ──────────────────────────────────────────────────────────────────────
 
@@ -35,6 +31,7 @@ const contactMethodOptions = ["WhatsApp", "Phone Call", "Email", "On-Site Visit"
 type FormErrors = {
   name?: string;
   phone?: string;
+  email?: string;
   location?: string;
   projectTypes?: string;
   investment?: string;
@@ -52,14 +49,7 @@ function PillGroup({
   onToggle: (opt: string) => void;
 }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 8,
-        marginTop: 16,
-      }}
-    >
+    <div className={styles.pillGroup}>
       {options.map((opt) => {
         const active = selected.includes(opt);
         return (
@@ -67,24 +57,7 @@ function PillGroup({
             key={opt}
             type="button"
             onClick={() => onToggle(opt)}
-            style={{
-              padding: "9px 18px",
-              minHeight: 44,
-              display: "flex",
-              alignItems: "center",
-              border: active
-                ? "1px solid var(--color-primary)"
-                : "1px solid rgba(15,27,38,0.15)",
-              borderRadius: 2,
-              background: active ? "rgba(201,122,65,0.06)" : "transparent",
-              fontFamily: "var(--font-eudoxus), sans-serif",
-              fontSize: 12,
-              fontWeight: active ? 500 : 400,
-              letterSpacing: "0.04em",
-              color: active ? "var(--color-primary)" : "var(--text-dark)",
-              cursor: "pointer",
-              transition: "border-color 0.18s ease, background 0.18s ease, color 0.18s ease",
-            }}
+            className={`${styles.pill} ${active ? styles.active : ""}`}
           >
             {opt}
           </button>
@@ -114,73 +87,6 @@ function SinglePillGroup({
   );
 }
 
-// ─── Field wrapper ─────────────────────────────────────────────────────────────
-
-function Field({
-  label,
-  required,
-  error,
-  children,
-}: {
-  label: string;
-  required?: boolean;
-  error?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <label
-        style={{
-          display: "block",
-          fontFamily: "var(--font-eudoxus), sans-serif",
-          fontSize: 10,
-          fontWeight: 500,
-          letterSpacing: "0.22em",
-          textTransform: "uppercase" as const,
-          color: error ? "#c0392b" : "var(--color-primary)",
-          marginBottom: 0,
-        }}
-      >
-        {label}
-        {required && (
-          <span style={{ marginLeft: 4, opacity: 0.6 }}>*</span>
-        )}
-      </label>
-      {children}
-      {error && (
-        <p
-          style={{
-            fontFamily: "var(--font-eudoxus), sans-serif",
-            fontSize: 11,
-            color: "#c0392b",
-            marginTop: 6,
-            letterSpacing: "0.02em",
-          }}
-        >
-          {error}
-        </p>
-      )}
-    </div>
-  );
-}
-
-// ─── Shared input style ────────────────────────────────────────────────────────
-
-const inputStyle: React.CSSProperties = {
-  display: "block",
-  width: "100%",
-  background: "transparent",
-  border: "none",
-  borderBottom: "1px solid rgba(15,27,38,0.18)",
-  borderRadius: 0,
-  padding: "14px 0 12px",
-  fontFamily: "var(--font-eudoxus), sans-serif",
-  fontSize: 15,
-  color: "var(--text-dark)",
-  outline: "none",
-  transition: "border-color 0.2s ease",
-};
-
 // ─── Component ─────────────────────────────────────────────────────────────────
 
 const GetInTouch = () => {
@@ -195,6 +101,7 @@ const GetInTouch = () => {
   const [contactMethod, setContactMethod] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const toggleProjectType = (opt: string) => {
     setProjectTypes((prev) =>
@@ -209,10 +116,25 @@ const GetInTouch = () => {
     if (!phone.trim()) e.phone = "A contact number is required.";
     else if (!/^\+?[\d\s\-()]{7,20}$/.test(phone.trim()))
       e.phone = "Enter a valid phone number.";
+    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      e.email = "Enter a valid email address.";
     if (!location.trim()) e.location = "Please provide a project location.";
     if (projectTypes.length === 0) e.projectTypes = "Select at least one project type.";
     if (!investment) e.investment = "Please indicate an investment range.";
     return e;
+  };
+
+  const resetForm = () => {
+    setName("");
+    setPhone("");
+    setEmail("");
+    setLocation("");
+    setNotes("");
+    setProjectTypes([]);
+    setInvestment("");
+    setTimeline("");
+    setContactMethod("");
+    setErrors({});
   };
 
   const handleSubmit = async () => {
@@ -221,6 +143,7 @@ const GetInTouch = () => {
       setErrors(validationErrors);
       return;
     }
+
     setIsSubmitting(true);
     try {
       const payload = {
@@ -234,284 +157,224 @@ const GetInTouch = () => {
         "Contact Method": contactMethod,
         Notes: notes,
       };
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
       if (res.ok) {
-        toast.success("Your enquiry has been received. We will be in touch shortly.");
-        setName(""); setPhone(""); setEmail(""); setLocation(""); setNotes("");
-        setProjectTypes([]); setInvestment(""); setTimeline(""); setContactMethod("");
-        setErrors({});
+        setShowSuccess(true);
+        resetForm();
+        setTimeout(() => setShowSuccess(false), 5000);
       } else {
-        toast.error("Something went wrong. Please try again.");
+        setErrors({ name: "Failed to submit. Please try again." });
       }
     } catch {
-      toast.error("Something went wrong. Please try again.");
+      setErrors({ name: "An error occurred. Please try again." });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <>
-    {/* ==========================================
-       HOME SECTION: CONSULTATION FORM
-       Purpose:
-       Capture high-intent leads through a structured private consultation request.
-       Primary conversion objective:
-       Convert page visitors into qualified project enquiries.
-    ========================================== */}
     <section
       id="consultation-form"
       data-section="consultation-form"
-      className="px-[7%] pt-[72px] pb-[80px] md:pt-[96px] md:pb-[104px] lg:pt-[120px] lg:pb-[140px]"
-      style={{
-        background: "var(--section-accent)",
-      }}
+      className="px-[7%] py-[72px] md:py-[96px] lg:py-[120px]"
+      style={{ background: "var(--section-accent)" }}
     >
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          style: {
-            fontFamily: "var(--font-eudoxus), sans-serif",
-            fontSize: 13,
-            letterSpacing: "0.02em",
-          },
-        }}
-      />
-
-      {/* ── Two-column grid: editorial intro | form ─────────────────────────── */}
-      <div
-        className="grid grid-cols-1 lg:grid-cols-[38%_62%] gap-16 lg:gap-24"
-      >
-        {/* ── Left: editorial introduction ──────────────────────────────────── */}
-        <div className="lg:pt-2">
-          <div style={{ marginBottom: 28 }}>
-            <p className="eyebrow-label mb-4">Start the Conversation</p>
-            <MultiColorTextMobile
-              fontSize="30px"
-              className="text-start sm:block md:block lg:hidden"
-              items={[
-                { text: "Let's Build Something", color: "dark", weight: "bold", breakAfter: true },
-                { text: "Remarkable.", color: "primary", weight: "bold" },
-              ]}
-            />
-            <MultiColorText
-              fontSize="56px"
-              className="text-start max-lg:hidden lg:block"
-              items={[
-                { text: "Let's Build Something", color: "dark", weight: "bold", breakAfter: true },
-                { text: "Remarkable.", color: "primary", weight: "bold" },
-              ]}
-            />
-          </div>
-
-          <p
-            style={{
-              fontFamily: "var(--font-eudoxus), sans-serif",
-              fontSize: 14,
-              lineHeight: 1.8,
-              color: "var(--text-dark-light)",
-              fontWeight: 400,
-              maxWidth: 340,
-            }}
-          >
-            Share the details of your project. Our team will review your brief
-            and arrange a dedicated conversation at your convenience.
+      {/* Form Container */}
+      <div className={styles.formContainer}>
+        {/* Header */}
+        <div className={styles.formHeader}>
+          <h2 className={styles.formHeading}>Get In Touch</h2>
+          <p className={styles.formSubheading}>
+            Share the details of your project and we'll get back to you within 48 hours
           </p>
-
-          {/* Thin rule + contact detail */}
-          <div
-            style={{
-              marginTop: 48,
-              paddingTop: 32,
-              borderTop: "1px solid rgba(15,27,38,0.1)",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-eudoxus), sans-serif",
-                fontSize: 10,
-                fontWeight: 500,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "rgba(15,27,38,0.4)",
-                marginBottom: 8,
-              }}
-            >
-              Direct Enquiries
-            </p>
-            <a
-              href="mailto:sales@saharsh.co"
-              style={{
-                fontFamily: "var(--font-eudoxus), sans-serif",
-                fontSize: 14,
-                color: "var(--text-dark)",
-                textDecoration: "none",
-                borderBottom: "1px solid rgba(15,27,38,0.2)",
-                paddingBottom: 1,
-                transition: "border-color 0.2s ease",
-              }}
-            >
-              sales@saharsh.co
-            </a>
-          </div>
         </div>
 
-        {/* ── Right: form ───────────────────────────────────────────────────── */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 52,
-          }}
-        >
-          {/* Full Name */}
-          <Field label="Full Name" required error={errors.name}>
-            <input
-              type="text"
-              placeholder="Your full name"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                if (errors.name) setErrors((p) => ({ ...p, name: undefined }));
-              }}
-              style={inputStyle}
-              onFocus={(e) => (e.target.style.borderBottomColor = "var(--color-primary)")}
-              onBlur={(e) => (e.target.style.borderBottomColor = "rgba(15,27,38,0.18)")}
-            />
-          </Field>
+        {/* Form Fields */}
+        <div>
+          {/* Name & Email */}
+          <div className={styles.formGroup}>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Full Name *</label>
+              <input
+                type="text"
+                placeholder="Your full name"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (errors.name) setErrors((p) => ({ ...p, name: undefined }));
+                }}
+                className={styles.input}
+              />
+              {errors.name && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.name}</p>}
+            </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Email Address</label>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (errors.email) setErrors((p) => ({ ...p, email: undefined }));
+                }}
+                className={styles.input}
+              />
+              {errors.email && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.email}</p>}
+            </div>
+          </div>
 
-          {/* Contact Number */}
-          <Field label="Contact Number" required error={errors.phone}>
-            <input
-              type="tel"
-              placeholder="+91 or International"
-              value={phone}
-              onChange={(e) => {
-                setPhone(e.target.value);
-                if (errors.phone) setErrors((p) => ({ ...p, phone: undefined }));
-              }}
-              style={inputStyle}
-              onFocus={(e) => (e.target.style.borderBottomColor = "var(--color-primary)")}
-              onBlur={(e) => (e.target.style.borderBottomColor = "rgba(15,27,38,0.18)")}
-            />
-          </Field>
-
-          {/* Email */}
-          <Field label="Email Address">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={inputStyle}
-              onFocus={(e) => (e.target.style.borderBottomColor = "var(--color-primary)")}
-              onBlur={(e) => (e.target.style.borderBottomColor = "rgba(15,27,38,0.18)")}
-            />
-          </Field>
+          {/* Phone & Location */}
+          <div className={styles.formGroup}>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Contact Number *</label>
+              <input
+                type="tel"
+                placeholder="+91 or International"
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                  if (errors.phone) setErrors((p) => ({ ...p, phone: undefined }));
+                }}
+                className={styles.input}
+              />
+              {errors.phone && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.phone}</p>}
+            </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Site Location *</label>
+              <input
+                type="text"
+                placeholder="City, State, Country"
+                value={location}
+                onChange={(e) => {
+                  setLocation(e.target.value);
+                  if (errors.location) setErrors((p) => ({ ...p, location: undefined }));
+                }}
+                className={styles.input}
+              />
+              {errors.location && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.location}</p>}
+            </div>
+          </div>
 
           {/* Project Type */}
-          <Field label="Project Type" required error={errors.projectTypes}>
-            <PillGroup
-              options={projectTypeOptions}
-              selected={projectTypes}
-              onToggle={toggleProjectType}
-            />
-          </Field>
-
-          {/* Site Location */}
-          <Field label="Site Location" required error={errors.location}>
-            <input
-              type="text"
-              placeholder="City, State, Country"
-              value={location}
-              onChange={(e) => {
-                setLocation(e.target.value);
-                if (errors.location) setErrors((p) => ({ ...p, location: undefined }));
-              }}
-              style={inputStyle}
-              onFocus={(e) => (e.target.style.borderBottomColor = "var(--color-primary)")}
-              onBlur={(e) => (e.target.style.borderBottomColor = "rgba(15,27,38,0.18)")}
-            />
-          </Field>
-
-          {/* Estimated Investment */}
-          <Field label="Estimated Investment" required error={errors.investment}>
-            <SinglePillGroup
-              options={investmentOptions}
-              selected={investment}
-              onSelect={(opt) => {
-                setInvestment(opt);
-                if (errors.investment) setErrors((p) => ({ ...p, investment: undefined }));
-              }}
-            />
-          </Field>
-
-          {/* Preferred Timeline */}
-          <Field label="Preferred Timeline">
-            <SinglePillGroup
-              options={timelineOptions}
-              selected={timeline}
-              onSelect={setTimeline}
-            />
-          </Field>
-
-          {/* Preferred Consultation Method */}
-          <Field label="Preferred Consultation Method">
-            <SinglePillGroup
-              options={contactMethodOptions}
-              selected={contactMethod}
-              onSelect={setContactMethod}
-            />
-          </Field>
-
-          {/* Additional Notes */}
-          <Field label="Additional Notes">
-            <textarea
-              placeholder="Tell us anything else relevant to your brief."
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              rows={4}
-              style={{
-                ...inputStyle,
-                resize: "none",
-                paddingTop: 14,
-                lineHeight: 1.7,
-              }}
-              onFocus={(e) => (e.target.style.borderBottomColor = "var(--color-primary)")}
-              onBlur={(e) => (e.target.style.borderBottomColor = "rgba(15,27,38,0.18)")}
-            />
-          </Field>
-
-          {/* Submit */}
-          <div style={{ paddingTop: 8 }}>
-            <Button
-              text={isSubmitting ? "Sending…" : "Submit Consultation Request"}
-              onClick={handleSubmit}
-              disabled={isSubmitting}
-            />
-
-            <p
-              style={{
-                marginTop: 16,
-                fontFamily: "var(--font-eudoxus), sans-serif",
-                fontSize: 11,
-                color: "rgba(15,27,38,0.4)",
-                letterSpacing: "0.04em",
-                lineHeight: 1.6,
-              }}
-            >
-              Your information is handled with complete discretion and will never
-              be shared with third parties.
-            </p>
+          <div className={styles.formGroup + " " + styles.fullWidth}>
+            <div>
+              <label className={styles.label}>Project Type *</label>
+              <PillGroup
+                options={projectTypeOptions}
+                selected={projectTypes}
+                onToggle={toggleProjectType}
+              />
+              {errors.projectTypes && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.projectTypes}</p>}
+            </div>
           </div>
+
+          {/* Budget & Timeline & Contact Method */}
+          <div className={styles.formGroup + " " + styles.threeCol}>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Estimated Budget *</label>
+              <SinglePillGroup
+                options={investmentOptions}
+                selected={investment}
+                onSelect={(opt) => {
+                  setInvestment(opt);
+                  if (errors.investment) setErrors((p) => ({ ...p, investment: undefined }));
+                }}
+              />
+              {errors.investment && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.investment}</p>}
+            </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Timeline</label>
+              <SinglePillGroup
+                options={timelineOptions}
+                selected={timeline}
+                onSelect={setTimeline}
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Preferred Contact</label>
+              <SinglePillGroup
+                options={contactMethodOptions}
+                selected={contactMethod}
+                onSelect={setContactMethod}
+              />
+            </div>
+          </div>
+
+          {/* Notes */}
+          <div className={styles.formGroup + " " + styles.fullWidth}>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Additional Notes</label>
+              <textarea
+                placeholder="Tell us anything else relevant to your project..."
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                className={styles.textarea}
+              />
+            </div>
+          </div>
+
+          {/* Trust Badges */}
+          <div className={styles.trustBadges}>
+            <div className={styles.badge}>
+              <div className={styles.badgeIcon}>✓</div>
+              <div className={styles.badgeText}>Marriott Approved</div>
+            </div>
+            <div className={styles.badge}>
+              <div className={styles.badgeIcon}>⚡</div>
+              <div className={styles.badgeText}>48-Hour Response</div>
+            </div>
+            <div className={styles.badge}>
+              <div className={styles.badgeIcon}>🏗</div>
+              <div className={styles.badgeText}>Custom Floor Plans</div>
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className={styles.submitButton}
+          >
+            {isSubmitting ? "Submitting..." : "Submit Consultation Request"}
+          </button>
+
+          <p style={{
+            marginTop: 16,
+            fontSize: 12,
+            color: "rgba(15,27,38,0.5)",
+            textAlign: "center",
+            lineHeight: 1.6,
+          }}>
+            Your information is handled with complete discretion and will never be shared with third parties.
+          </p>
         </div>
       </div>
+
+      {/* Success Modal */}
+      {showSuccess && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <div className={styles.successIcon}>✓</div>
+            <h3 className={styles.successHeading}>Request Received!</h3>
+            <p className={styles.successMessage}>
+              Thank you for reaching out. Our team will review your project details and contact you within 48 hours to discuss your vision.
+            </p>
+            <button
+              onClick={() => setShowSuccess(false)}
+              className={styles.modalButton}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </section>
-    </>
   );
 };
 
