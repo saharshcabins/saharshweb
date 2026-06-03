@@ -55,7 +55,7 @@
 /* ─── Mobile Responsive (768px and below) ─────────────────────────────────── */
 @media (max-width: 900px) {
   .statsGridStrip {
-    padding: 60px 5%;
+    padding: 60px 0;
     border-top: 1px solid var(--text-light-25);
   }
 
