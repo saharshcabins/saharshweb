@@ -2,378 +2,267 @@
 import React, { useState } from "react";
 import styles from "./GetInTouch.module.css";
 
-// ─── Data ──────────────────────────────────────────────────────────────────────
+interface FormFields {
+  full_name: string;
+  email: string;
+  phone: string;
+  location: string;
+  project_type: string;
+  investment: string;
+  timeline: string;
+  contact_method: string;
+  message: string;
+}
 
-const projectTypeOptions = [
-  "Luxury Cottage",
-  "Luxury Villa",
-  "Resort Development",
-  "Portable Cafe",
-  "Sales Office",
-  "International Export",
-];
-
-const investmentOptions = [
-  "Under ₹10 Lakh",
-  "₹10L – ₹25L",
-  "₹25L – ₹50L",
-  "₹50L – ₹1 Crore",
-  "₹1 Crore – ₹3 Crore",
-  "Above ₹3 Crore",
-];
-
-const timelineOptions = ["4 – 8 Weeks", "2 – 6 Months", "6+ Months", "Flexible"];
-
-const contactMethodOptions = ["WhatsApp", "Phone Call", "Email", "On-Site Visit"];
-
-// ─── Types ─────────────────────────────────────────────────────────────────────
-
-type FormErrors = {
-  name?: string;
-  phone?: string;
-  email?: string;
-  location?: string;
-  projectTypes?: string;
-  investment?: string;
+const initialFields: FormFields = {
+  full_name: "",
+  email: "",
+  phone: "",
+  location: "",
+  project_type: "",
+  investment: "",
+  timeline: "",
+  contact_method: "",
+  message: "",
 };
 
-// ─── Pill selector ─────────────────────────────────────────────────────────────
-
-function PillGroup({
-  options,
-  selected,
-  onToggle,
-}: {
-  options: string[];
-  selected: string[];
-  onToggle: (opt: string) => void;
-}) {
-  return (
-    <div className={styles.pillGroup}>
-      {options.map((opt) => {
-        const active = selected.includes(opt);
-        return (
-          <button
-            key={opt}
-            type="button"
-            onClick={() => onToggle(opt)}
-            className={`${styles.pill} ${active ? styles.active : ""}`}
-          >
-            {opt}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
-// ─── Single-select pill ────────────────────────────────────────────────────────
-
-function SinglePillGroup({
-  options,
-  selected,
-  onSelect,
-}: {
-  options: string[];
-  selected: string;
-  onSelect: (opt: string) => void;
-}) {
-  return (
-    <PillGroup
-      options={options}
-      selected={selected ? [selected] : []}
-      onToggle={(opt) => onSelect(selected === opt ? "" : opt)}
-    />
-  );
-}
-
-// ─── Component ─────────────────────────────────────────────────────────────────
-
 const GetInTouch = () => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [location, setLocation] = useState("");
-  const [notes, setNotes] = useState("");
-  const [projectTypes, setProjectTypes] = useState<string[]>([]);
-  const [investment, setInvestment] = useState("");
-  const [timeline, setTimeline] = useState("");
-  const [contactMethod, setContactMethod] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [fields, setFields] = useState<FormFields>(initialFields);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const toggleProjectType = (opt: string) => {
-    setProjectTypes((prev) =>
-      prev.includes(opt) ? prev.filter((o) => o !== opt) : [...prev, opt]
-    );
-    if (errors.projectTypes) setErrors((p) => ({ ...p, projectTypes: undefined }));
-  };
+  function handleChange(
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) {
+    setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
 
-  const validate = (): FormErrors => {
-    const e: FormErrors = {};
-    if (!name.trim()) e.name = "Please enter your name.";
-    if (!phone.trim()) e.phone = "A contact number is required.";
-    else if (!/^\+?[\d\s\-()]{7,20}$/.test(phone.trim()))
-      e.phone = "Enter a valid phone number.";
-    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-      e.email = "Enter a valid email address.";
-    if (!location.trim()) e.location = "Please provide a project location.";
-    if (projectTypes.length === 0) e.projectTypes = "Select at least one project type.";
-    if (!investment) e.investment = "Please indicate an investment range.";
-    return e;
-  };
-
-  const resetForm = () => {
-    setName("");
-    setPhone("");
-    setEmail("");
-    setLocation("");
-    setNotes("");
-    setProjectTypes([]);
-    setInvestment("");
-    setTimeline("");
-    setContactMethod("");
-    setErrors({});
-  };
-
-  const handleSubmit = async () => {
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    setIsSubmitting(true);
+  async function handleSubmit() {
+    setStatus("loading");
     try {
-      const payload = {
-        Name: name,
-        Phone: phone,
-        Email: email,
-        "Project Location": location,
-        Budget: investment,
-        Interest: projectTypes.join(", "),
-        Timeline: timeline,
-        "Contact Method": contactMethod,
-        Notes: notes,
-      };
-
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          Name: fields.full_name,
+          Email: fields.email,
+          Phone: fields.phone,
+          "Project Location": fields.location,
+          Interest: fields.project_type,
+          Budget: fields.investment,
+          Timeline: fields.timeline,
+          "Contact Method": fields.contact_method,
+          Notes: fields.message,
+        }),
       });
-
-      if (res.ok) {
-        setShowSuccess(true);
-        resetForm();
-        setTimeout(() => setShowSuccess(false), 5000);
-      } else {
-        setErrors({ name: "Failed to submit. Please try again." });
-      }
+      if (!res.ok) throw new Error("Network response was not ok");
+      setStatus("success");
     } catch {
-      setErrors({ name: "An error occurred. Please try again." });
-    } finally {
-      setIsSubmitting(false);
+      setStatus("error");
     }
-  };
+  }
 
   return (
-    <section
-      id="consultation-form"
-      data-section="consultation-form"
-      className="px-[7%] py-[72px] md:py-[96px] lg:py-[120px]"
-      style={{ background: "var(--section-accent)" }}
-    >
-      {/* Form Container */}
-      <div className={styles.formContainer}>
-        {/* Header */}
-        <div className={styles.formHeader}>
-          <h2 className={styles.formHeading}>Get In Touch</h2>
-          <p className={styles.formSubheading}>
-            Share the details of your project and we'll get back to you within 48 hours
+    <section className={styles.formSection} id="consultation-form">
+      <div className={styles.formWrapper}>
+        <div className={styles.formIntro}>
+          <h2 className={styles.formH2}>
+            Let&apos;s Build Something{" "}
+            <span style={{ color: "var(--color-primary)" }}>Remarkable.</span>
+          </h2>
+          <p className={styles.formSubtext}>
+            Share the details of your project. Our team will review your brief and arrange a
+            dedicated conversation at your convenience.
+          </p>
+          <span className={styles.divider} />
+          <div className={styles.trustBadgeRow}>
+            <span className={styles.trustBadge}>Marriott Approved</span>
+            <span className={styles.trustBadge}>48-Hour Response</span>
+            <span className={styles.trustBadge}>Custom Floor Plans</span>
+          </div>
+          <p className={styles.note}>
+            All submissions are treated with strict professional confidentiality.
           </p>
         </div>
 
-        {/* Form Fields */}
-        <div>
-          {/* Name & Email */}
-          <div className={styles.formGroup}>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Full Name *</label>
-              <input
-                type="text"
-                placeholder="Your full name"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                  if (errors.name) setErrors((p) => ({ ...p, name: undefined }));
-                }}
-                className={styles.input}
-              />
-              {errors.name && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.name}</p>}
-            </div>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Email Address</label>
-              <input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (errors.email) setErrors((p) => ({ ...p, email: undefined }));
-                }}
-                className={styles.input}
-              />
-              {errors.email && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.email}</p>}
-            </div>
-          </div>
-
-          {/* Phone & Location */}
-          <div className={styles.formGroup}>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Contact Number *</label>
-              <input
-                type="tel"
-                placeholder="+91 or International"
-                value={phone}
-                onChange={(e) => {
-                  setPhone(e.target.value);
-                  if (errors.phone) setErrors((p) => ({ ...p, phone: undefined }));
-                }}
-                className={styles.input}
-              />
-              {errors.phone && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.phone}</p>}
-            </div>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Site Location *</label>
-              <input
-                type="text"
-                placeholder="City, State, Country"
-                value={location}
-                onChange={(e) => {
-                  setLocation(e.target.value);
-                  if (errors.location) setErrors((p) => ({ ...p, location: undefined }));
-                }}
-                className={styles.input}
-              />
-              {errors.location && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.location}</p>}
-            </div>
-          </div>
-
-          {/* Project Type */}
-          <div className={styles.formGroup + " " + styles.fullWidth}>
-            <div>
-              <label className={styles.label}>Project Type *</label>
-              <PillGroup
-                options={projectTypeOptions}
-                selected={projectTypes}
-                onToggle={toggleProjectType}
-              />
-              {errors.projectTypes && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.projectTypes}</p>}
-            </div>
-          </div>
-
-          {/* Budget & Timeline & Contact Method */}
-          <div className={styles.formGroup + " " + styles.threeCol}>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Estimated Budget *</label>
-              <SinglePillGroup
-                options={investmentOptions}
-                selected={investment}
-                onSelect={(opt) => {
-                  setInvestment(opt);
-                  if (errors.investment) setErrors((p) => ({ ...p, investment: undefined }));
-                }}
-              />
-              {errors.investment && <p style={{ color: "#c0392b", fontSize: 12, marginTop: 6 }}>{errors.investment}</p>}
-            </div>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Timeline</label>
-              <SinglePillGroup
-                options={timelineOptions}
-                selected={timeline}
-                onSelect={setTimeline}
-              />
-            </div>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Preferred Contact</label>
-              <SinglePillGroup
-                options={contactMethodOptions}
-                selected={contactMethod}
-                onSelect={setContactMethod}
-              />
-            </div>
-          </div>
-
-          {/* Notes */}
-          <div className={styles.formGroup + " " + styles.fullWidth}>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Additional Notes</label>
-              <textarea
-                placeholder="Tell us anything else relevant to your project..."
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                className={styles.textarea}
-              />
-            </div>
-          </div>
-
-          {/* Trust Badges */}
-          <div className={styles.trustBadges}>
-            <div className={styles.badge}>
-              <div className={styles.badgeIcon}>✓</div>
-              <div className={styles.badgeText}>Marriott Approved</div>
-            </div>
-            <div className={styles.badge}>
-              <div className={styles.badgeIcon}>⚡</div>
-              <div className={styles.badgeText}>48-Hour Response</div>
-            </div>
-            <div className={styles.badge}>
-              <div className={styles.badgeIcon}>🏗</div>
-              <div className={styles.badgeText}>Custom Floor Plans</div>
-            </div>
-          </div>
-
-          {/* Submit Button */}
-          <button
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-            className={styles.submitButton}
-          >
-            {isSubmitting ? "Submitting..." : "Submit Consultation Request"}
-          </button>
-
-          <p style={{
-            marginTop: 16,
-            fontSize: 12,
-            color: "rgba(15,27,38,0.5)",
-            textAlign: "center",
-            lineHeight: 1.6,
-          }}>
-            Your information is handled with complete discretion and will never be shared with third parties.
-          </p>
-        </div>
-      </div>
-
-      {/* Success Modal */}
-      {showSuccess && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
-            <div className={styles.successIcon}>✓</div>
-            <h3 className={styles.successHeading}>Request Received!</h3>
-            <p className={styles.successMessage}>
-              Thank you for reaching out. Our team will review your project details and contact you within 48 hours to discuss your vision.
+        {status === "success" ? (
+          <div className={styles.successMsg}>
+            <h3>Consultation Request Received</h3>
+            <p>
+              Our team will review your brief and be in touch within 48 hours to discuss your
+              vision and project requirements.
             </p>
-            <button
-              onClick={() => setShowSuccess(false)}
-              className={styles.modalButton}
-            >
-              Close
-            </button>
           </div>
-        </div>
-      )}
+        ) : (
+          <form
+            className={styles.allianceForm}
+            onSubmit={(e) => e.preventDefault()}
+            noValidate
+          >
+            <div className={styles.formGrid2}>
+              <div className={styles.formRow}>
+                <input
+                  name="full_name"
+                  type="text"
+                  placeholder="Full Name *"
+                  required
+                  value={fields.full_name}
+                  onChange={handleChange}
+                  className={styles.formInput}
+                />
+              </div>
+              <div className={styles.formRow}>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Email Address"
+                  value={fields.email}
+                  onChange={handleChange}
+                  className={styles.formInput}
+                />
+              </div>
+              <div className={styles.formRow}>
+                <input
+                  name="phone"
+                  type="tel"
+                  placeholder="Contact Number *"
+                  required
+                  value={fields.phone}
+                  onChange={handleChange}
+                  className={styles.formInput}
+                />
+              </div>
+              <div className={styles.formRow}>
+                <input
+                  name="location"
+                  type="text"
+                  placeholder="Site Location *"
+                  required
+                  value={fields.location}
+                  onChange={handleChange}
+                  className={styles.formInput}
+                />
+              </div>
+              <div className={styles.formRow}>
+                <div className={styles.selectWrapper}>
+                  <select
+                    name="project_type"
+                    value={fields.project_type}
+                    onChange={handleChange}
+                    className={styles.formSelect}
+                  >
+                    <option value="">Project Type *</option>
+                    <option value="Luxury Cottage">Luxury Cottage</option>
+                    <option value="Luxury Villa">Luxury Villa</option>
+                    <option value="Resort Development">Resort Development</option>
+                    <option value="Portable Cafe">Portable Cafe</option>
+                    <option value="Sales Office">Sales Office</option>
+                    <option value="International Export">International Export</option>
+                  </select>
+                  <span className={styles.selectChevron}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <div className={styles.formRow}>
+                <div className={styles.selectWrapper}>
+                  <select
+                    name="investment"
+                    value={fields.investment}
+                    onChange={handleChange}
+                    className={styles.formSelect}
+                  >
+                    <option value="">Estimated Budget *</option>
+                    <option value="Under ₹10 Lakh">Under ₹10 Lakh</option>
+                    <option value="₹10L – ₹25L">₹10L – ₹25L</option>
+                    <option value="₹25L – ₹50L">₹25L – ₹50L</option>
+                    <option value="₹50L – ₹1 Crore">₹50L – ₹1 Crore</option>
+                    <option value="₹1 Crore – ₹3 Crore">₹1 Crore – ₹3 Crore</option>
+                    <option value="Above ₹3 Crore">Above ₹3 Crore</option>
+                  </select>
+                  <span className={styles.selectChevron}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <div className={styles.formRow}>
+                <div className={styles.selectWrapper}>
+                  <select
+                    name="timeline"
+                    value={fields.timeline}
+                    onChange={handleChange}
+                    className={styles.formSelect}
+                  >
+                    <option value="">Timeline</option>
+                    <option value="4 – 8 Weeks">4 – 8 Weeks</option>
+                    <option value="2 – 6 Months">2 – 6 Months</option>
+                    <option value="6+ Months">6+ Months</option>
+                    <option value="Flexible">Flexible</option>
+                  </select>
+                  <span className={styles.selectChevron}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <div className={styles.formRow}>
+                <div className={styles.selectWrapper}>
+                  <select
+                    name="contact_method"
+                    value={fields.contact_method}
+                    onChange={handleChange}
+                    className={styles.formSelect}
+                  >
+                    <option value="">Preferred Contact</option>
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="Phone Call">Phone Call</option>
+                    <option value="Email">Email</option>
+                    <option value="On-Site Visit">On-Site Visit</option>
+                  </select>
+                  <span className={styles.selectChevron}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.formRow}>
+              <textarea
+                name="message"
+                placeholder="Briefly describe your project and what you&apos;re looking to build..."
+                value={fields.message}
+                onChange={handleChange}
+                className={styles.formTextarea}
+                rows={5}
+              />
+            </div>
+
+            <div className={styles.submitButtonContainer}>
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={status === "loading"}
+                className={styles.submitButton}
+              >
+                {status === "loading" ? "Submitting..." : "Submit Consultation Request"}
+              </button>
+              {status === "error" && (
+                <p className={styles.errorMsg}>
+                  Something went wrong. Please try again or email us directly.
+                </p>
+              )}
+            </div>
+          </form>
+        )}
+      </div>
     </section>
   );
 };
