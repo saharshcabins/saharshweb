@@ -610,6 +610,11 @@
   color: rgba(15, 27, 38, 0.4);
 }
 
+.formSelect option[value=""],
+.formSelect option:disabled {
+  color: rgba(15, 27, 38, 0.4);
+}
+
 .formTextarea:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(201, 122, 65, 0.12);

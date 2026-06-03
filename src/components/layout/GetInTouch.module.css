@@ -111,7 +111,8 @@
   color: rgba(15, 27, 38, 0.4);
 }
 
-.formSelect::placeholder {
+.formSelect option[value=""],
+.formSelect option:disabled {
   color: rgba(15, 27, 38, 0.4);
 }
 
