@@ -74,7 +74,7 @@ const FAQSection = () => {
       id="faq"
       data-section="faq"
       className="w-full flex flex-col md:flex-row gap-12 md:gap-20 py-16 px-[7%]"
-      style={{ background: "var(--section-accent)" }}
+      style={{ backgroundColor: "var(--section-accent)" }}
     >
       {/* Left: Header */}
       <div className="w-full md:w-[35%] flex-shrink-0">
