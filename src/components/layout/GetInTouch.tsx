@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./GetInTouch.module.css";
+import Button from "@/components/shared/Button";
 
 interface FormFields {
   full_name: string;
@@ -26,9 +27,18 @@ const initialFields: FormFields = {
   message: "",
 };
 
+type FormErrors = {
+  full_name?: string;
+  phone?: string;
+  location?: string;
+  project_type?: string;
+  investment?: string;
+};
+
 const GetInTouch = () => {
   const [fields, setFields] = useState<FormFields>(initialFields);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<FormErrors>({});
 
   function handleChange(
     e: React.ChangeEvent<
@@ -36,9 +46,27 @@ const GetInTouch = () => {
     >,
   ) {
     setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    // Clear error for this field
+    if (errors[e.target.name as keyof FormErrors]) {
+      setErrors((prev) => ({ ...prev, [e.target.name]: undefined }));
+    }
+  }
+
+  function validate(): boolean {
+    const newErrors: FormErrors = {};
+    if (!fields.full_name.trim()) newErrors.full_name = "Full name is required.";
+    if (!fields.phone.trim()) newErrors.phone = "Contact number is required.";
+    if (!fields.location.trim()) newErrors.location = "Site location is required.";
+    if (!fields.project_type) newErrors.project_type = "Project type is required.";
+    if (!fields.investment) newErrors.investment = "Estimated budget is required.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   }
 
   async function handleSubmit() {
+    if (!validate()) return;
+
     setStatus("loading");
     try {
       const res = await fetch("/api/contact", {
@@ -58,6 +86,7 @@ const GetInTouch = () => {
       });
       if (!res.ok) throw new Error("Network response was not ok");
       setStatus("success");
+      setFields(initialFields);
     } catch {
       setStatus("error");
     }
@@ -111,6 +140,7 @@ const GetInTouch = () => {
                   onChange={handleChange}
                   className={styles.formInput}
                 />
+                {errors.full_name && <p className={styles.errorMsg}>{errors.full_name}</p>}
               </div>
               <div className={styles.formRow}>
                 <input
@@ -132,6 +162,7 @@ const GetInTouch = () => {
                   onChange={handleChange}
                   className={styles.formInput}
                 />
+                {errors.phone && <p className={styles.errorMsg}>{errors.phone}</p>}
               </div>
               <div className={styles.formRow}>
                 <input
@@ -143,6 +174,7 @@ const GetInTouch = () => {
                   onChange={handleChange}
                   className={styles.formInput}
                 />
+                {errors.location && <p className={styles.errorMsg}>{errors.location}</p>}
               </div>
               <div className={styles.formRow}>
                 <div className={styles.selectWrapper}>
@@ -166,6 +198,7 @@ const GetInTouch = () => {
                     </svg>
                   </span>
                 </div>
+                {errors.project_type && <p className={styles.errorMsg}>{errors.project_type}</p>}
               </div>
               <div className={styles.formRow}>
                 <div className={styles.selectWrapper}>
@@ -189,6 +222,7 @@ const GetInTouch = () => {
                     </svg>
                   </span>
                 </div>
+                {errors.investment && <p className={styles.errorMsg}>{errors.investment}</p>}
               </div>
               <div className={styles.formRow}>
                 <div className={styles.selectWrapper}>
@@ -246,14 +280,11 @@ const GetInTouch = () => {
             </div>
 
             <div className={styles.submitButtonContainer}>
-              <button
-                type="button"
+              <Button
+                text={status === "loading" ? "Submitting..." : "Submit Consultation Request"}
                 onClick={handleSubmit}
                 disabled={status === "loading"}
-                className={styles.submitButton}
-              >
-                {status === "loading" ? "Submitting..." : "Submit Consultation Request"}
-              </button>
+              />
               {status === "error" && (
                 <p className={styles.errorMsg}>
                   Something went wrong. Please try again or email us directly.
