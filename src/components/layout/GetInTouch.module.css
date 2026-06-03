@@ -138,10 +138,6 @@
 .formSelect {
   cursor: pointer;
   padding-right: 48px;
-  color: rgba(15, 27, 38, 0.4);
-}
-
-.formSelect:valid {
   color: var(--text-dark);
 }
 

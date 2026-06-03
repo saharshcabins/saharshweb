@@ -564,16 +564,12 @@
   padding: 18px 48px 18px 28px;
   font-size: 16px;
   font-family: inherit;
-  color: rgba(15, 27, 38, 0.4);
+  color: var(--text-dark);
   outline: none;
   cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.formSelect:valid {
-  color: var(--text-dark);
 }
 
 .formSelect:focus {
