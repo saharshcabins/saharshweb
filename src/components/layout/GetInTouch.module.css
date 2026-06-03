@@ -107,8 +107,23 @@
 }
 
 .formInput::placeholder,
-.formSelect::placeholder,
 .formTextarea::placeholder {
+  color: rgba(15, 27, 38, 0.4);
+}
+
+.formSelect::placeholder {
+  color: rgba(15, 27, 38, 0.4);
+}
+
+.formInput::-webkit-input-placeholder {
+  color: rgba(15, 27, 38, 0.4);
+}
+
+.formInput::-moz-placeholder {
+  color: rgba(15, 27, 38, 0.4);
+}
+
+.formInput:-ms-input-placeholder {
   color: rgba(15, 27, 38, 0.4);
 }
 

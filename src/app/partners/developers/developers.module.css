@@ -641,10 +641,10 @@
 }
 
 .errorMsg {
-  text-align: center;
+  font-size: 12px;
   color: #c0392b;
-  font-size: 14px;
-  margin-top: 16px;
+  margin-top: 6px;
+  line-height: 1.4;
 }
 
 /* ==========================================

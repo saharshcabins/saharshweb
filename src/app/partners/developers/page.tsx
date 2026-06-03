@@ -15,6 +15,15 @@ interface FormFields {
   message: string;
 }
 
+type FormErrors = {
+  full_name?: string;
+  email?: string;
+  company?: string;
+  designation?: string;
+  project_location?: string;
+  structure_type?: string;
+};
+
 const initialFields: FormFields = {
   full_name: "",
   email: "",
@@ -29,14 +38,33 @@ const initialFields: FormFields = {
 export default function DevelopersPage() {
   const [fields, setFields] = useState<FormFields>(initialFields);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<FormErrors>({});
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) {
     setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (errors[e.target.name as keyof FormErrors]) {
+      setErrors((prev) => ({ ...prev, [e.target.name]: undefined }));
+    }
+  }
+
+  function validate(): boolean {
+    const newErrors: FormErrors = {};
+    if (!fields.full_name.trim()) newErrors.full_name = "Full name is required.";
+    if (!fields.email.trim()) newErrors.email = "Email is required.";
+    if (!fields.company.trim()) newErrors.company = "Company name is required.";
+    if (!fields.designation.trim()) newErrors.designation = "Designation is required.";
+    if (!fields.project_location.trim()) newErrors.project_location = "Project location is required.";
+    if (!fields.structure_type) newErrors.structure_type = "Structure type is required.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   }
 
   async function handleSubmit() {
+    if (!validate()) return;
+
     setStatus("loading");
     try {
       const res = await fetch("/api/partner-developers", {
@@ -46,6 +74,7 @@ export default function DevelopersPage() {
       });
       if (!res.ok) throw new Error("Network response was not ok");
       setStatus("success");
+      setFields(initialFields);
     } catch {
       setStatus("error");
     }
@@ -384,6 +413,7 @@ export default function DevelopersPage() {
                     onChange={handleChange}
                     className={styles.formInput}
                   />
+                  {errors.full_name && <p className={styles.errorMsg}>{errors.full_name}</p>}
                 </div>
                 <div className={styles.formRow}>
                   <input
@@ -396,6 +426,7 @@ export default function DevelopersPage() {
                     onChange={handleChange}
                     className={styles.formInput}
                   />
+                  {errors.email && <p className={styles.errorMsg}>{errors.email}</p>}
                 </div>
                 <div className={styles.formRow}>
                   <input
@@ -408,6 +439,7 @@ export default function DevelopersPage() {
                     onChange={handleChange}
                     className={styles.formInput}
                   />
+                  {errors.company && <p className={styles.errorMsg}>{errors.company}</p>}
                 </div>
                 <div className={styles.formRow}>
                   <input
@@ -420,6 +452,7 @@ export default function DevelopersPage() {
                     onChange={handleChange}
                     className={styles.formInput}
                   />
+                  {errors.designation && <p className={styles.errorMsg}>{errors.designation}</p>}
                 </div>
                 <div className={styles.formRow}>
                   <input
@@ -432,6 +465,7 @@ export default function DevelopersPage() {
                     onChange={handleChange}
                     className={styles.formInput}
                   />
+                  {errors.project_location && <p className={styles.errorMsg}>{errors.project_location}</p>}
                 </div>
                 <div className={styles.formRow}>
                   <div className={styles.selectWrapper}>
@@ -457,6 +491,7 @@ export default function DevelopersPage() {
                       </svg>
                     </span>
                   </div>
+                  {errors.structure_type && <p className={styles.errorMsg}>{errors.structure_type}</p>}
                 </div>
               </div>
 

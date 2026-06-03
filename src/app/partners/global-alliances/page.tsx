@@ -15,6 +15,14 @@ interface FormFields {
   message: string;
 }
 
+type FormErrors = {
+  full_name?: string;
+  corp_email?: string;
+  company?: string;
+  designation?: string;
+  market?: string;
+};
+
 const initialFields: FormFields = {
   full_name: "",
   corp_email: "",
@@ -31,6 +39,7 @@ export default function GlobalAlliancesPage() {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
+  const [errors, setErrors] = useState<FormErrors>({});
 
   function handleChange(
     e: React.ChangeEvent<
@@ -38,9 +47,27 @@ export default function GlobalAlliancesPage() {
     >,
   ) {
     setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    // Clear error for this field
+    if (errors[e.target.name as keyof FormErrors]) {
+      setErrors((prev) => ({ ...prev, [e.target.name]: undefined }));
+    }
+  }
+
+  function validate(): boolean {
+    const newErrors: FormErrors = {};
+    if (!fields.full_name.trim()) newErrors.full_name = "Full name is required.";
+    if (!fields.corp_email.trim()) newErrors.corp_email = "Corporate email is required.";
+    if (!fields.company.trim()) newErrors.company = "Company name is required.";
+    if (!fields.designation.trim()) newErrors.designation = "Designation is required.";
+    if (!fields.market) newErrors.market = "Primary market is required.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   }
 
   async function handleSubmit() {
+    if (!validate()) return;
+
     setStatus("loading");
     try {
       const res = await fetch("/api/partner-alliance", {
@@ -50,6 +77,7 @@ export default function GlobalAlliancesPage() {
       });
       if (!res.ok) throw new Error("Network response was not ok");
       setStatus("success");
+      setFields(initialFields);
     } catch {
       setStatus("error");
     }
@@ -393,6 +421,7 @@ export default function GlobalAlliancesPage() {
                     onChange={handleChange}
                     className={styles.formInput}
                   />
+                  {errors.full_name && <p className={styles.errorMsg}>{errors.full_name}</p>}
                 </div>
                 <div className={styles.formRow}>
                   <input
@@ -405,6 +434,7 @@ export default function GlobalAlliancesPage() {
                     onChange={handleChange}
                     className={styles.formInput}
                   />
+                  {errors.corp_email && <p className={styles.errorMsg}>{errors.corp_email}</p>}
                 </div>
                 <div className={styles.formRow}>
                   <input
@@ -417,6 +447,7 @@ export default function GlobalAlliancesPage() {
                     onChange={handleChange}
                     className={styles.formInput}
                   />
+                  {errors.company && <p className={styles.errorMsg}>{errors.company}</p>}
                 </div>
                 <div className={styles.formRow}>
                   <input
@@ -429,6 +460,7 @@ export default function GlobalAlliancesPage() {
                     onChange={handleChange}
                     className={styles.formInput}
                   />
+                  {errors.designation && <p className={styles.errorMsg}>{errors.designation}</p>}
                 </div>
                 <div className={styles.formRow}>
                   <input
@@ -468,6 +500,7 @@ export default function GlobalAlliancesPage() {
                       </svg>
                     </span>
                   </div>
+                  {errors.market && <p className={styles.errorMsg}>{errors.market}</p>}
                 </div>
               </div>
 
