@@ -77,26 +77,30 @@ const FAQSection = () => {
       style={{ background: "var(--section-accent)" }}
     >
       {/* Left: Header */}
-      <div className="md:w-[35%] flex-shrink-0">
+      <div className="w-full md:w-[35%] flex-shrink-0">
         <p className="eyebrow-label mb-4">Common Questions</p>
-        {/* Mobile heading */}
-        <MultiColorTextMobile
-          fontSize="30px"
-          className="text-start block lg:hidden leading-tight"
-          items={[
-            { text: "Questions We Hear ", color: "dark", weight: "bold" },
-            { text: "Most Often", color: "primary", weight: "bold" },
-          ]}
-        />
-        {/* Desktop heading */}
-        <MultiColorText
-          fontSize="48px"
-          className="text-start hidden lg:block leading-tight"
-          items={[
-            { text: "Questions We Hear ", color: "dark", weight: "bold", breakAfter: true },
-            { text: "Most Often", color: "primary", weight: "bold" },
-          ]}
-        />
+        {/* Mobile heading - only show on mobile */}
+        <div className="block md:hidden">
+          <MultiColorTextMobile
+            fontSize="30px"
+            className="text-start leading-tight"
+            items={[
+              { text: "Questions We Hear ", color: "dark", weight: "bold" },
+              { text: "Most Often", color: "primary", weight: "bold" },
+            ]}
+          />
+        </div>
+        {/* Desktop heading - only show on tablet and up */}
+        <div className="hidden md:block">
+          <MultiColorText
+            fontSize="48px"
+            className="text-start leading-tight"
+            items={[
+              { text: "Questions We Hear ", color: "dark", weight: "bold", breakAfter: true },
+              { text: "Most Often", color: "primary", weight: "bold" },
+            ]}
+          />
+        </div>
       </div>
 
       {/* Right: FAQ list */}
