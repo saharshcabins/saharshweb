@@ -91,7 +91,7 @@
 
 @media (max-width: 560px) {
   .statsGridStrip {
-    padding: 48px 4%;
+    padding: 48px 0;
   }
 
   .statsInner {

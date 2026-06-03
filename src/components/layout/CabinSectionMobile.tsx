@@ -121,7 +121,7 @@ const CabinSectionMobile = () => {
       id="luxury-you-can-feel"
       data-section="luxury-you-can-feel"
       className="text-center leading-[1.2] flex flex-col gap-[24px] items-center w-full px-4 py-12 overflow-hidden"
-      style={{ background: "var(--section-dark)" }}
+      style={{ background: "var(--section-accent)" }}
     >
       {/* Header section */}
       <div className="w-full flex flex-col gap-[16px]">

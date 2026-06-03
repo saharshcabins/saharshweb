@@ -91,7 +91,7 @@ const FAQSection = () => {
         {/* Desktop heading */}
         <MultiColorText
           fontSize="48px"
-          className="text-start hidden lg:inline-block leading-tight"
+          className="text-start hidden lg:block leading-tight"
           items={[
             { text: "Questions We Hear ", color: "dark", weight: "bold", breakAfter: true },
             { text: "Most Often", color: "primary", weight: "bold" },

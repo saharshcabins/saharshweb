@@ -38,21 +38,12 @@ const OurProcessMobile = () => {
     <section
       id="delivery-process"
       data-section="delivery-process"
-      className="w-full flex flex-col section-mobile-padding"
+      className="w-full flex flex-col px-4 py-12 gap-12"
       style={{ background: "var(--section-dark)" }}
     >
       {/* Header */}
-      <div
-        style={{
-          width: "90%",
-          margin: "0 auto",
-          marginBottom: 48,
-          display: "flex",
-          flexDirection: "column",
-          gap: 14,
-        }}
-      >
-        <p className="eyebrow-label mb-1">How It Comes Together</p>
+      <div className="w-full flex flex-col gap-4">
+        <p className="eyebrow-label">How It Comes Together</p>
         <MultiColorTextMobile
           fontSize="30px"
           items={[
@@ -60,7 +51,7 @@ const OurProcessMobile = () => {
             { text: "To Installation", color: "primary", weight: "bold" },
           ]}
         />
-        <TextBuilderMobile fontSize="14px" color="dark-light">
+        <TextBuilderMobile fontSize="14px" color="light">
           <span className="body-text-premium">
             We guide you through a curated journey where architecture, interior
             design, and landscape artistry converge, transforming your vision
