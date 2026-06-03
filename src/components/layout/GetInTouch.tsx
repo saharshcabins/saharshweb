@@ -29,6 +29,7 @@ const initialFields: FormFields = {
 
 type FormErrors = {
   full_name?: string;
+  email?: string;
   phone?: string;
   location?: string;
   project_type?: string;
@@ -55,6 +56,7 @@ const GetInTouch = () => {
   function validate(): boolean {
     const newErrors: FormErrors = {};
     if (!fields.full_name.trim()) newErrors.full_name = "Full name is required.";
+    if (!fields.email.trim()) newErrors.email = "Email address is required.";
     if (!fields.phone.trim()) newErrors.phone = "Contact number is required.";
     if (!fields.location.trim()) newErrors.location = "Site location is required.";
     if (!fields.project_type) newErrors.project_type = "Project type is required.";
@@ -146,11 +148,13 @@ const GetInTouch = () => {
                 <input
                   name="email"
                   type="email"
-                  placeholder="Email Address"
+                  placeholder="Email Address *"
+                  required
                   value={fields.email}
                   onChange={handleChange}
                   className={styles.formInput}
                 />
+                {errors.email && <p className={styles.errorMsg}>{errors.email}</p>}
               </div>
               <div className={styles.formRow}>
                 <input

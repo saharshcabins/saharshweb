@@ -52,7 +52,7 @@ export default function DevelopersPage() {
   function validate(): boolean {
     const newErrors: FormErrors = {};
     if (!fields.full_name.trim()) newErrors.full_name = "Full name is required.";
-    if (!fields.email.trim()) newErrors.email = "Email is required.";
+    if (!fields.email.trim()) newErrors.email = "Email address is required.";
     if (!fields.company.trim()) newErrors.company = "Company name is required.";
     if (!fields.designation.trim()) newErrors.designation = "Designation is required.";
     if (!fields.project_location.trim()) newErrors.project_location = "Project location is required.";

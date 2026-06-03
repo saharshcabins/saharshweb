@@ -51,7 +51,7 @@ export default function ArchitectsPage() {
   function validate(): boolean {
     const newErrors: FormErrors = {};
     if (!fields.full_name.trim()) newErrors.full_name = "Full name is required.";
-    if (!fields.email.trim()) newErrors.email = "Email is required.";
+    if (!fields.email.trim()) newErrors.email = "Email address is required.";
     if (!fields.firm_name.trim()) newErrors.firm_name = "Firm name is required.";
     if (!fields.role.trim()) newErrors.role = "Role is required.";
     if (!fields.specialisation) newErrors.specialisation = "Specialisation is required.";
