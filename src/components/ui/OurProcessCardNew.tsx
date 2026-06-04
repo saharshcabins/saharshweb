@@ -31,18 +31,16 @@ const OurProcessCardNew: React.FC<OurProcessCardNewProps> = ({
         <TextBuilder
           fontSize="clamp(36px, 8vw, 56px)"
           weight="extrabold"
-          color="light"
+          color={isActive ? "primary" : "light"}
           className="transition-colors duration-300"
-          style={{ color: isActive ? "var(--color-primary)" : undefined }}
         >
           {number}
         </TextBuilder>
         <TextBuilder
           fontSize="clamp(16px, 4vw, 22px)"
           weight="bold"
-          color="light"
+          color={isActive ? "primary" : "light"}
           className="break-words md:whitespace-nowrap transition-colors duration-300"
-          style={{ color: isActive ? "var(--color-primary)" : undefined }}
         >
           {title}
         </TextBuilder>
