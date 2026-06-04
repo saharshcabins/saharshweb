@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import CabinSectionMobile from "./CabinSectionMobile";
 import CabinCarouselMobile from "../ui/CabinCarouselMobile";
 import CabinSlideShowMobile from "../ui/CabinSlideShowMobile";
-import OurProcessMobile from "./OurProcessMobile";
+import OurProcessNew from "./OurProcessNew";
 import GetInTouch from "./GetInTouch";
 import ResponsiveHeroSection from "./MobileHeroSection";
 import SaharshAdvantage from "./SaharshAdvantage";
@@ -26,7 +26,7 @@ export default function MainLayoutSmall({ children }: { children: ReactNode }) {
         <OurWorkSpeaks />
         <CabinSectionMobile /> <CabinSlideShowMobile /> <SaharshAdvantage />
         <CabinCarouselMobile />
-        <OurProcessMobile />
+        <OurProcessNew />
         <GetInTouch />
         <StatsRibbon stats={homePageStats} topBorder={true} />
         <FAQSection />

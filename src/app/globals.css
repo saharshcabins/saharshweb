@@ -183,40 +183,8 @@ body {
     gap: 12px;
 }
 
-/* ─── OurProcess: unified step layout ──────────────────────────── */
-.process-step-unified {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 32px 24px;
-    border-bottom: 1px solid var(--text-light-25);
-}
-
-.process-step-number {
-    font-family: var(--font-serif);
-    font-size: clamp(36px, 8vw, 52px);
-    font-weight: 600;
-    color: var(--color-primary);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-}
-
-.process-step-title {
-    font-family: var(--font-sans);
-    font-size: clamp(15px, 2vw, 17px);
-    font-weight: 600;
-    color: var(--text-light);
-    line-height: 1.4;
-    margin-top: 8px;
-}
-
-.process-step-desc {
-    font-family: var(--font-sans);
-    font-size: clamp(12px, 1.4vw, 13px);
-    line-height: 1.6;
-    color: var(--text-light-60);
-    margin-top: 8px;
-}
+/* ─── OurProcess: Card-based responsive layout ──────────────────── */
+/* Styling handled via Tailwind in OurProcessNew.tsx and OurProcessCardNew.tsx */
 
 /* ─── Stats Grid: asymmetric premium ───────────────────────────── */
 .stats-grid-premium {

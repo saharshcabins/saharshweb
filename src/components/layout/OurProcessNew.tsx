@@ -45,28 +45,34 @@ const OurProcessNew: React.FC = () => {
     <section
       id="delivery-process"
       data-section="delivery-process"
-      className="bg-[var(--text-dark)] px-[7%] py-[7%]"
+      className="bg-[var(--text-dark)] px-4 py-12 md:px-[7%] md:py-[7%]"
     >
       {/* Header */}
-      <div className="flex flex-col justify-center mb-16 gap-4 w-full">
+      <div className="flex flex-col justify-center gap-3 md:gap-4 w-full mb-8 md:mb-16">
         <p className="eyebrow-label text-center">How It Comes Together</p>
+
         <MultiColorText
-          fontSize="75px"
+          fontSize="clamp(32px, 8vw, 75px)"
           className="leading-[1.2] text-center"
           items={[
             { text: "From Concept ", weight: "bold", color: "light" },
             { text: "To Installation", weight: "bold", color: "primary" },
           ]}
         />
-        <div className=" text-center">
-          <TextBuilder fontSize="20px" color="light" className="leading-[1.25]">
-           We guide you through a curated journey where architecture, interior design, and landscape artistry converge, <br />transforming your vision into a sanctuary of rejuvenation through our precision-led workflow.
+
+        <div className="text-center px-4 md:px-0">
+          <TextBuilder
+            fontSize="clamp(14px, 4vw, 20px)"
+            color="light"
+            className="leading-[1.4] md:leading-[1.25]"
+          >
+            We guide you through a curated journey where architecture, interior design, and landscape artistry converge, transforming your vision into a sanctuary of rejuvenation through our precision-led workflow.
           </TextBuilder>
         </div>
       </div>
 
-      {/* 2-Column Grid */}
-      <div className="grid grid-cols-4 gap-6">
+      {/* Responsive Grid: 1 column on mobile, 2 on tablet, 4 on desktop */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
         {processItems.map((item, index) => (
           <OurProcessCardNew
             key={index}
