@@ -1,11 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import MultiColorText from "../shared/MultiColorText";
 import TextBuilder from "../shared/TextBuilder";
 import OurProcessCardNew from "../ui/OurProcessCardNew";
 import { NoteIcon, HomeIcon, Cube, Repair, MagnifyingGlass } from "@/utils/svgUtils";
 
 const OurProcessNew: React.FC = () => {
+  const [activeId, setActiveId] = useState<number | null>(null);
+
   const processItems = [
     {
       title: (<>Requirements &<br /> Assessments</>),
@@ -48,7 +50,7 @@ const OurProcessNew: React.FC = () => {
       className="bg-[var(--text-dark)] px-4 py-12 md:px-[7%] md:py-[7%]"
     >
       {/* Header */}
-      <div className="flex flex-col justify-center gap-3 md:gap-4 w-full mb-8 md:mb-16">
+      <div className="flex flex-col justify-center gap-4 w-full mb-8 md:mb-16">
         <p className="eyebrow-label text-center">How It Comes Together</p>
 
         <MultiColorText
@@ -80,6 +82,8 @@ const OurProcessNew: React.FC = () => {
             title={item.title}
             description={item.description}
             icon={item.icon}
+            isActive={activeId === index}
+            onClick={() => setActiveId(activeId === index ? null : index)}
           />
         ))}
       </div>
