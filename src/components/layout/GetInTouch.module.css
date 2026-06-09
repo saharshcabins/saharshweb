@@ -208,7 +208,8 @@
 /* ──────────────────────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .formSection {
-    padding: 80px 5%;
+    padding: 100px 5% 80px;
+    scroll-margin-top: 100px;
   }
 
   .formGrid2 {
@@ -218,7 +219,8 @@
 
 @media (max-width: 560px) {
   .formSection {
-    padding: 64px 4%;
+    padding: 100px 4% 64px;
+    scroll-margin-top: 100px;
   }
 
   .formIntro {
