@@ -20,10 +20,10 @@ const partnerLinks = [
 ];
 
 const manufacturingLocations = [
-  { city: "Bangalore", isHQ: true },
-  { city: "Mumbai",    isHQ: false },
-  { city: "Nagpur",    isHQ: false },
-  { city: "Cuttack",   isHQ: false },
+  { city: "Bangalore", isHQ: true,  mapsUrl: "https://maps.app.goo.gl/Mziy1fyM26rVfXzj6" },
+  { city: "Mumbai",    isHQ: false, mapsUrl: "https://maps.app.goo.gl/5q1bV8N1yqy1fuYG9" },
+  { city: "Nagpur",    isHQ: false, mapsUrl: "https://maps.app.goo.gl/BmFCHv23kLpx8vvLA" },
+  { city: "Cuttack",   isHQ: false, mapsUrl: "https://maps.app.goo.gl/x8DizuYHnXYGMMD89" },
 ];
 
 const Footer = () => {
@@ -213,15 +213,21 @@ const Footer = () => {
                       flexShrink: 0,
                     }}
                   />
-                  <span
+                  <a
+                    href={loc.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
                       fontSize: 14,
                       color: "rgba(255,255,255,0.55)",
                       fontFamily: "var(--font-eudoxus), sans-serif",
+                      textDecoration: "none",
+                      transition: "color 0.2s",
                     }}
+                    className="hover:text-white"
                   >
                     {loc.city}
-                  </span>
+                  </a>
                   {loc.isHQ && (
                     <span
                       style={{
