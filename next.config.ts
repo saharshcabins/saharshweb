@@ -1,21 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
   trailingSlash: true,
   images: {
-    domains: [
-      "media.istockphoto.com",
-      "imgs.search.brave.com",
-      "plus.unsplash.com",
-      "images.unsplash.com",
+    remotePatterns: [
+      { protocol: "https", hostname: "media.istockphoto.com" },
+      { protocol: "https", hostname: "imgs.search.brave.com" },
+      { protocol: "https", hostname: "plus.unsplash.com" },
+      { protocol: "https", hostname: "images.unsplash.com" },
     ],
-    quality: 75,
   },
 };
 
