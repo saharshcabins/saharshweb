@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import TextBuilder from "../shared/TextBuilder";
@@ -10,17 +10,17 @@ const slides = [
   {
     id: 1,
     word: "Cottages",
-    bgImage: "/assets/built/cottages.png",
+    bgImage: "/assets/built/cottages.webp",
   },
   {
     id: 2,
     word: "Villas",
-    bgImage: "/assets/built/villa.png",
+    bgImage: "/assets/built/villa.webp",
   },
   {
     id: 3,
     word: "Offices",
-    bgImage: "/assets/built/center.png",
+    bgImage: "/assets/built/center.webp",
   },
 ];
 
@@ -118,7 +118,7 @@ const NewHeroSection = () => {
   return (
     <>
       <Head>
-        <link rel="preload" as="image" href="/assets/built/cottages.png" />
+        <link rel="preload" as="image" href="/assets/built/cottages.webp" />
       </Head>
 
       {/* ==========================================

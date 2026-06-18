@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import MultiColorText from "../shared/MultiColorText";
@@ -37,7 +37,7 @@ const QuoteSection = () => {
       {/* Background + main content */}
       <motion.div
         className="px-[7%] bg-cover py-[7%] bg-center bg-no-repeat flex flex-row items-center justify-between relative"
-        style={{ backgroundImage: "url('/assets/quote/quote_bg.png')" }}
+        style={{ backgroundImage: "url('/assets/quote/quote_bg.webp')" }}
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -101,7 +101,7 @@ const QuoteSection = () => {
           style={{ y: cabinY }}
         >
           <Image
-            src={"/assets/quote/handing_container.png"}
+            src={"/assets/quote/handing_container.webp"}
             height={700}
             width={660}
             alt="hanging_container"

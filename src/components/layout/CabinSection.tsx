@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import MultiColorText from "../shared/MultiColorText";
@@ -210,7 +210,7 @@ const CabinSection = () => {
         {/* Interactive SVG hotspot diagram */}
         <div ref={wrapperRef} style={{ position: "relative", width: "88%", maxWidth: "1056px", margin: "0 auto", overflow: "hidden", display: "flex", justifyContent: "center" }}>
           <Image
-            src="/assets/cabin/cabin_1.png"
+            src="/assets/cabin/cabin_1.webp"
             alt="Saharsh Luxury Cabin — Interactive Showcase"
             width={1270}
             height={1180}

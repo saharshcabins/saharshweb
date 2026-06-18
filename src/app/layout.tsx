@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
       "Premium prefab luxury cabins, villas, resorts, and portable cafes designed and built across India.",
     images: [
       {
-        url: "https://www.saharsh.co/assets/cabin/logo_icon.png",
+        url: "https://www.saharsh.co/assets/cabin/logo_icon.webp",
         width: 512,
         height: 512,
         alt: "Saharsh Cabins — Luxury Prefab Design",
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     title: "Saharsh Cabins — Luxury Prefab Cabins & Villas",
     description:
       "Premium prefab luxury cabins, villas, resorts, and portable cafes designed and built across India.",
-    images: ["https://www.saharsh.co/assets/cabin/logo_icon.png"],
+    images: ["https://www.saharsh.co/assets/cabin/logo_icon.webp"],
   },
 
   robots: {

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -8,9 +8,9 @@ import TextBuilderMobile from "../shared/TextBuilderMobile";
 
 // --- Slide data ---------------------------------------------------------------
 const slides = [
-  { id: 1, word: "Cottages", bgImage: "/assets/built/cottage_mobile.png" },
-  { id: 2, word: "Villas",   bgImage: "/assets/built/villa_mobile.png"   },
-  { id: 3, word: "Offices",  bgImage: "/assets/built/Office_mobile.png"  },
+  { id: 1, word: "Cottages", bgImage: "/assets/built/cottage_mobile.webp" },
+  { id: 2, word: "Villas",   bgImage: "/assets/built/villa_mobile.webp"   },
+  { id: 3, word: "Offices",  bgImage: "/assets/built/Office_mobile.webp"  },
 ];
 
 // --- Scroll helper ------------------------------------------------------------
@@ -115,7 +115,7 @@ const HeroSection = () => {
   return (
     <>
       <Head>
-        <link rel="preload" as="image" href="/assets/built/cottage_mobile.png" />
+        <link rel="preload" as="image" href="/assets/built/cottage_mobile.webp" />
       </Head>
 
       {/* ==========================================

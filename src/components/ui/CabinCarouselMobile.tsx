@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import Image from "next/image";
@@ -11,27 +11,27 @@ const cabins = [
   {
     name: "Hutsie",
     description: " 20'x8' | Bathroom | 2 Pax | Kitchenet",
-    image: "/assets/cabin/hutsie.png",
+    image: "/assets/cabin/hutsie.webp",
   },
   {
     name: "Rustico",
     description: " 24'x12' | Bathroom | 2 – 3 Pax | Kitchenet",
-    image: "/assets/cabin/rustico.png",
+    image: "/assets/cabin/rustico.webp",
   },
   {
     name: "Barnie",
     description: " 24'x10' | Bathroom | 3 - 4 Pax | Kitchenet",
-    image: "/assets/cabin/barnie.png",
+    image: "/assets/cabin/barnie.webp",
   },
   {
     name: "Skylighter",
     description: " 20'x10' | Bathroom | 2 – 3 Pax | Kitchenet",
-    image: "/assets/cabin/skylighter.png",
+    image: "/assets/cabin/skylighter.webp",
   },
   {
     name: "Triango",
     description: " 20'x12' | Bathroom | 2 – 3 Pax | Kitchenet",
-    image: "/assets/cabin/triango.png",
+    image: "/assets/cabin/triango.webp",
   },
 ];
 

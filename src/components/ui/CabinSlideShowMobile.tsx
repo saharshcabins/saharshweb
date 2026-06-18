@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -17,28 +17,28 @@ type Slide = {
 const slides: Slide[] = [
   {
     type: "image",
-    src: "/assets/built/office_1.png",
+    src: "/assets/built/office_1.webp",
     title: "Marketing Sales Offices",
     description:
       "Pre-engineered sales offices installed at your site - ready to host buyers from day one.",
   },
   {
     type: "image",
-    src: "/assets/built/cottage_1.png",
+    src: "/assets/built/cottage_1.webp",
     title: "Luxury Cottages",
     description:
       "Hotel-grade cottages built and installed at your resort, farmhouse, or private estate.",
   },
   {
     type: "image",
-    src: "/assets/built/villa_1.png",
+    src: "/assets/built/villa_1.webp",
     title: "Luxury Villas",
     description:
       "A full-size villa built to your specifications and delivered move-in ready.",
   },
   {
     type: "image",
-    src: "/assets/built/cafe_1.png",
+    src: "/assets/built/cafe_1.webp",
     title: "Modular Cafes",
     description:
       "Built in our factory and installed anywhere - ready to serve customers on arrival.",

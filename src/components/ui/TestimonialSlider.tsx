@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import React from "react";
@@ -8,8 +8,8 @@ const logos = [
   "/assets/company_logo/logo2.webp",
   "/assets/company_logo/logo3.webp",
   "/assets/company_logo/log04.webp",
-  "/assets/company_logo/logo5.png",
-  "/assets/company_logo/logo6.png",
+  "/assets/company_logo/logo5.webp",
+  "/assets/company_logo/logo6.webp",
   "/assets/company_logo/logo7.webp",
   "/assets/company_logo/logo8.webp",
 ];

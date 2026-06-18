@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import Image from "next/image";
@@ -136,14 +136,14 @@ export default function AboutPage() {
           style={{ y: heroY }}
         >
           <Image
-            src="/assets/built/cottage_mobile.png"
+            src="/assets/built/cottage_mobile.webp"
             alt="Saharsh Cabins hero"
             fill
             className="object-cover opacity-30 md:hidden"
             priority
           />
           <Image
-            src="/assets/built/cottages.png"
+            src="/assets/built/cottages.webp"
             alt="Saharsh Cabins hero"
             fill
             className="object-cover opacity-30 max-md:hidden"
@@ -360,7 +360,7 @@ export default function AboutPage() {
               <div className="flex flex-col gap-3 ">
                 <div className="relative rounded-[20px] overflow-hidden aspect-square">
                   <Image
-                    src="/assets/milestone/new_2.jpeg"
+                    src="/assets/milestone/new_2.webp"
                     alt="Cabin interior"
                     fill
                     className="object-cover"
@@ -368,7 +368,7 @@ export default function AboutPage() {
                 </div>
                 <div className="relative rounded-[20px] overflow-hidden aspect-[4/3]">
                   <Image
-                    src="/assets/milestone/new_3.jpeg"
+                    src="/assets/milestone/new_3.webp"
                     alt="Mountain cabin"
                     fill
                     className="object-cover"

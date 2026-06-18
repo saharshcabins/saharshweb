@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
@@ -157,7 +157,7 @@ const CabinSectionMobile = () => {
         {/* IMAGE SCALED BY 125% INDEPENDENTLY */}
         <Image
           fill
-          src="/assets/cabin/cabin_1.png"
+          src="/assets/cabin/cabin_1.webp"
           alt="Saharsh Cabin Showcase"
           priority
           style={{ 

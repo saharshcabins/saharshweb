@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, MotionValue, useScroll } from "framer-motion";
@@ -37,7 +37,7 @@ const milestoneData = [
         location: "Shimla",
       },
     ],
-    mapImage: "/assets/milestone/shimla-map.png", // Add your map image path
+    mapImage: "/assets/milestone/shimla-map.webp", // Add your map image path
   },
   {
     year: "2024",
@@ -52,7 +52,7 @@ const milestoneData = [
         location: "Bangalore",
       },
     ],
-    mapImage: "/assets/milestone/map-banglore.png", // Add your map image path
+    mapImage: "/assets/milestone/map-banglore.webp", // Add your map image path
   },
   {
     year: "2025",
@@ -61,12 +61,12 @@ const milestoneData = [
       "Started exporting to clients in Europe and North America, marking our first major international milestone.",
     image: [
       {
-        url: "/assets/built/cottages.png",
+        url: "/assets/built/cottages.webp",
         label: "International Market Entry - Our first export venture to USA",
         location: "USA",
       },
     ],
-    mapImage: "/assets/milestone/global-map.png", // Add your map image path
+    mapImage: "/assets/milestone/global-map.webp", // Add your map image path
   },
 ];
 
