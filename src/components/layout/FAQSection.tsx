@@ -48,16 +48,6 @@ const faqData = [
       </>
     ),
   },
-  {
-    question: "What is the starting investment for a luxury modular cottage?",
-    answer: (
-      <>
-        Our premium luxury cottage range starts from <strong>₹8 lakhs</strong>,
-        depending on size and specification. We provide a locked price before
-        manufacturing begins — no hidden costs, no budget overruns.
-      </>
-    ),
-  },
 ];
 
 const FAQSection = () => {
