@@ -38,19 +38,21 @@
 }
 
 .statNum {
-  font-size: clamp(40px, 5vw, 56px);
+  font-size: clamp(28px, 3vw, 38px);
   font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--color-primary);
-  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 10px;
 }
 
 .statLabel {
-  font-size: clamp(12px, 1.2vw, 14px);
-  font-weight: 500;
-  line-height: 1.6;
-  color: var(--text-light-60);
+  font-size: clamp(10px, 1vw, 12px);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
   max-width: 180px;
   text-align: center;
 }
@@ -85,12 +87,12 @@
   }
 
   .statNum {
-    font-size: clamp(32px, 5vw, 44px);
-    margin-bottom: 12px;
+    font-size: clamp(24px, 5vw, 32px);
+    margin-bottom: 10px;
   }
 
   .statLabel {
-    font-size: clamp(11px, 1.1vw, 13px);
+    font-size: clamp(10px, 1.1vw, 11px);
     max-width: 150px;
   }
 }
@@ -113,12 +115,12 @@
   }
 
   .statNum {
-    font-size: clamp(28px, 4vw, 36px);
+    font-size: clamp(22px, 4vw, 28px);
     margin-bottom: 8px;
   }
 
   .statLabel {
-    font-size: clamp(10px, 1vw, 12px);
+    font-size: clamp(9px, 1vw, 11px);
     max-width: 100px;
   }
 }

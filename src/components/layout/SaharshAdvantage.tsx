@@ -74,80 +74,152 @@ const SaharshAdvantage = () => {
         </TextBuilder>
       </div>
 
-      {/* Three principles  -  card variant */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        {principles.map((p, i) => {
-          const isActive = activeId === i;
+      {/* Three principles — first card featured, two supporting below on mobile / beside on desktop */}
+      <div className="flex flex-col gap-6 md:gap-8">
+        {/* Featured first card — full width, larger number, gold border */}
+        {(() => {
+          const p = principles[0];
+          const isActive = activeId === 0;
           return (
-          <div
-            key={i}
-            className="group flex flex-col rounded-2xl transition-all duration-300 border cursor-pointer w-full"
-            style={{
-              background: "var(--text-dark)",
-              padding: "40px 36px 44px",
-              borderColor: isActive ? "var(--color-primary)" : "var(--light-border)"
-            }}
-            onClick={() => setActiveId(isActive ? null : i)}
-          >
-            {/* Number */}
-            <span
-              className="transition-colors duration-300"
-              style={{
-                fontSize: 52,
-                fontWeight: 800,
-                lineHeight: 1,
-                letterSpacing: "-0.03em",
-                display: "block",
-                marginBottom: 24,
-                fontFamily: "var(--font-sans)",
-                color: isActive ? "var(--color-primary)" : "rgba(255,255,255,0.9)"
-              }}
-            >
-              {p.number}
-            </span>
-
-            {/* Accent bar */}
             <div
-              className="transition-colors duration-300"
+              key={0}
+              className="group flex flex-col rounded-2xl transition-all duration-300 border cursor-pointer w-full"
               style={{
-                width: 36,
-                height: 3,
-                borderRadius: 2,
-                marginBottom: 32,
-                backgroundColor: isActive ? "var(--color-primary)" : "rgba(255,255,255,0.9)"
+                background: "var(--text-dark)",
+                padding: "48px 44px 52px",
+                borderColor: isActive ? "var(--color-primary)" : "rgba(201,122,65,0.45)",
+                boxShadow: "0 0 0 1px rgba(201,122,65,0.12)",
               }}
-            />
-
-            {/* Title */}
-            <h3
-              className="transition-colors duration-300"
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: 18,
-                fontWeight: 700,
-                marginBottom: 16,
-                lineHeight: 1.3,
-                color: isActive ? "var(--color-primary)" : "rgba(255,255,255,1)"
-              }}
+              onClick={() => setActiveId(isActive ? null : 0)}
             >
-              {p.title}
-            </h3>
+              <div className="flex flex-col md:flex-row md:items-start md:gap-16">
+                <span
+                  className="transition-colors duration-300 flex-shrink-0"
+                  style={{
+                    fontSize: 72,
+                    fontWeight: 800,
+                    lineHeight: 1,
+                    letterSpacing: "-0.04em",
+                    display: "block",
+                    marginBottom: 24,
+                    fontFamily: "var(--font-sans)",
+                    color: isActive ? "var(--color-primary)" : "var(--color-primary)",
+                    opacity: isActive ? 1 : 0.7,
+                  }}
+                >
+                  {p.number}
+                </span>
+                <div className="flex flex-col flex-1">
+                  <div
+                    className="transition-colors duration-300"
+                    style={{
+                      width: 48,
+                      height: 3,
+                      borderRadius: 2,
+                      marginBottom: 20,
+                      backgroundColor: "var(--color-primary)",
+                    }}
+                  />
+                  <h3
+                    className="transition-colors duration-300"
+                    style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: 22,
+                      fontWeight: 700,
+                      marginBottom: 16,
+                      lineHeight: 1.3,
+                      color: isActive ? "var(--color-primary)" : "rgba(255,255,255,1)",
+                    }}
+                  >
+                    {p.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: 15,
+                      lineHeight: 1.8,
+                      color: "rgba(255,255,255,0.78)",
+                      margin: 0,
+                      maxWidth: "60ch",
+                    }}
+                  >
+                    {p.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
-            {/* Description */}
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: 14,
-                lineHeight: 1.8,
-                color: "rgba(255,255,255,0.62)",
-                margin: 0,
-              }}
-            >
-              {p.description}
-            </p>
-          </div>
-        );
-        })}
+        {/* Two supporting cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {principles.slice(1).map((p, idx) => {
+            const i = idx + 1;
+            const isActive = activeId === i;
+            return (
+              <div
+                key={i}
+                className="group flex flex-col rounded-2xl transition-all duration-300 border cursor-pointer w-full"
+                style={{
+                  background: "var(--text-dark)",
+                  padding: "40px 36px 44px",
+                  borderColor: isActive ? "var(--color-primary)" : "var(--light-border)",
+                }}
+                onClick={() => setActiveId(isActive ? null : i)}
+              >
+                <span
+                  className="transition-colors duration-300"
+                  style={{
+                    fontSize: 52,
+                    fontWeight: 800,
+                    lineHeight: 1,
+                    letterSpacing: "-0.03em",
+                    display: "block",
+                    marginBottom: 24,
+                    fontFamily: "var(--font-sans)",
+                    color: isActive ? "var(--color-primary)" : "rgba(255,255,255,0.9)",
+                  }}
+                >
+                  {p.number}
+                </span>
+                <div
+                  className="transition-colors duration-300"
+                  style={{
+                    width: 36,
+                    height: 3,
+                    borderRadius: 2,
+                    marginBottom: 32,
+                    backgroundColor: isActive ? "var(--color-primary)" : "rgba(255,255,255,0.9)",
+                  }}
+                />
+                <h3
+                  className="transition-colors duration-300"
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: 18,
+                    fontWeight: 700,
+                    marginBottom: 16,
+                    lineHeight: 1.3,
+                    color: isActive ? "var(--color-primary)" : "rgba(255,255,255,1)",
+                  }}
+                >
+                  {p.title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: 14,
+                    lineHeight: 1.8,
+                    color: "rgba(255,255,255,0.78)",
+                    margin: 0,
+                  }}
+                >
+                  {p.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
     </>

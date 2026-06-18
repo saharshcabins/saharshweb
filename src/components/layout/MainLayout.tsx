@@ -18,7 +18,7 @@ export const dynamicRendering = "force-dynamic";
 const homePageStats: StatItem[] = [
   { value: "15+", label: "Years of Excellence" },
   { value: "1,000+", label: "Projects Delivered" },
-  { value: "120-Day", label: "Delivery Standard" },
+  { value: "10–12 Week", label: "Delivery Standard" },
   { value: "Global", label: "Reach & Partnerships" },
 ];
 
@@ -36,9 +36,9 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <QuoteSection />
         <CabinCarousel />
         <OurProcessNew />
+        <FAQSection />
         <GetInTouch />
         <StatsRibbon stats={homePageStats} topBorder={true} />
-        <FAQSection />
       </div>
     </div>
   );

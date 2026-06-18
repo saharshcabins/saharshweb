@@ -78,7 +78,6 @@ const FAQSection = () => {
     >
       {/* Left: Header */}
       <div className="w-full md:w-[35%] flex-shrink-0">
-        <p className="eyebrow-label mb-4">Common Questions</p>
         {/* Mobile heading - only show on mobile */}
         <div className="block md:hidden">
           <MultiColorTextMobile

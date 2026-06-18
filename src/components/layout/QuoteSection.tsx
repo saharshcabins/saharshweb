@@ -50,7 +50,6 @@ const QuoteSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{ ease: "easeOut", duration: 0.7, delay: 0.15 }}
           >
-            <p className="eyebrow-label mb-4">Manufacturing Excellence</p>
             <MultiColorText
               fontSize="75px"
               className="leading-[1.2] whitespace-nowrap text-start"

@@ -86,7 +86,6 @@ const OurWorkSpeaks: React.FC = () => {
           marginBottom: 64,
         }}
       >
-        <p className="eyebrow-label">Our Work Speaks</p>
         <div className="block lg:hidden">
           <MultiColorTextMobile
             fontSize="30px"
@@ -114,8 +113,8 @@ const OurWorkSpeaks: React.FC = () => {
           style={{
             fontSize: 18,
             lineHeight: 1.6,
-            color: "rgba(255,255,255,0.6)",
-            maxWidth: 1100, 
+            color: "rgba(255,255,255,0.82)",
+            maxWidth: 1100,
             margin: "8px 0 0",
           }}
         >
@@ -202,8 +201,7 @@ const OurWorkSpeaks: React.FC = () => {
                 lineHeight: 1.3,
                 color: "#ffffff",
                 margin: "0 0 16px",
-                minHeight: "2.6em",
-                whiteSpace: "pre-line", 
+                whiteSpace: "pre-line",
               }}
             >
               {card.headline}
@@ -213,11 +211,9 @@ const OurWorkSpeaks: React.FC = () => {
               style={{
                 fontSize: 14,
                 lineHeight: 1.7,
-                color: "rgba(255,255,255,0.62)",
+                color: "rgba(255,255,255,0.78)",
                 margin: "0 0 0",
                 flexGrow: 1,
-                minHeight: "9em",
-                textAlign: "justify", 
               }}
             >
               {card.body}

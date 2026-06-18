@@ -121,8 +121,11 @@ const GetInTouch = () => {
           <div className={styles.successMsg}>
             <h3>Consultation Request Received</h3>
             <p>
-              Our team will review your brief and be in touch within 48 hours to discuss your
-              vision and project requirements.
+              Harshad will personally review your brief and be in touch within 48 hours to
+              discuss your vision and project requirements.
+            </p>
+            <p style={{ marginTop: "12px", fontSize: "13px", opacity: 0.7 }}>
+              For urgent enquiries: harshad@saharsh.co · +91 701 949 5021
             </p>
           </div>
         ) : (
@@ -213,12 +216,12 @@ const GetInTouch = () => {
                     className={styles.formSelect}
                   >
                     <option value="">Estimated Budget *</option>
-                    <option value="Under ₹10 Lakh">Under ₹10 Lakh</option>
-                    <option value="₹10L – ₹25L">₹10L – ₹25L</option>
-                    <option value="₹25L – ₹50L">₹25L – ₹50L</option>
-                    <option value="₹50L – ₹1 Crore">₹50L – ₹1 Crore</option>
+                    <option value="₹3 Crore+ (Resort / Multi-Unit)">₹3 Crore+ (Resort / Multi-Unit)</option>
                     <option value="₹1 Crore – ₹3 Crore">₹1 Crore – ₹3 Crore</option>
-                    <option value="Above ₹3 Crore">Above ₹3 Crore</option>
+                    <option value="₹50L – ₹1 Crore">₹50L – ₹1 Crore</option>
+                    <option value="₹25L – ₹50L">₹25L – ₹50L</option>
+                    <option value="₹10L – ₹25L">₹10L – ₹25L</option>
+                    <option value="Under ₹10 Lakh">Under ₹10 Lakh</option>
                   </select>
                   <span className={styles.selectChevron}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
