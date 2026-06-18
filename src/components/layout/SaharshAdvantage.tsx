@@ -103,8 +103,7 @@ const SaharshAdvantage = () => {
                     display: "block",
                     marginBottom: 24,
                     fontFamily: "var(--font-sans)",
-                    color: isActive ? "var(--color-primary)" : "var(--color-primary)",
-                    opacity: isActive ? 1 : 0.7,
+                    color: isActive ? "var(--color-primary)" : "rgba(255,255,255,0.9)",
                   }}
                 >
                   {p.number}
@@ -117,7 +116,7 @@ const SaharshAdvantage = () => {
                       height: 3,
                       borderRadius: 2,
                       marginBottom: 20,
-                      backgroundColor: "var(--color-primary)",
+                      backgroundColor: isActive ? "var(--color-primary)" : "rgba(255,255,255,0.9)",
                     }}
                   />
                   <h3
