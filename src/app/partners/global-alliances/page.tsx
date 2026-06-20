@@ -155,19 +155,6 @@ export default function GlobalAlliancesPage() {
           </div>
         </div>
 
-        {/*
-          FIX #5 - Marriott badge safe-zone.
-          mb-14 (56px) clears the device home bar + WhatsApp widget.
-          max-w-[calc(100vw-32px)] prevents text overflow at 360px.
-        */}
-        <div
-          className={[
-            styles.partnerBadge,
-            "mb-14 max-w-[calc(100vw-32px)]",
-          ].join(" ")}
-        >
-          PREFERRED PARTNER - OUTDOORS BY MARRIOTT BONVOY
-        </div>
       </section>
 
       {/* Trust section */}

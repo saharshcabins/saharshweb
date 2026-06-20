@@ -259,39 +259,6 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/*
-          FIX #5 - Marriott badge safe-zone:
-          In-flow flex child with pb-14 clears device home bar + WhatsApp
-          widget. max-w-[calc(100vw-32px)] prevents overflow at 360px.
-        */}
-        <div className="relative z-20 flex justify-center pb-14 px-4">
-          <span
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: "1.5px solid #c8a96e",
-              background: "rgba(0,0,0,0.22)",
-              backdropFilter: "blur(6px)",
-              WebkitBackdropFilter: "blur(6px)",
-              padding: "8px 18px",
-              borderRadius: "6px",
-              width: "max-content",
-              maxWidth: "calc(100vw - 32px)",
-              boxSizing: "border-box",
-              color: "#c8a96e",
-              fontSize: "clamp(7px, 2.2vw, 10px)",
-              fontWeight: 600,
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              textAlign: "center",
-              lineHeight: 1.4,
-              fontFamily: "var(--font-eudoxus), sans-serif",
-            }}
-          >
-            PREFERRED PARTNER — OUTDOORS BY MARRIOTT BONVOY
-          </span>
-        </div>
 
       </section>
     </>

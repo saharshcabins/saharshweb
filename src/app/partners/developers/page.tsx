@@ -146,14 +146,6 @@ export default function DevelopersPage() {
           </div>
         </div>
 
-        <div
-          className={[
-            styles.partnerBadge,
-            "mb-14 max-w-[calc(100vw-32px)]",
-          ].join(" ")}
-        >
-          PREFERRED PARTNER  — OUTDOORS BY MARRIOTT BONVOY
-        </div>
       </section>
 
       {/* ==========================================

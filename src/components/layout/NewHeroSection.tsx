@@ -218,21 +218,6 @@ className="min-h-full bg-black/20 w-full absolute z-10"
           </motion.div>
         </div>
 
-          {/* Preferred Partner Badge */}
-          <div style={{
-            position: "absolute", bottom: "28px", left: "50%", transform: "translateX(-50%)", zIndex: 20,
-            display: "flex", alignItems: "center",
-            border: "1.5px solid #c8a96e", background: "rgba(0,0,0,0.15)",
-            backdropFilter: "blur(6px)", padding: "10px 18px",
-            borderRadius: "6px", whiteSpace: "nowrap", maxWidth: "calc(100vw - 40px)",
-          }}>
-            <span style={{
-              color: "#c8a96e", fontSize: "11px", fontWeight: 600,
-              textTransform: "uppercase", letterSpacing: "0.1em",
-            }}>
-              PREFERRED PARTNER — OUTDOORS BY MARRIOTT BONVOY
-            </span>
-          </div>
       </section>
     </>
   );
