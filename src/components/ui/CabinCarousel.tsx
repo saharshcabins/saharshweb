@@ -107,12 +107,15 @@ const CabinCarousel = () => {
               animate={{ x, opacity, zIndex }}
               transition={{ duration: 1.5, ease: [0.17, 0.67, 0.23, 1.1] }}
             >
-              <Image
-                src={cabin.image}
-                alt={cabin.name}
-                fill
-                className="object-cover"
-              />
+              {Math.abs(distance) <= 2 && (
+                <Image
+                  src={cabin.image}
+                  alt={cabin.name}
+                  fill
+                  sizes="55vw"
+                  className="object-cover"
+                />
+              )}
 
               <div className="absolute bottom-0 left-0 right-0 h-[180px] bg-gradient-to-t from-[#0F1B26] to-transparent z-10" />
               <div className="relative z-10 p-10 text-center flex justify-center w-full">

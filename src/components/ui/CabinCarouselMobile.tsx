@@ -95,12 +95,15 @@ const CabinCarouselMobile = () => {
               animate={{ x, opacity, zIndex }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
             >
-              <Image
-                src={cabin.image}
-                alt={cabin.name}
-                fill
-                className="object-cover"
-              />
+              {Math.abs(distance) <= 2 && (
+                <Image
+                  src={cabin.image}
+                  alt={cabin.name}
+                  fill
+                  sizes="265px"
+                  className="object-cover"
+                />
+              )}
 
               {/* Gradient overlay */}
               <div className="absolute bottom-0 left-0 right-0 h-[100px] bg-gradient-to-t from-[#0F1B26] to-transparent z-10" />

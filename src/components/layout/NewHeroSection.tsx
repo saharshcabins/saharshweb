@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import TextBuilder from "../shared/TextBuilder";
 import Image from "next/image";
-import Head from "next/head";
 import Button from "../shared/Button";
 
 const slides = [
@@ -117,10 +116,6 @@ const NewHeroSection = () => {
 
   return (
     <>
-      <Head>
-        <link rel="preload" as="image" href="/assets/built/cottages.webp" />
-      </Head>
-
       {/* ==========================================
          HOME SECTION: HERO
          Purpose:
@@ -153,7 +148,7 @@ const NewHeroSection = () => {
                     fill
                     priority={idx === 0}
                     className="object-cover object-center"
-                    quality={100}
+                    quality={75}
                     sizes="100vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />

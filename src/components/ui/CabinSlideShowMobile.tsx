@@ -118,7 +118,7 @@ const CabinSlideShowMobile: React.FC = () => {
               className="relative w-[284px] h-[382px] rounded-[6px] overflow-hidden shadow-lg flex-shrink-0"
             >
               {slide.type === "image" ? (
-                <Image src={slide.src} alt={`slide-${idx}`} fill className="object-cover" />
+                <Image src={slide.src} alt={`slide-${idx}`} fill sizes="284px" className="object-cover" />
               ) : (
                 <video
                   ref={(el) => { videoRefs.current[idx] = el; }}

@@ -142,6 +142,7 @@ const CabinSlideShow: React.FC = () => {
                     src={slide.src}
                     alt={slide.title}
                     fill
+                    sizes="390px"
                     className="object-cover"
                   />
 

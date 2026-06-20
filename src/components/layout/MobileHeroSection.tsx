@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import Head from "next/head";
 import ButtonMobile from "../shared/ButtonMobile";
 import TextBuilderMobile from "../shared/TextBuilderMobile";
 
@@ -114,10 +113,6 @@ const HeroSection = () => {
 
   return (
     <>
-      <Head>
-        <link rel="preload" as="image" href="/assets/built/cottage_mobile.webp" />
-      </Head>
-
       {/* ==========================================
          HOME SECTION: HERO
          Purpose:
@@ -149,8 +144,9 @@ const HeroSection = () => {
                     alt={`${slide.word} background`}
                     fill
                     priority={idx === 0}
+                    sizes="100vw"
                     className="object-cover object-center"
-                    quality={100}
+                    quality={75}
                   />
                   {/* Heavier bottom gradient for badge legibility */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/70" />
