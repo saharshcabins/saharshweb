@@ -21,7 +21,7 @@ const projectCards: ProjectCard[] = [
     id: 1,
     tag: "INTERNATIONAL",
     headline: "The Lodging Conference\nMarriott Bonvoy",
-    body: "A unit we built was showcased in US at one of the world's largest hospitality conferences - TLC, Phoenix 2025. Marriott approved it! We are now one of their preferred manufacturing partners for Outdoors by Marriott Bonvoy.",
+    body: "A unit we built was showcased in US at one of the world's largest hospitality conferences - TLC, Phoenix 2025. Marriott approved it! Our client is now one of the preferred manufacturing partners for Outdoors by Marriott Bonvoy.",
     location: "Phoenix, USA",
     galleryLink: "/ourprojects/lakeside-cabin/",
     partnerLink: "/partners/global-alliances",
@@ -122,7 +122,7 @@ const OurWorkSpeaks: React.FC = () => {
           <strong style={{ color: "rgba(255,255,255,0.9)" }}>
             The Lodging Conference in Phoenix, Arizona
           </strong>{" "}
-          — one of the world&apos;s most significant hospitality events. It passed. We became one of their preferred manufacturing partners.
+          — one of the world&apos;s most significant hospitality events. It passed. Our client became one of their preferred manufacturing partners.
         </p>
       </motion.div>
 
