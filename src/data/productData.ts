@@ -110,7 +110,7 @@ export const products: Product[] = [
       "Premium Wooden Interior Claddings",
     ],
     highlights: [
-      "Designed and built for the Marriott Group at The Lodging Conference 2025 in Phoenix. This luxury cabin features a unique asymmetric design, a private deck with a swing, and stunning floor-to-ceiling skylights. The ensuite bathroom even includes a shower under the stars. Built fully to US building codes, it was shipped from India 100% complete and ready for guests.",
+      "A unit we manufactured was showcased at the Lodging Conference 2025 in Phoenix. This luxury cabin features a unique asymmetric design, a private deck with a swing, and stunning floor-to-ceiling skylights. The ensuite bathroom even includes a shower under the stars. Built fully to US building codes, it was shipped from India 100% complete and ready for guests.",
  
     ],
     offerings: ["Delivered Worldwide","Customisable Interiors","Architectural Drawings and 3D renders (chargeable)"],

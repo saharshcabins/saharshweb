@@ -168,8 +168,7 @@ export default function GlobalAlliancesPage() {
             <p className={styles.sectionBody}>
               We turn high-end architectural concepts into flawless,
               factory-precise reality. Our manufacturing standards are proven on
-              the ground by our project execution for world-renowned hospitality
-              names like the Marriott group. When you introduce your clients to
+              the ground by our project execution for world-renowned international hospitality brands. When you introduce your clients to
               Saharsh, you are partnering with an established team that provides
               absolute design flexibility, an uncompromised 120-day delivery
               schedule across the globe, and complete transparency from the

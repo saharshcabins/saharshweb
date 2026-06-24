@@ -8,8 +8,7 @@ const faqData = [
     answer: (
       <>
         Yes. Our manufacturing has been validated against international hospitality
-        specifications, including for{" "}
-        <strong>Outdoors by Marriott Bonvoy</strong>. We work with your brand
+        specifications, including for major international hospitality brands. We work with your brand
         guidelines, architect, and operations team from design through to
         commissioning.
       </>

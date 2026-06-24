@@ -108,7 +108,7 @@ const GetInTouch = () => {
           </p>
           <span className={styles.divider} />
           <div className={styles.trustBadgeRow}>
-            <span className={styles.trustBadge}>Marriott Approved</span>
+            <span className={styles.trustBadge}>US Export Ready</span>
             <span className={styles.trustBadge}>48-Hour Response</span>
             <span className={styles.trustBadge}>Custom Floor Plans</span>
           </div>
