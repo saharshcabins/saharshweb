@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saharsh Cabins — Brand Guidelines 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --stone:   #0F1B2D;
+  --stone2:  #162236;
+  --stone3:  #1E2F45;
+  --stone4:  #243548;
+  --gold:    #C9A96E;
+  --gold2:   #E8D5B0;
+  --gold3:   #A8863E;
+  --gold-dim:rgba(201,169,110,0.14);
+  --gold-b:  rgba(201,169,110,0.32);
+  --moss:    #3D5A3E;
+  --linen:   #F5F2EC;
+  --linen2:  #EDE9E1;
+  --linen3:  #E4DFD5;
+  --white:   #FFFFFF;
+  --serif:   'Cormorant Garamond',serif;
+  --sans:    'Outfit',sans-serif;
+}
+body{font-family:var(--sans);background:#d8d4cc;}
+
+/* ── PAGE SYSTEM ── */
+.page{
+  width:297mm;min-height:210mm;background:var(--white);
+  margin:10mm auto;position:relative;overflow:hidden;
+  page-break-after:always;display:flex;flex-direction:column;
+  box-shadow:0 4px 40px rgba(0,0,0,0.18);
+}
+@media print{
+  body{background:white;}
+  .page{margin:0;width:100%;box-shadow:none;}
+}
+
+/* ── LAYOUT ── */
+.split{display:grid;grid-template-columns:210px 1fr;min-height:210mm;}
+.col-l{background:var(--stone);padding:40px 30px;display:flex;flex-direction:column;justify-content:space-between;}
+.col-r{padding:40px 46px;display:flex;flex-direction:column;background:var(--linen);}
+.full{padding:46px 54px;flex:1;display:flex;flex-direction:column;}
+.full-stone{background:var(--stone);}
+.full-linen{background:var(--linen);}
+.full-linen2{background:var(--linen2);}
+
+/* ── TYPE ── */
+.pn{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(201,169,110,0.35);font-weight:400;margin-bottom:6px;}
+.pn-dk{color:rgba(15,27,45,0.25);}
+.tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;}
+.tag-g{color:var(--gold);}
+.tag-s{color:var(--stone3);}
+.tag-l{color:rgba(245,242,236,0.35);}
+.h1{font-family:var(--serif);font-weight:300;line-height:1.08;letter-spacing:-.01em;}
+.h1-xl{font-size:58px;}
+.h1-lg{font-size:40px;}
+.h1-md{font-size:28px;}
+.h1-sm{font-size:22px;}
+.c-linen{color:var(--linen);}
+.c-stone{color:var(--stone);}
+.c-gold{color:var(--gold);}
+.i-gold{font-style:italic;color:var(--gold);}
+.i-gold2{font-style:italic;color:var(--gold2);}
+.body{font-size:12px;line-height:1.78;font-weight:300;}
+.body-l{color:rgba(245,242,236,0.45);}
+.body-l strong{color:rgba(245,242,236,0.82);font-weight:500;}
+.body-s{color:#4A5568;}
+.body-s strong{color:var(--stone);font-weight:500;}
+.cap{font-size:10px;letter-spacing:.06em;font-weight:400;}
+.cap-g{color:var(--gold);}
+.cap-l{color:rgba(245,242,236,0.28);}
+.cap-s{color:rgba(15,27,45,0.32);}
+.cap-m{color:#8A9BB0;}
+.rule{height:1px;}
+.rg{background:rgba(201,169,110,0.25);}
+.rs{background:rgba(15,27,45,0.1);}
+.rw{background:rgba(255,255,255,0.1);}
+.gbar{width:20px;height:2px;background:var(--gold);border-radius:1px;margin:14px 0;}
+.gdot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+/* ── LOGO ── */
+.lockup{display:flex;align-items:center;gap:9px;}
+.wm{font-family:var(--sans);letter-spacing:.03em;}
+.wm strong{font-weight:600;}
+.wm span{font-weight:300;}
+.wm-l{color:var(--linen);}
+.wm-s{color:var(--stone);}
+.wm-g{color:var(--gold);}
+.wm-xl{font-size:19px;}
+.wm-md{font-size:15px;}
+.wm-sm{font-size:12px;}
+
+/* ── CREDENTIAL PILL ── */
+.cred{display:inline-flex;align-items:center;gap:8px;background:var(--gold-dim);border:1px solid var(--gold-b);border-radius:3px;padding:6px 13px;width:fit-content;}
+
+/* ── FOOTER STRIP ── */
+.pfoot{position:absolute;bottom:0;left:0;right:0;padding:9px 40px;display:flex;align-items:center;justify-content:space-between;}
+.pf-d{background:var(--stone);border-top:1px solid rgba(201,169,110,0.1);}
+.pf-l{background:var(--linen);border-top:1px solid rgba(15,27,45,0.07);}
+.pf-l2{background:var(--linen2);border-top:1px solid rgba(15,27,45,0.07);}
+
+/* ── SWATCHES ── */
+.sw-row{display:flex;gap:12px;margin-bottom:20px;}
+.sw{flex:1;}
+.sw-block{height:60px;border-radius:5px;margin-bottom:8px;}
+.sw-name{font-size:11px;font-weight:500;color:var(--stone);margin-bottom:2px;}
+.sw-hex{font-size:10px;color:#4A5568;font-family:monospace;margin-bottom:2px;}
+.sw-role{font-size:10px;color:#8A9BB0;font-weight:300;line-height:1.5;}
+
+/* ── TYPE SPECIMENS ── */
+.ts{margin-bottom:20px;padding-bottom:20px;border-bottom:.5px solid rgba(15,27,45,0.08);}
+.ts:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.ts-meta{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:7px;}
+.ts-role{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+.ts-spec{font-size:9px;color:#8A9BB0;font-family:monospace;}
+
+/* ── PILLAR CARDS ── */
+.pillar-g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.pillar{background:var(--stone2);border:1px solid rgba(201,169,110,0.12);border-radius:6px;padding:22px 18px;}
+.pillar-n{font-family:var(--serif);font-size:40px;font-weight:300;color:rgba(201,169,110,0.2);line-height:1;margin-bottom:10px;}
+.pillar-r{width:16px;height:2px;background:var(--gold);border-radius:1px;margin-bottom:14px;}
+.pillar-t{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--linen);margin-bottom:8px;line-height:1.2;}
+.pillar-b{font-size:11px;color:rgba(245,242,236,0.32);line-height:1.65;font-weight:300;}
+
+/* ── VOICE ── */
+.voice{margin-bottom:14px;}
+.vl{font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:5px;}
+.vl-do{color:var(--moss);}
+.vl-dn{color:#C84242;}
+.vex{font-size:12px;line-height:1.62;font-weight:300;padding:10px 14px;border-radius:4px;border-left:2px solid;}
+.vex-do{background:rgba(61,90,62,0.07);border-color:var(--moss);color:var(--stone);}
+.vex-dn{background:rgba(200,66,66,0.06);border-color:#C84242;color:#7A3A3A;}
+
+/* ── LOGO DEMOS ── */
+.ld{border-radius:5px;display:flex;align-items:center;justify-content:center;height:76px;margin-bottom:7px;}
+.ld-st{background:var(--stone);}
+.ld-li{background:var(--linen);border:1px solid rgba(15,27,45,0.08);}
+.ld-g{background:var(--gold);}
+.ld-wh{background:var(--white);border:1px solid rgba(15,27,45,0.1);}
+
+/* ── MISUSE ── */
+.mis-g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.mis{border:1px solid rgba(15,27,45,0.1);border-radius:4px;overflow:hidden;}
+.mis-d{height:52px;display:flex;align-items:center;justify-content:center;background:var(--linen2);}
+.mis-l{padding:6px 10px;display:flex;align-items:center;gap:5px;}
+.mis-x{color:#C84242;font-size:11px;font-weight:700;}
+.mis-t{font-size:10px;color:#4A5568;font-weight:300;}
+
+/* ── UI COMPONENTS ── */
+.ui-card{background:var(--stone2);border:1px solid rgba(201,169,110,0.1);border-radius:6px;padding:16px 18px;}
+.ui-tag{font-size:10px;font-weight:500;letter-spacing:.06em;padding:4px 11px;border-radius:3px;}
+.ut-g{background:var(--gold-dim);border:1px solid var(--gold-b);color:var(--gold);}
+.ut-s{color:rgba(245,242,236,0.3);border:1px solid rgba(245,242,236,0.08);}
+.ut-m{background:rgba(61,90,62,0.1);border:1px solid rgba(61,90,62,0.25);color:var(--moss);}
+
+/* ── STAT STRIP ── */
+.ss{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-radius:4px;overflow:hidden;}
+.sc{background:var(--stone2);padding:12px 14px;border-right:1px solid rgba(245,242,236,0.06);}
+.sc:last-child{border-right:none;}
+.sn{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--gold);line-height:1;}
+.sl{font-size:9px;color:rgba(245,242,236,0.25);letter-spacing:.06em;text-transform:uppercase;margin-top:3px;}
+
+/* ── LOGO SVG HELPER ── */
+svg.mk path{stroke-linecap:round;stroke-linejoin:round;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1: COVER ═══════════ -->
+<div class="page">
+<div style="background:var(--stone);min-height:210mm;display:flex;flex-direction:column;position:relative;overflow:hidden;">
+  <!-- Geometry -->
+  <div style="position:absolute;right:-90px;top:-90px;width:440px;height:440px;border:1px solid rgba(201,169,110,0.06);border-radius:50%;"></div>
+  <div style="position:absolute;right:-40px;top:-40px;width:310px;height:310px;border:1px solid rgba(201,169,110,0.04);border-radius:50%;"></div>
+  <div style="position:absolute;left:-70px;bottom:-70px;width:260px;height:260px;border:1px solid rgba(201,169,110,0.04);border-radius:50%;"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.025) 1px,transparent 1px);background-size:56px 56px;"></div>
+  <!-- Content -->
+  <div style="position:relative;z-index:2;padding:46px 54px;flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+    <div>
+      <div class="lockup" style="margin-bottom:44px;">
+        <svg class="mk" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M16 3L4 10V22L16 29L28 22V10L16 3Z" stroke="#C9A96E" stroke-width="1.5" fill="rgba(201,169,110,0.04)"/>
+          <path d="M16 3L16 29M4 10L28 10" stroke="#C9A96E" stroke-width="1" opacity=".38"/>
+          <path d="M10 6.8L10 25.2M22 6.8L22 25.2" stroke="#C9A96E" stroke-width=".8" opacity=".2"/>
+        </svg>
+        <div class="wm wm-l wm-xl"><strong>Saharsh</strong> <span>Cabins</span></div>
+      </div>
+      <div class="cred" style="margin-bottom:30px;">
+        <div class="gdot"></div>
+        <span class="tag tag-g" style="font-size:10px;letter-spacing:.12em;">Lodging Conference 2025 · Phoenix</span>
+      </div>
+      <div class="h1 h1-xl c-linen" style="font-size:62px;margin-bottom:14px;">Brand<br>Guidelines<br><em class="i-gold">2026</em></div>
+      <p class="body body-l" style="max-width:380px;margin-top:12px;">The complete visual and verbal identity system for Saharsh Cabins — India's luxury modular hospitality manufacturer. This document governs all brand expressions, domestic and international.</p>
+    </div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;">
+      <div style="font-family:var(--serif);font-size:96px;font-weight:300;color:rgba(201,169,110,0.07);line-height:1;letter-spacing:-.02em;">2026</div>
+      <div style="text-align:right;padding-bottom:6px;display:flex;flex-direction:column;gap:3px;">
+        <span class="tag tag-g" style="font-size:9px;">Version 2.0 · Final</span>
+        <span class="tag tag-l" style="font-size:9px;">Confidential</span>
+        <span class="cap cap-g" style="font-size:10px;">saharsh.co</span>
+      </div>
+    </div>
+  </div>
+  <div class="pfoot pf-d">
+    <span class="cap cap-l">Saharsh Brand Guidelines 2026</span>
+    <span class="cap cap-l">01</span>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 2: BRAND STORY ═══════════ -->
+<div class="page">
+<div class="split">
+  <div class="col-l">
+    <div>
+      <div class="pn" style="margin-bottom:28px;">02</div>
+      <div class="tag tag-g">Brand Foundation</div>
+      <div class="h1 h1-lg c-linen" style="margin-top:8px;">Who<br>we <em class="i-gold">are.</em></div>
+      <div class="gbar"></div>
+      <p class="body body-l" style="font-size:11px;">We are not in the cabin business. We are in the luxury experience deployment business.</p>
+    </div>
+    <div>
+      <div class="rule rw" style="margin:18px 0;"></div>
+      <div class="lockup">
+        <svg class="mk" width="22" height="22" viewBox="0 0 32 32" fill="none">
+          <path d="M16 3L4 10V22L16 29L28 22V10L16 3Z" stroke="#C9A96E" stroke-width="1.5" fill="none"/>
+          <path d="M16 3L16 29M4 10L28 10" stroke="#C9A96E" stroke-width="1" opacity=".38"/>
+        </svg>
+        <div class="wm wm-l wm-md"><strong>Saharsh</strong> <span>Cabins</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-r" style="justify-content:center;gap:22px;">
+    <div style="border-left:2px solid var(--gold);padding-left:18px;">
+      <div class="tag tag-s" style="margin-bottom:8px;">Positioning statement</div>
+      <div style="font-family:var(--serif);font-size:20px;font-weight:300;line-height:1.45;color:var(--stone);">Saharsh Cabins is India's foremost luxury modular hospitality manufacturer — the only Indian company with validated international hospitality credentials.</div>
+    </div>
+    <div class="rule rs"></div>
+    <p class="body body-s">A unit we manufactured was showcased at the Lodging Conference 2025 in Phoenix — one of the world's most significant hospitality events. It passed international hospitality brand specifications and arrived 100% complete, shipped directly from our Bangalore facility. Our client is now operating in the US market.</p>
+    <p class="body body-s">That is not a marketing claim. It is a fact that no competitor can replicate. <strong>Our brand must reflect, in every detail, the tier we operate at.</strong></p>
+    <div style="background:var(--stone);border-radius:5px;padding:14px 16px;border:1px solid rgba(201,169,110,0.15);">
+      <div class="tag tag-g" style="margin-bottom:6px;">The one thing no competitor can say</div>
+      <div style="font-family:var(--serif);font-size:15px;font-weight:300;font-style:italic;color:var(--linen);line-height:1.5;">"We took a unit from our Bangalore factory floor to The Lodging Conference in Phoenix — and it passed every international hospitality specification they tested it against."</div>
+    </div>
+  </div>
+</div>
+<div class="pfoot pf-l">
+  <span class="cap cap-s">Saharsh Brand Guidelines · Brand Foundation</span>
+  <span class="cap cap-s">02</span>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 3: BRAND PILLARS ═══════════ -->
+<div class="page">
+<div class="full full-stone" style="padding-bottom:60px;">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:30px;">
+    <div>
+      <div class="pn">03</div>
+      <div class="tag tag-g" style="margin-top:6px;">Brand Architecture</div>
+      <div class="h1 h1-lg c-linen" style="margin-top:8px;">Three pillars.<br><em class="i-gold">One brand.</em></div>
+    </div>
+    <p class="body body-l" style="max-width:260px;padding-top:30px;font-size:11px;">Every piece of communication — from an Instagram caption to an international sales deck — must trace back to one of these three pillars. No exceptions.</p>
+  </div>
+  <div class="pillar-g" style="margin-bottom:16px;">
+    <div class="pillar">
+      <div class="pillar-n">01</div>
+      <div class="pillar-r"></div>
+      <div class="tag tag-g" style="margin-bottom:8px;">Primary</div>
+      <div class="pillar-t">Institutional Credibility</div>
+      <p class="pillar-b">"Trusted where the standards are highest." We have been validated against the most demanding international hospitality specifications in the world. Lead with it. In every context. Always. This credential collapses price objections and shortens sales cycles.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-n">02</div>
+      <div class="pillar-r"></div>
+      <div class="tag tag-g" style="margin-bottom:8px;">Primary</div>
+      <div class="pillar-t">Manufacturing Precision at Scale</div>
+      <p class="pillar-b">"Four facilities. One standard. No exceptions." Frame this as a capability statement, not a list of cities. We have genuine manufacturing infrastructure capable of delivering pan-India and internationally.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-n">03</div>
+      <div class="pillar-r"></div>
+      <div class="tag tag-g" style="margin-bottom:8px;">Primary</div>
+      <div class="pillar-t">Design-Forward Rapid Deployment</div>
+      <p class="pillar-b">"From blueprint to check-in in 10 weeks." Always frame speed in terms of revenue for the buyer — not construction efficiency. Every empty room before opening is lost money we help them recover.</p>
+    </div>
+  </div>
+  <div style="background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.18);border-radius:6px;padding:16px 20px;">
+    <div class="tag tag-g" style="margin-bottom:8px;">Brand promise — use verbatim</div>
+    <div style="font-family:var(--serif);font-size:16px;font-weight:300;font-style:italic;color:var(--linen);line-height:1.45;">"Built for the extraordinary. Delivered in weeks." — This is our tagline. It anchors every headline, every pitch, every communication. It is not optional.</div>
+  </div>
+</div>
+<div class="pfoot pf-d">
+  <span class="cap cap-l">Saharsh Brand Guidelines · Brand Architecture</span>
+  <span class="cap cap-l">03</span>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 4: COLOUR SYSTEM ═══════════ -->
+<div class="page">
+<div class="split">
+  <div class="col-l">
+    <div>
+      <div class="pn" style="margin-bottom:28px;">04</div>
+      <div class="tag tag-g">Colour System</div>
+      <div class="h1 h1-md c-linen" style="margin-top:8px;">A palette<br>built for<br><em class="i-gold">luxury.</em></div>
+      <div class="gbar"></div>
+      <p class="body body-l" style="font-size:11px;">Version 2.0 establishes a single unified palette. Warm Gold and Dark Stone are the only primary colours. There are no tiers, no variants, no exceptions.</p>
+    </div>
+    <div>
+      <div class="tag tag-g" style="margin-bottom:10px;">Colour roles</div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0;"></div><span class="cap cap-l" style="font-size:10px;">Warm Gold — accent, credential, CTA</span></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:10px;height:10px;border-radius:50%;background:#0F1B2D;border:1px solid rgba(201,169,110,0.2);flex-shrink:0;"></div><span class="cap cap-l" style="font-size:10px;">Dark Stone — dominant background</span></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:10px;height:10px;border-radius:50%;background:#1E2F45;border:1px solid rgba(201,169,110,0.15);flex-shrink:0;"></div><span class="cap cap-l" style="font-size:10px;">Stone Surface — card depth</span></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:10px;height:10px;border-radius:50%;background:#F5F2EC;border:1px solid rgba(201,169,110,0.2);flex-shrink:0;"></div><span class="cap cap-l" style="font-size:10px;">White Linen — neutral base</span></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:10px;height:10px;border-radius:50%;background:#3D5A3E;flex-shrink:0;"></div><span class="cap cap-l" style="font-size:10px;">Green Moss — eco accent only</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-r" style="background:var(--linen);">
+    <div class="tag tag-s" style="margin-bottom:16px;">Primary palette</div>
+    <div class="sw-row">
+      <div class="sw">
+        <div class="sw-block" style="background:var(--gold);"></div>
+        <div class="sw-name">Warm Gold</div>
+        <div class="sw-hex">#C9A96E</div>
+        <div class="sw-role">The luxury signal. Credential pills, CTAs, rule lines, icon fills, italic display text, stat numbers. Used as accent — never as a background except in the CTA band.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-block" style="background:var(--stone);"></div>
+        <div class="sw-name">Dark Stone</div>
+        <div class="sw-hex">#0F1B2D</div>
+        <div class="sw-role">The authority anchor. Navigation, hero, advantage section, contact, footer. Primary text on linen backgrounds. The brand's dominant presence.</div>
+      </div>
+    </div>
+    <div class="tag tag-s" style="margin-bottom:16px;">Supporting palette</div>
+    <div class="sw-row" style="margin-bottom:18px;">
+      <div class="sw">
+        <div class="sw-block" style="background:#F5F2EC;border:1px solid #ddd8d0;"></div>
+        <div class="sw-name">White Linen</div>
+        <div class="sw-hex">#F5F2EC</div>
+        <div class="sw-role">Primary neutral. Page backgrounds, section alternation, card surfaces. Warmer than pure white — never use #FFFFFF as a page background.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-block" style="background:var(--stone3);"></div>
+        <div class="sw-name">Stone Surface</div>
+        <div class="sw-hex">#1E2F45</div>
+        <div class="sw-role">Secondary dark. Card backgrounds within dark sections. Never use as a standalone page background — only as depth layering on Stone.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-block" style="background:var(--moss);"></div>
+        <div class="sw-name">Green Moss</div>
+        <div class="sw-hex">#3D5A3E</div>
+        <div class="sw-role">Sustainability accent only. Used in the eco band on the website and eco-resort collateral. Never as a primary colour or section background.</div>
+      </div>
+    </div>
+    <div style="background:var(--stone);border-radius:5px;padding:14px 16px;border:1px solid rgba(201,169,110,0.15);">
+      <div class="tag tag-g" style="margin-bottom:7px;">What happened to Orange Clay?</div>
+      <p class="body body-l" style="font-size:11px;">Orange Clay (#C8622A) was the original Saharsh brand colour. In Version 2.0, it is formally retired from active use. It may be referenced in our brand heritage story but does not appear in any live collateral — digital or print. <strong style="color:rgba(245,242,236,0.75);">Warm Gold replaces its role as the primary accent, at a higher luxury tier.</strong></p>
+    </div>
+  </div>
+</div>
+<div class="pfoot pf-l">
+  <span class="cap cap-s">Saharsh Brand Guidelines · Colour System</span>
+  <span class="cap cap-s">04</span>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 5: TYPOGRAPHY ═══════════ -->
+<div class="page">
+<div class="split">
+  <div class="col-l">
+    <div>
+      <div class="pn" style="margin-bottom:28px;">05</div>
+      <div class="tag tag-g">Typography</div>
+      <div class="h1 h1-md c-linen" style="margin-top:8px;">Two fonts.<br><em class="i-gold">One voice.</em></div>
+      <div class="gbar"></div>
+      <p class="body body-l" style="font-size:11px;">Cormorant Garamond brings editorial luxury and authority. Outfit brings clean, modern clarity. Together they create a voice that is sophisticated but never cold — precise but never corporate.</p>
+    </div>
+    <div>
+      <div class="tag tag-g" style="margin-bottom:10px;">Weights in use</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="font-family:var(--serif);font-size:13px;font-weight:300;color:var(--linen);">Cormorant Light 300</div>
+        <div style="font-family:var(--serif);font-size:13px;font-weight:400;color:var(--linen);">Cormorant Regular 400</div>
+        <div style="font-family:var(--serif);font-size:13px;font-weight:300;font-style:italic;color:var(--gold);">Cormorant Light Italic</div>
+        <div style="font-family:var(--sans);font-size:12px;font-weight:300;color:rgba(245,242,236,0.5);">Outfit Light 300</div>
+        <div style="font-family:var(--sans);font-size:12px;font-weight:400;color:rgba(245,242,236,0.6);">Outfit Regular 400</div>
+        <div style="font-family:var(--sans);font-size:12px;font-weight:500;color:rgba(245,242,236,0.75);">Outfit Medium 500</div>
+        <div style="font-family:var(--sans);font-size:12px;font-weight:600;color:rgba(245,242,236,0.9);">Outfit SemiBold 600</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-r" style="background:var(--linen);">
+    <div class="tag tag-s" style="margin-bottom:18px;">Type scale — live specimens</div>
+    <div class="ts">
+      <div class="ts-meta"><span class="ts-role">Display — hero</span><span class="ts-spec">Cormorant · Light 300 · 56–64px · -0.01em</span></div>
+      <div style="font-family:var(--serif);font-size:46px;font-weight:300;line-height:1.06;color:var(--stone);">Built for the <em style="font-style:italic;color:var(--gold);">extraordinary.</em></div>
+    </div>
+    <div class="ts">
+      <div class="ts-meta"><span class="ts-role">Section headline</span><span class="ts-spec">Cormorant · Light 300 · 38–42px</span></div>
+      <div style="font-family:var(--serif);font-size:34px;font-weight:300;line-height:1.1;color:var(--stone);">The standard that <em style="font-style:italic;color:var(--gold);">earns</em> trust.</div>
+    </div>
+    <div class="ts">
+      <div class="ts-meta"><span class="ts-role">Card / subheading</span><span class="ts-spec">Cormorant · Regular 400 · 20–24px</span></div>
+      <div style="font-family:var(--serif);font-size:21px;font-weight:400;color:var(--stone);">The Lodging Conference, Phoenix</div>
+    </div>
+    <div class="ts">
+      <div class="ts-meta"><span class="ts-role">Eyebrow label</span><span class="ts-spec">Outfit · SemiBold 600 · 9–10px · +0.18em</span></div>
+      <div style="font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);">International · 2025</div>
+    </div>
+    <div class="ts">
+      <div class="ts-meta"><span class="ts-role">Body copy</span><span class="ts-spec">Outfit · Light 300 · 13–14px · 1.78 line-height</span></div>
+      <div style="font-family:var(--sans);font-size:13px;font-weight:300;line-height:1.78;color:#4A5568;">Precision-engineered luxury retreats for the world's most discerning hospitality brands. Four manufacturing facilities. 10–12 week delivery. Zero compromise on finish or consistency.</div>
+    </div>
+    <div class="ts">
+      <div class="ts-meta"><span class="ts-role">CTA & navigation</span><span class="ts-spec">Outfit · SemiBold 600 · 11–12px · +0.08em</span></div>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+        <div style="background:var(--gold);color:var(--stone);padding:10px 20px;border-radius:3px;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;">View our work</div>
+        <div style="color:var(--gold);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;">Read the full story →</div>
+        <div style="color:rgba(15,27,45,0.4);border:1px solid rgba(15,27,45,0.15);padding:9px 16px;border-radius:3px;font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:.06em;">Ghost button</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pfoot pf-l">
+  <span class="cap cap-s">Saharsh Brand Guidelines · Typography</span>
+  <span class="cap cap-s">05</span>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 6: LOGO USAGE ═══════════ -->
+<div class="page">
+<div class="split">
+  <div class="col-l">
+    <div>
+      <div class="pn" style="margin-bottom:28px;">06</div>
+      <div class="tag tag-g">Logo</div>
+      <div class="h1 h1-md c-linen" style="margin-top:8px;">The Saharsh<br><em class="i-gold">mark.</em></div>
+      <div class="gbar"></div>
+      <p class="body body-l" style="font-size:11px;">The logo consists of a geometric modular mark — referencing the precision and modularity of our manufacturing — paired with the wordmark "Saharsh" in SemiBold and "Cabins" in Light weight.</p>
+    </div>
+    <div>
+      <div class="tag tag-g" style="margin-bottom:9px;">Clear space rule</div>
+      <p class="body body-l" style="font-size:11px;">Maintain clear space equal to the height of the "S" in Saharsh on all four sides. The logo must never be crowded, reversed in unauthorised colours, or placed on a busy photographic background without a dark overlay.</p>
+    </div>
+  </div>
+  <div class="col-r" style="background:var(--linen);">
+    <div class="tag tag-s" style="margin-bottom:14px;">Approved applications</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;">
+      <div>
+        <div class="ld ld-st">
+          <div class="lockup"><svg class="mk" width="22" height="22" viewBox="0 0 32 32" fill="none"><path d="M16 3L4 10V22L16 29L28 22V10L16 3Z" stroke="#C9A96E" stroke-width="1.5" fill="rgba(201,169,110,0.04)"/><path d="M16 3L16 29M4 10L28 10" stroke="#C9A96E" stroke-width="1" opacity=".38"/></svg><div class="wm wm-l wm-md"><strong>Saharsh</strong> <span>Cabins</span></div></div>
+        </div>
+        <div class="cap cap-s" style="margin-top:5px;">✓ Dark Stone — primary digital use</div>
+      </div>
+      <div>
+        <div class="ld ld-li">
+          <div class="lockup"><svg class="mk" width="22" height="22" viewBox="0 0 32 32" fill="none"><path d="M16 3L4 10V22L16 29L28 22V10L16 3Z" stroke="#C9A96E" stroke-width="1.5" fill="none"/><path d="M16 3L16 29M4 10L28 10" stroke="#C9A96E" stroke-width="1" opacity=".38"/></svg><div class="wm wm-s wm-md"><strong>Saharsh</strong> <span>Cabins</span></div></div>
+        </div>
+        <div class="cap cap-s" style="margin-top:5px;">✓ White Linen — print primary use</div>
+      </div>
+      <div>
+        <div class="ld ld-g">
+          <div class="lockup"><svg class="mk" width="22" height="22" viewBox="0 0 32 32" fill="none"><path d="M16 3L4 10V22L16 29L28 22V10L16 3Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.08)"/><path d="M16 3L16 29M4 10L28 10" stroke="white" stroke-width="1" opacity=".38"/></svg><div class="wm wm-xl" style="color:white;font-size:15px;"><strong>Saharsh</strong> <span>Cabins</span></div></div>
+        </div>
+        <div class="cap cap-s" style="margin-top:5px;">✓ Warm Gold — CTA band use</div>
+      </div>
+      <div>
+        <div class="ld ld-wh">
+          <div class="lockup"><svg class="mk" width="22" height="22" viewBox="0 0 32 32" fill="none"><path d="M16 3L4 10V22L16 29L28 22V10L16 3Z" stroke="#C9A96E" stroke-width="1.5" fill="none"/><path d="M16 3L16 29M4 10L28 10" stroke="#C9A96E" stroke-width="1" opacity=".38"/></svg><div class="wm wm-s wm-md"><strong>Saharsh</strong> <span>Cabins</span></div></div>
+        </div>
+        <div class="cap cap-s" style="margin-top:5px;">✓ Pure White — co-branding use</div>
+      </div>
+    </div>
+    <div class="tag tag-s" style="margin-bottom:12px;">Logo misuse — never</div>
+    <div class="mis-g">
+      <div class="mis">
+        <div class="mis-d"><div style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--gold);transform:scaleX(1.5);">Saharsh</div></div>
+        <div class="mis-l"><span class="mis-x">✗</span><span class="mis-t">Do not distort</span></div>
+      </div>
+      <div class="mis">
+        <div class="mis-d"><div style="font-family:var(--sans);font-size:14px;font-weight:600;color:#5566CC;">Saharsh Cabins</div></div>
+        <div class="mis-l"><span class="mis-x">✗</span><span class="mis-t">Do not recolour</span></div>
+      </div>
+      <div class="mis">
+        <div class="mis-d"><div style="font-family:var(--sans);font-size:13px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.2em;">SAHARSH</div></div>
+        <div class="mis-l"><span class="mis-x">✗</span><span class="mis-t">Do not all-cap wordmark</span></div>
+      </div>
+      <div class="mis">
+        <div class="mis-d"><div style="font-family:var(--sans);font-size:12px;font-weight:600;color:var(--gold);text-shadow:0 0 8px rgba(201,169,110,0.8);">Saharsh Cabins</div></div>
+        <div class="mis-l"><span class="mis-x">✗</span><span class="mis-t">Do not add effects/glow</span></div>
+      </div>
+      <div class="mis">
+        <div class="mis-d"><div style="font-family:'Georgia',serif;font-size:14px;font-weight:700;color:var(--gold);">Saharsh Cabins</div></div>
+        <div class="mis-l"><span class="mis-x">✗</span><span class="mis-t">Do not change font</span></div>
+      </div>
+      <div class="mis">
+        <div class="mis-d" style="background:#FFE4CC;"><div style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--stone);">Saharsh Cabins</div></div>
+        <div class="mis-l"><span class="mis-x">✗</span><span class="mis-t">Do not use on orange/warm bg</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pfoot pf-l">
+  <span class="cap cap-s">Saharsh Brand Guidelines · Logo</span>
+  <span class="cap cap-s">06</span>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 7: BRAND VOICE ═══════════ -->
+<div class="page">
+<div class="split">
+  <div class="col-l">
+    <div>
+      <div class="pn" style="margin-bottom:28px;">07</div>
+      <div class="tag tag-g">Brand Voice</div>
+      <div class="h1 h1-md c-linen" style="margin-top:8px;">How we<br><em class="i-gold">speak.</em></div>
+      <div class="gbar"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:9px;">
+      <div style="background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.18);border-radius:4px;padding:10px 12px;">
+        <div class="tag tag-g" style="margin-bottom:4px;font-size:9px;">Confident</div>
+        <div class="body body-l" style="font-size:10px;">We state facts. We don't qualify with unnecessary hedges. We have earned the right to be direct.</div>
+      </div>
+      <div style="background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.18);border-radius:4px;padding:10px 12px;">
+        <div class="tag tag-g" style="margin-bottom:4px;font-size:9px;">Precise</div>
+        <div class="body body-l" style="font-size:10px;">Specific numbers over vague claims. "10–12 weeks" not "rapid". "11,000 sq. ft." not "large".</div>
+      </div>
+      <div style="background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.18);border-radius:4px;padding:10px 12px;">
+        <div class="tag tag-g" style="margin-bottom:4px;font-size:9px;">Elevated</div>
+        <div class="body body-l" style="font-size:10px;">We speak the language of luxury hospitality. "Retreats" not "cabins". "Handover" not "delivery". "Precision" not "quality".</div>
+      </div>
+      <div style="background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.18);border-radius:4px;padding:10px 12px;">
+        <div class="tag tag-g" style="margin-bottom:4px;font-size:9px;">Never</div>
+        <div class="body body-l" style="font-size:10px;">Boastful · Generic · Apologetic about premium pricing · "Leading" or "world-class" without proof</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-r" style="background:var(--linen);">
+    <div class="tag tag-s" style="margin-bottom:16px;">Voice in practice — do and don't</div>
+    <div class="voice">
+      <div class="vl vl-do">✓ Say this</div>
+      <div class="vex vex-do">"We are the only Indian manufacturer whose work has been showcased at the Lodging Conference in Phoenix — and passed international hospitality brand specifications on first evaluation."</div>
+    </div>
+    <div class="voice">
+      <div class="vl vl-dn">✗ Not this</div>
+      <div class="vex vex-dn">"We are a leading manufacturer of high-quality modular cabins with 15 years of experience delivering premium solutions to discerning clients."</div>
+    </div>
+    <div class="voice">
+      <div class="vl vl-do">✓ Say this</div>
+      <div class="vex vex-do">"Your property is guest-ready in 10–12 weeks. Every empty room before then is lost revenue. We close that gap faster than any alternative."</div>
+    </div>
+    <div class="voice">
+      <div class="vl vl-dn">✗ Not this</div>
+      <div class="vex vex-dn">"Our quick turnaround times and competitive pricing make us the best choice for your modular construction needs."</div>
+    </div>
+    <div class="voice">
+      <div class="vl vl-do">✓ Say this</div>
+      <div class="vex vex-do">"We are not the cheapest option in modular. We are the right option for operators who cannot afford to compromise on guest experience."</div>
+    </div>
+    <div class="voice" style="margin-bottom:0;">
+      <div class="vl vl-dn">✗ Not this</div>
+      <div class="vex vex-dn">"We offer affordable modular solutions for all budgets without compromising on quality."</div>
+    </div>
+  </div>
+</div>
+<div class="pfoot pf-l">
+  <span class="cap cap-s">Saharsh Brand Guidelines · Brand Voice</span>
+  <span class="cap cap-s">07</span>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 8: DIGITAL UI SYSTEM ═══════════ -->
+<div class="page">
+<div class="full full-stone" style="padding-bottom:60px;">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:26px;">
+    <div>
+      <div class="pn">08</div>
+      <div class="tag tag-g" style="margin-top:6px;">Digital UI System</div>
+      <div class="h1 h1-lg c-linen" style="margin-top:8px;">Website<br><em class="i-gold">components.</em></div>
+    </div>
+    <p class="body body-l" style="max-width:240px;padding-top:28px;font-size:11px;">These are the core UI elements your developer will use. Every component follows the same colour rules: Stone backgrounds, Gold accents, Linen text, Outfit labels.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+    <div class="ui-card">
+      <div class="tag tag-g" style="margin-bottom:12px;">Credential pill — mandatory above hero</div>
+      <div class="cred" style="margin-bottom:8px;">
+        <div class="gdot"></div>
+        <span class="tag tag-g" style="font-size:10px;letter-spacing:.11em;">Lodging Conference 2025 · Phoenix</span>
+      </div>
+      <div class="cap cap-l" style="font-size:9px;">bg: rgba(201,169,110,0.14) · border: rgba(201,169,110,0.32) · dot: #C9A96E · text: #C9A96E Outfit 600 · radius: 3px</div>
+    </div>
+    <div class="ui-card">
+      <div class="tag tag-g" style="margin-bottom:12px;">Stats strip — hero bottom</div>
+      <div class="ss" style="border-radius:4px;margin-bottom:8px;">
+        <div class="sc"><div class="sn">15+</div><div class="sl">Years of precision</div></div>
+        <div class="sc"><div class="sn">10–12w</div><div class="sl">Brief to handover</div></div>
+        <div class="sc"><div class="sn">4</div><div class="sl">Facilities</div></div>
+      </div>
+      <div class="cap cap-l" style="font-size:9px;">bg: #162236 · number: Cormorant 400 22px gold · label: Outfit 400 9px 0.06em upper</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;">
+    <div class="ui-card">
+      <div class="tag tag-g" style="margin-bottom:12px;">Button system</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="background:var(--gold);color:var(--stone);padding:10px 16px;border-radius:3px;font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-align:center;">Primary CTA</div>
+        <div style="background:transparent;color:rgba(245,242,236,0.45);padding:9px 16px;border-radius:3px;border:1px solid rgba(245,242,236,0.14);font-family:var(--sans);font-size:10px;letter-spacing:.06em;text-align:center;">Ghost button</div>
+        <div style="color:var(--gold);font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-align:center;">Text link →</div>
+      </div>
+    </div>
+    <div class="ui-card">
+      <div class="tag tag-g" style="margin-bottom:12px;">Tags & labels</div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <div class="ui-tag ut-g">Lodging Conference 2025</div>
+        <div class="ui-tag ut-g" style="font-size:9px;">International · 2025</div>
+        <div class="ui-tag ut-m">Eco-certified</div>
+        <div class="ui-tag ut-s">Global Alliances</div>
+      </div>
+    </div>
+    <div class="ui-card">
+      <div class="tag tag-g" style="margin-bottom:12px;">Navigation bar</div>
+      <div style="background:var(--stone);border-radius:3px;padding:9px 12px;margin-bottom:7px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-family:var(--sans);font-size:11px;font-weight:600;color:var(--linen);"><strong>Saharsh</strong> <span style="font-weight:300;">Cabins</span></div>
+          <div style="display:flex;gap:9px;align-items:center;">
+            <span style="font-size:9px;color:rgba(245,242,236,0.35);">Projects</span>
+            <span style="font-size:9px;color:var(--gold);border:1px solid rgba(201,169,110,0.35);padding:2px 7px;border-radius:2px;">Start</span>
+          </div>
+        </div>
+      </div>
+      <div class="cap cap-l" style="font-size:9px;">bg: #0F1B2D · sticky · gold border-bottom: rgba(201,169,110,0.2)</div>
+    </div>
+  </div>
+  <div class="ui-card">
+    <div class="tag tag-g" style="margin-bottom:10px;">Section background sequence — web page top to bottom</div>
+    <div style="display:flex;gap:0;border-radius:4px;overflow:hidden;height:30px;">
+      <div style="flex:2;background:var(--stone);display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;color:rgba(201,169,110,0.45);letter-spacing:.08em;white-space:nowrap;">Hero · Nav · Contact</span></div>
+      <div style="flex:1.5;background:var(--linen);display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;color:rgba(15,27,45,0.38);letter-spacing:.08em;">Social Proof · FAQ</span></div>
+      <div style="flex:1.5;background:var(--linen2);display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;color:rgba(15,27,45,0.38);letter-spacing:.08em;">Products</span></div>
+      <div style="flex:1;background:var(--stone3);display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;color:rgba(201,169,110,0.4);letter-spacing:.08em;">Advantage</span></div>
+      <div style="flex:0.8;background:var(--gold);display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;color:rgba(15,27,45,0.65);letter-spacing:.08em;">CTA</span></div>
+      <div style="flex:0.7;background:var(--moss);display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;color:rgba(245,242,236,0.55);letter-spacing:.08em;">Eco</span></div>
+      <div style="flex:1;background:var(--stone2);display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;color:rgba(201,169,110,0.38);letter-spacing:.08em;">Footer</span></div>
+    </div>
+  </div>
+</div>
+<div class="pfoot pf-d">
+  <span class="cap cap-l">Saharsh Brand Guidelines · Digital UI System</span>
+  <span class="cap cap-l">08</span>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 9: MESSAGING SYSTEM ═══════════ -->
+<div class="page">
+<div class="split">
+  <div class="col-l">
+    <div>
+      <div class="pn" style="margin-bottom:28px;">09</div>
+      <div class="tag tag-g">Messaging</div>
+      <div class="h1 h1-md c-linen" style="margin-top:8px;">The words<br>that <em class="i-gold">define us.</em></div>
+      <div class="gbar"></div>
+      <p class="body body-l" style="font-size:11px;">These are approved, locked messaging assets. They are not suggestions. Use them verbatim in pitches, decks, social posts, and collateral.</p>
+    </div>
+    <div>
+      <div class="tag tag-g" style="margin-bottom:8px;">The credential anchor</div>
+      <div style="background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.2);border-radius:4px;padding:10px 12px;">
+        <div style="font-family:var(--serif);font-size:13px;font-weight:300;font-style:italic;color:var(--linen);line-height:1.5;">"We took a unit from our Bangalore factory floor to The Lodging Conference in Phoenix — and it passed every international hospitality specification they tested it against."</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-r" style="background:var(--linen);">
+    <div class="tag tag-s" style="margin-bottom:16px;">Approved taglines</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px;">
+      <div style="background:var(--stone);border-radius:5px;padding:14px 16px;border:1px solid rgba(201,169,110,0.15);">
+        <div class="tag tag-g" style="margin-bottom:6px;font-size:9px;">Primary tagline — mandatory</div>
+        <div style="font-family:var(--serif);font-size:20px;font-weight:300;color:var(--linen);">Built for the <em style="color:var(--gold);">extraordinary.</em> Delivered in weeks.</div>
+      </div>
+      <div style="background:var(--linen2);border-radius:5px;padding:12px 14px;border:1px solid rgba(15,27,45,0.07);">
+        <div class="tag tag-s" style="margin-bottom:5px;font-size:9px;">B2B hospitality context</div>
+        <div style="font-family:var(--serif);font-size:16px;font-weight:300;color:var(--stone);">Where institutional hospitality standards meet Indian manufacturing precision.</div>
+      </div>
+      <div style="background:var(--linen2);border-radius:5px;padding:12px 14px;border:1px solid rgba(15,27,45,0.07);">
+        <div class="tag tag-s" style="margin-bottom:5px;font-size:9px;">Footer / signoff</div>
+        <div style="font-family:var(--serif);font-size:16px;font-weight:300;color:var(--stone);">Manufactured in India. Trusted by the world.</div>
+      </div>
+    </div>
+    <div class="tag tag-s" style="margin-bottom:12px;">BNI 60-second elevator pitch — approved script</div>
+    <div style="background:var(--stone);border-radius:5px;padding:14px 16px;border:1px solid rgba(201,169,110,0.12);">
+      <p class="body body-l" style="font-size:11px;">"My name is Harshad Chandak, and I am the founder of Saharsh Cabins. We manufacture luxury modular retreats — boutique resort cottages, private villas, and hospitality-grade cabins — built in our factories and installed on your site in 10 weeks. Last year, a unit we manufactured in Bangalore was showcased at the Lodging Conference in Phoenix, Arizona — one of the world's most significant hospitality events. It passed international hospitality brand specifications and arrived 100% complete. My ideal referral is a hospitality developer planning a boutique resort, or a landowner building a premium farmhouse or Airbnb. <strong style="color:rgba(245,242,236,0.82);">Saharsh Cabins. Built in India. Trusted internationally.</strong>"</p>
+    </div>
+  </div>
+</div>
+<div class="pfoot pf-l">
+  <span class="cap cap-s">Saharsh Brand Guidelines · Messaging System</span>
+  <span class="cap cap-s">09</span>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 10: PHOTOGRAPHY & IMAGERY ═══════════ -->
+<div class="page">
+<div class="full full-linen2" style="padding-bottom:60px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:36px;">
+    <div>
+      <div class="pn pn-dk">10</div>
+      <div class="tag tag-s" style="margin-top:6px;">Photography</div>
+      <div class="h1 h1-lg c-stone" style="margin-top:8px;">Images that<br><em class="i-gold">speak first.</em></div>
+      <div class="gbar"></div>
+      <p class="body body-s">Photography is the most powerful brand signal after the colour palette. Every image used in Saharsh collateral must be consistent with the luxury hospitality tier we operate at. Stock photography is never acceptable.</p>
+    </div>
+    <div style="padding-top:6px;">
+      <div class="tag tag-s" style="margin-bottom:14px;">Photography direction</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="background:var(--white);border-radius:5px;padding:12px 14px;border:1px solid rgba(15,27,45,0.08);">
+          <div class="tag tag-g" style="margin-bottom:5px;font-size:9px;">✓ Shoot for this</div>
+          <div class="body body-s" style="font-size:11px;">Wide architectural shots at golden hour. Close-up material and finish details. Interior mood shots with warm ambient light. Behind-the-scenes manufacturing precision — slow, deliberate, close-up. Project walkthroughs from raw site to final handover.</div>
+        </div>
+        <div style="background:var(--white);border-radius:5px;padding:12px 14px;border:1px solid rgba(15,27,45,0.08);">
+          <div class="tag tag-s" style="margin-bottom:5px;font-size:9px;color:#C84242;">✗ Never use</div>
+          <div class="body body-s" style="font-size:11px;">Smiling salesperson photos. Generic modular construction site imagery. Bright, oversaturated property developer photography. Clip art or AI-generated imagery. Photos of budget or utility units in any context.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+    <div style="background:var(--stone);border-radius:6px;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;border:1px solid rgba(201,169,110,0.15);">
+      <div style="font-size:24px;color:rgba(201,169,110,0.2);">⬜</div>
+      <div class="tag tag-g" style="font-size:9px;text-align:center;">Hero shot<br>Best completed project</div>
+    </div>
+    <div style="background:var(--stone2);border-radius:6px;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;border:1px solid rgba(201,169,110,0.12);">
+      <div style="font-size:24px;color:rgba(201,169,110,0.15);">⬜</div>
+      <div class="tag tag-g" style="font-size:9px;text-align:center;">Detail shot<br>Materials & finishes</div>
+    </div>
+    <div style="background:var(--stone3);border-radius:6px;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;border:1px solid rgba(201,169,110,0.1);">
+      <div style="font-size:24px;color:rgba(201,169,110,0.12);">⬜</div>
+      <div class="tag tag-g" style="font-size:9px;text-align:center;">Manufacturing<br>Precision & process</div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--stone);border-radius:6px;padding:16px 20px;border:1px solid rgba(201,169,110,0.15);">
+    <div class="tag tag-g" style="margin-bottom:8px;">Priority shoot list — commission these first</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div class="body body-l" style="font-size:11px;">① Qbinn Tusker — full architectural photography series</div>
+      <div class="body body-l" style="font-size:11px;">② Goa resort — aerial and cottage detail shots</div>
+      <div class="body body-l" style="font-size:11px;">③ Bangalore factory — manufacturing process series</div>
+      <div class="body body-l" style="font-size:11px;">④ Phoenix showcase unit — the Lodging Conference story visual</div>
+    </div>
+  </div>
+</div>
+<div class="pfoot pf-l2">
+  <span class="cap cap-s">Saharsh Brand Guidelines · Photography</span>
+  <span class="cap cap-s">10</span>
+</div>
+</div>
+
+<!-- ═══════════ PAGE 11: BACK COVER ═══════════ -->
+<div class="page">
+<div style="background:var(--stone);min-height:210mm;display:flex;flex-direction:column;position:relative;overflow:hidden;">
+  <div style="position:absolute;right:-80px;top:-80px;width:380px;height:380px;border:1px solid rgba(201,169,110,0.06);border-radius:50%;"></div>
+  <div style="position:absolute;right:-30px;top:-30px;width:260px;height:260px;border:1px solid rgba(201,169,110,0.04);border-radius:50%;"></div>
+  <div style="position:absolute;left:-80px;bottom:-80px;width:280px;height:280px;border:1px solid rgba(201,169,110,0.04);border-radius:50%;"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.02) 1px,transparent 1px);background-size:56px 56px;"></div>
+  <div style="position:relative;z-index:2;padding:46px 54px;flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="lockup">
+        <svg class="mk" width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <path d="M16 3L4 10V22L16 29L28 22V10L16 3Z" stroke="#C9A96E" stroke-width="1.5" fill="rgba(201,169,110,0.04)"/>
+          <path d="M16 3L16 29M4 10L28 10" stroke="#C9A96E" stroke-width="1" opacity=".38"/>
+          <path d="M10 6.8L10 25.2M22 6.8L22 25.2" stroke="#C9A96E" stroke-width=".8" opacity=".2"/>
+        </svg>
+        <div class="wm wm-l wm-xl"><strong>Saharsh</strong> <span>Cabins</span></div>
+      </div>
+      <div class="cred">
+        <div class="gdot"></div>
+        <span class="tag tag-g" style="font-size:10px;letter-spacing:.11em;">Lodging Conference 2025 · Phoenix</span>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <div class="h1 h1-xl c-linen" style="font-size:52px;margin-bottom:14px;">Built for the<br><em class="i-gold">extraordinary.</em><br>Delivered in weeks.</div>
+      <div style="width:40px;height:1px;background:rgba(201,169,110,0.28);margin:0 auto 14px;"></div>
+      <div class="tag tag-g" style="font-size:9px;letter-spacing:.14em;">Brand Guidelines 2026 · Version 2.0 · Single Unified Brand</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid rgba(201,169,110,0.1);padding-top:22px;">
+      <div>
+        <div class="tag tag-g" style="margin-bottom:6px;font-size:9px;">Contact</div>
+        <div class="body body-l" style="font-size:11px;">harshad@saharsh.co</div>
+        <div class="body body-l" style="font-size:11px;">sales@saharsh.co</div>
+        <div class="body body-l" style="font-size:11px;">+91 701 949 5021</div>
+      </div>
+      <div>
+        <div class="tag tag-g" style="margin-bottom:6px;font-size:9px;">Headquarters</div>
+        <div class="body body-l" style="font-size:11px;">49/2, Sarjapur Attibele Road</div>
+        <div class="body body-l" style="font-size:11px;">Near MRPL Petrol Pump</div>
+        <div class="body body-l" style="font-size:11px;">Bangalore 562125, India</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="tag tag-g" style="margin-bottom:6px;font-size:9px;">Digital presence</div>
+        <div class="body body-l" style="font-size:11px;">saharsh.co</div>
+        <div class="body body-l" style="font-size:11px;">@saharshcabins</div>
+        <div class="body body-l" style="font-size:11px;">linkedin.com/company/saharshcabins</div>
+      </div>
+    </div>
+  </div>
+  <div class="pfoot pf-d">
+    <span class="cap cap-l">Saharsh Brand Guidelines 2026 · Confidential · saharsh.co</span>
+    <span class="cap cap-l">11</span>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
