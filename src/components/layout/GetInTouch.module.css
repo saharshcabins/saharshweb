@@ -208,7 +208,7 @@
 /* ──────────────────────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .formSection {
-    padding: 100px 5% 80px;
+    padding: 80px 5%;
     scroll-margin-top: 100px;
   }
 
@@ -219,7 +219,7 @@
 
 @media (max-width: 560px) {
   .formSection {
-    padding: 100px 4% 64px;
+    padding: 80px 4%;
     scroll-margin-top: 100px;
   }
 

@@ -36,7 +36,7 @@ const QuoteSection = () => {
     >
       {/* Background + main content */}
       <motion.div
-        className="px-[7%] bg-cover py-[7%] bg-center bg-no-repeat flex flex-row items-center justify-between relative"
+        className="px-[7%] bg-cover py-[60px] lg:py-[96px] bg-center bg-no-repeat flex flex-row items-center justify-between relative"
         style={{ backgroundImage: "url('/assets/quote/quote_bg.webp')" }}
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}

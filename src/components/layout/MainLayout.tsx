@@ -28,9 +28,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
       <NewHeroSection />
       <OurWorkSpeaks />
       <div className="flex flex-col">
-        <div className="py-16">
-          <CabinSection />
-        </div>
+        <CabinSection />
         <CabinSlideShow />
         <SaharshAdvantage />
         <QuoteSection />

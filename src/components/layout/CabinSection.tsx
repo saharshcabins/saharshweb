@@ -176,7 +176,7 @@ const CabinSection = () => {
       <section
         id="luxury-you-can-feel"
         data-section="luxury-you-can-feel"
-        className="text-center leading-[1.2] flex flex-col gap-8 items-center"
+        className="text-center leading-[1.2] flex flex-col gap-8 items-center py-[64px] lg:py-[96px]"
       >
         <div className="flex flex-col gap-2 pb-4">
           <p className="eyebrow-label">Craftsmanship</p>

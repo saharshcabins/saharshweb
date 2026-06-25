@@ -47,7 +47,7 @@ const OurProcessNew: React.FC = () => {
     <section
       id="delivery-process"
       data-section="delivery-process"
-      className="bg-[var(--text-dark)] px-4 py-12 md:px-[7%] md:py-[7%]"
+      className="bg-[var(--text-dark)] px-4 py-[60px] md:px-[7%] md:py-[80px] lg:py-[96px]"
     >
       {/* Header */}
       <div className="flex flex-col justify-center gap-4 w-full mb-8 md:mb-16">

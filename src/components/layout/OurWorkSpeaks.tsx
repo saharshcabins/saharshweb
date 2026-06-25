@@ -64,7 +64,7 @@ const OurWorkSpeaks: React.FC = () => {
       id="our-work-speaks"
       data-section="our-work-speaks"
       ref={sectionRef}
-      className="our-work-speaks-section px-[7%] pt-[60px] pb-[60px] md:pt-[80px] md:pb-[72px] lg:pt-[96px] lg:pb-[80px]"
+      className="our-work-speaks-section px-[7%] pt-[60px] pb-[60px] md:pt-[80px] md:pb-[80px] lg:pt-[96px] lg:pb-[96px]"
       style={{
         width: "100%",
         backgroundColor: "var(--text-dark, #0f1b26)",

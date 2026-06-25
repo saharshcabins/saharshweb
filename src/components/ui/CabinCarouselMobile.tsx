@@ -62,7 +62,7 @@ const CabinCarouselMobile = () => {
     <section
       id="signature-collections"
       data-section="signature-collections"
-      className="flex flex-col w-full items-center text-center gap-8  overflow-hidden"
+      className="flex flex-col w-full items-center text-center gap-8 overflow-hidden py-[60px]"
     >
       <p className="eyebrow-label">Signature Collection</p>
       <MultiColorTextMobile

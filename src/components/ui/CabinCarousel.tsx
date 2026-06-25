@@ -60,7 +60,7 @@ const CabinCarousel = () => {
     <section
       id="signature-collections"
       data-section="signature-collections"
-      className="flex flex-col items-center text-center gap-8 min-h-screen overflow-hidden"
+      className="flex flex-col items-center text-center gap-8 min-h-screen overflow-hidden py-[80px] lg:py-[96px]"
     >
       <p className="eyebrow-label">Signature Collection</p>
       <MultiColorText
