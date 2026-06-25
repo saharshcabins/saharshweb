@@ -384,7 +384,7 @@ export default function AboutPage() {
 
       {/* ── MILESTONES — compact timeline ─────────────────────────────────── */}
       <section
-        className="px-8 lg:px-[135px] py-16 lg:py-20 relative overflow-hidden"
+        className="px-8 lg:px-[135px] py-10 lg:py-20 relative overflow-hidden"
         style={{ background: "var(--text-dark)" }}
       >
         {/* Section heading */}
@@ -544,7 +544,7 @@ export default function AboutPage() {
                     fontSize="15px"
                     weight="bold"
                     color="light"
-                    className="mb-1 leading-snug"
+                    className="mb-2 leading-snug"
                   >
                     {m.title}
                   </TextBuilderMobile>
@@ -556,7 +556,6 @@ export default function AboutPage() {
                   >
                     {m.description}
                   </TextBuilderMobile>
-                  <div className="h-8"></div>
                 </div>
               </FadeUp>
             ))}
