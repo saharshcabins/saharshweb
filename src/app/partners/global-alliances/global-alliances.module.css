@@ -44,12 +44,11 @@
 .heroBg {
   position: absolute;
   inset: 0;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.95) 40%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.2) 80%, rgba(0, 0, 0, 0) 100%),
-    url('https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2000&q=80');
+    url('/assets/products/lakeside-cabin/main.webp');
   background-size: cover;
   background-position: center right;
-  opacity: 1; /* Increased from 0.45 to let the gradient do the heavy lifting */
   pointer-events: none;
   z-index: 0;
 }
@@ -841,6 +840,13 @@
     align-items: stretch;
     padding: 100px 4% 0;
     min-height: 100svh;
+  }
+
+  .heroBg {
+    background-image:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.85) 75%, rgba(0, 0, 0, 0.97) 100%),
+      url('/assets/products/lakeside-cabin/main.webp');
+    background-position: center center;
   }
 
   .heroContent {

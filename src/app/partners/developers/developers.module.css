@@ -741,6 +741,13 @@
     min-height: 100svh;
   }
 
+  .heroBg {
+    background-image:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.85) 75%, rgba(0, 0, 0, 0.97) 100%),
+      url('/assets/products/marketing-office/main.webp');
+    background-position: center center;
+  }
+
   .heroContent {
     max-width: 100%;
     width: 100%;
