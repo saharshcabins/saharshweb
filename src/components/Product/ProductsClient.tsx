@@ -1,7 +1,7 @@
 "use client";
 // src/components/Product/ProductsClient.tsx
 
-import React, { useState, useMemo, useTransition } from "react";
+import React, { useState, useMemo, useTransition, useEffect } from "react";
 import type { Product, ProductCategory } from "@/data/productData";
 import FilterBar from "./Filterbar";
 import ProductCard from "./ProductCard";
@@ -23,6 +23,14 @@ export default function ProductsClient({
   // "grid re-renders in background". Without this, both happen synchronously
   // and the UI freezes for ~2s while React remounts all cards.
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    const saved = sessionStorage.getItem("scrollY_ourprojects");
+    if (saved) {
+      sessionStorage.removeItem("scrollY_ourprojects");
+      window.scrollTo({ top: parseInt(saved, 10) });
+    }
+  }, []);
 
   function handleCategoryChange(cat: ProductCategory | "All") {
     // 1. Update the active chip immediately (no transition — instant visual feedback)

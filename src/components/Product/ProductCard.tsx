@@ -31,6 +31,7 @@ export default function ProductCard({ item, priority = false }: ProductCardProps
   return (
     <Link
       href={`/ourprojects/${item.slug}`}
+      onClick={() => sessionStorage.setItem("scrollY_ourprojects", String(window.scrollY))}
       // ✅ will-change: transform tells the GPU to composite this layer separately.
       // Prevents the entire page repainting when this card animates.
       className="block rounded-[24px] overflow-hidden flex flex-col h-full"
