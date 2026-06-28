@@ -1,6 +1,6 @@
 ﻿"use client";
 import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import TextBuilder from "../shared/TextBuilder";
 import Image from "next/image";
 import Button from "../shared/Button";
@@ -129,33 +129,26 @@ const NewHeroSection = () => {
         className="w-full min-h-[80svh] md:h-screen md:h-screen relative flex flex-col justify-between overflow-hidden"
       >
 
-        {/* Background slides — mode="sync" crossfades simultaneously, no blank frame */}
-        <AnimatePresence mode="sync">
-          {slides.map(
-            (slide, idx) =>
-              idx === currentSlide && (
-                <motion.div
-                  key={slide.id}
-                  className="absolute inset-0 w-full h-full z-0"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                >
-                  <Image
-                    src={slide.bgImage}
-                    alt={`${slide.word} background`}
-                    fill
-                    priority={idx === 0}
-                    className="object-cover object-center"
-                    quality={75}
-                    sizes="100vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
-                </motion.div>
-              )
-          )}
-        </AnimatePresence>
+        {/* All slides always in DOM so images are preloaded — opacity drives transitions */}
+        {slides.map((slide, idx) => (
+          <motion.div
+            key={slide.id}
+            className="absolute inset-0 w-full h-full z-0"
+            animate={{ opacity: idx === currentSlide ? 1 : 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
+            <Image
+              src={slide.bgImage}
+              alt={`${slide.word} background`}
+              fill
+              priority
+              className="object-cover object-center"
+              quality={75}
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+          </motion.div>
+        ))}
 
         {/* Initial fade-in overlay */}
         <motion.div
