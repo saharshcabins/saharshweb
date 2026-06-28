@@ -9,7 +9,7 @@ import { useState } from "react";
 import { products } from "@/data/productData";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Thumbs, Keyboard } from "swiper/modules";
+import { Navigation, Thumbs, Keyboard, FreeMode } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -121,11 +121,14 @@ export default function GalleryPage() {
       {/* ── Thumbnails ── */}
       <div className="shrink-0 px-5 py-4 overflow-x-auto no-scrollbar">
         <Swiper
-          modules={[Thumbs]}
+          modules={[Thumbs, FreeMode]}
           onSwiper={setThumbsSwiper}
           slidesPerView="auto"
           spaceBetween={8}
-          className="!overflow-visible [&_.swiper-wrapper]:!justify-center"
+          watchSlidesProgress
+          freeMode
+          centerInsufficientSlides
+          className="!overflow-visible"
         >
           {images.map((img, i) => (
             <SwiperSlide

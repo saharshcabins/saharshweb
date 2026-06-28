@@ -161,14 +161,21 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   // router.push creates a history entry → browser back returns to product page
   const openGallery = useCallback(
     (index: number = 0) => {
+      sessionStorage.setItem(`scrollY_${product.slug}`, String(window.scrollY));
       router.push(`/ourprojects/${product.slug}/gallery?index=${index}`);
     },
     [router, product.slug],
   );
 
   useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, []);
+    const saved = sessionStorage.getItem(`scrollY_${product.slug}`);
+    if (saved) {
+      sessionStorage.removeItem(`scrollY_${product.slug}`);
+      window.scrollTo({ top: parseInt(saved, 10) });
+    } else {
+      window.scrollTo({ top: 0 });
+    }
+  }, [product.slug]);
 
   return (
     <div
